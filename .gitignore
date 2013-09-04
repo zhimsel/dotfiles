@@ -1,0 +1,17 @@
+*
+!.bashrc
+!.elinks
+!.gitconfig
+!.gitignore_global
+!.gitignore
+!.gnupg
+!.gnupg/*
+!.links2
+!.ssh
+!.ssh/*
+!.vimrc
+!.tmux.conf
+!.irssi
+!.irssi/*
+!bin
+!bin/*
