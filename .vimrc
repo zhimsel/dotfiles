@@ -56,9 +56,9 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h set textwidth=79
 au BufRead,BufNewFile *.py,*pyw set shiftwidth=4
 au BufRead,BufNewFile *.py,*.pyw set expandtab
 "set expandtab           " enter spaces when tab is pressed
-"set tabstop=4           " use 4 spaces to represent tab
-"set softtabstop=4
-"set shiftwidth=4        " number of spaces to use for auto indent
+set tabstop=4           " use 4 spaces to represent tab
+set softtabstop=4
+set shiftwidth=4        " number of spaces to use for auto indent
 let python_highlighting_all=1
 
 
