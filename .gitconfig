@@ -18,3 +18,4 @@
 	a = add
     ck = checkout
     br = branch
+    undo-last-commit = reset --soft HEAD~1
