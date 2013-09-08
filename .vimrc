@@ -11,6 +11,17 @@ set showcmd 			" show (partial) command in status line
 set background=light
 
 
+" Set better window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+set wmh=0
+map - <C-W>-
+map + <C-W>+
+map <M-<> <C-W><
+map <M->> <C-W>>
+
 
 
 " Set backups/swap/undo/viminfo files to ~/.vim
