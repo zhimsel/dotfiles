@@ -12,6 +12,7 @@ set background=light
 
 
 " Set better window movement
+"nnoremap <C-W> <C-S>
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
