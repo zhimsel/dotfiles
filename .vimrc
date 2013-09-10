@@ -90,7 +90,10 @@ if has("autocmd")
 else
   set autoindent		" always set autoindenting on
 endif " has("autocmd")
-nnoremap Q gq
+
+
+" Don't use ex-mode, and map Q for formatting
+map Q gq
 
 
 
