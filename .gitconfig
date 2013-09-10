@@ -8,7 +8,7 @@
 [merge]
 	tool = vimdiff
 [push]
-	default = simple
+	default = upstream
 [alias]
 	unstage = reset HEAD --
 	last = log -1 HEAD
