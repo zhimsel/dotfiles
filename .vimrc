@@ -18,8 +18,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 set wmh=0
-map - <C-W>-
-map + <C-W>+
 map <M-<> <C-W><
 map <M->> <C-W>>
 set splitbelow
