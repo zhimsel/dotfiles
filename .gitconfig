@@ -13,6 +13,7 @@
 	unstage = reset HEAD --
 	last = log -1 HEAD
 	s = status
+	f = fetch
 	c = commit
 	l = log
 	a = add
