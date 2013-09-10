@@ -22,7 +22,8 @@ map - <C-W>-
 map + <C-W>+
 map <M-<> <C-W><
 map <M->> <C-W>>
-
+set splitbelow
+set splitright
 
 
 " Set backups/swap/undo/viminfo files to ~/.vim
@@ -60,7 +61,7 @@ endif
 
 
 
-" configure expanding of tabs for various file types
+" configure expanding of tabs for python and c file types
 au BufRead,BufNewFile *.c set noexpandtab
 au BufRead,BufNewFile *.h set noexpandtab
 au BufRead,BufNewFile Makefile* set noexpandtab
@@ -82,7 +83,7 @@ if has("autocmd")
   filetype plugin indent on
   augroup vimrcEx
   au!
-  autocmd FileType text setlocal textwidth=78
+  autocmd FileType text setlocal textwidth=79
   autocmd BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
@@ -91,7 +92,7 @@ if has("autocmd")
 else
   set autoindent		" always set autoindenting on
 endif " has("autocmd")
-
+nnoremap Q gq
 
 
 
