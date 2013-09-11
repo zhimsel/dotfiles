@@ -4,12 +4,7 @@
 !.gitconfig
 !.gitignore_global
 !.gitignore
-!.gnupg
-!.gnupg/*
 !.links2
-!.ssh
-!.ssh/*
-.ssh/agent.env
 !.vimrc
 !.tmux.conf
 !.irssi
