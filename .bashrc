@@ -106,7 +106,7 @@ fi
 
 # some more ls aliases
 alias ll='ls -alF'
-alias la='ls -la'
+alias la='ls -lah'
 alias l='ls -CF'
 
 # alias py to python
