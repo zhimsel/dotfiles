@@ -67,7 +67,7 @@ set wildmenu
 set ruler
 
 " Height of the command bar
-set cmdheight=2
+set cmdheight=1
 
 " A buffer becomes hidden when it is abandoned
 set hid
@@ -124,7 +124,7 @@ set background=light
 
 " highlight trailing whitespace
 set list listchars=trail:.,tab:>.
-highlight SpecialKey ctermfg=DarkGray ctermbg=Black
+highlight SpecialKey ctermfg=DarkGray ctermbg=none
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -284,24 +284,25 @@ set viminfo^=%
 """"""""""""""""""""""""""""""
 " Always show the status line
 set laststatus=2	" always display the status line
+set showtabline=1
 
+hi VertSplit ctermfg=none ctermbg=yellow
+
+hi User1 ctermfg=yellow cterm=underline
+hi User2 ctermfg=yellow cterm=bold,underline
+hi User3 ctermfg=red cterm=bold,underline
 
 set statusline=
 set statusline +=%1*\ %n\ %*            "buffer number
-set statusline +=%4*\ %<%F%*            "full path
-set statusline +=%2*%m%*                "modified flag
-set statusline +=%5*\ \ %{&ff}%*            "file format
-set statusline +=%3*%y%*                "file type
-set statusline +=%1*%=%5l%*             "current line
-set statusline +=%2*/%L%*               "total lines
-set statusline +=%1*%4v\ \ %*             "virtual column number
-set statusline +=%2*0x%04B\ %*          "character under cursor
+set statusline +=%2*\ %<%F%*            "full path
+set statusline +=%3*%m%*                "modified flag
+set statusline +=%1*\ \ %{&ff}%*        "file format
+set statusline +=%1*%y%*                "file type
+set statusline +=%2*%=%5l%*             "current line
+set statusline +=%1*/%L%*               "total lines
+set statusline +=%2*%4v\ \ %*           "virtual column number
+set statusline +=%1*0x%04B\ %*          "character under cursor
 
-hi User1 guifg=#eea040 guibg=#222222
-hi User2 guifg=#dd3333 guibg=#222222
-hi User3 guifg=#ff66ff guibg=#222222
-hi User4 guifg=#a0ee40 guibg=#222222
-hi User5 guifg=#eeee40 guibg=#222222
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
@@ -393,11 +394,11 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
-    emenu Foo.Bar
-    unmenu Foo
-endfunction 
+"function! CmdLine(str)
+"    exe "menu Foo.Bar :" . a:str
+"    emenu Foo.Bar
+"    unmenu Foo
+"endfunction 
 
 function! VisualSelection(direction, extra_filter) range
     let l:saved_reg = @"
