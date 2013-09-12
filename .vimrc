@@ -286,7 +286,7 @@ set viminfo^=%
 set laststatus=2	" always display the status line
 set showtabline=1
 
-hi VertSplit ctermfg=none ctermbg=yellow
+hi VertSplit ctermfg=black ctermbg=yellow
 
 hi User1 ctermfg=yellow cterm=underline
 hi User2 ctermfg=yellow cterm=bold,underline
