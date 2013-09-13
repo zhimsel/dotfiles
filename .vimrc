@@ -120,6 +120,7 @@ map Q gq			" don't use ex-mode, and map Q for formatting
 " Enable syntax highlighting
 syntax enable 
 
+"set t_Co=256
 set background=light
 
 " highlight trailing whitespace
