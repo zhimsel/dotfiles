@@ -100,7 +100,7 @@ set showmatch
 set mat=2
 
 " key bindings
-nmap <F1> <Esc>		" stop that pesky F1 key
+"nmap <F1> <Esc>		" stop that pesky F1 key
 command W write		" stop that pesky shift key
 command Q quit		" stop that pesky shift key
 command Wq wq		" stop that pesky shift key
@@ -184,6 +184,7 @@ endif
 set expandtab
 set shiftwidth=5
 set tabstop=5
+set smarttab
 
 set lbr
 set tw=500
@@ -233,6 +234,7 @@ map j gj
 map k gk
 
 " Disable highlight when <leader><Esc> is pressed
+map <silent> <F1> :noh<cr>
 map <silent> <leader><Esc> :noh<cr>
 
 " Better window movement and placement
@@ -244,10 +246,10 @@ set splitbelow
 set splitright
 
 " Close the current buffer
-map <leader>bc :Bclose<cr>
+map <leader>bd :Bclose<cr>
 
 " Close all the buffers
-map <leader>bca :1,1000 bd!<cr>
+map <leader>bda :1,1000 bd!<cr>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
