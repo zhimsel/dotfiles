@@ -246,11 +246,11 @@ map <C-l> <C-W>l
 set splitbelow
 set splitright
 
-" Close the current buffer
+" buffer shortcuts
 map <leader>bd :Bclose<cr>
-
-" Close all the buffers
 map <leader>bda :1,1000 bd!<cr>
+map <leader>bn :bn<cr>
+map <leader>l :ls<cr>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
