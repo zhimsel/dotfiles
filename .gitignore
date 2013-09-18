@@ -6,6 +6,10 @@
 !.gitignore
 !.links2
 !.vimrc
+!.vim/syntax
+!.vim/syntax/*
+!.vim/colors
+!.vim/colors/*
 !.tmux.conf
 !.irssi
 !.irssi/*
