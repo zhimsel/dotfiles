@@ -6,6 +6,7 @@
 !.gitignore
 !.links2
 !.vimrc
+!.vim
 !.vim/syntax
 !.vim/syntax/*
 !.vim/colors
