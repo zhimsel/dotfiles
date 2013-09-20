@@ -17,3 +17,5 @@
 !bin
 !bin/*
 !.profile
+!.gnupg
+!.gnupg/gpg.conf
