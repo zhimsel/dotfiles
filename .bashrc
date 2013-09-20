@@ -135,6 +135,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Enable gpg-agent
+export GPGKEY=F7D2C279
+
 # Note: ~/.ssh/environment should not be used, as it
 #       already has a different purpose in SSH.
 
