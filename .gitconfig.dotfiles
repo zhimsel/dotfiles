@@ -11,3 +11,4 @@
 	merge = refs/heads/master
 [remote "github"]
 	url = git@github.com:zhimsel/dotfiles.git
+	fetch = +refs/heads/*:refs/remotes/github/*
