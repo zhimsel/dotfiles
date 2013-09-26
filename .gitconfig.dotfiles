@@ -1,0 +1,17 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[remote "bitbucket"]
+	url = git@bitbucket.org:zhimsel/dotfiles.git
+	fetch = +refs/heads/*:refs/remotes/bb/*
+[remote "github"]
+	url = git@github.com:zhimsel/dotfiles.git
+	fetch = +refs/heads/*:refs/remotes/gh/*
+[remote "origin"]
+	url = git@bitbucket.org:zhimsel/dotfiles.git
+	url = git@github.com:zhimsel/dotfiles.git
