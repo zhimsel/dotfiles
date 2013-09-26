@@ -3,15 +3,11 @@
 	filemode = true
 	bare = false
 	logallrefupdates = true
+[remote "bitbucket"]
+	url = git@bitbucket.org:zhimsel/dotfiles.git
+	fetch = +refs/heads/*:refs/remotes/bitbucket/*
 [branch "master"]
-	remote = origin
+	remote = bitbucket
 	merge = refs/heads/master
-[remote "bb"]
-	url = git@bitbucket.org:zhimsel/dotfiles.git
-	fetch = +refs/heads/*:refs/remotes/bb/*
-[remote "gh"]
-	url = git@github.com:zhimsel/dotfiles.git
-	fetch = +refs/heads/*:refs/remotes/gh/*
-[remote "all"]
-	url = git@bitbucket.org:zhimsel/dotfiles.git
+[remote "github"]
 	url = git@github.com:zhimsel/dotfiles.git
