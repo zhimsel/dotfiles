@@ -2,13 +2,13 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# If not running interactively, don't do anything
-#case $- in
-#    *i*) ;;
-#      *) return;;
-#esac
+
+# Start tmux on login (allows for detach)
 [[ $- != *i* ]] && return
-[[ -z "$TMUX" ]] && exec tmux
+if which tmux 2>&1 >/dev/null; then
+    #if not inside a tmux session, and if no session is started, start a new session
+    test -z "$TMUX" && (tmux attach || tmux new-session)
+fi
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
