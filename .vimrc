@@ -295,12 +295,15 @@ hi User1 ctermfg=yellow cterm=underline
 hi User2 ctermfg=yellow cterm=bold,underline
 hi User3 ctermfg=red cterm=bold,underline
 
+
 set statusline=
 set statusline +=%1*\ %n\ %*            "buffer number
 set statusline +=%2*\ %<%F%*            "full path
 set statusline +=%3*%m%*                "modified flag
 set statusline +=%1*\ \ %{&ff}%*        "file format
-set statusline +=%1*%y%=%*                "file type
+set statusline +=%1*%y%*                "file type
+set statusline +=%1*\ \ \ %{HasPaste()}   "paste mode
+set statusline +=%1*%=                 "whitespace
 set statusline +=%2*%5l%*             "current line
 set statusline +=%1*/%L%*               "total lines
 set statusline +=%2*%4v\ \ %*           "virtual column number
@@ -428,10 +431,11 @@ endfunction
 " Returns true if paste mode is enabled
 function! HasPaste()
     if &paste
-        return 'PASTE MODE  '
+        return 'PASTE'
     en
-    return ''
+        return ''
 endfunction
+
 
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
