@@ -16,8 +16,8 @@
 !.irssi/*
 !.irssi/scripts/autorun
 !.irssi/scripts/autorun/*
-!bin
-!bin/*
+!.bin
+!.bin/*
 !.profile
 !.gnupg
 !.gnupg/gpg.conf
