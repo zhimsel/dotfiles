@@ -300,8 +300,8 @@ set statusline +=%1*\ %n\ %*            "buffer number
 set statusline +=%2*\ %<%F%*            "full path
 set statusline +=%3*%m%*                "modified flag
 set statusline +=%1*\ \ %{&ff}%*        "file format
-set statusline +=%1*%y%*                "file type
-set statusline +=%2*%=%5l%*             "current line
+set statusline +=%1*%y%=%*                "file type
+set statusline +=%2*%5l%*             "current line
 set statusline +=%1*/%L%*               "total lines
 set statusline +=%2*%4v\ \ %*           "virtual column number
 set statusline +=%1*0x%04B\ %*          "character under cursor
