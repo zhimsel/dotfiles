@@ -3,10 +3,12 @@
 # for examples
 
 # If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+#case $- in
+#    *i*) ;;
+#      *) return;;
+#esac
+[[ $- != *i* ]] && return
+[[ -z "$TMUX" ]] && exec tmux
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
