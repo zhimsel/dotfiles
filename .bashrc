@@ -27,7 +27,7 @@ pathadd() {
         PATH="${PATH:+"$PATH:"}$1"
     fi
 }
-pathadd ~/bin
+pathadd ~/.bin
 
 # alias .. shortcuts
 alias cd..="cd .."
