@@ -5,10 +5,10 @@
 
 # Start tmux on login (allows for detach)
 [[ $- != *i* ]] && return
-if which tmux 2>&1 >/dev/null; then
-    #if not inside a tmux session, and if no session is started, start a new session
-    test -z "$TMUX" && (tmux attach || tmux new-session)
-fi
+#if which tmux 2>&1 >/dev/null; then
+#    #if not inside a tmux session, and if no session is started, start a new session
+#    test -z "$TMUX" && (tmux attach || tmux new-session)
+#fi
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
