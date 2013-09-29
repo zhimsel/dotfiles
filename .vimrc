@@ -190,8 +190,8 @@ set smarttab
 set lbr
 set tw=500
 
-set autoindent "Auto indent
-set wrap "Wrap lines
+set autoindent
+set wrap
 
 " Set auto-indenting at 79 characters
 if has("autocmd")
