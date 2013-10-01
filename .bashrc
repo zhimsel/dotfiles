@@ -9,6 +9,7 @@
 #    #if not inside a tmux session, and if no session is started, start a new session
 #    test -z "$TMUX" && (tmux attach || tmux new-session)
 #fi
+tmux source-file ~/.tmux.conf
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
