@@ -295,6 +295,14 @@ hi User1 ctermfg=yellow cterm=underline
 hi User2 ctermfg=yellow cterm=bold,underline
 hi User3 ctermfg=red cterm=bold,underline
 
+" Returns true if paste mode is enabled
+function! HasPaste()
+    if &paste
+        return 'PASTE'
+    en
+        return ''
+endfunction
+
 
 set statusline=
 set statusline +=%1*\ %n\ %*            "buffer number
@@ -427,14 +435,6 @@ function! VisualSelection(direction, extra_filter) range
     let @" = l:saved_reg
 endfunction
 
-
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE'
-    en
-        return ''
-endfunction
 
 
 " Don't close window, when deleting a buffer
