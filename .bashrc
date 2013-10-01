@@ -28,7 +28,7 @@ pathadd() {
     fi
 }
 pathadd ~/.bin
-EDITOR = vim
+set EDITOR = vim
 
 # alias .. shortcuts
 alias cd..="cd .."
