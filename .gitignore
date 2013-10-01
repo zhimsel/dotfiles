@@ -16,9 +16,12 @@
 !.irssi/*
 !.irssi/scripts/autorun
 !.irssi/scripts/autorun/*
+.irssi/config.autosave
 !.bin
 !.bin/*
 !.profile
 !.gnupg
 !.gnupg/gpg.conf
-.irssi/config.autosave
+!.config
+!.config/htop
+!.config/htop/*
