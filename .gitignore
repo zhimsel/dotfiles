@@ -14,8 +14,8 @@
 !.tmux.conf
 !.irssi
 !.irssi/*
-!.irssi/scripts/autorun
-!.irssi/scripts/autorun/*
+!.irssi/scripts
+!.irssi/scripts/*
 .irssi/config.autosave
 !.bin
 !.bin/*
