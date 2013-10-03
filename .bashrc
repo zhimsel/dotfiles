@@ -9,11 +9,9 @@ umask 077
 [[ $- != *i* ]] && return
 
 # Start tmux on login (allows for detach)
-#if which tmux 2>&1 >/dev/null; then
-#    #if not inside a tmux session, and if no session is started, start a new session
-#    test -z "$TMUX" && (tmux attach || tmux new-session)
-#fi
-tmux source-file ~/.tmux.conf
+if which tmux 2>&1 >/dev/null; then
+    test -z "$TMUX" && (tmux source-file ~/.tmux.conf)
+fi
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
