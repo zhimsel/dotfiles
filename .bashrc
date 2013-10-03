@@ -2,6 +2,8 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# set default permissions
+umask 077
 
 # Start tmux on login (allows for detach)
 [[ $- != *i* ]] && return
