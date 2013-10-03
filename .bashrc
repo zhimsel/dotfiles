@@ -31,6 +31,8 @@ pathadd() {
     fi
 }
 pathadd ~/.bin
+
+# set default editor
 set EDITOR = vim
 
 # alias .. shortcuts
