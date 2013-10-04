@@ -214,7 +214,7 @@ au BufRead,BufNewFile Makefile* set noexpandtab
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h set textwidth=79
 au BufRead,BufNewFile *.py,*pyw set shiftwidth=4
 au BufRead,BufNewFile *.py,*.pyw set expandtab
-let python_highlighting_all=1
+let python_version_2 = 1
 
 
 
