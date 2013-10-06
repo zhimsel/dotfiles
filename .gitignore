@@ -23,5 +23,3 @@
 !.gnupg
 !.gnupg/gpg.conf
 !.config
-!.config/htop
-!.config/htop/*
