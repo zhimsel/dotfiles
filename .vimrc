@@ -200,7 +200,7 @@ if has("autocmd")
   filetype indent on
   augroup vimrcEx
   au!
-  autocmd FileType text setlocal textwidth=79
+  autocmd FileType text setlocal textwidth=78
   autocmd BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
