@@ -33,6 +33,7 @@ set EDITOR = vim
 
 # aliases
 alias apt="sudo apt-get"
+alias please="sudo"
 
 # alias .. shortcuts
 alias cd..="cd .."
