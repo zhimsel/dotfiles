@@ -31,6 +31,9 @@ pathadd ~/.bin
 # set default editor
 set EDITOR = vim
 
+# aliases
+alias apt="sudo apt-get"
+
 # alias .. shortcuts
 alias cd..="cd .."
 alias cd..2="cd ../.."
