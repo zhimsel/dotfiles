@@ -26,3 +26,4 @@
 !.config/openbox
 !.config/openbox/*
 !.conkyrc
+.bin/btsync
