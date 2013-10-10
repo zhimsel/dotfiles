@@ -25,3 +25,4 @@
 !.config
 !.config/openbox
 !.config/openbox/*
+!.conkyrc
