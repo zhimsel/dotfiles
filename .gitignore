@@ -11,6 +11,9 @@
 !.vim/syntax/*
 !.vim/colors
 !.vim/colors/*
+!.vim/plugin
+!.vim/plugin/*
+.vim/plugin/.*
 !.tmux.conf
 !.irssi
 !.irssi/*
