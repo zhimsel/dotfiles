@@ -32,7 +32,7 @@ pathadd ~/.bin
 set EDITOR = vim
 
 # aliases
-alias apt="sudo apt-get"
+alias install="sudo apt-get install"
 alias please="sudo"
 
 # alias .. shortcuts
