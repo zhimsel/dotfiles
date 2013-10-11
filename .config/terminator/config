@@ -3,7 +3,6 @@
   handle_size = 0
   title_inactive_bg_color = "#000000"
 [keybindings]
-  hide_window = <Shift><Control>a
 [profiles]
   [[default]]
     scrollbar_position = hidden
@@ -28,5 +27,4 @@
     [[[window0]]]
       type = Window
       parent = ""
-      size = 685,430
 [plugins]
