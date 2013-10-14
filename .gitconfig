@@ -2,8 +2,9 @@
 	email = z.himsel@gmail.com
 	name = Zach Himsel
 [core]
+     eol = lf
 	autocrlf = input
-	safecrlf = true
+	safecrlf = false
 	editor = vim
 [merge]
 	tool = vimdiff
