@@ -1,10 +1,17 @@
+# ignore everything, except the entries below
 *
+
+# shell
 !.bashrc
-!.elinks
+!.profile
+
+!.bin
+!.bin/*
+
 !.gitconfig*
 !.gitignore_global
 !.gitignore
-!.links2
+
 !.vimrc
 !.vim
 !.vim/syntax
@@ -14,20 +21,22 @@
 !.vim/plugin
 !.vim/plugin/*
 .vim/plugin/.*
+
 !.tmux.conf
+
 !.irssi
 !.irssi/*
 !.irssi/scripts
 !.irssi/scripts/*
 .irssi/config.autosave
-!.bin
-!.bin/*
-!.profile
+
 !.gnupg
 !.gnupg/gpg.conf
+
 !.config
 !.config/openbox
 !.config/openbox/*
-!.conkyrc
 !.config/terminator
 !.config/terminator/*
+
+!.conkyrc
