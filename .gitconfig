@@ -9,7 +9,7 @@
 [merge]
 	tool = vimdiff
 [push]
-	default = upstream
+	default = matching
 [alias]
 	unstage = reset HEAD --
 	last = log -1 HEAD
