@@ -1,0 +1,3 @@
+#!/bin/bash
+ypcat hosts | grep -i $1
+
