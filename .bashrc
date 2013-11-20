@@ -5,6 +5,9 @@
 # set default permissions
 umask 077
 
+# set locale to UTF8
+export LANG="en_US.UTF8"
+
 # if not running interactively, do nothing
 [[ $- != *i* ]] && return
 
