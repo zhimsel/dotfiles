@@ -34,6 +34,7 @@ set EDITOR = vim
 # aliases
 alias please="sudo"
 alias cdd="cd $OLDPWD"
+alias cls="clear"
 
 # alias .. shortcuts
 alias cd..="cd .."
