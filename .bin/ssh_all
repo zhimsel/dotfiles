@@ -3,15 +3,21 @@
 # this script will ssh into all hostnames/IPs
 # passed to it and run whichever command specified
 
-[[ -n "$1" ]] || { echo "Usage: ssh_all \"command\" server1 server2 server3 ..."; exit 0 ; }
+# print some usage text if no arguments are given
+[[ -n "$1" ]] || { echo "Usage: ssh_all \"command\" [server_list.txt] OR [server1 server2 server3] ..."; exit 0 ; }
 
 COMMAND=$1
 shift
 
-for SERVER in $@; do
-     echo "----------------------"
+if [ -f $1 ]; then
+     SERVER_LIST=$(cat $1)
+else
+     SERVER_LIST=$@
+fi
+
+for SERVER in $SERVER_LIST; do
+     echo ""
      echo "Running '$COMMAND' on $SERVER"
      echo $COMMAND | ssh $SERVER /bin/bash
      echo "----------------------"
-     echo ""
 done
