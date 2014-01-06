@@ -22,6 +22,9 @@ else
 
   lftp -u $login,$pass $host << EOF
   set mirror:use-pget-n 6
+  set xfer:log 1
+  set xfer:eta-period 5
+  set xfer:rate-period 20
   mirror -p -c -P4 $remote_dir $local_dir
   quit
 EOF
