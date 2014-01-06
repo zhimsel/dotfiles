@@ -33,7 +33,7 @@ pathadd() {
 pathadd ~/.bin
 
 # set default editor
-set EDITOR = vim
+export EDITOR=vim
 
 # aliases
 alias please="sudo"
