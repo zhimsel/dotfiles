@@ -1,3 +1,3 @@
 #!/bin/bash
-ypcat hosts | grep -i $1
+ypcat hosts | grep -i $1 | sort -k2
 
