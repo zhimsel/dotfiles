@@ -17,12 +17,27 @@ export LANG="en_US.UTF8"
 #fi
 
 # append to the history file, don't overwrite it
-shopt -s histappend
-PROMPT_COMMAND="history -a; history -c; history -r;$PROMPT_COMMAND"
+#export HISTCONTROL=ignoredups:erasedups
+#shopt -s histappend
+#PROMPT_COMMAND="history -a; history -c; history -r;$PROMPT_COMMAND"
+HISTSIZE=10000
+HISTFILESIZE=$HISTSIZE
+HISTCONTROL=ignorespace:ignoredups
+history() {
+  _bash_history_sync
+  builtin history "$@"
+}
+_bash_history_sync() {
+  builtin history -a         #1
+  HISTFILESIZE=$HISTSIZE     #2
+  builtin history -c         #3
+  builtin history -r         #4
+}
+PROMPT_COMMAND=_bash_history_sync
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+#HISTSIZE=1000
+#HISTFILESIZE=2000
 
 # append ~/bin to $PATH
 pathadd() {
