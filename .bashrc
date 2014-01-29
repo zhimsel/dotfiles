@@ -46,6 +46,7 @@ pathadd() {
     fi
 }
 pathadd ~/.bin
+pathadd ~/.cabal/bin
 
 # set default editor
 export EDITOR=vim
