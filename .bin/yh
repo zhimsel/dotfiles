@@ -1,2 +1,2 @@
 #!/bin/bash
-ypcat hosts | grep -i $1 | sort -k2 | uniq
+ypcat hosts | grep -i "$1" | sort -k2 | uniq
