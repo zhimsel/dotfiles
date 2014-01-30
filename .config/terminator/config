@@ -11,12 +11,12 @@
     urgent_bell = True
     use_system_font = False
     cursor_color = "#d8d8d8"
-    foreground_color = "#d8d8d8"
+    foreground_color = "#e3e3e3"
     scroll_on_output = False
     show_titlebar = False
     color_scheme = custom
     font = Liberation Mono 10
-    background_color = "#2e3436"
+    background_color = "#101010"
     scrollback_lines = 5000
     scrollback_infinite = True
 [layouts]
