@@ -6,15 +6,19 @@
 # print some usage text if no arguments are given
 [[ -n "$1" ]] || { echo "Usage: ssh_all \"command\" [server_list.txt] OR [server1 server2 server3] ..."; exit 0 ; }
 
+# pull the first arg out since that is going to be our command sent to ssh
 COMMAND=$1
 shift
 
+# if next arg is a file, then use that as the list of servers
+# otherwise use the remaining args as your server list
 if [ -f $1 ]; then
      SERVER_LIST=$(cat $1)
 else
      SERVER_LIST=$@
 fi
 
+# do it!
 for SERVER in $SERVER_LIST; do
      echo ""
      echo "Running '$COMMAND' on $SERVER"
