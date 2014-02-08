@@ -57,12 +57,11 @@ alias cdd="cd $OLDPWD"
 alias cls="clear"
 
 # alias .. shortcuts
-alias cd..="cd .."
-alias cd..2="cd ../.."
-alias cd..3="cd ../../.."
-alias cd..4="cd ../../../.."
-alias cd..5="cd ../../../../.."
 alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
 
 # mkcd
 function mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
