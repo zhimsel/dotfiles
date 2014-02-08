@@ -52,7 +52,7 @@ pathadd ~/.cabal/bin
 export EDITOR=vim
 
 # aliases
-alias please="sudo"
+alias please="sudo !!"
 alias cdd="cd $OLDPWD"
 alias cls="clear"
 
