@@ -26,6 +26,10 @@ set history=1000
 set viminfo='1000,f1,:100,@100,/20
 set isk+=_,$,@,%,#,-	" none word dividers
 
+" pathogen config
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
+
 " Enable filetype plugins
 filetype plugin on
 filetype indent on

@@ -14,13 +14,10 @@
 
 !.vimrc
 !.vim
-!.vim/syntax
-!.vim/syntax/*
-!.vim/colors
-!.vim/colors/*
-!.vim/plugin
-!.vim/plugin/*
-.vim/plugin/.*
+!.vim/*
+.vim/viminfo
+.vim/backup
+.vim/swap
 
 !.tmux.conf
 
