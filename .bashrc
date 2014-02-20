@@ -45,6 +45,7 @@ pathadd ~/.cabal/bin
 
 # set default editor
 export EDITOR=vim
+alias vi=vim
 
 # aliases
 alias please="sudo !!"
