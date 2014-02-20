@@ -45,7 +45,7 @@ pathadd() {
         PATH="${PATH:+"$PATH:"}$1"
     fi
 }
-pathadd ~/.bin
+pathadd ~/bin
 pathadd ~/.cabal/bin
 
 # set default editor

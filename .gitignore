@@ -4,9 +4,6 @@
 !.bashrc
 !.profile
 
-!.bin
-!.bin/*
-
 !.gitconfig*
 !.gitignore_global
 !.gitignore
