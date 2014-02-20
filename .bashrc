@@ -17,9 +17,7 @@ export LANG="en_US.UTF8"
 #fi
 
 # append to the history file, don't overwrite it
-#export HISTCONTROL=ignoredups:erasedups
-#shopt -s histappend
-#PROMPT_COMMAND="history -a; history -c; history -r;$PROMPT_COMMAND"
+export HISTTIMEFORMAT="%F %T "
 HISTSIZE=10000
 HISTFILESIZE=$HISTSIZE
 HISTCONTROL=ignorespace:ignoredups
@@ -35,9 +33,6 @@ _bash_history_sync() {
 }
 PROMPT_COMMAND=_bash_history_sync
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-#HISTSIZE=1000
-#HISTFILESIZE=2000
 
 # append ~/bin to $PATH
 pathadd() {
