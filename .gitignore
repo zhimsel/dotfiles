@@ -1,7 +1,6 @@
 # ignore everything, except the entries below
 *
 
-# shell
 !.bashrc
 !.profile
 
@@ -15,9 +14,6 @@
 !.vimrc
 !.vim
 !.vim/*
-.vim/viminfo
-.vim/backup
-.vim/swap
 
 !.tmux.conf
 
