@@ -161,6 +161,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+. ~/.bash_complete
+
 # Enable gpg-agent
 export GPGKEY=F7D2C279
 

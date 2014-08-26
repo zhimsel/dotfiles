@@ -1,0 +1,90 @@
+
+# Add bash completion for ssh: it tries to complete the host to which you
+# want to connect from the list of the ones contained in ~/.ssh/known_hosts
+_ypcat_known_hosts() {
+        ypcat hosts | awk '{ print $2}'; ls /home/lw-staff; echo root; echo ec2-user;echo lw-admin;
+}
+_ssh() {
+    local cur known_hosts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    known_hosts="$(_ypcat_known_hosts)"
+    if [[ ! ${cur} == -* ]] ; then
+        if [[ ${cur} == *@* ]] ; then
+            COMPREPLY=( $(compgen -W "${known_hosts}" -P ${cur/@*/}@ -- ${cur/*@/}) )
+        else
+            COMPREPLY=( $(compgen -W "${known_hosts}" -- ${cur}) )
+        fi
+    fi
+    return 0
+}
+complete -o bashdefault -o default -o nospace -F _ssh ssh 2>/dev/null \
+    || complete -o default -o nospace -F _ssh ssh
+
+
+
+_sftp() {
+    local cur known_hosts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    known_hosts="$(_ypcat_known_hosts)"
+    if [[ ! ${cur} == -* ]] ; then
+        if [[ ${cur} == *@* ]] ; then
+            COMPREPLY=( $(compgen -W "${known_hosts}" -P ${cur/@*/}@ -- ${cur/*@/}) )
+        else
+            COMPREPLY=( $(compgen -W "${known_hosts}" -- ${cur}) )
+        fi
+    fi
+    return 0
+}
+complete -o bashdefault -o default -o nospace -F _sftp sftp 2>/dev/null \
+    || complete -o default -o nospace -F _sftp sftp		
+
+
+_scp() {
+    local cur known_hosts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    known_hosts="$(_ypcat_known_hosts)"
+    if [[ ! ${cur} == -* ]] ; then
+        if [[ ${cur} == *@* ]] ; then
+            COMPREPLY=( $(compgen -W "${known_hosts}" -P ${cur/@*/}@ -- ${cur/*@/}) )
+        else
+            COMPREPLY=( $(compgen -W "${known_hosts}" -- ${cur}) )
+        fi
+    fi
+    return 0
+}
+complete -o bashdefault -o default -o nospace -F _scp scp 2>/dev/null \
+    || complete -o default -o nospace -F _scp scp
+
+
+_rsync() {
+    local cur known_hosts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    known_hosts="$(_ypcat_known_hosts)"
+    if [[ ! ${cur} == -* ]] ; then
+        if [[ ${cur} == *@* ]] ; then
+            COMPREPLY=( $(compgen -W "${known_hosts}" -P ${cur/@*/}@ -- ${cur/*@/}) )
+        else
+            COMPREPLY=( $(compgen -W "${known_hosts}" -- ${cur}) )
+        fi
+    fi
+    return 0
+}
+complete -o bashdefault -o default -o nospace -F _rsync rsync 2>/dev/null \
+    || complete -o default -o nospace -F _rsync rsync
+
+_ping() {
+    local cur known_hosts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    known_hosts="$(_ypcat_known_hosts)"
+    if [[ ! ${cur} == -* ]] ; then
+             COMPREPLY=( $(compgen -W "${known_hosts}" -- ${cur}) )
+    fi
+    return 0
+}
+complete -o bashdefault -o default -o nospace -F _ping ping 2>/dev/null \
+    || complete -o default -o nospace -F _ping ping
