@@ -2,7 +2,7 @@
 # Add bash completion for ssh: it tries to complete the host to which you
 # want to connect from the list of the ones contained in ~/.ssh/known_hosts
 _ypcat_known_hosts() {
-        ypcat hosts | awk '{ print $2}'; ls /home/lw-staff; echo root; echo ec2-user;echo lw-admin;
+        ypcat hosts | awk '{ print $2}'; ls /home/lw-staff; echo root@; echo ec2-user@;echo lw-admin@;
 }
 _ssh() {
     local cur known_hosts
