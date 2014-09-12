@@ -7,16 +7,15 @@
   [[default]]
     scrollbar_position = hidden
     palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
-    background_image = None
     background_darkness = 1.02
     urgent_bell = True
-    use_system_font = False
+    background_image = None
     cursor_color = "#d8d8d8"
     foreground_color = "#e3e3e3"
     scroll_on_output = False
     show_titlebar = False
     color_scheme = custom
-    font = Droid Sans Mono 10
+    font = Sans 12
     background_color = "#101010"
     scrollback_lines = 5000
     scrollback_infinite = True
