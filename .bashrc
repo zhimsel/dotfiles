@@ -51,6 +51,7 @@ alias vi=vim
 alias please="sudo !!"
 alias cdd="cd $OLDPWD"
 alias cls="clear"
+alias sc="systemctl"
 
 # alias .. shortcuts
 alias ..="cd .."
