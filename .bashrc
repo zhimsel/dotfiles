@@ -10,9 +10,9 @@ export LANG="en_US.UTF8"
 
 # if not running interactively, do nothing
 [[ $- != *i* ]] && return
-if which tmux >/dev/null 2>&1; then
-     [[ -z "$TMUX" ]] && exec tmux
-fi
+#if which tmux >/dev/null 2>&1; then
+#     [[ -z "$TMUX" ]] && exec tmux
+#fi
 
 ## Start tmux on login (allows for detach)
 #if which tmux 2>&1 >/dev/null; then
