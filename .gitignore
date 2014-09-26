@@ -26,6 +26,4 @@
 !.config
 !.config/openbox
 !.config/openbox/*
-!.config/terminator
-!.config/terminator/*
 
