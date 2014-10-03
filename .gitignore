@@ -14,12 +14,6 @@
 
 !.tmux.conf
 
-!.irssi
-!.irssi/*
-!.irssi/scripts
-!.irssi/scripts/*
-.irssi/config.autosave
-
 !.gnupg
 !.gnupg/gpg.conf
 
