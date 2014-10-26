@@ -83,7 +83,7 @@ export PATH="$PATH:$HOME/bin"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
-highlight-file="/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-if [ -f $highlight-file ]; then
-     source $highlight-file
+export HIGHLIGHT_FILE="/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+if [ -f "$HIGHLIGHT_FILE" ]; then
+     source "$HIGHLIGHT_FILE"
 fi
