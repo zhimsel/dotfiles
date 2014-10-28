@@ -17,6 +17,12 @@ source $ZSH/oh-my-zsh.sh
 plugins=(git ruby aws gem jsontools nyan pip sublime sudo systemd apt yum common-aliases bundler command-not-found rvm rails) 
 
 
+# load machine-specific options
+if [ -f ~/.zshrc-local ]; then
+     source ~/.zshrc-local
+fi
+
+
 # misc settings
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
