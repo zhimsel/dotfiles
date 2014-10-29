@@ -6,6 +6,7 @@
      autocrlf = input
      safecrlf = false
      editor = vim
+     excludesfile = ~/.gitignore_global
 [merge]
      tool = vimdiff
 [push]
