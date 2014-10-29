@@ -3,7 +3,6 @@
 !.install
 
 !.bashrc
-!.profile
 
 !.gitconfig*
 !.gitignore_global
