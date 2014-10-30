@@ -54,7 +54,7 @@ fi
 
 
 # aliases
-alias please="sudo !!"
+alias please='sudo $(fc -ln -1)'
 alias sc="systemctl"
 function mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
 
