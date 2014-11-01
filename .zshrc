@@ -48,7 +48,7 @@ if [ -f ~/.bash_complete ]; then
 . ~/.bash_complete
 fi
 
-if [ -f $(which aws_completer) ]; then
+if [ -f "$(which aws_completer)" ]; then
      complete -C $(which aws_completer) aws
 fi
 
