@@ -31,6 +31,8 @@ HIST_STAMPS="yyyy.mm.dd"
 
 #set text editor
 export EDITOR="vim"
+bindkey -v
+export KETTIMEOUT=1
 
 
 # set syntax hightlighting
