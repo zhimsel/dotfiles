@@ -29,10 +29,16 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="yyyy.mm.dd"
 
 
-#set text editor
+# set text editor
 export EDITOR="vim"
+
+# enable vim mode
 bindkey -v
 export KETTIMEOUT=1
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
 
 
 # set syntax hightlighting
