@@ -162,13 +162,13 @@ set backupdir^=~/.vim/backup//
 set backupdir^=./.vim-backup/
 set nobackup
 
-if isdirectory($HOME . '/.vim/swap') == 0
-  :silent !mkdir -p ~/.vim/swap >/dev/null 2>&1
-endif
-set directory=./.vim-swap/
-set directory+=~/.vim/swap//
-set directory+=~/tmp//
-set directory+=.
+"if isdirectory($HOME . '/.vim/swap') == 0
+"  :silent !mkdir -p ~/.vim/swap >/dev/null 2>&1
+"endif
+"set directory=./.vim-swap/
+"set directory+=~/.vim/swap//
+"set directory+=~/tmp//
+"set directory+=.
 
 set viminfo+=n~/.vim/viminfo
 
