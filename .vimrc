@@ -31,6 +31,7 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
 " Enable filetype plugins
+filetype off
 filetype plugin on
 filetype indent on
 
