@@ -30,8 +30,17 @@ set isk+=_,$,@,%,#,-	" none word dividers
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
-" Enable filetype plugins
+" Set up vundle
 filetype off
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+" bundles
+Plugin 'fountain'
+Plugin 'tpope/vim-pathogen'
+Plugin 'tpope/vim-surround'
+
+" Enable filetype plugins
 filetype plugin on
 filetype indent on
 
