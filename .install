@@ -5,13 +5,12 @@ cd "$(dirname $0)"
 function doIt() {
      source=$(dirname $0)
      echo "Copying from git repo path: $source"
-     mv -i $source/.* ~/
-     cd ~
-     echo "Removing now-empty source repo directory"
-     rmdir $source
-     echo "Initializing git submodules"
-     git submodule init
-     echo "Updating git submodules from upstream"
+     cd $source
+     cp -avP .* ~/ &&
+     cd ~ &&
+     echo "Initializing git submodules" &&
+     git submodule init &&
+     echo "Updating git submodules from upstream" &&
      git submodule update
 }
 
