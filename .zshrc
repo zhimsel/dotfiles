@@ -13,8 +13,13 @@ ZSH_THEME="bira"
 # oh-my-zsh settings
 export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
-plugins=(git ruby aws gem jsontools nyan pip sublime sudo systemd apt yum common-aliases bundler command-not-found rvm rails) 
+plugins=(git ruby aws gem jsontools nyan pip sublime sudo systemd apt yum common-aliases bundler command-not-found rvm rails knife brew brew-cask archlinux debian docker git-extras jira tmux vagrant)
 
+# enable zsh completions for osx
+fpath=(/usr/local/share/zsh-completions $fpath)
+
+# init autocomplete
+compinit
 
 PROMPT="${user_host} ${current_dir} ${rvm_ruby} ${git_branch}
 %B$%b "
