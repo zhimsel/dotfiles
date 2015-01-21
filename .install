@@ -6,7 +6,7 @@ function doIt() {
      source=$(dirname $0)
      echo "Copying from git repo path: $source"
      cd $source
-     cp -aP --ignore"." --ignore ".." .* ~/
+     cp -aP .* ~/
      cd ~
      echo "Initializing git submodules"
      git submodule init
