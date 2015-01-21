@@ -1,0 +1,27 @@
+#!/bin/bash
+
+cd "$(dirname $0)"
+
+function doIt() {
+     source=$(dirname $0)
+     echo "Copying from git repo path: $source"
+#     mv -i $source/.* ~/
+#     cd ~
+#     echo "Removing now-empty source repo directory"
+#     rmdir $source
+#     echo "Initializing git submodules"
+#     git submodule init
+#     echo "Updating git submodules from upstream"
+#     git submodule update
+}
+
+if [ "$1" == "--force" -o "$1" == "-f" ]; then
+     doIt
+else
+     read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1
+     echo ""
+     if [[ $REPLY =~ ^[Yy]$ ]]; then
+          doIt
+     fi
+fi
+unset doIt;
