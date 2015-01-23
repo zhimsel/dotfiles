@@ -16,7 +16,7 @@ source $ZSH/oh-my-zsh.sh
 plugins=(git ruby aws gem jsontools nyan pip sublime sudo systemd apt yum common-aliases bundler command-not-found rvm rails knife brew brew-cask archlinux debian docker git-extras jira tmux vagrant)
 
 # enable zsh completions for osx
-fpath=(/usr/local/share/zsh-completions $fpath)
+fpath=($fpath /usr/local/share/zsh-completions)
 
 # init autocomplete
 compinit
