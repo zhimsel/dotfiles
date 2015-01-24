@@ -36,7 +36,7 @@ set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 " bundles
-Plugin 'fountain'
+Plugin 'fountain.vim'
 Plugin 'tpope/vim-pathogen'
 Plugin 'tpope/vim-surround'
 
@@ -228,6 +228,7 @@ au BufRead,BufNewFile *.h set noexpandtab
 au BufRead,BufNewFile Makefile* set noexpandtab
 au BufRead,BufNewFile *.py,*.pyw set shiftwidth=4 tabstop=4
 au BufRead,BufNewFile *.java set shiftwidth=4 tabstop=4
+au BufRead,BufNewFile *.fountain   set filetype=fountain
 let python_version_2 = 1
 
 " java settings
