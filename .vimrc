@@ -39,6 +39,7 @@ call vundle#rc()
 Plugin 'fountain.vim'
 Plugin 'tpope/vim-pathogen'
 Plugin 'tpope/vim-surround'
+Plugin 'avakhov/vim-yaml'
 
 " Enable filetype plugins
 filetype plugin on
