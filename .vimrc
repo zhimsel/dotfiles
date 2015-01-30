@@ -41,6 +41,9 @@ Plugin 'tpope/vim-pathogen'
 Plugin 'tpope/vim-surround'
 Plugin 'avakhov/vim-yaml'
 
+" text expansion
+iab #ube #!/usr/bin/env
+
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
