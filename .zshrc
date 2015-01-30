@@ -96,6 +96,7 @@ alias please='sudo $(fc -ln -1)'
 alias sc="systemctl"
 alias la="ls -lah"
 function mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
+alias tree="tree -I .git"
 
 
 # gpg-agent setup
