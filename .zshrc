@@ -19,7 +19,7 @@ plugins=(git ruby aws gem jsontools nyan pip sublime sudo systemd apt yum common
 fpath=($fpath /usr/local/share/zsh-completions)
 
 # init autocomplete
-compinit
+compinit -u
 
 # prompt settings
 PROMPT="${user_host} ${current_dir} ${rvm_ruby} ${git_branch}
