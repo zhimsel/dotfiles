@@ -64,6 +64,11 @@ bindkey '^r' history-incremental-search-backward
 bindkey -a u undo
 bindkey -a '^R' redo
 KEYTIMEOUT=1
+bindkey -sM vicmd '^[' '^G'
+bindkey -rM viins '^X'
+bindkey -M viins '^X,' _history-complete-newer \
+                 '^X/' _history-complete-older \
+                 '^X`' _bash_complete-word
 
 
 # set syntax hightlighting
