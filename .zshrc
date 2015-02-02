@@ -53,7 +53,7 @@ HIST_STAMPS="yyyy.mm.dd"
 # set text editor
 export EDITOR="vim"
 
-# enable vim mode
+# enable vi mode
 bindkey -v
 export KETTIMEOUT=1
 bindkey '^?' backward-delete-char
@@ -68,6 +68,10 @@ bindkey -rM viins '^X'
 bindkey -M viins '^X,' _history-complete-newer \
                  '^X/' _history-complete-older \
                  '^X`' _bash_complete-word
+
+#load opp.zsh for better vi mode features
+source ~/.zsh/opp.zsh/opp.zsh
+source ~/.zsh/opp.zsh/opp/*.zsh
 
 
 # set syntax hightlighting
