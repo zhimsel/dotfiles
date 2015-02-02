@@ -222,3 +222,5 @@ elif ! agent_has_keys; then
 fi
 
 unset env
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

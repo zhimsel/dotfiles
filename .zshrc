@@ -1,11 +1,10 @@
 # set default umask
 umask 077
 
-
 # set $PATH
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
+export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 export PATH="$PATH:$HOME/bin"
-
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # theme
 ZSH_THEME="bira"
@@ -142,3 +141,4 @@ elif ! agent_has_keys; then
 fi
 
 unset env
+
