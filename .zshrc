@@ -69,9 +69,10 @@ bindkey -M viins '^X,' _history-complete-newer \
                  '^X/' _history-complete-older \
                  '^X`' _bash_complete-word
 
-#load opp.zsh for better vi mode features
+#load plugins
 source ~/.zsh/opp.zsh/opp.zsh
 source ~/.zsh/opp.zsh/opp/*.zsh
+source ~/.zsh/berkshelf.zsh/berkshelf.plugin.zsh
 
 
 # set syntax hightlighting
@@ -151,7 +152,7 @@ unset env
 newcook() {
   if [ $1 ] ; then
     git clone git@github.com:zhimsel/skeleton-cookbook.git $1
-    cd $1-chef; rm -rf .git/
+    cd $1; rm -rf .git/
     egrep -r "skeleton" * .kitchen.yml | cut -d ':' -f 1 | sort | uniq | xargs -n 1 sed -i '' "s/skeleton/$1/g"
   else
     echo "Need the name of the cookbook."

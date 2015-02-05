@@ -7,3 +7,6 @@
 [submodule ".zsh/opp.zsh"]
 	path = .zsh/opp.zsh
 	url = https://github.com/hchbaw/opp.zsh.git
+[submodule ".zsh/berkshelf.zsh"]
+	path = .zsh/berkshelf.zsh
+	url = https://github.com/berkshelf/berkshelf-zsh-plugin.git
