@@ -41,6 +41,7 @@ Plugin 'tpope/vim-pathogen'
 Plugin 'tpope/vim-surround'
 Plugin 'avakhov/vim-yaml'
 Plugin 'json.vim'
+Plugin 'rodjek/vim-puppet'
 
 " text expansion
 iab #ube #!/usr/bin/env
