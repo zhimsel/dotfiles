@@ -150,7 +150,7 @@ unset env
 # new cookbook function
 newcook() {
   if [ $1 ] ; then
-    git clone git@github.com:zhimsel/skeleton-cookbook.git $1-chef
+    git clone git@github.com:zhimsel/skeleton-cookbook.git $1
     cd $1-chef; rm -rf .git/
     egrep -r "skeleton" * .kitchen.yml | cut -d ':' -f 1 | sort | uniq | xargs -n 1 sed -i '' "s/skeleton/$1/g"
   else
