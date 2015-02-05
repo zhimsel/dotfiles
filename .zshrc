@@ -153,9 +153,7 @@ newcook() {
     git clone git@github.com:zhimsel/skeleton-cookbook.git $1-chef
     cd $1-chef; rm -rf .git/
     egrep -r "skeleton" * .kitchen.yml | cut -d ':' -f 1 | sort | uniq | xargs -n 1 sed -i '' "s/skeleton/$1/g"
-    git init . && git add .
   else
     echo "Need the name of the cookbook."
   fi
 }
-
