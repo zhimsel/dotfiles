@@ -2,9 +2,13 @@
 umask 077
 
 # set $PATH
+#export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
 export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin"
 export PATH="$PATH:$HOME/bin"
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="/opt/chefdk/embedded/bin:${HOME}/.chefdk/gem/ruby/2.1.0/bin:$PATH"
+
+# Load RVM into a shell session *as a function*
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # theme
 ZSH_THEME="bira"
@@ -12,7 +16,7 @@ ZSH_THEME="bira"
 # oh-my-zsh settings
 export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
-plugins=(git ruby aws gem jsontools nyan pip sublime sudo systemd apt yum common-aliases bundler command-not-found rvm rails knife brew brew-cask archlinux debian docker git-extras jira tmux vagrant)
+plugins=(git ruby aws gem jsontools nyan pip sublime sudo systemd apt yum common-aliases command-not-found rvm rails knife brew brew-cask archlinux debian docker git-extras jira tmux vagrant)
 
 # enable zsh completions for osx
 fpath=($fpath /usr/local/share/zsh-completions)
