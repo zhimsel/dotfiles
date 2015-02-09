@@ -8,10 +8,11 @@ function doIt() {
      cd $source
      cp -aP .* ~/
      cd ~
-     echo "Initializing git submodules"
+     echo "Installing git submodules"
      git submodule init
-     echo "Updating git submodules from upstream"
      git submodule update
+     echo "Installin vim plugins
+     vim +PluginUpdate +qall
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
