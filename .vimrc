@@ -40,7 +40,7 @@ Plugin 'fountain.vim'
 Plugin 'tpope/vim-pathogen'
 Plugin 'tpope/vim-surround'
 Plugin 'avakhov/vim-yaml'
-Plugin 'json.vim'
+Plugin 'elzr/vim-json'
 Plugin 'rodjek/vim-puppet'
 
 " text expansion
@@ -204,8 +204,8 @@ set path=**
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set expandtab
-set shiftwidth=5
-set tabstop=5
+set shiftwidth=2
+set tabstop=2
 set smarttab
 
 set lbr
