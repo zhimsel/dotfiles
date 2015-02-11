@@ -9,8 +9,9 @@ function doIt() {
      cp -aP .* ~/
      cd ~
      echo "Installing git submodules"
-     git submodule init
      git submodule update
+     git submodule foreach git checkout master
+     git submodule foreach git pull
      echo "Installin vim plugins
      vim +PluginUpdate +qall
 }
