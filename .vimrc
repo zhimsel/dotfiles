@@ -235,6 +235,7 @@ au BufRead,BufNewFile Makefile* set noexpandtab
 au BufRead,BufNewFile *.py,*.pyw set shiftwidth=4 tabstop=4
 au BufRead,BufNewFile *.java set shiftwidth=4 tabstop=4
 au BufRead,BufNewFile *.fountain   set filetype=fountain
+au BufRead,BufNewFile {Berksfile,Vagrantfile,Gemfile} set filetype=ruby
 let python_version_2 = 1
 
 " java settings
