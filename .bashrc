@@ -51,6 +51,7 @@ export EDITOR=vim
 alias vi=vim
 
 # aliases
+alias fucking="sudo"
 alias please="sudo !!"
 alias cdd="cd $OLDPWD"
 alias cls="clear"
