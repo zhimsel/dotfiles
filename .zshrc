@@ -101,6 +101,7 @@ fi
 
 # aliases
 alias please='sudo $(fc -ln -1)'
+alias fucking='sudo'
 alias sc="systemctl"
 alias la="ls -lah"
 function mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
