@@ -24,3 +24,5 @@
 !.zsh/*
 
 !.lftprc
+
+!.profile
