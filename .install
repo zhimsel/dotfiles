@@ -13,7 +13,7 @@ function doIt() {
      git submodule update
      git submodule foreach git checkout master
      git submodule foreach git pull
-     echo "Installin vim plugins
+     echo "Installing vim plugins"
      vim +PluginUpdate +qall
 }
 
