@@ -20,6 +20,7 @@ function install_dotfiles() {
 }
 
 function install_scripts() {
+  echo "Cloning scripts repo"
   git clone https://github.com/zhimsel/scripts.git ~/scripts
   mkdir -p ~/bin
 }
