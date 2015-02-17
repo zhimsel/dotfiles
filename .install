@@ -25,7 +25,7 @@ function install_scripts() {
 }
 
 # install scripts, too?
-read -p "Would you like to install your scripts, too? (y/n)"
+read -p "Would you like to install your scripts, too? (y/n)" -n 1
 echo ""
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   scripts=1
