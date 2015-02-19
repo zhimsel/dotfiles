@@ -35,7 +35,7 @@ filetype off
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
-" bundles
+" plugins
 Plugin 'fountain.vim'
 Plugin 'tpope/vim-pathogen'
 Plugin 'tpope/vim-surround'
@@ -44,6 +44,12 @@ Plugin 'elzr/vim-json'
 Plugin 'rodjek/vim-puppet'
 Plugin 'python.vim'
 Plugin 'sql.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Valloric/YouCompleteMe'
+
+" NERDtree settings
+map <C-t> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " text expansion
 iab #ube #!/usr/bin/env
