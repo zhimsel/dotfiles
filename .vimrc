@@ -47,6 +47,7 @@ Plugin 'sql.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'repeat.vim'
+Plugin 'rstacruz/sparkup'
 
 " NERDtree settings
 map <C-t> :NERDTreeToggle<CR>
