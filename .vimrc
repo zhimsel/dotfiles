@@ -51,6 +51,9 @@ Plugin 'Valloric/YouCompleteMe'
 map <C-t> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+" tag completion
+iabbrev <// </<C-X><C-O>
+
 " text expansion
 iab #ube #!/usr/bin/env
 
