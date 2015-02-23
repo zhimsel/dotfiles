@@ -1,4 +1,2 @@
-viminfo
-backup
-swap
-.netrwhist
+*
+!bundle/vundle
