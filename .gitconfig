@@ -20,5 +20,7 @@
      l = log
      a = add
      ck = checkout
+     co = checkout
      br = branch
      undo-last-commit = reset --soft HEAD~1
+     sub = submodule
