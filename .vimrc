@@ -446,7 +446,7 @@ map <leader>s? z=
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Toggle paste mode on and off
-map <leader>pp :set paste!<cr>
+map <leader>p :set paste!<cr>
 
 " local config
 if filereadable(".vimrc.local")
