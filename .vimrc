@@ -75,6 +75,9 @@ let g:mapleader = "\<space>"
 nmap <leader>w :w<cr>
 nmap <leader>q :q<cr>
 
+" Quickly toggle line numbers
+map <leader>n :set number!<cr>
+
 " :W sudo saves the file 
 " (useful for handling the permission-denied error)
 command WW w !sudo tee % > /dev/null
