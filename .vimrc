@@ -79,6 +79,13 @@ nmap <leader>q :q<cr>
 " Quickly toggle line numbers
 map <leader>n :set number!<cr>
 
+" fugitive keybindings
+nmap <leader>gs :Gstatus<cr>
+nmap <leader>gc :Gcommit<cr>
+nmap <leader>gp :Gpush<cr>
+nmap <leader>gl :Gpull<cr>
+nmap <leader>gg :Git 
+
 " :W sudo saves the file 
 " (useful for handling the permission-denied error)
 command WW w !sudo tee % > /dev/null
