@@ -84,6 +84,7 @@ nmap <leader>gs :Gstatus<cr>
 nmap <leader>gc :Gcommit<cr>
 nmap <leader>gp :Gpush<cr>
 nmap <leader>gl :Gpull<cr>
+nmap <leader>gf :Gfetch<cr>
 nmap <leader>gg :Git 
 
 " :W sudo saves the file 
