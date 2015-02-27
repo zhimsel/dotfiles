@@ -48,6 +48,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'tpope/vim-repeat'
 Plugin 'rstacruz/sparkup'
+Plugin 'tpope/vim-fugitive'
 
 " NERDtree settings
 map <C-t> :NERDTreeToggle<CR>
