@@ -46,7 +46,7 @@ Plugin 'python.vim'
 Plugin 'sql.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'repeat.vim'
+Plugin 'tpope/vim-repeat'
 Plugin 'rstacruz/sparkup'
 
 " NERDtree settings
