@@ -45,10 +45,10 @@ Plugin 'rodjek/vim-puppet'
 Plugin 'python.vim'
 Plugin 'sql.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'tpope/vim-repeat'
 Plugin 'rstacruz/sparkup'
 Plugin 'tpope/vim-fugitive'
+Plugin 'Valloric/YouCompleteMe' " make sure this is always last
 
 " NERDtree settings
 map <C-t> :NERDTreeToggle<CR>
