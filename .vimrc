@@ -48,6 +48,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-repeat'
 Plugin 'rstacruz/sparkup'
 Plugin 'tpope/vim-fugitive'
+Plugin 'Lokaltog/vim-easymotion'
 Plugin 'Valloric/YouCompleteMe' " make sure this is always last
 
 " NERDtree settings
