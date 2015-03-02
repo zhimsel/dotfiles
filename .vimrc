@@ -78,6 +78,7 @@ nmap <leader>q :q<cr>
 
 " Quickly toggle line numbers
 map <leader>n :set number!<cr>
+map <leader>N :set relativenumber!<cr>
 
 " fugitive keybindings
 nmap <leader>gs :Gstatus<cr>
