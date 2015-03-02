@@ -234,10 +234,11 @@ set tabstop=2
 set smarttab
 
 set lbr
-set tw=500
+"set tw=500
 
 set autoindent
 set wrap
+set wrap linebreak nolist
 
 " Set auto-indenting at 79 characters
 if has("autocmd")
@@ -286,8 +287,8 @@ vnoremap <silent> # :call VisualSelection('b', '')<CR>
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Treat long lines as break lines (useful when moving around in them)
-map j gj
-map k gk
+"map j gj
+"map k gk
 
 " Disable highlight when <leader><Esc> is pressed
 map <silent> <F1> :noh<cr>
