@@ -109,6 +109,9 @@ set nostartofline	" don't jump to start of line when scrolling
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
+" Disable welcome message
+set shortmess+=I
+
 " Turn on the WiLd menu
 set wildmenu
 
