@@ -22,6 +22,7 @@ plugins=(git ruby aws gem jsontools nyan pip sublime sudo systemd apt yum common
 source ~/.zsh/opp.zsh/opp.zsh
 source ~/.zsh/opp.zsh/opp/*.zsh
 source ~/.zsh/berkshelf.zsh/berkshelf.plugin.zsh
+source ~/.zsh/git-prompt.zsh/zshrc.sh
 
 # enable zsh completions for osx
 fpath=($fpath /usr/local/share/zsh-completions)
@@ -30,7 +31,9 @@ fpath=($fpath /usr/local/share/zsh-completions)
 compinit -u
 
 # prompt settings
-PROMPT="${user_host} ${current_dir} ${rvm_ruby} ${git_branch}
+ZSH_THEME_GIT_PROMPT_NOCACHE="1"
+GIT_PROMPT_EXECUTABLE="haskell"
+ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
 %B$%b "
 
 # Show a different cursor for different vim modes

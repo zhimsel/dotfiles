@@ -10,3 +10,6 @@
 [submodule ".zsh/berkshelf.zsh"]
 	path = .zsh/berkshelf.zsh
 	url = https://github.com/berkshelf/berkshelf-zsh-plugin.git
+[submodule ".zsh/git-prompt.zsh"]
+	path = .zsh/git-prompt.zsh
+	url = git@github.com:olivierverdier/zsh-git-prompt.git
