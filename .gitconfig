@@ -10,7 +10,7 @@
 [merge]
      tool = vimdiff
 [push]
-     default = simple
+     default = tracking
 [alias]
      unstage = reset HEAD --
      last = log -1 HEAD
