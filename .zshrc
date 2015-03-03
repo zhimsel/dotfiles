@@ -18,6 +18,11 @@ export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 plugins=(git ruby aws gem jsontools nyan pip sublime sudo systemd apt yum common-aliases command-not-found rvm rails knife brew brew-cask archlinux debian docker git-extras jira tmux vagrant)
 
+#load plugins
+source ~/.zsh/opp.zsh/opp.zsh
+source ~/.zsh/opp.zsh/opp/*.zsh
+source ~/.zsh/berkshelf.zsh/berkshelf.plugin.zsh
+
 # enable zsh completions for osx
 fpath=($fpath /usr/local/share/zsh-completions)
 
@@ -93,13 +98,9 @@ bindkey -rM viins '^X'
 bindkey -M viins '^X,' _history-complete-newer \
                  '^X/' _history-complete-older \
                  '^X`' _bash_complete-word
+
 # misc keybindings
 bindkey -s '^e' 'cd ..\n' #go up a directory with ctrl-e
-
-#load plugins
-source ~/.zsh/opp.zsh/opp.zsh
-source ~/.zsh/opp.zsh/opp/*.zsh
-source ~/.zsh/berkshelf.zsh/berkshelf.plugin.zsh
 
 
 # set syntax hightlighting
