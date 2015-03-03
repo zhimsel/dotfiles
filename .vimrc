@@ -374,7 +374,7 @@ set statusline=
 set statusline +=%1*\ %n\ %*            "buffer number
 set statusline +=%2*\ %<%F%*            "full path
 set statusline +=%3*%m%*                "modified flag
-set statusline +=%1*\ \ %{&ff}%*        "file format
+set statusline +=%1*\ \ \ %{&ff}%*        "file format
 set statusline +=%1*%y%*                "file type
 set statusline +=%1*\ \ \ %{HasPaste()}   "paste mode
 set statusline +=%1*%=                 "whitespace
