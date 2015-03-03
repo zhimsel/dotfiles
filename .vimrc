@@ -166,6 +166,10 @@ map Q gq			" don't use ex-mode, and map Q for formatting
 "set t_vb=
 "set tm=500
 
+" change cursor shape based on mode (for iTerm2)
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
