@@ -34,6 +34,7 @@ compinit -u
 ZSH_THEME_GIT_PROMPT_NOCACHE="1"
 GIT_PROMPT_EXECUTABLE="haskell"
 ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
+PROMPT="%{$fg[green]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in ${current_dir} ${rvm_ruby} $(git_super_status)
 %B$%b "
 
 # Show a different cursor for different vim modes
