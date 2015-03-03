@@ -12,8 +12,6 @@ function install_dotfiles() {
   echo "Installing git submodules"
   git submodule init
   git submodule update
-  git submodule foreach git checkout master
-  git submodule foreach git pull
   echo "Installing vim plugins"
   vim +PluginUpdate +qall
   echo ""
