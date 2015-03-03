@@ -72,6 +72,8 @@ bindkey -rM viins '^X'
 bindkey -M viins '^X,' _history-complete-newer \
                  '^X/' _history-complete-older \
                  '^X`' _bash_complete-word
+# misc keybindings
+bindkey -s '^e' 'cd ..\n' #go up a directory with ctrl-e
 
 #load plugins
 source ~/.zsh/opp.zsh/opp.zsh
