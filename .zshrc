@@ -27,20 +27,41 @@ compinit -u
 # prompt settings
 PROMPT="${user_host} ${current_dir} ${rvm_ruby} ${git_branch}
 %B$%b "
-precmd() {
-  RPROMPT=""
+
+# Show a different cursor for different vim modes
+function zle-keymap-select zle-line-init
+{
+    # change cursor shape in iTerm2
+    if [[ $TMUX != "" ]]
+    then
+        case $KEYMAP in
+            vicmd)      print -n -- "\033Ptmux;\033\E]50;CursorShape=0\C-G\033\\";;  # block cursor
+            viins|main) print -n -- "\033Ptmux;\033\E]50;CursorShape=1\C-G\033\\";;  # line cursor
+        esac
+    else
+        case $KEYMAP in
+            vicmd)      print -n -- "\E]50;CursorShape=0\C-G";;  # block cursor
+            viins|main) print -n -- "\E]50;CursorShape=1\C-G";;  # line cursor
+        esac
+    fi
+
+    zle reset-prompt
+    zle -R
 }
-zle-keymap-select() {
-  RPROMPT=""
-  [[ $KEYMAP = vicmd ]] && RPROMPT="(CMD)"
-  () { return $__prompt_status }
-  zle reset-prompt
+
+function zle-line-finish
+{
+    if [[ $TMUX != "" ]]
+    then
+        print -n -- "\033Ptmux;\033\E]50;CursorShape=0\C-G\033\\"
+    else
+        print -n -- "\E]50;CursorShape=0\C-G"
+    fi
 }
-zle-line-init() {
-  typeset -g __prompt_status="$?"
-}
-zle -N zle-keymap-select
+
 zle -N zle-line-init
+zle -N zle-line-finish
+zle -N zle-keymap-select
 
 # load machine-specific options
 if [ -f ~/.zshrc-local ]; then
