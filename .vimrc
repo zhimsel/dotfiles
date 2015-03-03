@@ -49,6 +49,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'rstacruz/sparkup'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/vim-easymotion'
+Plugin 'taq/vim-git-branch-info'
 Plugin 'Valloric/YouCompleteMe' " make sure this is always last
 
 " NERDtree settings
@@ -369,6 +370,12 @@ function! HasPaste()
         return ''
 endfunction
 
+" Git status line settings
+let g:git_branch_status_head_current=1
+let g:git_branch_status_text='git'
+let g:git_branch_status_nogit=''
+let g:git_branch_status_ignore_remotes=1
+let g:git_branch_status_check_write=1
 
 set statusline=
 set statusline +=%1*\ %n\ %*            "buffer number
@@ -376,6 +383,7 @@ set statusline +=%2*\ %<%F%*            "full path
 set statusline +=%3*%m%*                "modified flag
 set statusline +=%1*\ \ \ %{&ff}%*        "file format
 set statusline +=%1*%y%*                "file type
+set statusline +=%1*\ \ \ %{GitBranchInfoString()}   "git branch
 set statusline +=%1*\ \ \ %{HasPaste()}   "paste mode
 set statusline +=%1*%=                 "whitespace
 set statusline +=%2*%5l%*             "current line
