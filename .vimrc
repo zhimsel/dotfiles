@@ -152,6 +152,9 @@ set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
+" Disable character concealing
+set conceallevel=0
+
 " key bindings
 "nmap <F1> <Esc>		" stop that pesky F1 key
 command W write		" stop that pesky shift key
