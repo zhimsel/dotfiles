@@ -154,6 +154,7 @@ set mat=2
 
 " Disable character concealing
 set conceallevel=0
+let g:vim_json_syntax_conceal = 0
 
 " key bindings
 "nmap <F1> <Esc>		" stop that pesky F1 key
