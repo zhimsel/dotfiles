@@ -325,10 +325,20 @@ set splitbelow
 set splitright
 
 " buffer shortcuts
-map <leader>bd :Bclose<cr>
+map <leader>bc :Bclose<cr>
 map <leader>bda :1,1000 bd!<cr>
 map <leader>bn :bn<cr>
 map <leader>l :ls<cr>
+map <leader>1 :1b<CR>
+map <leader>2 :2b<CR>
+map <leader>3 :3b<CR>
+map <leader>4 :4b<CR>
+map <leader>5 :5b<CR>
+map <leader>6 :6b<CR>
+map <leader>7 :7b<CR>
+map <leader>8 :8b<CR>
+map <leader>9 :9b<CR>
+map <leader>0 :10b<CR>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
