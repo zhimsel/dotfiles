@@ -18,9 +18,10 @@ function install_dotfiles() {
 }
 
 function install_scripts() {
-  echo "Cloning scripts repo"
+  echo "Cloning scripts repo into ~/scripts"
   git clone https://github.com/zhimsel/scripts.git ~/scripts
   mkdir -p ~/bin
+  echo "Symlink any scripts you want to use into ~/bin"
 }
 
 # install scripts, too?
