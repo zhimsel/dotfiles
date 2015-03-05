@@ -134,7 +134,7 @@ alias sc="systemctl"
 alias la="ls -lah"
 function mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
 alias tree="tree -I .git"
-function xtouch () { touch "$@" && eval chmod +x "$0"; }
+function xtouch () { touch "$@" && eval chmod +x "$@"; }
 
 
 # gpg-agent setup
