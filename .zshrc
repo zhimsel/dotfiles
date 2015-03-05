@@ -32,7 +32,7 @@ compinit -u
 
 # prompt settings
 ZSH_THEME_GIT_PROMPT_NOCACHE="1"
-#GIT_PROMPT_EXECUTABLE="haskell"
+if [[ -e "$(which cabal)" ]]; then GIT_PROMPT_EXECUTABLE="haskell"; fi
 ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
 function precmd {
 PROMPT="%{$fg[green]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in${current_dir} $(git_super_status) ${rvm_ruby}
