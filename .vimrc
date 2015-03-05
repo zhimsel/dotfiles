@@ -87,7 +87,6 @@ map <leader>N :set relativenumber!<cr>
 " fugitive keybindings
 nmap <leader>gs :Gstatus<cr>
 nmap <leader>gc :Gcommit<cr>
-nmap <leader>gp :Gpush<cr>
 nmap <leader>gf :Gfetch<cr>
 nmap <leader>gm :Gmerge<cr>
 nmap <leader>gg :Git 
