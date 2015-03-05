@@ -34,8 +34,10 @@ compinit -u
 ZSH_THEME_GIT_PROMPT_NOCACHE="1"
 #GIT_PROMPT_EXECUTABLE="haskell"
 ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
-PROMPT="%{$fg[green]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in ${current_dir} ${rvm_ruby} %{$fg[magenta]%}${git_branch}%{$reset_color%}
+function precmd {
+PROMPT="%{$fg[green]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in${current_dir} $(git_super_status) ${rvm_ruby}
 %B$%b "
+}
 
 # Show a different cursor for different vim modes
 function zle-keymap-select zle-line-init
