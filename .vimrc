@@ -77,10 +77,11 @@ let mapleader = "\<space>"
 let g:mapleader = "\<space>"
 
 " Fast saving
+nmap <leader>e :e<cr>
 nmap <leader>w :w<cr>
 nmap <leader>q :q<cr>
-nmap <leader>W :wq<cr>
-nmap <leader>Q :qa<cr>
+nmap <leader>wq :wq<cr>
+nmap <leader>qa :qa<cr>
 
 " Quickly toggle line numbers
 map <leader>n :set number!<cr>
