@@ -25,3 +25,4 @@
      undo-last-commit = reset --soft HEAD~1
      update-submodules = submodule foreach 'git checkout master && echo "" && git pull'
      p = push
+     sub = submodule
