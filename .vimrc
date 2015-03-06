@@ -98,6 +98,9 @@ nmap <leader>gg :Git
 " (useful for handling the permission-denied error)
 command WW w !sudo tee % > /dev/null
 
+" open files in OSX application
+nmap <leader>o :!open %<cr>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
