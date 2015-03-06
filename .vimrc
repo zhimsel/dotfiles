@@ -191,10 +191,6 @@ syntax enable
 "set t_Co=256
 set background=light
 
-" highlight trailing whitespace
-set list listchars=trail:.,tab:>.
-highlight SpecialKey ctermfg=DarkGray ctermbg=none
-
 " Set extra options when running in GUI mode
 if has("gui_running")
     set guioptions-=T
@@ -299,6 +295,10 @@ let java_minlines=150
 " autocomplete brackets
 inoremap {{      {}<Left>
 inoremap {{<CR>  {<CR>}<Esc>O
+
+" highlight trailing whitespace
+set list listchars=trail:.,tab:>.
+highlight SpecialKey ctermfg=DarkGray ctermbg=none
 
 
 """"""""""""""""""""""""""""""
