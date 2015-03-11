@@ -51,7 +51,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'taq/vim-git-branch-info'
 Plugin 'bling/vim-airline'
-Plugin 'mkitt/tabline.vim'
+Plugin 'bling/vim-bufferline'
 Plugin 'Valloric/YouCompleteMe' " make sure this is always last
 
 " NERDtree settings
@@ -162,8 +162,7 @@ set conceallevel=0
 let g:vim_json_syntax_conceal = 0
 
 " vim-airline settings
-set timeoutlen=250
-let g:airline#extensions#tabline#enabled = 1
+set timeoutlen=350
 
 
 " key bindings
