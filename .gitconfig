@@ -26,4 +26,3 @@
   update-submodules = submodule foreach 'git checkout master && echo "" && git pull'
   p = push
   sub = submodule
-  s = stash
