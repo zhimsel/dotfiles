@@ -338,7 +338,7 @@ set splitright
 map <leader>bc :Bclose<cr>
 map <leader>bda :1,1000 bd!<cr>
 map <leader>bn :bn<cr>
-map <leader>l :ls<cr>
+map <leader>bl :ls<cr>
 map <leader>1 :1b<CR>
 map <leader>2 :2b<CR>
 map <leader>3 :3b<CR>
@@ -348,7 +348,16 @@ map <leader>6 :6b<CR>
 map <leader>7 :7b<CR>
 map <leader>8 :8b<CR>
 map <leader>9 :9b<CR>
-map <leader>0 :10b<CR>
+map <leader>10 :10b<CR>
+map <leader>11 :11b<CR>
+map <leader>12 :12b<CR>
+map <leader>13 :13b<CR>
+map <leader>14 :14b<CR>
+map <leader>15 :15b<CR>
+map <leader>16 :16b<CR>
+map <leader>17 :17b<CR>
+map <leader>18 :18b<CR>
+map <leader>19 :19b<CR>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
