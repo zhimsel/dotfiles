@@ -175,6 +175,8 @@ command Q quit		" stop that pesky shift key
 command Wq wq		" stop that pesky shift key
 map Q gq			" don't use ex-mode, and map Q for formatting
 
+nnoremap Q q
+nnoremap q <Nop>
 
 " No annoying sound on errors
 "set noerrorbells
