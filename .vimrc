@@ -92,6 +92,9 @@ nmap <leader>gs :Gstatus<cr>
 nmap <leader>gc :Gcommit<cr>
 nmap <leader>gf :Gfetch<cr>
 nmap <leader>gm :Gmerge<cr>
+nmap <leader>gl :Git log<cr>
+nmap <leader>ga :Git add %<cr>
+nmap <leader>gp :Git add -p %<cr>
 nmap <leader>gg :Git
 
 " :W sudo saves the file
