@@ -165,7 +165,7 @@ set conceallevel=0
 let g:vim_json_syntax_conceal = 0
 
 " vim-airline settings
-set timeoutlen=350
+set timeoutlen=400
 
 
 " key bindings
