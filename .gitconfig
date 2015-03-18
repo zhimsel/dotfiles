@@ -27,3 +27,5 @@
   p = push
   sub = submodule
   branchdiff = "!sh -c \"git diff $(git merge-base master HEAD) HEAD\""
+[pager]
+  last = cat
