@@ -35,10 +35,10 @@ ZSH_THEME_GIT_PROMPT_NOCACHE="1"
 if [[ -e "$(which cabal 2> /dev/null)" ]]; then GIT_PROMPT_EXECUTABLE="haskell"; fi
 ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
 function precmd {
-PROMPT="%(!.%{$fg[red]%}.%{$fg[green]%})%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in${current_dir} $(git_super_status)${rvm_ruby} ${return_code}
+PROMPT="%(!.%{$fg[red]%}.%{$fg[green]%})%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in${current_dir} (%{$fg[white]%}%*%{$reset_color%}) $(git_super_status)${rvm_ruby} ${return_code}
 %(1j.%(!.%B[%j]%b #.%B[%j]%b $).%(!.#.$)) "
 }
-RPROMPT="%*"
+RPROMPT=""
 
 # Show a different cursor for different vim modes
 function zle-keymap-select zle-line-init
