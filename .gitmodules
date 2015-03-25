@@ -1,15 +1,15 @@
 [submodule ".oh-my-zsh"]
-	path = .oh-my-zsh
-	url = https://github.com/robbyrussell/oh-my-zsh.git
+  path = .oh-my-zsh
+  url = https://github.com/robbyrussell/oh-my-zsh.git
 [submodule ".vim/bundle/vundle"]
-	path = .vim/bundle/vundle
-	url = https://github.com/gmarik/Vundle.vim.git
+  path = .vim/bundle/vundle
+  url = https://github.com/gmarik/Vundle.vim.git
 [submodule ".zsh/opp.zsh"]
-	path = .zsh/opp.zsh
-	url = https://github.com/hchbaw/opp.zsh.git
+  path = .zsh/opp.zsh
+  url = https://github.com/hchbaw/opp.zsh.git
 [submodule ".zsh/berkshelf.zsh"]
-	path = .zsh/berkshelf.zsh
-	url = https://github.com/berkshelf/berkshelf-zsh-plugin.git
+  path = .zsh/berkshelf.zsh
+  url = https://github.com/berkshelf/berkshelf-zsh-plugin.git
 [submodule "zhimsel/zsh-git-prompt"]
-	path = .zsh/git-prompt.zsh
-	url = git@github.com:zhimsel/zsh-git-prompt.git
+  path = .zsh/git-prompt.zsh
+  url = git@github.com:zhimsel/zsh-git-prompt.git
