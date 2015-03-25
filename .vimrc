@@ -59,6 +59,13 @@ Plugin 'Valloric/YouCompleteMe' " make sure this is always last
 map <C-t> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+" vim-gitgutter settings
+let g:gitgutter_sign_column_always = 1
+" fix highlighting
+highlight SignColumn ctermbg=none
+" reduce extra spaces between signs and line numbers
+set numberwidth=1
+
 " tag completion
 iabbrev <// </<C-X><C-O>
 
