@@ -52,6 +52,7 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'taq/vim-git-branch-info'
 Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'Valloric/YouCompleteMe' " make sure this is always last
 
 " NERDtree settings
