@@ -121,13 +121,13 @@ youcompleteme_prompt () {
 
 # Install vim plugins
 install_vim_plugins () {
-  vim +BundleUpdate +qall
   if [[ "$want_youcompleteme" == 1 ]]; then
+    vim +BundleUpdate +qall
     cd "$HOME"/.vim/bundle/YouCompleteMe
     ./install.sh
   else
-    rm -rf "$HOME"/.vim/bundle/YouCompleteMe
     sed -i '/Valloric\/YouCompleteMe/d' vimrc
+    vim +BundleUpdate +qall
   fi
 }
 
