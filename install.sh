@@ -127,6 +127,7 @@ install_vim_plugins () {
     ./install.sh
   else
     rm -rf "$HOME"/.vim/bundle/YouCompleteMe
+    sed -i '/Valloric\/YouCompleteMe/d' vimrc
   fi
 }
 
