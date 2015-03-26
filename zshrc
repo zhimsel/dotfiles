@@ -76,8 +76,8 @@ zle -N zle-line-finish
 zle -N zle-keymap-select
 
 # load machine-specific options
-if [ -f ~/.zshrc-local ]; then
-     source ~/.zshrc-local
+if [ -f ~/.zshrc.local ]; then
+     source ~/.zshrc.local
 fi
 
 
