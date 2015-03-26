@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Symlinking logic borrowed from https://github.com/captbaritone/dotfiles/blob/master/install.sh
+# Thanks, Cap'n!
+
 # Check if old version of dotfiles is currently in use
 if [[ -e "$HOME/.git" ]]; then
   echo "Existing ~/.git repo detected! Please remove the old repo before proceeding."
