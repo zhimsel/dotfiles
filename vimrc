@@ -37,7 +37,6 @@ call vundle#rc()
 
 " plugins
 Plugin 'fountain.vim'
-Plugin 'tpope/vim-pathogen'
 Plugin 'tpope/vim-surround'
 Plugin 'avakhov/vim-yaml'
 Plugin 'elzr/vim-json'

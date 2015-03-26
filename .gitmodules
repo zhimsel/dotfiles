@@ -13,3 +13,6 @@
 [submodule "zhimsel/zsh-git-prompt"]
 	path = zsh/git-prompt.zsh
 	url = git@github.com:zhimsel/zsh-git-prompt.git
+[submodule "vim/bundle/vim-pathogen"]
+	path = vim/bundle/vim-pathogen
+	url = https://github.com/tpope/vim-pathogen.git
