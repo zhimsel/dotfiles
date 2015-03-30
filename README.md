@@ -17,6 +17,16 @@ For usage on an OSX machine, there are two shell scripts to help with setting up
 #### osx.sh
 Sets some sensible system defaults that aren't accessible through the system menus. Read through the changes being made (everything is commented with what it does) before running and remove anything you don't want.
 
+#### brew.sh
+Installs some useful packages and replaces some outdated built-in OSX packaes with up-to-date versions. Requires [homebrew](http://brew.sh/) before use.
+
+For `coreutils`, to 'replace' the stock binaries with the gnu binaries (and not use the 'g' prefix, like `gls`), simply add the following to your ~/.zshrc.local:
+
+```
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+```
+
 ### Errors
 
 If you get an error about zsh/git-prompt.zsh/dist missing, this means that the zshrc has detected you have haskell installed on your machine, but the haskell binaries for zsh-git-prompt have not been compiled. To fix this, simply `cd` into .zsh/git-prompt.zsh/ and run `cabal build`. 
