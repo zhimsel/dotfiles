@@ -75,11 +75,6 @@ zle -N zle-line-init
 zle -N zle-line-finish
 zle -N zle-keymap-select
 
-# load machine-specific options
-if [ -f ~/.zshrc.local ]; then
-     source ~/.zshrc.local
-fi
-
 
 # misc settings
 COMPLETION_WAITING_DOTS="true"
@@ -219,3 +214,10 @@ imv() {
 
 # load zmv module
 autoload -U zmv
+
+
+# load machine-specific options, should always be last
+if [ -f ~/.zshrc.local ]; then
+     source ~/.zshrc.local
+fi
+
