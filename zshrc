@@ -80,6 +80,15 @@ zle -N zle-keymap-select
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="yyyy.mm.dd"
+setopt PATH_DIRS
+setopt EXTENDED_GLOB
+setopt LIST_PACKED
+setopt NO_CORRECT
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_MINUS
+setopt EXTENDED_HISTORY
+MAILCHECK=0
 
 
 # set text editor
