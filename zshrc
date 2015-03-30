@@ -216,3 +216,6 @@ imv() {
     [[ $src != $dst ]] && mkdir -p $dst:h && mv -n $src $dst
   done
 }
+
+# load zmv module
+autoload -U zmv
