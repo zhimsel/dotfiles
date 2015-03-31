@@ -48,18 +48,12 @@ Plugin 'taq/vim-git-branch-info'
 Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'Valloric/YouCompleteMe' " make sure this is always last
 
 " NERDtree settings
 map <C-t> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-" vim-gitgutter settings
-let g:gitgutter_sign_column_always = 1
-" fix highlighting
-highlight SignColumn ctermbg=none
-" reduce extra spaces between signs and line numbers
-set numberwidth=1
 
 " tag completion
 iabbrev <// </<C-X><C-O>
@@ -113,7 +107,6 @@ nmap <leader>o :!open %<cr>
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set number			" show line numbers and set color
-hi LineNr ctermfg=DarkGray
 
 set showcmd			" show (partial) command in status line
 set report=0		" tell us about changes
@@ -200,7 +193,8 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 syntax enable
 
 "set t_Co=256
-set background=light
+set background=dark
+colorscheme solarized
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -215,6 +209,14 @@ set encoding=utf8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
+
+" vim-gitgutter settings
+let g:gitgutter_sign_column_always = 1
+"highlight SignColumn ctermbg=none
+highlight clear LineNr
+highlight clear SignColumn
+" reduce extra spaces between signs and line numbers
+set numberwidth=1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
