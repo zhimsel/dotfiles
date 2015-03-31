@@ -13,7 +13,7 @@ umask 077
 
 # set $PATH
 export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin"
-export PATH="$PATH:$HOME/bin"
+export PATH="$HOME/bin:$PATH"
 
 
 # load oh-my-zsh and it's plugins
