@@ -1,37 +1,19 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Sections:
-"    -> General
-"    -> VIM user interface
-"    -> Colors and Fonts
-"    -> Files and backups
-"    -> Text, tab and indent related
-"    -> Visual mode related
-"    -> Moving around, tabs and buffers
-"    -> Status line
-"    -> Editing mappings
-"    -> vimgrep searching and cope displaying
-"    -> Spell checking
-"    -> Misc
-"    -> Helper functions
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim configuration
+" Written by Zach Himsel, 2013-2015
+" https://github.com/zhimsel/dotfiles
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
+" Load plugins (must come first)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Sets how many lines of history VIM has to remember
-set nocompatible
-set history=1000
-set viminfo='1000,f1,:100,@100,/20
-set isk+=_,$,@,%,#,-	" none word dividers
 
 " Set up vundle
 filetype off
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
-" plugins
+
+" Load plugins
 Plugin 'fountain.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'avakhov/vim-yaml'
@@ -49,151 +31,24 @@ Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'Valloric/YouCompleteMe' " make sure this is always last
+Plugin 'Valloric/YouCompleteMe' " make sure this is always last (takes a long time to load)
 
-" NERDtree settings
-map <C-t> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-" tag completion
-iabbrev <// </<C-X><C-O>
-
-" text expansion
-iab #ube #!/usr/bin/env
-
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
-
-" Set to auto read when a file is changed from the outside
-set autoread
-
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
-let mapleader = "\<space>"
-let g:mapleader = "\<space>"
-
-" Fast saving
-nmap <leader>e :e<cr>
-nmap <leader>w :w<cr>
-nmap <leader>q :q<cr>
-nmap <leader>wq :wq<cr>
-nmap <leader>qa :qa<cr>
-
-" Quickly toggle line numbers
-map <leader>n :set number!<cr>
-map <leader>N :set relativenumber!<cr>
-
-" fugitive keybindings
-nmap <leader>gs :Gstatus<cr>
-nmap <leader>gc :Gcommit<cr>
-nmap <leader>gf :Gfetch<cr>
-nmap <leader>gm :Gmerge<cr>
-nmap <leader>gl :Git log<cr>
-nmap <leader>ga :Git add %<cr>
-nmap <leader>gp :Git add -p %<cr>
-nmap <leader>gd :Git diff<cr>
-nmap <leader>gg :Git
-nmap <leader>ha <Plug>GitGutterStageHunk
-
-" :W sudo saves the file
-" (useful for handling the permission-denied error)
-command WW w !sudo tee % > /dev/null
-
-" open files in OSX application
-nmap <leader>o :!open %<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM user interface
+" General settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set number			" show line numbers and set color
 
-set showcmd			" show (partial) command in status line
-set report=0		" tell us about changes
-set nostartofline	" don't jump to start of line when scrolling
-
-" Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
-
-" Disable welcome message
-set shortmess+=I
-
-" Turn on the WiLd menu
-set wildmenu
-
-"Always show curent position
-set ruler
-
-" Height of the command bar
-set cmdheight=1
-
-" A buffer becomes hidden when it is abandoned
-set hid
-
-" Configure backspace so it acts as it should act
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
-
-" Ignore case when searching
-set ignorecase
-
-" When searching try to be smart about cases
-set smartcase
-
-" Highlight search results
-set hlsearch
-
-" Makes search act like search in modern browsers
-set incsearch
-
-" Don't redraw while executing macros (good performance config)
-set lazyredraw
-
-" For regular expressions turn magic on
-set magic
-
-" Show matching brackets when text indicator is over them
-set showmatch
-" How many tenths of a second to blink when matching brackets
-set mat=2
-
-" Disable character concealing
-set conceallevel=0
-let g:vim_json_syntax_conceal = 0
-
-" vim-airline settings
-set timeoutlen=400
+set nocompatible
+set history=1000
+set viminfo='1000,f1,:100,@100,/20
+set isk+=_,$,@,%,#,-	" none word dividers
 
 
-" key bindings
-"nmap <F1> <Esc>		" stop that pesky F1 key
-command W write		" stop that pesky shift key
-command Q quit		" stop that pesky shift key
-command Wq wq		" stop that pesky shift key
-map Q gq			" don't use ex-mode, and map Q for formatting
-
-nnoremap Q q
-nnoremap q <Nop>
-
-" No annoying sound on errors
-"set noerrorbells
-"set novisualbell
-"set t_vb=
-"set tm=500
-
-" change cursor shape based on mode (for iTerm2)
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Colors and Fonts
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
 syntax enable
 
-"set t_Co=256
+" Set color scheme
 set background=dark
 colorscheme solarized
 
@@ -208,23 +63,129 @@ endif
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
 
-" Use Unix as the standard file type
-set ffs=unix,dos,mac
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" NERDtree settings
+map <C-t> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+
+" vim-json settings
+set conceallevel=0 " Disable character concealing
+let g:vim_json_syntax_conceal = 0 " Force no concealing for json files
+
+
+" vim-airline settings
+set timeoutlen=400 " Set timeout for statusline redraw on escape
+
 
 " vim-gitgutter settings
 let g:gitgutter_sign_column_always = 1
-"highlight SignColumn ctermbg=none
 highlight clear LineNr
 highlight clear SignColumn
-" reduce extra spaces between signs and line numbers
-set numberwidth=1
+set numberwidth=1 " reduce extra spaces between signs and line numbers
+
+
+" git keybindings (both vim-fugitive and vim-gitgutter)
+nmap <leader>gs :Gstatus<cr>
+nmap <leader>gc :Gcommit<cr>
+nmap <leader>gf :Gfetch<cr>
+nmap <leader>gm :Gmerge<cr>
+nmap <leader>gl :Git log<cr>
+nmap <leader>ga :Git add %<cr>
+nmap <leader>gp :Git add -p %<cr>
+nmap <leader>gd :Git diff<cr>
+nmap <leader>gg :Git
+nmap <leader>ha <Plug>GitGutterStageHunk
+
+" vim-easymotion settings
+hi link EasyMotionTarget Search
+hi link EasyMotionTarget2First Search
+hi link EasyMotionTarget2Second Search
+hi link EasyMotionShade Comment
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Files, backups and undo
+" User interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set backups/swap/undo/viminfo files to ~/.vim
-" ---------------------------------------------------------
+
+" Set some built-in settings
+set number " show line numbers and set color
+set showcmd " show (partial) command in status line
+set report=0 " tell us about changes
+set nostartofline " don't jump to start of line when scrolling
+set scrolloff=7 " Set 7 lines to the cursor - when moving vertically using j/k
+set shortmess+=I " Disable welcome message
+set wildmenu " Enable wildcard matching in ex commands
+set ruler "Always show curent position
+set cmdheight=1 " Height of the command bar1
+set hid " A buffer becomes hidden when it is abandoned
+set backspace=eol,start,indent " Configure backspace so it acts as it should act
+set whichwrap+=<,>,h,l " Wrap lines on movement for 'h/l' keys
+set ignorecase " Ignore case when searching
+set smartcase " When searching try to be smart about cases
+set hlsearch " Highlight search results
+set incsearch " Makes search act like search in modern browsers
+set lazyredraw " Don't redraw while executing macros (good performance config)
+set magic " For regular expressions turn magic on
+set showmatch " Show matching brackets when text indicator is over them
+set matchtime=2 " How many tenths of a second to blink when matching brackets
+
+
+" change cursor shape based on mode (for iTerm2)
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+" Define text expansions
+iab #ube #!/usr/bin/env
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Key bindings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Set leader key
+let mapleader = "\<space>"
+let g:mapleader = "\<space>"
+
+" Fast saving/opening/quitting
+nmap <leader>e :e<cr>
+nmap <leader>w :w<cr>
+nmap <leader>q :q<cr>
+nmap <leader>wq :wq<cr>
+nmap <leader>qa :qa<cr>
+nmap <leader>wqa :wqa<cr>
+
+" Quickly toggle line numbers
+map <leader>n :set number!<cr>
+map <leader>N :set relativenumber!<cr>
+
+" :WW sudo saves the file with root permissions
+command WW w !sudo tee % > /dev/null
+
+" Toggle paste mode on and off
+map <leader>p :set paste!<cr>
+
+command W write " stop that pesky shift key
+command Q quit " stop that pesky shift key
+command Wq wq " stop that pesky shift key
+command WQ wq " stop that pesky shift key
+
+" Remaps the macro record key 'q' to 'Q' instead
+nnoremap Q q
+nnoremap q <Nop>
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim files, backups and undo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 if isdirectory($HOME . '/.vim/backup') == 0
   :silent !mkdir -p ~/.vim/backup >/dev/null 2>&1
@@ -235,14 +196,6 @@ set backupdir-=~/
 set backupdir^=~/.vim/backup//
 set backupdir^=./.vim-backup/
 set nobackup
-
-"if isdirectory($HOME . '/.vim/swap') == 0
-"  :silent !mkdir -p ~/.vim/swap >/dev/null 2>&1
-"endif
-"set directory=./.vim-swap/
-"set directory+=~/.vim/swap//
-"set directory+=~/tmp//
-"set directory+=.
 
 set viminfo+=n~/.vim/viminfo
 
@@ -259,19 +212,27 @@ set path=**
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Text, tab and indent related
+" Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
+
+" Set sensible defaults for tab width
 set expandtab
+set smarttab
 set shiftwidth=2
 set tabstop=2
-set smarttab
 
-set lbr
-"set tw=500
-
+" Auto-indenting/breaking
 set autoindent
 set wrap
-set wrap linebreak nolist
+set linebreak
+set nolist
 
 " Set auto-indenting at 79 characters
 if has("autocmd")
@@ -287,7 +248,7 @@ if has("autocmd")
   augroup END
 endif
 
-" configure expanding of tabs for file types
+" Configure expanding of tabs for file types
 au BufRead,BufNewFile *.c set noexpandtab
 au BufRead,BufNewFile *.h set noexpandtab
 au BufRead,BufNewFile Makefile* set noexpandtab
@@ -297,7 +258,7 @@ au BufRead,BufNewFile *.fountain   set filetype=fountain
 au BufRead,BufNewFile {Berksfile,Vagrantfile,Gemfile} set filetype=ruby
 let python_version_2 = 1
 
-" java settings
+" Java settings
 let java_mark_braces_in_parens_as_errors=1
 let java_highlight_all=1
 let java_highlight_debug=1
@@ -310,18 +271,10 @@ let java_minlines=150
 inoremap {{      {}<Left>
 inoremap {{<CR>  {<CR>}<Esc>O
 
-" highlight trailing whitespace
+" highlight trailing whitespace with red
 set list listchars=trail:.,tab:>.
-highlight SpecialKey ctermfg=DarkGray ctermbg=none
+highlight SpecialKey ctermfg=Red ctermbg=none
 
-
-""""""""""""""""""""""""""""""
-" => Visual mode related
-""""""""""""""""""""""""""""""
-" Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
-vnoremap <silent> * :call VisualSelection('f', '')<CR>
-vnoremap <silent> # :call VisualSelection('b', '')<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -331,7 +284,7 @@ vnoremap <silent> # :call VisualSelection('b', '')<CR>
 "map j gj
 "map k gk
 
-" Disable highlight when <leader><Esc> is pressed
+" Disable highlight when <leader><Esc> (or F1) is pressed
 map <silent> <F1> :noh<cr>
 map <silent> <leader><Esc> :noh<cr>
 
@@ -340,7 +293,6 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-
 
 " better split placements
 set splitbelow
@@ -444,95 +396,9 @@ set statusline +=%2*%4v\ \ %*           "virtual column number
 set statusline +=%1*0x%04B\ %*          "character under cursor
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Editing mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
-if has("mac") || has("macunix")
-  nmap <D-j> <M-j>
-  nmap <D-k> <M-k>
-  vmap <D-j> <M-j>
-  vmap <D-k> <M-k>
-endif
-
-" Delete trailing white space on save, useful for Python and CoffeeScript ;)
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
-autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vimgrep searching and cope displaying
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" When you press gv you vimgrep after the selected text
-vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
-
-" Open vimgrep and put the cursor in the right position
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
-
-" Vimgreps in the current file
-map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
-
-" When you press <leader>r you can search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
-
-" Do :help cope if you are unsure what cope is. It's super useful!
-"
-" When you search with vimgrep, display your results in cope by doing:
-"   <leader>cc
-"
-" To go to the next search result do:
-"   <leader>n
-"
-" To go to the previous search results do:
-"   <leader>p
-"
-"map <leader>cc :botright cope<cr>
-"map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-"map <leader>n :cn<cr>
-"map <leader>p :cp<cr>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pressing ,ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
-
-" Shortcuts using <leader>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
-" Toggle paste mode on and off
-map <leader>p :set paste!<cr>
-
-" local config
-if filereadable(".vimrc.local")
-  source .vimrc.local
-endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Helper functions
+" Functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "function! CmdLine(str)
 "    exe "menu Foo.Bar :" . a:str
@@ -583,3 +449,13 @@ function! <SID>BufcloseCloseIt()
      execute("bdelete! ".l:currentBufNum)
    endif
 endfunction
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Local settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Load local config (should always be last)
+if filereadable("~/.vimrc.local")
+  source ~/.vimrc.local
+endif
