@@ -94,6 +94,7 @@ nmap <leader>ga :Git add %<cr>
 nmap <leader>gp :Git add -p %<cr>
 nmap <leader>gd :Git diff<cr>
 nmap <leader>gg :Git
+nmap <leader>ha <Plug>GitGutterStageHunk
 
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
