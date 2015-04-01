@@ -7,8 +7,8 @@
 # general settings
 #############################################
 
-# set default umask
-umask 077
+umask 077 # set default umask
+export EDITOR="vim" # set text editor
 
 
 # set $PATH
@@ -77,10 +77,6 @@ fi
 if [ -f "$(which aws_completer)" ]; then
      complete -C $(which aws_completer) aws
 fi
-
-
-# set text editor
-export EDITOR="vim"
 
 
 # vi mode
