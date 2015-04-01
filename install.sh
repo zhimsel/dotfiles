@@ -29,7 +29,7 @@ dotfiles=(\
 )
 
 # Prompt user for permission to continue
-function overwrite_check_prompt () {
+overwrite_check_prompt () {
 read -p "This MIGHT overwrite existing files in your home directory. Are you sure? (y/N) " -n 1
 echo ""
 if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -41,7 +41,7 @@ fi
 }
 
 # Ask user if they want scripts
-install_scripts_prompt() {
+install_scripts_prompt () {
   read -p "Would you like to install zhimsel/scripts, too? (y/N) " -n 1
   echo ""
   if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -50,7 +50,7 @@ install_scripts_prompt() {
 }
 
 # Pull down scripts repo and make ~/bin
-function install_scripts() {
+install_scripts () {
   if [[ $want_scripts == 1 ]]; then
     echo "Cloning scripts repo into ~/scripts"
     git clone https://github.com/zhimsel/scripts.git ~/scripts
@@ -60,17 +60,17 @@ function install_scripts() {
 }
 
 # Generate the destination path of a dotfile
-function dot_path () {
+dot_path () {
   echo "$HOME/.$1"
 }
 
 # Generate the destination path of a dotfile
-function local_path () {
+local_path () {
   echo "$HOME/.$1.local"
 }
 
 # Links the passed filename to its new location
-function link () {
+link () {
   local filename=$1
   local path=$(dot_path "$filename")
 
@@ -101,7 +101,7 @@ function link () {
 }
 
 # Loops through and link all files without links
-function install_links () {
+install_links () {
   echo "Linking dotfiles into place:"
   cd "$repo_path"
   for file in "${dotfiles[@]}"
