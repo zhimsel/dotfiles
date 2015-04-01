@@ -82,14 +82,14 @@ nmap <leader>qa :qa<cr>
 nmap <leader>wqa :wqa<cr>
 
 " Quickly toggle line numbers
-map <leader>n :set number!<cr>
-map <leader>N :set relativenumber!<cr>
+nmap <leader>n :set number!<cr>
+nmap <leader>N :set relativenumber!<cr>
 
 " :WW sudo saves the file with root permissions
 command WW w !sudo tee % > /dev/null
 
 " Toggle paste mode on and off
-map <leader>p :set paste!<cr>
+nmap <leader>p :set paste!<cr>
 
 command W write " stop that pesky shift key
 command Q quit " stop that pesky shift key
