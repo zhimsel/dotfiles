@@ -17,34 +17,25 @@ export PATH="$HOME/bin:$PATH"
 
 
 # load oh-my-zsh and it's plugins
-export ZSH=$HOME/.oh-my-zsh
-source $ZSH/oh-my-zsh.sh
 plugins=( \
-          git \
-          git-extras \
-          tmux \
-          aws \
-          ruby \
-          gem \
-          rvm \
-          rails \
-          jsontools \
-          pip \
-          sudo \
-          archlinux \
-          systemd \
-          debian \
-          apt \
-          command-not-found \
-          yum \
-          common-aliases \
-          knife \
+          adb \
           brew \
           brew-cask \
-          docker \
-          jira \
+          command-not-found \
+          gem \
+          git-extras \
+          gnu-utils \
+          knife \
+          nmap \
+          osx \
+          pip \
+          rails \
+          screen \
+          torrent \
           vagrant \
 )
+export ZSH=$HOME/.oh-my-zsh
+source $ZSH/oh-my-zsh.sh
 
 
 # load normal zsh plugins
@@ -55,12 +46,12 @@ source ~/.zsh/git-prompt.zsh/zshrc.sh
 
 
 # setup autocomplete
-compinit -u
-
+autoload -Uz compinit
+compinit
 
 # load bash autocompletions
-autoload bashcompinit
-bashcompinit
+autoload -Uz bashcompinit
+bashcompinit -i
 if [ -f ~/.bash_complete ]; then
 . ~/.bash_complete
 fi
