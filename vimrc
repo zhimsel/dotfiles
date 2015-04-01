@@ -66,6 +66,43 @@ set encoding=utf8
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Key bindings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Set leader key
+let mapleader = "\<space>"
+let g:mapleader = "\<space>"
+
+" Fast saving/opening/quitting
+nmap <leader>e :e<cr>
+nmap <leader>w :w<cr>
+nmap <leader>q :q<cr>
+nmap <leader>wq :wq<cr>
+nmap <leader>qa :qa<cr>
+nmap <leader>wqa :wqa<cr>
+
+" Quickly toggle line numbers
+map <leader>n :set number!<cr>
+map <leader>N :set relativenumber!<cr>
+
+" :WW sudo saves the file with root permissions
+command WW w !sudo tee % > /dev/null
+
+" Toggle paste mode on and off
+map <leader>p :set paste!<cr>
+
+command W write " stop that pesky shift key
+command Q quit " stop that pesky shift key
+command Wq wq " stop that pesky shift key
+command WQ wq " stop that pesky shift key
+
+" Remaps the macro record key 'q' to 'Q' instead
+nnoremap Q q
+nnoremap q <Nop>
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -143,43 +180,6 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 " Define text expansions
 iab #ube #!/usr/bin/env
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Key bindings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Set leader key
-let mapleader = "\<space>"
-let g:mapleader = "\<space>"
-
-" Fast saving/opening/quitting
-nmap <leader>e :e<cr>
-nmap <leader>w :w<cr>
-nmap <leader>q :q<cr>
-nmap <leader>wq :wq<cr>
-nmap <leader>qa :qa<cr>
-nmap <leader>wqa :wqa<cr>
-
-" Quickly toggle line numbers
-map <leader>n :set number!<cr>
-map <leader>N :set relativenumber!<cr>
-
-" :WW sudo saves the file with root permissions
-command WW w !sudo tee % > /dev/null
-
-" Toggle paste mode on and off
-map <leader>p :set paste!<cr>
-
-command W write " stop that pesky shift key
-command Q quit " stop that pesky shift key
-command Wq wq " stop that pesky shift key
-command WQ wq " stop that pesky shift key
-
-" Remaps the macro record key 'q' to 'Q' instead
-nnoremap Q q
-nnoremap q <Nop>
 
 
 
