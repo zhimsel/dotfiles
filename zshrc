@@ -74,6 +74,8 @@ fi
 
 # vi mode
 bindkey -v
+autoload -Uz edit-command-line
+bindkey -M vicmd 'v' edit-command-line
 export KETTIMEOUT=1
 bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
