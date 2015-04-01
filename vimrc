@@ -100,7 +100,8 @@ command WQ wq " stop that pesky shift key
 nnoremap Q q
 nnoremap q <Nop>
 
-
+" Remaps ' key (duplicated in ` anyway)
+nnoremap ' "
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin settings
