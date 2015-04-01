@@ -117,8 +117,8 @@ MAILCHECK=0
 # define aliases
 alias please='sudo $(fc -ln -1)'
 alias fucking='sudo'
-alias la="ls -lah"
-alias tree="tree -I .git"
+alias la='ls -lah'
+alias tree='tree -I .git'
 alias h='history'
 
 
