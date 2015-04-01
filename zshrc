@@ -54,13 +54,6 @@ source ~/.zsh/berkshelf.zsh/berkshelf.plugin.zsh
 source ~/.zsh/git-prompt.zsh/zshrc.sh
 
 
-# define aliases
-alias please='sudo $(fc -ln -1)'
-alias fucking='sudo'
-alias la="ls -lah"
-alias tree="tree -I .git"
-
-
 # setup autocomplete
 compinit -u
 
@@ -112,6 +105,72 @@ setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_MINUS
 setopt EXTENDED_HISTORY
 MAILCHECK=0
+
+
+
+#############################################
+# aliases, functions, and modules
+#############################################
+
+# define aliases
+alias please='sudo $(fc -ln -1)'
+alias fucking='sudo'
+alias la="ls -lah"
+alias tree="tree -I .git"
+
+
+# make and open new directory
+function mkcd () {
+  mkdir -p "$1" &&
+  eval cd "\"\$$#\""
+}
+
+
+# create new blank executable file
+function xtouch () {
+  touch "$@" &&
+  eval chmod +x "$@"
+}
+
+
+# new cookbook function
+newcook() {
+  if [ $1 ] ; then
+    git clone git@github.com:zhimsel/skeleton-cookbook.git $1
+    cd $1; rm -rf .git/
+    egrep -r "skeleton" * .kitchen.yml | cut -d ':' -f 1 | sort | uniq | xargs -n 1 sed -i '' "s/skeleton/$1/g"
+  else
+    echo "Need the name of the cookbook."
+  fi
+}
+
+
+# create new chef-repo
+newchef() {
+  if [ $1 ] ; then
+    git clone git@github.com:zhimsel/chef-repo.git $1-chef
+    cd $1-chef; rm -rf .git/
+    git init && git a .
+  else
+    echo "Need the name of the repo."
+  fi
+}
+
+
+# interactive renaming
+imv() {
+  local src dst
+  for src; do
+    [[ -e $src ]] || { print -u2 "$src does not exist"; continue }
+    dst=$src
+    vared dst
+    [[ $src != $dst ]] && mkdir -p $dst:h && mv -n $src $dst
+  done
+}
+
+
+# load zmv module
+autoload -U zmv
 
 
 
@@ -220,64 +279,6 @@ fi
 
 unset env
 
-
-
-#############################################
-# functions and modules
-#############################################
-
-# make and open new directory
-function mkcd () {
-  mkdir -p "$1" &&
-  eval cd "\"\$$#\""
-}
-
-
-# create new blank executable file
-function xtouch () {
-  touch "$@" &&
-  eval chmod +x "$@"
-}
-
-
-# new cookbook function
-newcook() {
-  if [ $1 ] ; then
-    git clone git@github.com:zhimsel/skeleton-cookbook.git $1
-    cd $1; rm -rf .git/
-    egrep -r "skeleton" * .kitchen.yml | cut -d ':' -f 1 | sort | uniq | xargs -n 1 sed -i '' "s/skeleton/$1/g"
-  else
-    echo "Need the name of the cookbook."
-  fi
-}
-
-
-# create new chef-repo
-newchef() {
-  if [ $1 ] ; then
-    git clone git@github.com:zhimsel/chef-repo.git $1-chef
-    cd $1-chef; rm -rf .git/
-    git init && git a .
-  else
-    echo "Need the name of the repo."
-  fi
-}
-
-
-# interactive renaming
-imv() {
-  local src dst
-  for src; do
-    [[ -e $src ]] || { print -u2 "$src does not exist"; continue }
-    dst=$src
-    vared dst
-    [[ $src != $dst ]] && mkdir -p $dst:h && mv -n $src $dst
-  done
-}
-
-
-# load zmv module
-autoload -U zmv
 
 
 #############################################
