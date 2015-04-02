@@ -105,6 +105,12 @@ nnoremap q <Nop>
 " Remaps ' key (duplicated in ` anyway)
 nnoremap ' "
 
+
+" Disable highlight when <leader><Esc>, <Esc><Esc, or F1 is pressed
+map <silent> <F1> :noh<cr>
+nmap <silent> <leader><Esc> :noh<cr>
+nmap <silent> <Esc><Esc> :noh<cr>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -286,10 +292,6 @@ highlight SpecialKey ctermfg=Red ctermbg=none
 " Treat long lines as break lines (useful when moving around in them)
 "map j gj
 "map k gk
-
-" Disable highlight when <leader><Esc> (or F1) is pressed
-map <silent> <F1> :noh<cr>
-map <silent> <leader><Esc> :noh<cr>
 
 " Tmux splits compatitibility
 map <C-h> <C-w>h
