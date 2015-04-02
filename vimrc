@@ -32,6 +32,7 @@ Plugin 'bling/vim-bufferline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'svermeulen/vim-extended-ft'
+Plugin '0x0dea/vim-molasses'
 Plugin 'Valloric/YouCompleteMe' " make sure this is always last (takes a long time to load)
 
 
