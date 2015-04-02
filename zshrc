@@ -56,7 +56,6 @@ if [ -f ~/.bash_complete ]; then
 . ~/.bash_complete
 fi
 
-
 # load aws autocompletions
 if [ -f "$(which aws_completer)" ]; then
      complete -C $(which aws_completer) aws
