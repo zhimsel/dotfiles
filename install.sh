@@ -65,8 +65,8 @@ dot_path () {
 }
 
 # Generate the destination path of a dotfile
-local_path () {
-  echo "$HOME/.$1.local"
+backup_path () {
+  echo "$HOME/.$1~"
 }
 
 # Links the passed filename to its new location
@@ -82,12 +82,12 @@ link () {
 
   # Check if target exists, back up if so
   if [[ -e $path ]] && [[ ! -L $path ]]; then
-    local localpath=$(local_path "$filename")
-    if [[ -e $localpath ]]; then
-      echo "Both $path and $localpath exist. Cannot do anything automatically. Please reconcile manually."
+    local backuppath=$(backup_path "$filename")
+    if [[ -e $backuppath ]]; then
+      echo "Both $path and $backuppath exist. Cannot do anything automatically. Please reconcile manually."
     else
-      mv "$path" "$localpath"
-      echo "$path exists. Backing up to $localpath before symlinking."
+      mv "$path" "$backuppath"
+      echo "$path exists. Backing up to $backuppath before symlinking."
     fi
   fi
 
