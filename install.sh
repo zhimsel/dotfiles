@@ -106,7 +106,7 @@ install_links () {
   cd "$repo_path"
   for file in "${dotfiles[@]}"
   do
-    link $file
+    link "$file"
   done
 }
 
