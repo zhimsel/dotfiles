@@ -91,7 +91,8 @@ HIST_STAMPS="yyyy.mm.dd"
 setopt PATH_DIRS
 setopt EXTENDED_GLOB
 setopt LIST_PACKED
-setopt NO_CORRECT
+unsetopt CORRECT_ALL
+setopt CORRECT
 setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_MINUS
