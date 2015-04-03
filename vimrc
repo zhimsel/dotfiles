@@ -460,6 +460,6 @@ endfunction
 " Local settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load local config (should always be last)
-if filereadable("~/.vimrc.local")
+if filereadable(glob("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
