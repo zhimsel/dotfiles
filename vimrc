@@ -108,7 +108,6 @@ nnoremap ' "
 
 " Disable highlight when <leader><Esc>, <Esc><Esc, or F1 is pressed
 map <silent> <F1> :noh<cr>
-nmap <silent> <leader><Esc> :noh<cr>
 nmap <silent> <Esc><Esc> :noh<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
