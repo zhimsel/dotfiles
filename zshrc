@@ -180,9 +180,14 @@ ZSH_THEME=""
 ZSH_THEME_GIT_PROMPT_NOCACHE="1"
 ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
 if [[ -e "$(which cabal 2> /dev/null)" ]]; then GIT_PROMPT_EXECUTABLE="haskell"; fi
-local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 function precmd {
-PROMPT="%(!.%{$fg[red]%}.%{$fg[green]%})%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in %{$fg[blue]%}%~%{$reset_color%} (%{$fg[lightgrey]%}%*%{$reset_color%}) $(git_super_status)${rvm_ruby} ${return_code}
+local user_name="%(!.%{$fg[red]%}.%{$fg[green]%})%n%{$reset_color%}"
+local host_name="%{$fg[yellow]%}%m%{$reset_color%}"
+local current_dir="%{$fg[blue]%}%~%{$reset_color%}"
+local current_time="(%{$fg[lightgrey]%}%*%{$reset_color%})"
+local rvm_status="(%{$fg[red]%}$(rvm-prompt)%{$reset_color%})"
+local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
+PROMPT="${user_name} at ${host_name} in ${current_dir} ${current_time} $(git_super_status) ${rvm_status} ${return_code}
 %(1j.%(!.%B[%j]%b #.%B[%j]%b $).%(!.#.$)) "
 }
 RPROMPT=""
