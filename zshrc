@@ -30,6 +30,7 @@ plugins=( \
           osx \
           pip \
           rails \
+          rvm \
           screen \
           torrent \
           vagrant \
