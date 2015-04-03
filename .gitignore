@@ -1,4 +1,6 @@
 vim/*
+!vim/bundle/vundle
+!vim/bundle/vim-pathogen
 
 gnupg/*
 !gnupg/gpg.conf
