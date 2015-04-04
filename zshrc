@@ -187,7 +187,6 @@ local host_name="%{$fg[yellow]%}%m%{$reset_color%}"
 local current_dir="%{$fg[blue]%}%~%{$reset_color%}"
 local current_time="(%{$fg[lightgrey]%}%*%{$reset_color%})"
 local git_status="$(git_super_status)"
-local rvm_status="(%{$fg[red]%}$(rvm-prompt)%{$reset_color%})"
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 local command_prompt="%(1j.%(!.%B[%j]%b #.%B[%j]%b $).%(!.#.$))"
 PROMPT="${user_name} at ${host_name} in ${current_dir} ${current_time} ${git_status} ${return_code}
