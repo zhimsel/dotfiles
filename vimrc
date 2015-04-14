@@ -122,6 +122,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " vim-json settings
 set conceallevel=0 " Disable character concealing
 let g:vim_json_syntax_conceal = 0 " Force no concealing for json files
+highlight Error term=reverse cterm=bold ctermfg=7 ctermbg=1 guifg=White guibg=Red
 
 
 " vim-airline settings
