@@ -82,6 +82,10 @@ endif
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
 
+" Use 'Silent' for supressing 'Hit Enter to continue' prompt
+command! -nargs=1 Silent
+\ | execute ':silent !'.<q-args>
+\ | execute ':redraw!'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -159,11 +163,11 @@ nmap <leader>gs :Gstatus<cr>
 nmap <leader>gc :Gcommit<cr>
 nmap <leader>gf :Gfetch<cr>
 nmap <leader>gm :Gmerge<cr>
-nmap <leader>gl :Git log<cr>
-nmap <leader>ga :Git add %<cr>
-nmap <leader>gp :Git add -p %<cr>
-nmap <leader>gd :Git diff --cached<cr>
-nmap <leader>gg :Git
+nmap <leader>gl :Silent Git l<cr>
+nmap <leader>ga :Silent Git add %<cr>
+nmap <leader>gp :Silent Git add -p %<cr>
+nmap <leader>gd :Silent Git diff --cached<cr>
+nmap <leader>gg :Silent Git 
 nmap <leader>gv :Gitv<cr>
 nmap <leader>ha <Plug>GitGutterStageHunk
 
