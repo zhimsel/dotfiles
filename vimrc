@@ -153,6 +153,8 @@ set timeoutlen=500 " Set timeout for statusline redraw on escape
 
 " vim-gitgutter settings
 let g:gitgutter_sign_column_always = 1
+let g:gitgutter_realtime = 1
+let g:gitgutter_eager = 1
 highlight clear LineNr
 highlight clear SignColumn
 set numberwidth=1 " reduce extra spaces between signs and line numbers
