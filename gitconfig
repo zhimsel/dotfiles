@@ -29,3 +29,5 @@
   branchdiff = "!sh -c \"git diff $(git merge-base master HEAD) HEAD\""
   l = log --graph --decorate --pretty=medium --all
   ll = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  d = diff
+  dc = diff --cached
