@@ -134,6 +134,16 @@ init_submodules () {
   git submodule update --init --recursive
 }
 
+# Compile zsh-git-prompt
+compile_zsh_git_prompt () {
+  if [[ -e "$(which cabal 2> /dev/null)" ]]; then
+    echo" Compiling Haskell binaries for zsh-git-prompt:"
+    cd "$repo_path/zsh/git-prompt.zsh"
+    cabal configure
+    cabal build
+  fi
+}
+
 
 # Actually do it!
 overwrite_check_prompt
@@ -141,6 +151,7 @@ install_scripts_prompt
 youcompleteme_prompt
 echo ""
 init_submodules
+compile_zsh_git_prompt
 install_links
 install_scripts
 install_vim_plugins
