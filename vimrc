@@ -170,6 +170,8 @@ nmap <leader>gd :Silent Git diff --cached<cr>
 nmap <leader>gg :Silent Git 
 nmap <leader>gv :Gitv<cr>
 nmap <leader>ha <Plug>GitGutterStageHunk
+nmap <leader>hn <Plug>GitGutterNextHunk
+nmap <leader>hp <Plug>GitGutterPrevHunk
 
 " vim-easymotion settings
 hi link EasyMotionTarget DiffChange
