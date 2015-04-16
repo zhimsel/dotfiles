@@ -144,7 +144,7 @@ highlight Error term=reverse cterm=bold ctermfg=7 ctermbg=1 guifg=White guibg=Re
 
 
 " vim-airline settings
-set timeoutlen=400 " Set timeout for statusline redraw on escape
+set timeoutlen=500 " Set timeout for statusline redraw on escape
 
 
 " vim-gitgutter settings
