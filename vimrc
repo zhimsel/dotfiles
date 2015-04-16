@@ -168,9 +168,9 @@ nmap <leader>gv :Gitv
 nmap <leader>ha <Plug>GitGutterStageHunk
 
 " vim-easymotion settings
-hi link EasyMotionTarget Search
-hi link EasyMotionTarget2First Search
-hi link EasyMotionTarget2Second Search
+hi link EasyMotionTarget DiffChange
+hi link EasyMotionTarget2First DiffChange
+hi link EasyMotionTarget2Second DiffAdd
 hi link EasyMotionShade Comment
 
 
