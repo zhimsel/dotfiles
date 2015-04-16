@@ -121,14 +121,10 @@ youcompleteme_prompt () {
 
 # Install vim plugins
 install_vim_plugins () {
-  if [[ "$want_youcompleteme" == 1 ]]; then
-    vim +BundleUpdate +qall
-    cd "$HOME"/.vim/bundle/YouCompleteMe
-    ./install.sh
-  else
+  if [[ "$want_youcompleteme" != 1 ]]; then
     sed -i '/Valloric\/YouCompleteMe/d' vimrc
-    vim +BundleUpdate +qall
   fi
+  vim +PlugUpdate +qall
 }
 
 # Initialize git submodules

@@ -7,30 +7,40 @@
 " Load plugins (must come first)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Set up vundle
-filetype off
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+source ~/.vim/vim-plug/plug.vim
+call plug#begin('~/.vim/plugins')
 
+" Color scheme
+Plug 'altercation/vim-colors-solarized'
 
-" Load plugins
-Plugin 'tpope/vim-surround'
-Plugin 'avakhov/vim-yaml'
-Plugin 'elzr/vim-json'
-Plugin 'rodjek/vim-puppet'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-fugitive'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'taq/vim-git-branch-info'
-Plugin 'bling/vim-airline'
-Plugin 'bling/vim-bufferline'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'svermeulen/vim-extended-ft'
-Plugin '0x0dea/vim-molasses'
-Plugin 'Valloric/YouCompleteMe' " make sure this is always last (takes a long time to load)
+" Syntax plugins
+Plug 'avakhov/vim-yaml', { 'for': ['yaml', 'yml'] }
+Plug 'elzr/vim-json', { 'for': 'json' }
+Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
+Plug 'python.vim', { 'for': 'python' }
+Plug 'sql.vim', { 'for': 'sql' }
+Plug 'rstacruz/sparkup', { 'for': 'html' }
+Plug 'fountain.vim', { 'for': 'fountain' }
 
+" Visual interface plugins
+Plug 'bling/vim-airline'
+Plug 'bling/vim-bufferline'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+
+" Git plugins
+Plug 'tpope/vim-fugitive'
+Plug 'taq/vim-git-branch-info'
+Plug 'airblade/vim-gitgutter'
+
+" Util plugins
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'svermeulen/vim-extended-ft'
+Plug '0x0dea/vim-molasses'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+
+call plug#end()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -261,6 +271,8 @@ au BufRead,BufNewFile *.py,*.pyw set shiftwidth=4 tabstop=4
 au BufRead,BufNewFile *.java set shiftwidth=4 tabstop=4
 au BufRead,BufNewFile *.fountain   set filetype=fountain
 au BufRead,BufNewFile {Berksfile,Vagrantfile,Gemfile} set filetype=ruby
+au BufRead,BufNewFile *.pp   set filetype=ruby
+au BufRead,BufNewFile *.yaml,*.yml   set filetype=yaml
 let python_version_2 = 1
 
 " Java settings

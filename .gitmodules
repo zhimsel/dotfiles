@@ -1,9 +1,6 @@
 [submodule "oh-my-zsh"]
 	path = oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
-[submodule "vundle"]
-	path = vim/bundle/vundle
-	url = https://github.com/gmarik/Vundle.vim.git
 [submodule "opp.zsh"]
 	path = zsh/opp.zsh
 	url = https://github.com/hchbaw/opp.zsh.git
@@ -13,3 +10,6 @@
 [submodule "zsh-git-prompt"]
 	path = zsh/git-prompt.zsh
 	url = https://github.com/zhimsel/zsh-git-prompt.git
+[submodule "vim-plug"]
+	path = vim/vim-plug
+	url = git@github.com:junegunn/vim-plug.git
