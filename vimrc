@@ -21,6 +21,9 @@ Plug 'python.vim', { 'for': 'python' }
 Plug 'sql.vim', { 'for': 'sql' }
 Plug 'rstacruz/sparkup', { 'for': 'html' }
 Plug 'fountain.vim', { 'for': 'fountain' }
+Plug 'tpope/vim-git', { 'for': 'git' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
 " Visual interface plugins
 Plug 'bling/vim-airline'
@@ -31,6 +34,8 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-fugitive'
 Plug 'taq/vim-git-branch-info'
 Plug 'airblade/vim-gitgutter'
+Plug 'gregsexton/gitv'
+Plug 'mattn/gist-vim'
 
 " Util plugins
 Plug 'tpope/vim-surround'
@@ -39,6 +44,10 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'svermeulen/vim-extended-ft'
 Plug '0x0dea/vim-molasses'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+Plug 'tpope/vim-eunuch'
+Plug 'justinmk/vim-gtfo'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-commentary'
 
 call plug#end()
 
@@ -152,6 +161,7 @@ nmap <leader>ga :Git add %<cr>
 nmap <leader>gp :Git add -p %<cr>
 nmap <leader>gd :Git diff<cr>
 nmap <leader>gg :Git
+nmap <leader>gv :Gitv
 nmap <leader>ha <Plug>GitGutterStageHunk
 
 " vim-easymotion settings
