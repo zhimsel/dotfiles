@@ -10,7 +10,7 @@
 source ~/.vim/vim-plug/plug.vim
 call plug#begin('~/.vim/plugins')
 
-" Color scheme
+" Colors
 Plug 'altercation/vim-colors-solarized'
 
 " Syntax plugins
@@ -37,17 +37,19 @@ Plug 'airblade/vim-gitgutter'
 Plug 'gregsexton/gitv'
 Plug 'mattn/gist-vim'
 
-" Util plugins
+" Automation plugins
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-endwise'
+
+" Util plugins
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'svermeulen/vim-extended-ft'
 Plug '0x0dea/vim-molasses'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
-Plug 'tpope/vim-eunuch'
 Plug 'justinmk/vim-gtfo'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-commentary'
 
 call plug#end()
 
