@@ -52,7 +52,7 @@ syntax enable
 
 " Set color scheme
 set background=dark
-colorscheme solarized
+silent! colorscheme solarized
 
 " Set extra options when running in GUI mode
 if has("gui_running")
