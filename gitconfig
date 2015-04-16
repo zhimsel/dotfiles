@@ -11,6 +11,8 @@
   tool = vimdiff
 [push]
   default = tracking
+[pager]
+  last = cat
 [alias]
   unstage = reset HEAD --
   last = log -1 HEAD
@@ -27,5 +29,3 @@
   branchdiff = "!sh -c \"git diff $(git merge-base master HEAD) HEAD\""
   l = log --graph --decorate --pretty=medium --all
   ll = log --graph --decorate --pretty=oneline --abbrev-commit --all
-[pager]
-  last = cat
