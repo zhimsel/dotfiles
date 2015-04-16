@@ -131,8 +131,7 @@ install_vim_plugins () {
 init_submodules () {
   echo "Initializing git submodules..."
   cd "$repo_path"
-  git submodule init
-  git submodule update
+  git submodule update --init --recursive
 }
 
 
