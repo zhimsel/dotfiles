@@ -14,16 +14,12 @@ call vundle#rc()
 
 
 " Load plugins
-Plugin 'fountain.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'avakhov/vim-yaml'
 Plugin 'elzr/vim-json'
 Plugin 'rodjek/vim-puppet'
-Plugin 'python.vim'
-Plugin 'sql.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-repeat'
-Plugin 'rstacruz/sparkup'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'taq/vim-git-branch-info'
