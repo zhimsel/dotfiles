@@ -22,7 +22,7 @@
   co = checkout
   br = branch
   undo-last-commit = reset --soft HEAD~1
-  sf = submodule foreach 'git checkout master && echo "" && git pull'
+  subf = submodule foreach 'git checkout master && echo "" && git pull'
   sub = submodule
   branchdiff = "!sh -c \"git diff $(git merge-base master HEAD) HEAD\""
   l = log --graph --decorate --pretty=medium --all
