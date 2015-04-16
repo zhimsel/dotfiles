@@ -14,6 +14,7 @@ call plug#begin('~/.vim/plugins')
 Plug 'altercation/vim-colors-solarized'
 
 " Syntax plugins
+Plug 'scrooloose/syntastic'
 Plug 'avakhov/vim-yaml', { 'for': ['yaml', 'yml'] }
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
@@ -188,6 +189,19 @@ map <leader><leader>k <Plug>(easymotion-k)
 map <leader><leader>h <Plug>(easymotion-linebackward)
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
+
+
+" syntastic settingss
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_sh_checkers = ['shellcheck']
+let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntastic_chef_checkers = ['foodcritic']
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
