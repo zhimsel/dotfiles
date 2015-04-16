@@ -40,7 +40,7 @@ Plugin 'Valloric/YouCompleteMe' " make sure this is always last (takes a long ti
 set nocompatible
 set history=1000
 set viminfo='1000,f1,:100,@100,/20
-set isk+=_,$,@,%,#,-	" none word dividers
+set iskeyword+=_,$,@,%,#,-,.
 
 
 " Enable syntax highlighting
