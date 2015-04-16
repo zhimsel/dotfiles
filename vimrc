@@ -164,7 +164,7 @@ nmap <leader>ga :Git add %<cr>
 nmap <leader>gp :Git add -p %<cr>
 nmap <leader>gd :Git diff --cached<cr>
 nmap <leader>gg :Git
-nmap <leader>gv :Gitv
+nmap <leader>gv :Gitv<cr>
 nmap <leader>ha <Plug>GitGutterStageHunk
 
 " vim-easymotion settings
