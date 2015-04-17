@@ -113,6 +113,7 @@ alias fucking='sudo'
 alias la='ls -lah'
 alias tree='tree -I .git'
 alias h='history'
+alias fuck='$(thefuck $(fc -ln -1))'
 
 
 # make and open new directory
