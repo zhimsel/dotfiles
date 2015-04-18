@@ -242,6 +242,11 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 " Define text expansions
 iab #ube #!/usr/bin/env
 
+" executes current file (if executable)
+nnoremap <leader>x :!%:p
+
+" stop <Esc> from moving the cursor
+inoremap <Esc> <Esc>`^
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
