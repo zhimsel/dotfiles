@@ -243,7 +243,7 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 iab #ube #!/usr/bin/env
 
 " executes current file (if executable)
-nnoremap <leader>x :!%:p
+nnoremap <leader>x :!%:p<cr>
 
 " stop <Esc> from moving the cursor
 inoremap <Esc> <Esc>`^
