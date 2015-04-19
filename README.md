@@ -29,7 +29,7 @@ export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 ### Errors
 
-If you get an error about zsh/git-prompt.zsh/dist missing, this means that the zshrc has detected you have haskell installed on your machine, but the haskell binaries for zsh-git-prompt have not been compiled. To fix this, simply `cd` into [zsh/git-prompt.zsh](zsh/git-prompt.zsh) and run `cabal build`.
+If you get an error about zsh/git-prompt/dist missing, this means that the zshrc has detected you have haskell installed on your machine, but the haskell binaries for zsh-git-prompt have not been compiled. To fix this, simply `cd` into [zsh/git-prompt](zsh/git-prompt) and run `cabal build`.
 
 ### License
 These files are licensed under the [MIT license](LICENSE) and are freely available for any use.
