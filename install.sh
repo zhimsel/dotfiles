@@ -10,7 +10,7 @@ if [[ -e "$HOME/.git" ]]; then
 fi
 
 # Get full path of current dir
-repo_path=$(cd $(dirname $0) ; pwd -P)
+repo_path="$(cd "$(dirname "$0")" ; pwd -P)"
 
 # List of dotfiles that we'll be symlinking
 dotfiles=(\
@@ -71,7 +71,8 @@ backup_path () {
 # Links the passed filename to its new location
 link () {
   local filename=$1
-  local path=$(dot_path "$filename")
+  local path
+  path="$(dot_path "$filename")"
 
   # Check if source dotfile exists
   if [[ ! -e "$filename" ]]; then
@@ -81,7 +82,8 @@ link () {
 
   # Check if target exists, back up if so
   if [[ -e $path ]] && [[ ! -L $path ]]; then
-    local backuppath=$(backup_path "$filename")
+    local backuppath
+    backuppath=$(backup_path "$filename")
     if [[ -e $backuppath ]]; then
       echo "Both $path and $backuppath exist. Cannot do anything automatically. Please reconcile manually."
     else
