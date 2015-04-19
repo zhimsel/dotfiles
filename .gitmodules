@@ -1,14 +1,14 @@
 [submodule "oh-my-zsh"]
-	path = oh-my-zsh
+	path = zsh/oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
 [submodule "opp.zsh"]
-	path = zsh/opp.zsh
+	path = zsh/opp
 	url = https://github.com/hchbaw/opp.zsh.git
 [submodule "berkshelf.zsh"]
-	path = zsh/berkshelf.zsh
+	path = zsh/berkshelf
 	url = https://github.com/berkshelf/berkshelf-zsh-plugin.git
 [submodule "zsh-git-prompt"]
-	path = zsh/git-prompt.zsh
+	path = zsh/git-prompt
 	url = https://github.com/zhimsel/zsh-git-prompt.git
 [submodule "vim-plug"]
 	path = vim/vim-plug

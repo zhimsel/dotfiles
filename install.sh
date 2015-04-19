@@ -19,7 +19,6 @@ dotfiles=(\
   gitignore_global \
   gnupg \
   lftprc \
-  oh-my-zsh \
   profile \
   tmux.conf \
   vim \

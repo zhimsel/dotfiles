@@ -36,15 +36,15 @@ plugins=( \
           vagrant \
           kitchen \
 )
-export ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.zsh/oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 
 # load normal zsh plugins
-source ~/.zsh/opp.zsh/opp.zsh
-source ~/.zsh/opp.zsh/opp/*.zsh
-source ~/.zsh/berkshelf.zsh/berkshelf.plugin.zsh
-source ~/.zsh/git-prompt.zsh/zshrc.sh
+source ~/.zsh/opp/opp.zsh
+source ~/.zsh/opp/opp/*.zsh
+source ~/.zsh/berkshelf/berkshelf.plugin.zsh
+source ~/.zsh/git-prompt/zshrc.sh
 
 
 # setup autocomplete
