@@ -44,7 +44,7 @@ source $ZSH/oh-my-zsh.sh
 source ~/.zsh/opp/opp.zsh
 source ~/.zsh/opp/opp/*.zsh
 source ~/.zsh/berkshelf/berkshelf.plugin.zsh
-source ~/.zsh/git-prompt/zshrc.sh
+source ~/.zsh/git-prompt/git-prompt.plugin.zsh
 
 
 # setup autocomplete
