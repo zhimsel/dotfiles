@@ -202,6 +202,7 @@ let g:syntastic_loc_list_height = 5
 let g:syntastic_check_on_wq = 0
 let g:syntastic_sh_checkers = ['shellcheck']
 let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_chef_checkers = ['foodcritic']
 nmap <leader>[ :lprevious<cr>
 nmap <leader>] :lnext<cr>
