@@ -25,6 +25,7 @@ dotfiles=(\
   vimrc \
   zsh \
   zshrc \
+  config/flake8 \
 )
 
 # Prompt user for permission to continue
