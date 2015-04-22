@@ -133,6 +133,9 @@ nnoremap '' :registers<cr>
 map <silent> <F1> :noh<cr>
 nmap <silent> <Esc><Esc> :noh<cr>
 
+" Set persistent macros
+let @p = 'oimport pdbpdb.set_trace()' " paste in pdb trace block
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
