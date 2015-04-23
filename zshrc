@@ -36,6 +36,7 @@ plugins=( \
           vagrant \
           kitchen \
 )
+export DISABLE_AUTO_UPDATE="true"
 export ZSH=$HOME/.zsh/oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
