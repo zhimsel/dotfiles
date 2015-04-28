@@ -138,6 +138,7 @@ imap <C-p> import pdbpdb.set_trace()
 
 " Remap 'K'; it's fucking annoying
 nnoremap K <Nop>
+vnoremap K <Nop>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin settings
