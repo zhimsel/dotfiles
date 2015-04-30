@@ -51,6 +51,7 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'svermeulen/vim-extended-ft'
 Plug '0x0dea/vim-molasses'
 Plug 'justinmk/vim-gtfo'
+Plug 'renamer.vim', { 'on': 'Renamer' }
 
 call plug#end()
 
