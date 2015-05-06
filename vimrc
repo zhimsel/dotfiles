@@ -134,7 +134,7 @@ map <silent> <F1> :noh<cr>
 nmap <silent> <Esc><Esc> :noh<cr>
 
 " Paste pdb block in (for python debugger)
-imap <C-p> import pdbpdb.set_trace()
+imap <C-p> import pdb; pdb.set_trace()
 
 " Remap 'K'; it's fucking annoying
 nnoremap K <Nop>
