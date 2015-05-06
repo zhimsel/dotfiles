@@ -39,7 +39,6 @@ Plug 'gregsexton/gitv'
 Plug 'mattn/gist-vim'
 
 " Automation plugins
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 
@@ -51,6 +50,9 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'svermeulen/vim-extended-ft'
 Plug 'justinmk/vim-gtfo'
 Plug 'renamer.vim', { 'on': 'Renamer' }
+
+" Add locally-defined plugins
+source ~/.vim-plug.local
 
 call plug#end()
 
