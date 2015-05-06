@@ -52,7 +52,9 @@ Plug 'justinmk/vim-gtfo'
 Plug 'renamer.vim', { 'on': 'Renamer' }
 
 " Add locally-defined plugins
-source ~/.vim-plug.local
+if filereadable(glob("~/.vim-plug.local"))
+  source ~/.vim-plug.local
+endif
 
 call plug#end()
 
