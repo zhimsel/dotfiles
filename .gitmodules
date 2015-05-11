@@ -13,3 +13,6 @@
 [submodule "vim-plug"]
 	path = vim/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
+[submodule "zsh/autoenv"]
+	path = zsh/autoenv
+	url = https://github.com/Tarrasch/zsh-autoenv.git

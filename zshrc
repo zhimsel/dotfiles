@@ -46,6 +46,7 @@ source ~/.zsh/opp/opp.zsh
 source ~/.zsh/opp/opp/*.zsh
 source ~/.zsh/berkshelf/berkshelf.plugin.zsh
 source ~/.zsh/git-prompt/git-prompt.plugin.zsh
+source ~/.zsh/autoenv/autoenv.zsh
 
 
 # setup autocomplete
