@@ -178,11 +178,11 @@ local user_name="%(!.%{$fg[red]%}.%{$fg[green]%})%n%{$reset_color%}"
 local host_name="%{$fg[yellow]%}%m%{$reset_color%}"
 local current_dir="%{$fg[blue]%}%~%{$reset_color%}"
 local current_time="(%{$fg[lightgrey]%}%*%{$reset_color%})"
-local git_status="$(git_super_status)"
+local git_status="$(if [[ ! -z $GIT_BRANCH ]]; then echo "$(git_super_status) ";fi)"
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 local command_prompt="%(1j.%(!.%B[%j]%b #.%B[%j]%b $).%(!.#.$))"
-local py_venv="$(if [[ ! -z $VIRTUAL_ENV ]]; then echo "(venv)"; fi)"
-PROMPT="${user_name} at ${host_name} in ${current_dir} ${current_time} ${git_status} ${py_venv} ${return_code}
+local py_venv="$(if [[ ! -z $VIRTUAL_ENV ]]; then echo "(venv) "; fi)"
+PROMPT="${user_name} at ${host_name} in ${current_dir} ${current_time} ${git_status}${py_venv}${return_code}
 ${command_prompt} "
 }
 RPROMPT=""
