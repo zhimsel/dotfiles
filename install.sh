@@ -75,6 +75,11 @@ link () {
   local path
   path="$(dot_path "$filename")"
 
+  # First, check if ~/.config exists
+  if [[ ! -e ~/.config ]]; then
+    mkdir ~/.config
+  fi
+
   # Check if source dotfile exists
   if [[ ! -e "$filename" ]]; then
     echo "Error: $filename doesn't exist."
