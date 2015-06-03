@@ -252,6 +252,8 @@ set lazyredraw " Don't redraw while executing macros (good performance config)
 set magic " For regular expressions turn magic on
 set showmatch " Show matching brackets when text indicator is over them
 set matchtime=2 " How many tenths of a second to blink when matching brackets
+set mouse=a " Enable mouse interaction
+set ttymouse=xterm2 " Set mouse mode to xterm2 (works best for most modern terminals)
 
 
 " change cursor shape based on mode (for iTerm2)
