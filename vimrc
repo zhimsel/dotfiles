@@ -180,8 +180,8 @@ nmap <leader>gm :Gmerge<cr>
 nmap <leader>gl :Silent Git l<cr>
 nmap <leader>ga :Silent Git add %<cr>
 nmap <leader>gp :Silent Git add -p %<cr>
-nmap <leader>gD :Silent Git diff --cached<cr>
-nmap <leader>gd :Silent Git diff<cr>
+nmap <leader>gd :Silent Git diff --cached<cr>
+nmap <leader>gD :Silent Git diff<cr>
 nmap <leader>gg :Silent Git 
 nmap <leader>gv :Gitv<cr>
 nmap <leader>ha <Plug>GitGutterStageHunk
