@@ -129,8 +129,8 @@ nnoremap Q q
 nnoremap q <Nop>
 
 " Remaps ' key (duplicated in ` anyway)
-nnoremap ' "
-nnoremap '' :registers<cr>
+noremap ' "
+noremap '' :registers<cr>
 
 
 " Disable highlight when <leader><Esc>, <Esc><Esc, or F1 is pressed
