@@ -66,7 +66,7 @@ call plug#end()
 set nocompatible
 set history=1000
 set viminfo='1000,f1,:100,@100,/20
-set iskeyword+=_,$,@,%,#,-,.
+set iskeyword+=_,$,@,%,#,-
 
 
 " Enable syntax highlighting
