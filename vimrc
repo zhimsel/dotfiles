@@ -205,7 +205,7 @@ map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 
 
-" syntastic settingss
+" syntastic settings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
