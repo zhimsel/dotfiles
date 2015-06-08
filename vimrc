@@ -50,6 +50,7 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'svermeulen/vim-extended-ft'
 Plug 'justinmk/vim-gtfo'
 Plug 'renamer.vim', { 'on': 'Renamer' }
+Plug 'jlanzarotta/bufexplorer', {'on': 'BufExplorer'}
 
 " Add locally-defined plugins
 if filereadable(glob("~/.vim-plug.local"))
@@ -225,6 +226,9 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_add_preview_to_completeopt = 0
 set completeopt-=preview
+
+" BufExplorer settings
+nmap <C-b> :BufExplorer<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
