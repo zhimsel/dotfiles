@@ -152,7 +152,11 @@ vnoremap K <Nop>
 
 " NERDtree settings
 map <C-t> :NERDTreeToggle<CR>
+" Prevent vim from considering NERDtree a window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+let NERDTreeHighlightCursorline = 1
+let NERDTreeMouseMode = 2
+let NERDTreeShowLineNumbers = 1
 
 
 " vim-json settings
