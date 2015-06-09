@@ -26,7 +26,7 @@ Plug 'tpope/vim-git', { 'for': 'git' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
-" Visual interface plugins
+" Interface plugins
 Plug 'bling/vim-airline'
 Plug 'bling/vim-bufferline'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -37,6 +37,7 @@ Plug 'taq/vim-git-branch-info'
 Plug 'airblade/vim-gitgutter'
 Plug 'gregsexton/gitv'
 Plug 'mattn/gist-vim'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Automation plugins
 Plug 'tpope/vim-surround'
