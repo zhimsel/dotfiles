@@ -406,23 +406,22 @@ map <leader>6 :6b<CR>
 map <leader>7 :7b<CR>
 map <leader>8 :8b<CR>
 map <leader>9 :9b<CR>
-map <leader>10 :10b<CR>
-map <leader>11 :11b<CR>
-map <leader>12 :12b<CR>
-map <leader>13 :13b<CR>
-map <leader>14 :14b<CR>
-map <leader>15 :15b<CR>
-map <leader>16 :16b<CR>
-map <leader>17 :17b<CR>
-map <leader>18 :18b<CR>
-map <leader>19 :19b<CR>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-map <leader>t<leader> :tabnext
+map <leader>tm :tabmove 
+map <leader>t<leader> :tabnext<cr>
+map <leader><leader>1 1gt
+map <leader><leader>2 2gt
+map <leader><leader>3 3gt
+map <leader><leader>4 4gt
+map <leader><leader>5 5gt
+map <leader><leader>6 6gt
+map <leader><leader>7 7gt
+map <leader><leader>8 8gt
+map <leader><leader>9 9gt
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
