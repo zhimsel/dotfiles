@@ -1,4 +1,3 @@
-" vim configuration
 " Written by Zach Himsel, 2013-2015
 " https://github.com/zhimsel/dotfiles
 
@@ -28,7 +27,6 @@ Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
 " Interface plugins
 Plug 'bling/vim-airline'
-Plug 'bling/vim-bufferline'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
 " Git plugins
@@ -167,7 +165,10 @@ highlight Error term=reverse cterm=bold ctermfg=7 ctermbg=1 guifg=White guibg=Re
 
 " vim-airline settings
 set timeoutlen=500 " Set timeout for statusline redraw on escape
-
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#show_tab_nr = 1 " show tab numbers
+let g:airline#extensions#tabline#tab_nr_type = 1 " show only tab number
 
 " vim-gitgutter settings
 let g:gitgutter_sign_column_always = 1
@@ -392,36 +393,21 @@ map <C-l> <C-w>l
 set splitbelow
 set splitright
 
-" buffer shortcuts
-map <leader>bc :Bclose<cr>
-map <leader>bda :1,1000 bd!<cr>
-map <leader>bn :bn<cr>
-map <leader>bl :ls<cr>
-map <leader>1 :1b<CR>
-map <leader>2 :2b<CR>
-map <leader>3 :3b<CR>
-map <leader>4 :4b<CR>
-map <leader>5 :5b<CR>
-map <leader>6 :6b<CR>
-map <leader>7 :7b<CR>
-map <leader>8 :8b<CR>
-map <leader>9 :9b<CR>
-
-" Useful mappings for managing tabs
+" tab shortcuts
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove 
-map <leader>t<leader> :tabnext<cr>
-map <leader><leader>1 1gt
-map <leader><leader>2 2gt
-map <leader><leader>3 3gt
-map <leader><leader>4 4gt
-map <leader><leader>5 5gt
-map <leader><leader>6 6gt
-map <leader><leader>7 7gt
-map <leader><leader>8 8gt
-map <leader><leader>9 9gt
+map <leader>t :tabnext<cr>
+map <leader>1 1gt
+map <leader>2 2gt
+map <leader>3 3gt
+map <leader>4 4gt
+map <leader>5 5gt
+map <leader>6 6gt
+map <leader>7 7gt
+map <leader>8 8gt
+map <leader>9 9gt
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
