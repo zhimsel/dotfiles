@@ -144,6 +144,12 @@ imap <C-p> import pdb; pdb.set_trace()
 nnoremap K <Nop>
 vnoremap K <Nop>
 
+" Move lines up/down
+nnoremap <Down> :m+<CR>==
+nnoremap <Up> :m-2<CR>==
+vnoremap <Down> :m '>+1<CR>gv=gv
+vnoremap <Up> :m '<-2<CR>gv=gv
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin settings
