@@ -159,7 +159,7 @@ imv() {
 # new virtualenv
 newvenv() {
   [[ -e .venv ]] || virtualenv .venv
-  echo "source ./.venv/bin/activate" > .autoenv.zsh
+  echo "source \$(dirname \$0)/.venv/bin/activate" > .autoenv.zsh
   echo "deactivate" > .autoenv_leave.zsh
   python -V
   pip install --upgrade pip
