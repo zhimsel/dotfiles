@@ -413,6 +413,11 @@ map <Left> :tabprevious<cr>
 map <Right> :tabnext<cr>
 
 
+" Open splits
+nmap <Leader>s :sp<cr>
+nmap <Leader>v :vsp<cr>
+
+
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
