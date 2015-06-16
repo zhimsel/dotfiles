@@ -144,6 +144,7 @@ imap <C-p> import pdb; pdb.set_trace()
 nnoremap K <Nop>
 vnoremap K <Nop>
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -408,6 +409,9 @@ map <leader>6 6gt
 map <leader>7 7gt
 map <leader>8 8gt
 map <leader>9 9gt
+map <Left> :tabprevious<cr>
+map <Right> :tabnext<cr>
+
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
