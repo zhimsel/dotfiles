@@ -381,6 +381,8 @@ inoremap {{<CR>  {<CR>}<Esc>O
 set list listchars=trail:.,tab:>.
 highlight SpecialKey ctermfg=Red ctermbg=none
 
+" use system clipboard for main register (unless specified with '/")
+set clipboard^=unnamed
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
