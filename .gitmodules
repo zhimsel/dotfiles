@@ -16,3 +16,6 @@
 [submodule "zsh/autoenv"]
 	path = zsh/autoenv
 	url = https://github.com/Tarrasch/zsh-autoenv.git
+[submodule "zsh/zsh-completions"]
+	path = zsh/zsh-completions
+	url = git@github.com:zsh-users/zsh-completions.git

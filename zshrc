@@ -34,7 +34,6 @@ plugins=( \
           screen \
           torrent \
           vagrant \
-          kitchen \
 )
 export DISABLE_AUTO_UPDATE="true"
 export ZSH=$HOME/.zsh/oh-my-zsh
@@ -50,6 +49,7 @@ source ~/.zsh/autoenv/autoenv.zsh
 
 
 # setup autocomplete
+fpath=(~/.zsh/zsh-completions/src $fpath)
 autoload -Uz compinit
 compinit
 
