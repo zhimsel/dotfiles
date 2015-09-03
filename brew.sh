@@ -46,5 +46,24 @@ brew install pv
 brew install rename
 brew install tree
 
+# Misc installs
+brew install awscli
+brew install exiftool
+brew install htop-osx
+brew install jq
+brew install lastpass-cli
+brew install mackup
+brew install macvim
+brew install markdown
+brew install ncdu
+brew install ncurses
+brew install nmap
+brew install s3cmd
+brew install screen
+brew install tig
+brew install tmux
+brew install watch
+brew install wget
+
 # Remove outdated versions from the cellar.
 brew cleanup
