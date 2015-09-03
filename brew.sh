@@ -64,6 +64,7 @@ brew install tig
 brew install tmux
 brew install watch
 brew install wget
+brew install hub
 
 # Remove outdated versions from the cellar.
 brew cleanup
