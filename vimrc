@@ -24,6 +24,7 @@ Plug 'fountain.vim', { 'for': 'fountain' }
 Plug 'tpope/vim-git', { 'for': 'git' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'neilhwatson/vim_cf3', {'for': 'cf3' }
 
 " Interface plugins
 Plug 'bling/vim-airline'
@@ -362,6 +363,7 @@ au BufRead,BufNewFile *.fountain   set filetype=fountain
 au BufRead,BufNewFile {Berksfile,Vagrantfile,Gemfile} set filetype=ruby
 au BufRead,BufNewFile *.pp   set filetype=ruby
 au BufRead,BufNewFile *.yaml,*.yml   set filetype=yaml
+au BufRead,BufNewFile *.cf set filetype=cf3 smartindent
 let python_version_2 = 1
 
 " Java settings
