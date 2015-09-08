@@ -14,6 +14,7 @@ Plug 'altercation/vim-colors-solarized'
 
 " Syntax plugins
 Plug 'scrooloose/syntastic'
+Plug 'svermeulen/vim-extended-ft'
 Plug 'avakhov/vim-yaml', { 'for': ['yaml', 'yml'] }
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
@@ -29,6 +30,8 @@ Plug 'neilhwatson/vim_cf3', {'for': 'cf3' }
 " Interface plugins
 Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'Lokaltog/vim-easymotion'
+Plug 'jlanzarotta/bufexplorer'
 
 " Git plugins
 Plug 'tpope/vim-fugitive'
@@ -41,16 +44,11 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Automation plugins
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
-
-" Util plugins
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
-Plug 'Lokaltog/vim-easymotion'
-Plug 'svermeulen/vim-extended-ft'
-Plug 'justinmk/vim-gtfo'
 Plug 'renamer.vim', { 'on': 'Renamer' }
-Plug 'jlanzarotta/bufexplorer'
+Plug 'justinmk/vim-gtfo'
 
 " Add locally-defined plugins
 if filereadable(glob("~/.vim-plug.local"))
