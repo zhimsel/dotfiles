@@ -32,6 +32,7 @@ Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Lokaltog/vim-easymotion'
 Plug 'jlanzarotta/bufexplorer'
+Plug 'kien/ctrlp.vim'
 
 " Git plugins
 Plug 'tpope/vim-fugitive'
@@ -241,6 +242,10 @@ set completeopt-=preview
 
 " BufExplorer settings
 nmap <silent> <C-b> :ToggleBufExplorer<cr>
+
+" Ctrl-P settings
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
