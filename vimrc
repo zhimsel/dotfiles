@@ -248,6 +248,8 @@ nmap <silent> <C-b> :ToggleBufExplorer<cr>
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMixed'
 
+" CFEngine plugin settings
+let g:EnableCFE3KeywordAbbreviations=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " User interface
@@ -552,6 +554,19 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 
+" Eatchar and Getchar functions for CFEngine
+fun! Getchar()
+  let c = getchar()
+  if c != 0
+    let c = nr2char(c)
+  endif
+  return c
+endfun
+
+fun! Eatchar(pat)
+   let c = Getchar()
+   return (c =~ a:pat) ? '' : c
+endfun
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
