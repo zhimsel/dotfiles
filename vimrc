@@ -29,7 +29,7 @@ Plug 'neilhwatson/vim_cf3', {'for': 'cf3' }
 
 " Interface plugins
 Plug 'bling/vim-airline'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'kien/ctrlp.vim'
@@ -157,6 +157,7 @@ vnoremap <Up> :m '<-2<CR>gv=gv
 
 " NERDtree settings
 map <C-t> :NERDTreeToggle<CR>
+map <C-f> :NERDTreeFind<CR>
 " Prevent vim from considering NERDtree a window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 let NERDTreeHighlightCursorline = 1
