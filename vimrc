@@ -163,7 +163,7 @@ map <C-f> :NERDTreeFind<CR>
 " Prevent vim from considering NERDtree a window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 let NERDTreeHighlightCursorline = 1
-let NERDTreeMouseMode = 2
+let NERDTreeMouseMode = 1
 let NERDTreeShowLineNumbers = 1
 
 
@@ -279,7 +279,7 @@ set magic " For regular expressions turn magic on
 set showmatch " Show matching brackets when text indicator is over them
 set matchtime=2 " How many tenths of a second to blink when matching brackets
 set mouse=a " Enable mouse interaction
-set ttymouse=xterm2 " Set mouse mode to xterm2 (works best for most modern terminals)
+set ttymouse=sgr " Set mouse mode to xterm2 (works best for most modern terminals)
 
 
 " change cursor shape based on mode (for iTerm2)
