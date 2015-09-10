@@ -25,7 +25,7 @@ Plug 'fountain.vim', { 'for': 'fountain' }
 Plug 'tpope/vim-git', { 'for': 'git' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-Plug 'neilhwatson/vim_cf3', {'for': 'cf3' }
+Plug 'zhimsel/vim_cf3', {'for': 'cf3' }
 
 " Interface plugins
 Plug 'bling/vim-airline'
