@@ -33,6 +33,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'kien/ctrlp.vim'
+Plug 'wesQ3/vim-windowswap'
 
 " Git plugins
 Plug 'tpope/vim-fugitive'
