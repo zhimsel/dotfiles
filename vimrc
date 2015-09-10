@@ -34,6 +34,7 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'kien/ctrlp.vim'
 Plug 'wesQ3/vim-windowswap'
+Plug 'tpope/vim-obsession'
 
 " Git plugins
 Plug 'tpope/vim-fugitive'

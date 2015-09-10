@@ -38,3 +38,9 @@ Thumbs.db
 
 # swap files
 *.swp
+
+
+# Vim Files #
+#############
+.session.vim
+Session.vim
