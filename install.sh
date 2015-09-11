@@ -128,8 +128,8 @@ youcompleteme_prompt () {
 
 # Install vim plugins
 install_vim_plugins () {
-  if [[ "$want_youcompleteme" != 1 ]]; then
-    sed -i '/Valloric\/YouCompleteMe/d' vimrc
+  if [[ "$want_youcompleteme" = 1 ]]; then
+    echo "Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }" >> ~/.vim-plug.local
   fi
   vim +PlugUpdate +qall
 }
