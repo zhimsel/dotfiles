@@ -151,12 +151,18 @@ compile_zsh_git_prompt () {
   fi
 }
 
+# Disable host-key checking for github
+disable_github_host_key_checking () {
+  echo -e "Host github.com\n\ \ StrictHostKeyChecking no\n" >> ~/.ssh/config
+}
+
 
 # Actually do it!
 overwrite_check_prompt
 install_scripts_prompt
 youcompleteme_prompt
 echo ""
+disable_github_host_key_checking
 init_submodules
 compile_zsh_git_prompt
 install_links
