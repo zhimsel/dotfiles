@@ -152,6 +152,10 @@ nnoremap <Up> :m-2<CR>==
 vnoremap <Down> :m '>+1<CR>gv=gv
 vnoremap <Up> :m '<-2<CR>gv=gv
 
+" Move selected text left/right
+vnoremap <Right> xp`[v`]
+vnoremap <Left> xhhp`[v`]
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin settings
@@ -427,8 +431,8 @@ map <leader>6 6gt
 map <leader>7 7gt
 map <leader>8 8gt
 map <leader>9 9gt
-map <Left> :tabprevious<cr>
-map <Right> :tabnext<cr>
+map <leader><Left> :tabprevious<cr>
+map <leader><Right> :tabnext<cr>
 
 
 " Open splits
