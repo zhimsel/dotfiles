@@ -258,6 +258,9 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 " CFEngine plugin settings
 let g:EnableCFE3KeywordAbbreviations=1
 
+" Tabularize settings
+command! -range CFalign <line1>,<line2>Tabularize /=>/r1l1l1
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " User interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
