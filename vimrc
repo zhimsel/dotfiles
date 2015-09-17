@@ -52,6 +52,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'renamer.vim', { 'on': 'Renamer' }
 Plug 'justinmk/vim-gtfo'
+Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
 
 " Add locally-defined plugins
 if filereadable(glob("~/.vim-plug.local"))
