@@ -28,6 +28,6 @@
   sub = submodule
   branchdiff = "!sh -c \"git diff $(git merge-base master HEAD) HEAD\""
   ll = log --graph --decorate --pretty=medium --all
-  l = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  l = log --graph --decorate --abbrev-commit --all --pretty=format:\"%C(auto)%h %Cblue%an %Creset%C(auto)%s%d\"
   d = diff
   dc = diff --cached
