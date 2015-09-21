@@ -13,6 +13,8 @@
   default = tracking
 [pager]
   last = cat
+[grep]
+  linenumber = true
 [alias]
   unstage = reset HEAD --
   last = log -1 HEAD
