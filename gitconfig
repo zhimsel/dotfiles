@@ -29,7 +29,7 @@
   subf = submodule foreach 'git checkout master && echo "" && git pull'
   sub = submodule
   db = "!sh -c \"git diff $(git merge-base master HEAD) HEAD\""
-  dm = "!sh \"git diff $(git merge-base master HEAD) master\""
+  dm = "!sh -c \"git diff $(git merge-base master HEAD) master\""
   ll = log --graph --decorate --pretty=medium --all
   l = log --graph --decorate --abbrev-commit --all --pretty=format:\"%C(auto)%h %Cblue%an %Creset%C(auto)%s%d\"
   d = diff
