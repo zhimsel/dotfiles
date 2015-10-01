@@ -28,7 +28,8 @@
   undo-last-commit = reset --soft HEAD~1
   subf = submodule foreach 'git checkout master && echo "" && git pull'
   sub = submodule
-  branchdiff = "!sh -c \"git diff $(git merge-base master HEAD) HEAD\""
+  db = "!sh -c \"git diff $(git merge-base master HEAD) HEAD\""
+  dm = "!sh \"git diff $(git merge-base master HEAD) master\""
   ll = log --graph --decorate --pretty=medium --all
   l = log --graph --decorate --abbrev-commit --all --pretty=format:\"%C(auto)%h %Cblue%an %Creset%C(auto)%s%d\"
   d = diff
