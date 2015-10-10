@@ -2,7 +2,7 @@
 
 These are my config files. I use them live, in 'production'. You're welcome to use them directly, or fork them. Keep in mind they may change suddenly, frequently, and for seemingly no reason. They may (and do) break. Use them at your own risk (minimal as that is).
 
-If you think you have an improvement, feel free to submit an issue, or pull request.
+If you think you have an improvement, feel free to submit an issue or pull request.
 
 ### Usage
 To install these dotfiles (in say, a clean home directory), simply clone this repo to a folder of your choice (a logical choice would be ~/dotfiles or ~/.dotfiles), and run the `install.sh` script.
