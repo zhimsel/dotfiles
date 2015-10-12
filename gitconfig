@@ -7,6 +7,7 @@
   safecrlf = false
   editor = vim
   excludesfile = ~/.gitignore_global
+  commentchar = ";"
 [merge]
   tool = vimdiff
 [push]
@@ -20,7 +21,7 @@
   last = log -1 HEAD
   s = status
   f = fetch
-  c = commit
+  c = commit -v
   a = add
   ck = checkout
   co = checkout
