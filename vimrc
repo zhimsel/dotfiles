@@ -23,7 +23,7 @@ Plug 'sql.vim', { 'for': 'sql' }
 Plug 'rstacruz/sparkup', { 'for': 'html' }
 Plug 'fountain.vim', { 'for': 'fountain' }
 Plug 'tpope/vim-git', { 'for': 'git' }
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'jtratner/vim-flavored-markdown', { 'for': 'markdown' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'neilhwatson/vim_cf3', {'for': 'cf3' }
 
