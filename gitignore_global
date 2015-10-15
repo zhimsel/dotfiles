@@ -44,3 +44,9 @@ Thumbs.db
 #############
 .session.vim
 Session.vim
+
+
+# VirtualEnv files #
+####################
+.autoenv*
+.venv

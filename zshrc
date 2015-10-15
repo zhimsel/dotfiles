@@ -158,8 +158,8 @@ imv() {
 
 
 # new virtualenv
-newvenv() {
-  [[ -e .venv ]] || virtualenv .venv
+newvenv3() {
+  [[ -e .venv ]] || virtualenv -p python3 .venv
   echo "source \$(dirname \$0)/.venv/bin/activate" > .autoenv.zsh
   echo "deactivate" > .autoenv_leave.zsh
   source .venv/bin/activate
@@ -167,6 +167,14 @@ newvenv() {
   echo "Created new venv with $(python -V)"
 }
 
+newvenv2() {
+  [[ -e .venv ]] || virtualenv -p python2.7 .venv
+  echo "source \$(dirname \$0)/.venv/bin/activate" > .autoenv.zsh
+  echo "deactivate" > .autoenv_leave.zsh
+  source .venv/bin/activate
+  pip install --upgrade pip
+  echo "Created new venv with $(python -V)"
+}
 
 # load zmv module
 autoload -U zmv
