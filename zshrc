@@ -192,7 +192,6 @@ ZSH_THEME=""
 # prompt settings
 ZSH_THEME_GIT_PROMPT_NOCACHE="1"
 ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
-if [[ -e "$(which cabal 2> /dev/null)" ]]; then GIT_PROMPT_EXECUTABLE="haskell"; fi
 function precmd {
 local user_name="%(!.%{$fg[red]%}.%{$fg[green]%})%n%{$reset_color%}"
 local host_name="%{$fg[yellow]%}%m%{$reset_color%}"
