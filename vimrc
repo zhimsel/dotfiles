@@ -368,7 +368,7 @@ if has("autocmd")
   augroup END
 endif
 
-" Configure expanding of tabs for file types
+" Configure per-filetype settings
 au BufRead,BufNewFile *.c set noexpandtab
 au BufRead,BufNewFile *.h set noexpandtab
 au BufRead,BufNewFile Makefile* set noexpandtab
@@ -380,7 +380,6 @@ au BufRead,BufNewFile *.pp   set filetype=ruby
 au BufRead,BufNewFile *.yaml,*.yml   set filetype=yaml
 au BufRead,BufNewFile *.cf set filetype=cf3 smartindent
 au BufRead,BufNewFile COMMIT_EDITMSG setlocal commentstring=;%s
-let python_version_2 = 1
 
 " Java settings
 let java_mark_braces_in_parens_as_errors=1
