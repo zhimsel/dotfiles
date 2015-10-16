@@ -19,7 +19,7 @@ Plug 'avakhov/vim-yaml', { 'for': ['yaml', 'yml'] }
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
 Plug 'python.vim', { 'for': 'python' }
-Plug 'sql.vim', { 'for': 'sql' }
+Plug 'SQLComplete.vim', { 'for': 'sql' }
 Plug 'rstacruz/sparkup', { 'for': 'html' }
 Plug 'fountain.vim', { 'for': 'fountain' }
 Plug 'tpope/vim-git', { 'for': 'git' }
@@ -380,6 +380,7 @@ au BufRead,BufNewFile *.pp   set filetype=ruby
 au BufRead,BufNewFile *.yaml,*.yml   set filetype=yaml
 au BufRead,BufNewFile *.cf set filetype=cf3 smartindent
 au BufRead,BufNewFile COMMIT_EDITMSG setlocal commentstring=;%s
+au BufRead,BufNewFile *.sql SQLSetType mysql
 
 " Java settings
 let java_mark_braces_in_parens_as_errors=1
