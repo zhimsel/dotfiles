@@ -379,7 +379,7 @@ au BufRead,BufNewFile {Berksfile,Vagrantfile,Gemfile} set filetype=ruby
 au BufRead,BufNewFile *.pp   set filetype=ruby
 au BufRead,BufNewFile *.yaml,*.yml   set filetype=yaml
 au BufRead,BufNewFile *.cf set filetype=cf3 smartindent
-au BufRead,BufNewFile COMMIT_EDITMSG setlocal commentstring=;%s
+au BufRead,BufNewFile COMMIT_EDITMSG setlocal commentstring=\%%s
 au BufRead,BufNewFile *.sql SQLSetType mysql
 
 " Java settings

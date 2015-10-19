@@ -7,7 +7,7 @@
   safecrlf = false
   editor = vim
   excludesfile = ~/.gitignore_global
-  commentchar = ";"
+  commentchar = "%"
 [merge]
   tool = vimdiff
 [push]
