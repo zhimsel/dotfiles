@@ -16,6 +16,10 @@
   last = cat
 [grep]
   linenumber = true
+[tig]
+  line-graphics = utf-8
+  mouse = true
+  main-view-id = true
 [alias]
   unstage = reset HEAD --
   last = log -1 HEAD
