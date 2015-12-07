@@ -35,6 +35,7 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'kien/ctrlp.vim'
 Plug 'wesQ3/vim-windowswap'
 Plug 'tpope/vim-obsession'
+Plug 'wellle/targets.vim'
 
 " Git plugins
 Plug 'tpope/vim-fugitive'
