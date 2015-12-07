@@ -253,6 +253,10 @@ nmap <silent> <C-b> :ToggleBufExplorer<cr>
 
 " Ctrl-P settings
 let g:ctrlp_map = '<c-p>'
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("h")': ['<c-h>']
+    \ }
+let g:ctrlp_switch_buffer = 0
 
 " CFEngine plugin settings
 let g:EnableCFE3KeywordAbbreviations=1
