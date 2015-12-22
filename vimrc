@@ -197,7 +197,7 @@ set numberwidth=1 " reduce extra spaces between signs and line numbers
 
 " git keybindings (both vim-fugitive and vim-gitgutter)
 nmap <leader>gs :Gstatus<cr>
-nmap <leader>gc :Gcommit<cr>
+nmap <leader>gc :Silent Git commit -v<cr>
 nmap <leader>gf :Gfetch<cr>
 nmap <leader>gm :Gmerge<cr>
 nmap <leader>gl :Silent Git l<cr>
