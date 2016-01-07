@@ -39,3 +39,4 @@
   l = log --graph --decorate --abbrev-commit --all --pretty=format:\"%C(auto)%h %Cblue%an %Creset%C(auto)%s%d\"
   d = diff
   dc = diff --cached
+  wt = worktree
