@@ -33,11 +33,11 @@
   undo-last-commit = reset --soft HEAD~1
   subf = submodule foreach 'git checkout master && echo "" && git pull'
   sub = submodule
-  db = "!sh -c \"git diff $(git merge-base master HEAD) HEAD\""
-  dm = "!sh -c \"git diff $(git merge-base master HEAD) master\""
-  lr = log --graph --decorate --abbrev-commit --pretty=format:\"%C(auto)%h %Cblue%an %Creset%C(auto)%s%d\" HEAD~1..origin
-  ll = log --graph --decorate --pretty=medium --all
-  l = log --graph --decorate --abbrev-commit --all --pretty=format:\"%C(auto)%h %Cblue%an %Creset%C(auto)%s%d\"
+  db = "!sh -c \"git diff $(git merge-base master HEAD) HEAD\"" # diff between HEAD and branch-off commit
+  dm = "!sh -c \"git diff $(git merge-base master HEAD) master\"" #diff between HEAD and master
+  lr = log --graph --decorate --abbrev-commit --pretty=format:\"%C(auto)%h %Cblue%an %Creset%C(auto)%s%d\" HEAD~1..origin # unpulled commits on remote
+  ll = log --graph --decorate --pretty=medium --all #better longer log
+  l = log --graph --decorate --abbrev-commit --all --pretty=format:\"%C(auto)%h %Cblue%an %Creset%C(auto)%s%d\" # better log
   d = diff
   dc = diff --cached
   wt = worktree
