@@ -179,6 +179,22 @@ newvenv2() {
 # load zmv module
 autoload -U zmv
 
+# add a new git-worktree
+wt () {
+  if [[ -d .git ]]; then
+    if [[ -z $1 ]]; then
+      echo "Please specify the branch to check out"
+    else
+      wt_path="$(basename $(pwd)).$1"
+      git worktree prune -v
+      git branch "$1" &> /dev/null
+      git worktree add ../"$wt_path" "$1" && cd ../"$wt_path"
+    fi
+  else echo "We don't seem to be in a git repo"
+    exit 1
+  fi
+}
+
 
 
 #############################################
