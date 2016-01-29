@@ -35,6 +35,7 @@
   sub = submodule
   db = "!sh -c \"git diff $(git merge-base master HEAD) HEAD\""
   dm = "!sh -c \"git diff $(git merge-base master HEAD) master\""
+  lr = log --graph --decorate --abbrev-commit --pretty=format:\"%C(auto)%h %Cblue%an %Creset%C(auto)%s%d\" HEAD~1..origin
   ll = log --graph --decorate --pretty=medium --all
   l = log --graph --decorate --abbrev-commit --all --pretty=format:\"%C(auto)%h %Cblue%an %Creset%C(auto)%s%d\"
   d = diff
