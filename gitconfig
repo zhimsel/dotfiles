@@ -42,3 +42,4 @@
   dc = diff --cached
   wt = worktree
   wtp = worktree prune -v
+  wtl = worktree list
