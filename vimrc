@@ -26,7 +26,7 @@ Plug 'fountain.vim', { 'for': 'fountain' }
 Plug 'tpope/vim-git', { 'for': 'git' }
 Plug 'jtratner/vim-flavored-markdown', { 'for': 'markdown' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-Plug 'zhimsel/vim_cf3', {'for': 'cf3' }
+Plug 'zhimsel/vim_cf3', { 'for': 'cf3' }
 
 " Interface plugins
 Plug 'bling/vim-airline'
@@ -39,7 +39,7 @@ Plug 'tpope/vim-obsession'
 Plug 'wellle/targets.vim'
 
 " Git plugins
-Plug 'tpope/vim-fugitive'
+Plug 'mathstuf/vim-fugitive', { 'branch': 'git-workdir-support' }
 Plug 'taq/vim-git-branch-info'
 Plug 'airblade/vim-gitgutter'
 Plug 'gregsexton/gitv'
