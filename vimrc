@@ -11,6 +11,7 @@ call plug#begin('~/.vim/plugins')
 
 " Colors
 Plug 'altercation/vim-colors-solarized'
+Plug 'vim-airline/vim-airline-themes'
 
 " Syntax plugins
 Plug 'scrooloose/syntastic'
