@@ -44,3 +44,4 @@
   wtp = worktree prune -v
   wtl = worktree list
   st = stash
+  pr = "!sh -c \"hub pull-request\""
