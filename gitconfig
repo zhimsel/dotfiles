@@ -1,6 +1,8 @@
 [user]
   email = zach@himsel.net
   name = Zach Himsel
+[github]
+  user = zhimsel
 [core]
   eol = lf
   autocrlf = input

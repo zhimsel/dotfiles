@@ -44,6 +44,7 @@ Plug 'taq/vim-git-branch-info'
 Plug 'airblade/vim-gitgutter'
 Plug 'gregsexton/gitv'
 Plug 'mattn/gist-vim'
+Plug 'mattn/webapi-vim'  " required for gist-vim
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Automation plugins
