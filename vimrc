@@ -267,6 +267,11 @@ let g:EnableCFE3KeywordAbbreviations=1
 " Tabularize settings
 command! -range CFalign <line1>,<line2>Tabularize /=>/r1l1l1
 
+" vim-gist settings
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
+let g:gist_clip_command = 'pbcopy'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " User interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
