@@ -37,6 +37,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'wesQ3/vim-windowswap'
 Plug 'tpope/vim-obsession'
 Plug 'wellle/targets.vim'
+Plug 'wesQ3/vim-windowswap'
 
 " Git plugins
 Plug 'mathstuf/vim-fugitive', { 'branch': 'git-workdir-support' }
