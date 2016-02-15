@@ -119,6 +119,8 @@ alias h='history'
 alias fuck='$(thefuck $(fc -ln -1))'
 alias dm='docker-machine'
 alias dme='eval $(docker-machine env default)'
+alias wtp='git worktree prune -v'
+alias wtl='git worktree list'
 
 
 # make and open new directory
