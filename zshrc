@@ -209,6 +209,19 @@ wt () {
   fi
 }
 
+# remove git-worktree
+wtr () {
+  if [[ -f .git ]]; then
+    main_wt="$(cat .git | cut -d' ' -f2)/../../.."
+    current_wt="$(pwd)"
+    cd "$main_wt" || exit 1
+    rm -rf "$current_wt"
+    git worktree prune -v
+  else echo "We don't seem to be in a git worktree"
+    exit 1
+  fi
+}
+
 #
 # call this command to cleanup homebrew's cask
 cask-clean () {
