@@ -195,6 +195,22 @@ wt () {
   fi
 }
 
+#
+# call this command to cleanup homebrew's cask
+cask-clean () {
+  while read cask; do
+    caskBasePath="/opt/homebrew-cask/Caskroom"
+    local caskDirectory="$caskBasePath/$cask"
+    local versionsToRemove="$(ls -r --color=never $caskDirectory | sed 1,1d)"
+    if [[ -n $versionsToRemove ]]; then
+        while read versionToRemove ; do
+            echo "Removing $cask $versionToRemove..."
+            rm -rf "$caskDirectory/$versionToRemove"
+        done <<< "$versionsToRemove"
+    fi
+  done <<< "$(brew cask list)"
+}
+
 
 
 #############################################
