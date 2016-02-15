@@ -162,6 +162,15 @@ imv() {
 }
 
 
+# delete current directory
+rmwd() {
+  local current_dir
+  current_dir=$(pwd)
+  cd .. || exit 1
+  rm -rf $current_dir
+}
+
+
 # new virtualenv
 newvenv3() {
   [[ -e .venv ]] || virtualenv -p python3 .venv
