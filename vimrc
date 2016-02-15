@@ -406,12 +406,7 @@ let java_minlines=150
 
 " autocomplete brackets
 inoremap {{      {}<Left>
-inoremap [[      []<Left>
-inoremap ''      ''<Left>
-inoremap ""      ""<Left>
-inoremap <<      <><Left>
 inoremap {{<CR>  {<CR>}<Esc>O
-inoremap [[<CR>  [<CR>]<Esc>O
 
 " highlight trailing whitespace with red
 set list listchars=trail:.,tab:>.
