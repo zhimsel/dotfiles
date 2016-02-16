@@ -1,4 +1,4 @@
-" Written by Zach Himsel, 2013-2015
+" Written by Zach Himsel, 2013-2016
 " https://github.com/zhimsel/dotfiles
 
 
