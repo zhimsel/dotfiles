@@ -1,5 +1,5 @@
 # zsh configuration
-# written by Zach Himsel, 2014-2015
+# written by Zach Himsel, 2014-2016
 # https://github.com/zhimsel/dotfiles
 
 
