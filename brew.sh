@@ -54,7 +54,6 @@ packages=(\
   # Misc packages
   android-platform-tools
   awscli
-  avidemux
   cmake
   exiftool
   htop-osx
@@ -88,6 +87,7 @@ packages=(\
 cask_packages=(\
   1password
   adium
+  avidemux
   clipmenu
   deluge
   evernote
