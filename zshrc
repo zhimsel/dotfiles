@@ -228,7 +228,7 @@ cask-clean () {
   while read cask; do
     caskBasePath="/opt/homebrew-cask/Caskroom"
     local caskDirectory="$caskBasePath/$cask"
-    local versionsToRemove="$(ls -r --color=never $caskDirectory | sed 1,1d)"
+    local versionsToRemove="$(ls -vr --color=never $caskDirectory | sed 1,1d)"
     if [[ -n $versionsToRemove ]]; then
         while read versionToRemove ; do
             echo "Removing $cask $versionToRemove..."
