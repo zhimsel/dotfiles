@@ -12,59 +12,101 @@ brew update
 # Upgrade any already-installed formulae.
 brew upgrade
 
-# Install GNU core utilities (those that come with OS X are outdated).
-# Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
-brew install coreutils
+# Assemble a list of packages to install
+packages=(\
+  # Install GNU core utilities (those that come with OS X are outdated).
+  # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
+  coreutils
 
-# Install some other useful utilities like `sponge`.
-brew install moreutils
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
-brew install findutils
-# Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed --with-default-names
+  # Install some other useful utilities like `sponge`.
+  moreutils
+  # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
+  findutils
+  # Install GNU `sed`, don't forge to alias 'sed' to 'gsed'
+  gnu-sed
 
-# Install shell and utils
-brew install zsh
-brew install zsh-completions
-brew install zsh-syntax-highlighting
-brew install zsh-history-substring-search
-brew install bash-completion
+  # Install shell and utils
+  zsh
+  zsh-completions
+  zsh-syntax-highlighting
+  zsh-history-substring-search
+  zshdb
+  bash
+  bash-completion
 
-# Install `wget` with IRI support.
-brew install wget --with-iri
+  # Install `wget` with IRI support.
+  wget --with-iri
 
-# Install more recent versions of some OS X tools.
-brew install vim --override-system-vi
-brew install homebrew/dupes/grep
-brew install homebrew/dupes/openssh
-brew install homebrew/dupes/screen
-brew install ack
-brew install git
-brew install lynx
-brew install p7zip
-brew install pv
-brew install rename
-brew install tree
+  # Install more recent versions of some OS X tools.
+  vim --override-system-vi
+  homebrew/dupes/grep
+  homebrew/dupes/openssh
+  homebrew/dupes/screen
+  ack
+  git
+  p7zip
+  pv
+  rename
+  tree
+  curl
+  gnupg
 
-# Misc installs
-brew install awscli
-brew install exiftool
-brew install htop-osx
-brew install jq
-brew install lastpass-cli
-brew install mackup
-brew install macvim
-brew install markdown
-brew install ncdu
-brew install ncurses
-brew install nmap
-brew install s3cmd
-brew install screen
-brew install tig
-brew install tmux
-brew install watch
-brew install wget
-brew install hub
+  # Misc packages
+  android-platform-tools
+  awscli
+  avidemux
+  cmake
+  exiftool
+  htop-osx
+  hub
+  hub
+  iftop
+  irssi
+  jq
+  lame
+  links
+  macvim
+  markdown
+  ncdu
+  ncurses
+  nmap
+  pip-completion
+  rake-completion
+  ruby-completion
+  s3cmd
+  s3cmd
+  shellcheck
+  sqlite
+  tig
+  tmux
+  vagrant-completion
+  watch
+  wget
+
+)
+
+cask_packages=(\
+  1password
+  adium
+  clipmenu
+  deluge
+  evernote
+  flux
+  google-chrome
+  iterm2
+  keka
+  libreoffice
+  macdown
+  messenger
+  mumble
+  slack
+  stellarium
+  vlc
+)
+
+# Install them
+brew install "${packages[@]}"
+brew cask install "${cask_packages[@]}"
 
 # Remove outdated versions from the cellar.
 brew cleanup
