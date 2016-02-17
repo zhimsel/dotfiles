@@ -138,7 +138,8 @@ nnoremap q <Nop>
 
 " Remaps ' key (duplicated in ` anyway)
 noremap ' "
-noremap '' :registers<cr>
+noremap '' "+
+noremap ''' :registers<cr>
 
 
 " Disable highlight when <leader><Esc>, <Esc><Esc, or F1 is pressed
@@ -414,7 +415,7 @@ set list listchars=trail:.,tab:>.
 highlight SpecialKey ctermfg=Red ctermbg=none
 
 " use system clipboard for main register (unless specified with '/")
-set clipboard^=unnamed
+" set clipboard^=unnamed
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
