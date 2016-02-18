@@ -26,7 +26,7 @@
   unstage = reset HEAD --
   last = log -1 HEAD
   s = status
-  f = fetch
+  f = fetch -p
   c = commit -v
   a = add
   ck = checkout
