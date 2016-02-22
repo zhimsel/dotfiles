@@ -202,7 +202,8 @@ wt () {
       wt_path="$(basename $(pwd)).$1"
       git worktree prune -v
       git branch "$1" &> /dev/null
-      git worktree add ../"$wt_path" "$1" && cd ../"$wt_path"
+      git worktree add ../"$wt_path" "$1"
+      cd ../"$wt_path"
     fi
   else echo "We don't seem to be in a git repo"
     exit 1
