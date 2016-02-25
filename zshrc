@@ -261,7 +261,7 @@ local git_status="$(if [[ ! -z $GIT_BRANCH ]]; then echo "$(git_super_status) ";
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 local command_prompt="%(1j.%(!.%B[%j]%b #.%B[%j]%b $).%(!.#.$))"
 local py_venv="$(if [[ ! -z $VIRTUAL_ENV ]]; then echo "(venv) "; fi)"
-PROMPT="${current_time} ${user_name} @ ${host_name} : ${current_dir} ${git_status}${py_venv}${return_code}
+PROMPT="${current_time} ${user_name} at ${host_name} in ${current_dir} ${git_status}${py_venv}${return_code}
 ${command_prompt} "
 }
 RPROMPT=""
