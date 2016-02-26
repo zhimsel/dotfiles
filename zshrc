@@ -376,4 +376,8 @@ if [[ $- == *i* ]]; then
   export FZF_TMUX=0
   source "$HOME/.fzf/shell/key-bindings.zsh"
   source "$HOME/.fzf/shell/completion.zsh"
+  export FZF_DEFAULT_COMMAND='
+    (git ls-tree -r --name-only HEAD ||
+     find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
+     sed s/^..//) 2> /dev/null'
 fi
