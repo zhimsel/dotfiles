@@ -15,7 +15,6 @@ export EDITOR="vim" # set text editor
 export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin"
 export PATH="$HOME/bin:$PATH"
 
-
 # load oh-my-zsh and it's plugins
 plugins=( \
           adb \
@@ -46,7 +45,6 @@ source ~/.zsh/opp/opp/*.zsh
 source ~/.zsh/berkshelf/berkshelf.plugin.zsh
 source ~/.zsh/git-prompt/git-prompt.plugin.zsh
 source ~/.zsh/autoenv/autoenv.zsh
-
 
 # setup autocomplete
 fpath=(~/.zsh/zsh-completions/src $fpath)
@@ -380,3 +378,16 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+
+# set up fzf
+if [[ $- == *i* ]]; then
+  export PATH="$PATH:$HOME/.fzf/bin"
+  export MANPATH="$MANPATH:$HOME/.fzf/man"
+  export FZF_TMUX=0
+  source "$HOME/.fzf/shell/key-bindings.zsh"
+  source "$HOME/.fzf/shell/completion.zsh"
+  export FZF_DEFAULT_COMMAND='
+    (git ls-tree -r --name-only HEAD ||
+     find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
+     sed s/^..//) 2> /dev/null'
+fi
