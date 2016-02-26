@@ -48,7 +48,7 @@ source ~/.zsh/autoenv/autoenv.zsh
 
 # setup autocomplete
 fpath=(~/.zsh/zsh-completions/src $fpath)
-fpath=(~/.zsh/completions $fpath)
+fpath=(~/.zsh/custom-completions $fpath)
 autoload -Uz compinit
 compinit
 
