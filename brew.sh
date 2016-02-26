@@ -27,9 +27,6 @@ packages=(\
 
   # Install shell and utils
   zsh
-  zsh-completions
-  zsh-syntax-highlighting
-  zsh-history-substring-search
   zshdb
   bash
   bash-completion
