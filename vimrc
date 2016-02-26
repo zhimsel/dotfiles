@@ -33,7 +33,7 @@ Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdtree'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'jlanzarotta/bufexplorer'
-Plug 'kien/ctrlp.vim'
+Plug '~/.fzf'  " fzf is not just for vim, so it's managed externally
 Plug 'wesQ3/vim-windowswap'
 Plug 'tpope/vim-obsession'
 Plug 'wellle/targets.vim'
@@ -257,12 +257,10 @@ set completeopt-=preview
 " BufExplorer settings
 nmap <silent> <C-b> :ToggleBufExplorer<cr>
 
-" Ctrl-P settings
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("h")': ['<c-h>']
-    \ }
-let g:ctrlp_switch_buffer = 0
+" fzf settings
+nnoremap <c-p> :FZF<cr>
+let g:fzf_height = 20
+
 
 " CFEngine plugin settings
 let g:EnableCFE3KeywordAbbreviations=1
