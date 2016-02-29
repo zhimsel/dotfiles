@@ -57,6 +57,11 @@ Plug 'tpope/vim-eunuch'
 Plug 'renamer.vim', { 'on': 'Renamer' }
 Plug 'justinmk/vim-gtfo'
 Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
+if has ('nvim')
+  Plug 'Shougo/deoplete.nvim'
+else
+  Plug 'Shougo/neocomplete.vim'
+endif
 
 " Add locally-defined plugins
 if filereadable(glob("~/.vim-plug.local"))
@@ -71,8 +76,10 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set nocompatible
+if !has('nvim')
+  set viminfo='1000,f1,:100,@100,/20
+endif
 set history=1000
-set viminfo='1000,f1,:100,@100,/20
 set iskeyword+=_,$,@,%,#,-
 set nofoldenable
 
@@ -248,11 +255,32 @@ nmap <leader>[ :lprevious<cr>
 nmap <leader>] :lnext<cr>
 nmap <leader>\ :SyntasticCheck<cr>:Errors<cr>
 
-" YouCompleteMe settings
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_add_preview_to_completeopt = 0
-set completeopt-=preview
+" deoplete/neocomplete setting
+let g:deoplete#enable_at_startup = 1
+let g:neocomplete#enable_at_startup = 1
+set completeopt+=noinsert,noselect
+imap <expr><C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
+imap <expr><C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
+inoremap <expr><C-g> deoplete#mappings#undo_completion()
+" <Tab> completion:
+" 1. If popup menu is visible, select and insert next item
+" 2. Otherwise, if within a snippet, jump to next input
+" 3. Otherwise, if preceding chars are whitespace, insert tab char
+" 4. Otherwise, start manual autocomplete
+imap <silent><expr><Tab> pumvisible() ? "\<C-n>"
+  \ : (neosnippet#jumpable() ? "\<Plug>(neosnippet_jump)"
+  \ : (<SID>is_whitespace() ? "\<Tab>"
+  \ : deoplete#mappings#manual_complete()))
+smap <silent><expr><Tab> pumvisible() ? "\<C-n>"
+  \ : (neosnippet#jumpable() ? "\<Plug>(neosnippet_jump)"
+  \ : (<SID>is_whitespace() ? "\<Tab>"
+  \ : deoplete#mappings#manual_complete()))
+inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:is_whitespace() "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~? '\s'
+endfunction "}}}
+
 
 " BufExplorer settings
 nmap <silent> <C-b> :ToggleBufExplorer<cr>
@@ -299,12 +327,18 @@ set magic " For regular expressions turn magic on
 set showmatch " Show matching brackets when text indicator is over them
 set matchtime=2 " How many tenths of a second to blink when matching brackets
 set mouse=a " Enable mouse interaction
-set ttymouse=sgr " Set mouse mode to xterm2 (works best for most modern terminals)
+if !has('nvim')
+  set ttymouse=sgr " Set mouse mode to xterm2 (works best for most modern terminals)
+endif
 
 
 " change cursor shape based on mode (for iTerm2)
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+if has('nvim')
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
 
 " Define text expansions
 iab #ube #!/usr/bin/env
@@ -330,7 +364,9 @@ set backupdir^=~/.vim/backup//
 set backupdir^=./.vim-backup/
 set nobackup
 
-set viminfo+=n~/.vim/viminfo
+if !has('nvim')
+  set viminfo+=n~/.vim/viminfo
+endif
 
 if exists("+undofile")
   if isdirectory($HOME . '/.vim/undo') == 0
@@ -477,7 +513,9 @@ autocmd BufReadPost *
      \   exe "normal! g`\"" |
      \ endif
 " Remember info about open buffers on close
-set viminfo^=%
+if !has('nvim')
+  set viminfo^=%
+endif
 
 
 """"""""""""""""""""""""""""""

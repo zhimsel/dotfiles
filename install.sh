@@ -118,21 +118,16 @@ install_links () {
   done
 }
 
-# Prompt if user wants to install 'YouCompleteMe'
-youcompleteme_prompt () {
-  read -r -p "Would you like to install and build YouCompleteMe for [neo]vim? (y/N) " -n 1
-  echo ""
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
-    want_youcompleteme=1
-  fi
-}
-
 # Install vim plugins
-install_vim_plugins () {
-  if [[ "$want_youcompleteme" = 1 ]]; then
-    echo "Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }" >> ~/.vim-plug.local
+install_vim () {
+  if [[ -e $(which nvim) ]]; then
+    echo "Detected neovim, symlinking vim config files"
+    ln -v -s "$repo_path/vim" "$HOME/.config/nvim"
+    ln -v -s "$repo_path/vimrc" "$HOME/.config/nvim/init.vim"
+    nvim +PlugUpdate +qall
+  else
+    vim +PlugUpdate +qall
   fi
-  vim +PlugUpdate +qall
 }
 
 # Initialize git submodules
@@ -161,11 +156,10 @@ disable_github_host_key_checking () {
 # Actually do it!
 overwrite_check_prompt
 install_scripts_prompt
-youcompleteme_prompt
 echo ""
 disable_github_host_key_checking
 init_submodules
 compile_zsh_git_prompt
 install_links
 install_scripts
-install_vim_plugins
+install_vim
