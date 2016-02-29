@@ -10,7 +10,7 @@ if [[ -e "$HOME/.git" ]]; then
 fi
 
 # Get full path of current dir
-repo_path="$(cd "$(dirname "$0")" ; pwd -P)"
+repo_path="$(cd "$(dirname "$0")" ; pwd -P)" || exit 1
 
 # List of dotfiles that we'll be symlinking
 dotfiles=(\
@@ -31,7 +31,7 @@ dotfiles=(\
 
 # Prompt user for permission to continue
 overwrite_check_prompt () {
-read -p "This MIGHT overwrite existing files in your home directory. Are you sure? (y/N) " -n 1
+read -r -p "This MIGHT overwrite existing files in your home directory. Are you sure? (y/N) " -n 1
 echo ""
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   :
@@ -43,7 +43,7 @@ fi
 
 # Ask user if they want scripts
 install_scripts_prompt () {
-  read -p "Would you like to install zhimsel/scripts, too? (y/N) " -n 1
+  read -r -p "Would you like to install zhimsel/scripts, too? (y/N) " -n 1
   echo ""
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     want_scripts=1
@@ -111,7 +111,7 @@ link () {
 # Loops through and link all files without links
 install_links () {
   echo "Linking dotfiles into place:"
-  cd "$repo_path"
+  cd "$repo_path" || exit 1
   for file in "${dotfiles[@]}"
   do
     link "$file"
@@ -120,7 +120,7 @@ install_links () {
 
 # Prompt if user wants to install 'YouCompleteMe'
 youcompleteme_prompt () {
-  read -p "Would you like to install and build YouCompleteMe for vim? (y/N) " -n 1
+  read -r -p "Would you like to install and build YouCompleteMe for [neo]vim? (y/N) " -n 1
   echo ""
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     want_youcompleteme=1
@@ -138,7 +138,7 @@ install_vim_plugins () {
 # Initialize git submodules
 init_submodules () {
   echo "Initializing git submodules..."
-  cd "$repo_path"
+  cd "$repo_path" || exit 1
   git submodule update --init --recursive
 }
 
@@ -146,7 +146,7 @@ init_submodules () {
 compile_zsh_git_prompt () {
   if [[ -e "$(which cabal 2> /dev/null)" ]]; then
     echo" Compiling Haskell binaries for zsh-git-prompt:"
-    cd "$repo_path/zsh/git-prompt.zsh"
+    cd "$repo_path/zsh/git-prompt.zsh" || exit 1
     cabal configure
     cabal build
   fi
