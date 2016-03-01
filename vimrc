@@ -57,7 +57,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'renamer.vim', { 'on': 'Renamer' }
 Plug 'justinmk/vim-gtfo'
 Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
-if has ('nvim')
+if has('nvim')
   Plug 'Shougo/deoplete.nvim'
 else
   Plug 'Shougo/neocomplete.vim'
@@ -262,20 +262,6 @@ set completeopt+=noinsert,noselect
 imap <expr><C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
 imap <expr><C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
 inoremap <expr><C-g> deoplete#mappings#undo_completion()
-" <Tab> completion:
-" 1. If popup menu is visible, select and insert next item
-" 2. Otherwise, if within a snippet, jump to next input
-" 3. Otherwise, if preceding chars are whitespace, insert tab char
-" 4. Otherwise, start manual autocomplete
-imap <silent><expr><Tab> pumvisible() ? "\<C-n>"
-  \ : (neosnippet#jumpable() ? "\<Plug>(neosnippet_jump)"
-  \ : (<SID>is_whitespace() ? "\<Tab>"
-  \ : deoplete#mappings#manual_complete()))
-smap <silent><expr><Tab> pumvisible() ? "\<C-n>"
-  \ : (neosnippet#jumpable() ? "\<Plug>(neosnippet_jump)"
-  \ : (<SID>is_whitespace() ? "\<Tab>"
-  \ : deoplete#mappings#manual_complete()))
-inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<C-h>"
 function! s:is_whitespace() "{{{
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~? '\s'
