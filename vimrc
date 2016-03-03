@@ -57,7 +57,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'renamer.vim', { 'on': 'Renamer' }
 Plug 'justinmk/vim-gtfo'
 Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
-if has('nvim')
+if has ('nvim')
   Plug 'Shougo/deoplete.nvim'
 else
   Plug 'Shougo/neocomplete.vim'
