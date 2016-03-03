@@ -39,7 +39,7 @@
   dm = "!sh -c \"git diff $(git merge-base master HEAD) master\"" #diff between HEAD and master
   lr = log --graph --decorate --abbrev-commit --pretty=format:\"%C(auto)%h %Cblue%an %Creset%C(auto)%s%d\" HEAD~1..origin # unpulled commits on remote
   ll = log --graph --decorate --pretty=medium --all #better longer log
-  l = log --graph --decorate --abbrev-commit --all --pretty=format:\"%C(auto)%h %Cblue%an %Creset%C(auto)%s%d\" # better log
+  l = log --graph --decorate --abbrev-commit --all --pretty=format:\"%C(auto)%h %Creset%ai %Cblue%an %Creset%C(auto)%s%d\" # better log
   d = diff
   dc = diff --cached
   wt = worktree
