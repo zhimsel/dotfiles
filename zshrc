@@ -377,9 +377,18 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # set up fzf
 if [[ $- == *i* ]]; then
-  export PATH="$PATH:$HOME/.fzf/bin"
-  export MANPATH="$MANPATH:$HOME/.fzf/man"
-  export FZF_TMUX=0
-  source "$HOME/.fzf/shell/key-bindings.zsh"
-  source "$HOME/.fzf/shell/completion.zsh"
+  if [[ -x $HOME/.fzf/fzf ]]; then
+    export PATH="$HOME/.fzf:$PATH"
+    export PATH="$HOME/.fzf/bin:$PATH"
+    export MANPATH="$MANPATH:$HOME/.fzf/man"
+    export FZF_TMUX=0
+    source "$HOME/.fzf/shell/key-bindings.zsh"
+    source "$HOME/.fzf/shell/completion.zsh"
+    export FZF_DEFAULT_COMMAND='
+      (git ls-tree -r --name-only HEAD ||
+       find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
+       sed s/^..//) 2> /dev/null'
+   else
+     echo "fzf not found. Make sure ~/.fzf is symlinked."
+   fi
 fi
