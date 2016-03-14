@@ -121,11 +121,11 @@ alias dme='eval $(docker-machine env default)'
 alias wtp='git worktree prune -v'
 alias wtl='git worktree list'
 
-if [[ -e $(which nvim) ]]; then
-  alias vvim=$(which vim)
-  alias vim='nvim'
-  alias vi='nvim'
-fi
+# if [[ -e $(which nvim) ]]; then
+#   alias vvim=$(which vim)
+#   alias vim='nvim'
+#   alias vi='nvim'
+# fi
 
 
 # make and open new directory

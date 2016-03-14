@@ -446,10 +446,10 @@ highlight SpecialKey ctermfg=Red ctermbg=none
 "map k gk
 
 " Tmux splits compatitibility
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
 
 " better split placements
 set splitbelow
