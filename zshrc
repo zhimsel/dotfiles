@@ -378,7 +378,6 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # set up fzf
 if [[ $- == *i* ]]; then
   if [[ -x $HOME/.fzf/fzf ]]; then
-    export PATH="$HOME/.fzf:$PATH"
     export PATH="$HOME/.fzf/bin:$PATH"
     export MANPATH="$MANPATH:$HOME/.fzf/man"
     export FZF_TMUX=0
