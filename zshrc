@@ -109,6 +109,7 @@ MAILCHECK=0
 #############################################
 
 # define aliases
+alias s='sudo'
 alias please='sudo $(fc -ln -1)'
 alias fucking='sudo'
 alias la='ls -lah'
