@@ -38,6 +38,8 @@ Plug 'wesQ3/vim-windowswap'
 Plug 'tpope/vim-obsession'
 Plug 'wellle/targets.vim'
 Plug 'wesQ3/vim-windowswap'
+Plug 'kopischke/vim-stay'
+Plug 'Konfekt/FastFold'
 
 " Git plugins
 Plug 'mathstuf/vim-fugitive', { 'branch': 'git-workdir-support' }
@@ -286,6 +288,9 @@ command! -range CFalign <line1>,<line2>Tabularize /=>/r1l1l1
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
 let g:gist_clip_command = 'pbcopy'
+
+" vim-stay settings
+set viewoptions=cursor,folds,slash,unix
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " User interface
