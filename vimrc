@@ -32,7 +32,6 @@ Plug 'zhimsel/vim_cf3', { 'for': 'cf3' }
 Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdtree'
 Plug 'Lokaltog/vim-easymotion'
-Plug 'jlanzarotta/bufexplorer'
 Plug '~/.fzf'  " fzf is not just for vim, so it's managed externally
 Plug 'junegunn/fzf.vim'
 Plug 'wesQ3/vim-windowswap'
@@ -179,7 +178,6 @@ vnoremap <Left> xhhp`[v`]
 
 " NERDtree settings
 map <C-t> :NERDTreeToggle<CR>
-map <C-f> :NERDTreeFind<CR>
 " Prevent vim from considering NERDtree a window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 let NERDTreeHighlightCursorline = 1
@@ -258,26 +256,30 @@ nmap <leader>[ :lprevious<cr>
 nmap <leader>] :lnext<cr>
 nmap <leader>\ :SyntasticCheck<cr>:Errors<cr>
 
+
 " deoplete/neocomplete setting
 let g:deoplete#enable_at_startup = 1
 let g:neocomplete#enable_at_startup = 1
 set completeopt+=noinsert,noselect
 imap <expr><C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
 imap <expr><C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
-inoremap <expr><C-g> deoplete#mappings#undo_completion()
 function! s:is_whitespace() "{{{
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~? '\s'
 endfunction "}}}
 
 
-" BufExplorer settings
-nmap <silent> <C-b> :ToggleBufExplorer<cr>
-
 " fzf settings
-nnoremap <c-p> :FZF<cr>
-let g:fzf_height = 12
-let g:fzf_buffers_jump = 1
+nnoremap <c-p> :Files<cr>
+nnoremap <c-b> :Buffers<cr>
+nnoremap <c-f> :BLines<cr>
+nnoremap <c-g> :GitFiles<cr>
+nnoremap <c-m> :Marks<cr>
+let g:fzf_layout = { 'window': 'new', 'down': '12' }
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
 
 
 " CFEngine plugin settings
