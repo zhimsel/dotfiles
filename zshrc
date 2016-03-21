@@ -122,11 +122,11 @@ alias dme='eval $(docker-machine env default)'
 alias wtp='git worktree prune -v'
 alias wtl='git worktree list'
 
-# if [[ -e $(which nvim) ]]; then
-#   alias vvim=$(which vim)
-#   alias vim='nvim'
-#   alias vi='nvim'
-# fi
+if [[ -e $(which nvim) ]]; then
+  alias vvim=$(which vim)
+  alias vim='nvim'
+  alias vi='nvim'
+fi
 
 
 # make and open new directory
@@ -371,7 +371,7 @@ fi
 
 
 #############################################
-# load some plugins that need to go last
+# load some stuff that needs to go last
 #############################################
 
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -388,3 +388,11 @@ if [[ $- == *i* ]]; then
      echo "fzf not found. Make sure ~/.fzf is symlinked."
    fi
 fi
+
+# terminfo workaround for neovim pane switching issue
+# https://github.com/neovim/neovim/issues/2048#issuecomment-78045837
+ti_file="$HOME/.terminfo/$TERM.fixed.ti"
+if [[ ! -f $ti_file ]]; then
+  infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $ti_file
+fi
+tic $ti_file
