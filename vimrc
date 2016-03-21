@@ -37,7 +37,6 @@ Plug '~/.fzf'  " fzf is not just for vim, so it's managed externally
 Plug 'wesQ3/vim-windowswap'
 Plug 'tpope/vim-obsession'
 Plug 'wellle/targets.vim'
-Plug 'wesQ3/vim-windowswap'
 Plug 'kopischke/vim-stay'
 Plug 'Konfekt/FastFold'
 
