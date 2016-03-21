@@ -199,6 +199,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#show_tab_nr = 1 " show tab numbers
 let g:airline#extensions#tabline#tab_nr_type = 1 " show only tab number
+let g:airline_powerline_fonts = 1
 
 " vim-gitgutter settings
 let g:gitgutter_sign_column_always = 1
