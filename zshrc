@@ -395,7 +395,5 @@ fi
 # terminfo workaround for neovim pane switching issue
 # https://github.com/neovim/neovim/issues/2048#issuecomment-78045837
 ti_file="$HOME/.terminfo/$TERM.fixed.ti"
-if [[ ! -f $ti_file ]]; then
-  infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $ti_file
-fi
+infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $ti_file
 tic $ti_file
