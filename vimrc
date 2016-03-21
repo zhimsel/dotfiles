@@ -34,6 +34,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'jlanzarotta/bufexplorer'
 Plug '~/.fzf'  " fzf is not just for vim, so it's managed externally
+Plug 'junegunn/fzf.vim'
 Plug 'wesQ3/vim-windowswap'
 Plug 'tpope/vim-obsession'
 Plug 'wellle/targets.vim'
@@ -274,7 +275,8 @@ nmap <silent> <C-b> :ToggleBufExplorer<cr>
 
 " fzf settings
 nnoremap <c-p> :FZF<cr>
-let g:fzf_height = 20
+let g:fzf_height = 12
+let g:fzf_buffers_jump = 1
 
 
 " CFEngine plugin settings
