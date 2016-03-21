@@ -8,8 +8,11 @@
 #############################################
 
 umask 077 # set default umask
-export EDITOR="vim" # set text editor
-
+if [[ -x $(which nvim) ]]; then # set text editor
+  export EDITOR="nvim"
+else
+  export EDITOR="vim"
+fi
 
 # set $PATH
 export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin"
@@ -122,7 +125,7 @@ alias dme='eval $(docker-machine env default)'
 alias wtp='git worktree prune -v'
 alias wtl='git worktree list'
 
-if [[ -e $(which nvim) ]]; then
+if [[ -x $(which nvim) ]]; then
   alias vvim=$(which vim)
   alias vim='nvim'
   alias vi='nvim'

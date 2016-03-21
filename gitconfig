@@ -7,7 +7,6 @@
   eol = lf
   autocrlf = input
   safecrlf = false
-  editor = vim
   excludesfile = ~/.gitignore_global
   commentchar = "%"
 [merge]
