@@ -14,7 +14,11 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline-themes'
 
 " Syntax plugins
-Plug 'scrooloose/syntastic'
+if has('nvim')
+  Plug 'benekastah/neomake'
+else
+  Plug 'scrooloose/syntastic'
+endif
 Plug 'svermeulen/vim-extended-ft'
 Plug 'avakhov/vim-yaml', { 'for': ['yaml', 'yml'] }
 Plug 'elzr/vim-json', { 'for': 'json' }
@@ -231,22 +235,30 @@ map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 
 
-" syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_check_on_wq = 0
-let g:syntastic_sh_checkers = ['shellcheck']
-let g:syntastic_ruby_checkers = ['rubocop']
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_chef_checkers = ['foodcritic']
-nmap <leader>[ :lprevious<cr>
-nmap <leader>] :lnext<cr>
-nmap <leader>\ :SyntasticCheck<cr>:Errors<cr>
-
+if has('nvim')
+  " neomake settings
+  autocmd! BufWritePost * Neomake
+  let g:neomake_open_list = 2
+  nmap <c-\> :Neomake<cr>
+  nmap <c-[> :lprevious<cr>
+  nmap <c-]> :lnext<cr>
+else
+  " syntastic settings
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_loc_list_height = 5
+  let g:syntastic_check_on_wq = 0
+  let g:syntastic_sh_checkers = ['shellcheck']
+  let g:syntastic_ruby_checkers = ['rubocop']
+  let g:syntastic_python_checkers = ['flake8']
+  let g:syntastic_chef_checkers = ['foodcritic']
+  nmap <c-\> :SyntasticCheck<cr>:Errors<cr>
+  nmap <c-[> :lprevious<cr>
+  nmap <c-]> :lnext<cr>
+endif
 
 " deoplete/neocomplete setting
 let g:deoplete#enable_at_startup = 1
