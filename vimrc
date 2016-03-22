@@ -246,6 +246,7 @@ if has('nvim')
     catch /^Vim\%((\a\+)\)\=:E553/
       llast
     catch /^Vim\%((\a\+)\)\=:E42/
+    catch /^Vim\%((\a\+)\)\=:E776/
     endtry
   endfunction
   function! <SID>LocationNext()
@@ -254,13 +255,14 @@ if has('nvim')
     catch /^Vim\%((\a\+)\)\=:E553/
       lfirst
     catch /^Vim\%((\a\+)\)\=:E42/
+    catch /^Vim\%((\a\+)\)\=:E776/
     endtry
   endfunction
   nnoremap <silent> <Plug>LocationPrevious    :<C-u>exe 'call <SID>LocationPrevious()'<CR>
   nnoremap <silent> <Plug>LocationNext        :<C-u>exe 'call <SID>LocationNext()'<CR>
-  nmap <silent> <c-[>    <Plug>LocationPrevious
-  nmap <silent> <c-]>    <Plug>LocationNext
-  nmap <script> <silent> <c-\> :call ToggleLocationList()<CR>
+  nmap <silent> <leader>[    <Plug>LocationPrevious
+  nmap <silent> <leader>]    <Plug>LocationNext
+  nmap <script> <silent> <leader>\ :call ToggleLocationList()<CR>
   let g:neomake_sh_enabled_makers = ['shellcheck']
   let g:neomake_ruby_enabled_makers = ['rubocop']
   let g:neomake_python_enabled_makers = ['flake8']
@@ -278,10 +280,13 @@ else
   let g:syntastic_ruby_checkers = ['rubocop']
   let g:syntastic_python_checkers = ['flake8']
   let g:syntastic_chef_checkers = ['foodcritic']
-  nmap <script> <silent> <c-\> :call ToggleLocationList()<CR>
-  nmap <c-[> :lprevious<cr>
-  nmap <c-]> :lnext<cr>
+  nmap <script> <silent> <leader>\ :call ToggleLocationList()<CR>
+  nmap <leader>[ :lprevious<cr>
+  nmap <leader>] :lnext<cr>
 endif
+
+" togglelist settings
+let g:toggle_list_no_mappings = 1
 
 " deoplete/neocomplete setting
 let g:deoplete#enable_at_startup = 1
