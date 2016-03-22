@@ -238,8 +238,8 @@ omap / <Plug>(easymotion-tn)
 if has('nvim')
   " neomake settings
   autocmd! BufWritePost * Neomake
-  let g:neomake_open_list = 2
-  nmap <c-\> :Neomake<cr>
+  let g:neomake_open_list = 0
+  nmap <c-\> :lopen<cr>
   nmap <c-[> :lprevious<cr>
   nmap <c-]> :lnext<cr>
   let g:neomake_sh_enabled_makers = ['shellcheck']
