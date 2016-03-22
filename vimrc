@@ -242,6 +242,10 @@ if has('nvim')
   nmap <c-\> :Neomake<cr>
   nmap <c-[> :lprevious<cr>
   nmap <c-]> :lnext<cr>
+  let g:neomake_sh_enabled_makers = ['shellcheck']
+  let g:neomake_ruby_enabled_makers = ['rubocop']
+  let g:neomake_python_enabled_makers = ['flake8']
+  let g:neomake_chef_enabled_makers = ['foodcritic']
 else
   " syntastic settings
   set statusline+=%#warningmsg#
