@@ -44,6 +44,7 @@ Plug 'wellle/targets.vim'
 Plug 'kopischke/vim-stay'
 Plug 'Konfekt/FastFold'
 Plug 'milkypostman/vim-togglelist'
+Plug 'mhinz/vim-startify'
 
 " Git plugins
 Plug 'mathstuf/vim-fugitive', { 'branch': 'git-workdir-support' }
@@ -317,6 +318,11 @@ let g:fzf_action = {
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
 
+" startify settings
+let g:startify_list_order = ['sessions', 'bookmarks', 'dir', 'files']
+let g:startify_bookmarks = [ '~/dotfiles/vimrc', '~/dotfiles/zshrc' ]
+let g:startify_update_oldfiles = 1
+let g:startify_session_persistence = 1
 
 " CFEngine plugin settings
 let g:EnableCFE3KeywordAbbreviations=1
