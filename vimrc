@@ -309,6 +309,9 @@ endfunction
 " python-mode settings
 let g:pymode_lint = 0
 let g:pymode_rope = 0
+let g:pymode_doc = 0
+let g:pymode_run = 0
+let g:pymode_rope_completion = 0
 
 " fzf settings
 nnoremap <c-p> :Files<cr>
