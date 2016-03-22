@@ -43,6 +43,7 @@ Plug 'tpope/vim-obsession'
 Plug 'wellle/targets.vim'
 Plug 'kopischke/vim-stay'
 Plug 'Konfekt/FastFold'
+Plug 'milkypostman/vim-togglelist'
 
 " Git plugins
 Plug 'mathstuf/vim-fugitive', { 'branch': 'git-workdir-support' }
@@ -259,7 +260,7 @@ if has('nvim')
   nnoremap <silent> <Plug>LocationNext        :<C-u>exe 'call <SID>LocationNext()'<CR>
   nmap <silent> <c-[>    <Plug>LocationPrevious
   nmap <silent> <c-]>    <Plug>LocationNext
-  nmap <c-\> :lopen<cr>
+  nmap <script> <silent> <c-\> :call ToggleLocationList()<CR>
   let g:neomake_sh_enabled_makers = ['shellcheck']
   let g:neomake_ruby_enabled_makers = ['rubocop']
   let g:neomake_python_enabled_makers = ['flake8']
@@ -277,7 +278,7 @@ else
   let g:syntastic_ruby_checkers = ['rubocop']
   let g:syntastic_python_checkers = ['flake8']
   let g:syntastic_chef_checkers = ['foodcritic']
-  nmap <c-\> :SyntasticCheck<cr>:Errors<cr>
+  nmap <script> <silent> <c-\> :call ToggleLocationList()<CR>
   nmap <c-[> :lprevious<cr>
   nmap <c-]> :lnext<cr>
 endif
