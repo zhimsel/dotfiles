@@ -241,6 +241,7 @@ if has('nvim')
   " neomake settings
   autocmd! BufWritePost * Neomake
   let g:neomake_open_list = 0
+  let g:neomake_verbose = 0
   function! <SID>LocationPrevious()
     try
       lprev
@@ -305,6 +306,9 @@ function! s:my_cr_function()
   return deoplete#mappings#smart_close_popup() . "\<CR>"
 endfunction
 
+" python-mode settings
+let g:pymode_lint = 0
+let g:pymode_rope = 0
 
 " fzf settings
 nnoremap <c-p> :Files<cr>
