@@ -239,9 +239,27 @@ if has('nvim')
   " neomake settings
   autocmd! BufWritePost * Neomake
   let g:neomake_open_list = 0
+  function! <SID>LocationPrevious()
+    try
+      lprev
+    catch /^Vim\%((\a\+)\)\=:E553/
+      llast
+    catch /^Vim\%((\a\+)\)\=:E42/
+    endtry
+  endfunction
+  function! <SID>LocationNext()
+    try
+      lnext
+    catch /^Vim\%((\a\+)\)\=:E553/
+      lfirst
+    catch /^Vim\%((\a\+)\)\=:E42/
+    endtry
+  endfunction
+  nnoremap <silent> <Plug>LocationPrevious    :<C-u>exe 'call <SID>LocationPrevious()'<CR>
+  nnoremap <silent> <Plug>LocationNext        :<C-u>exe 'call <SID>LocationNext()'<CR>
+  nmap <silent> <c-[>    <Plug>LocationPrevious
+  nmap <silent> <c-]>    <Plug>LocationNext
   nmap <c-\> :lopen<cr>
-  nmap <c-[> :lprevious<cr>
-  nmap <c-]> :lnext<cr>
   let g:neomake_sh_enabled_makers = ['shellcheck']
   let g:neomake_ruby_enabled_makers = ['rubocop']
   let g:neomake_python_enabled_makers = ['flake8']
