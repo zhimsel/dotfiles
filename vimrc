@@ -23,7 +23,6 @@ Plug 'svermeulen/vim-extended-ft'
 Plug 'avakhov/vim-yaml', { 'for': ['yaml', 'yml'] }
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
-Plug 'python.vim', { 'for': 'python' }
 Plug 'SQLComplete.vim', { 'for': 'sql' }
 Plug 'rstacruz/sparkup', { 'for': 'html' }
 Plug 'fountain.vim', { 'for': 'fountain' }
@@ -31,6 +30,7 @@ Plug 'tpope/vim-git', { 'for': 'git' }
 Plug 'jtratner/vim-flavored-markdown', { 'for': 'markdown' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'zhimsel/vim_cf3', { 'for': 'cf3' }
+Plug 'klen/python-mode', { 'for': 'python' }
 
 " Interface plugins
 Plug 'bling/vim-airline'
