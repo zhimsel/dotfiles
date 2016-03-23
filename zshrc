@@ -234,7 +234,7 @@ wtr () {
     main_wt="$(cat .git | cut -d' ' -f2)/../../.."
     current_wt="$(pwd)"
     cd "$main_wt" || return 1
-    rm -rf "$current_wt" | return 1
+    rm -rf "$current_wt" || return 1
     git worktree prune
   else
     echo "We don't seem to be in a git worktree"
