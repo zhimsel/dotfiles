@@ -218,8 +218,13 @@ wt () {
     fi
     git worktree prune -v
     git branch "$1" &> /dev/null
-    git worktree add "$wt_path" "$1" || return 1
-    cd "$wt_path"
+    wt_add="$(git worktree add "$wt_path" "$1" 2>&1)"
+    if [[ $wt_add =~ ^fatal.*already\ checked\ out.* ]]
+    then  # if it's already checked out, go there
+      cd "$(cut -d\' -f4  <<< "$wt_add")" || return 1
+    else  # otherwise, go to the one we just made
+      cd "$wt_path" || return 1
+    fi
   fi
 }
 
