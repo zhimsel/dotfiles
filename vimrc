@@ -127,9 +127,14 @@ let g:mapleader = "\<space>"
 nmap <leader>e :e<cr>
 nmap <leader>w :w<cr>
 nmap <leader>q :q<cr>
+nmap <leader>q1 :q!<cr>
 nmap <leader>wq :wq<cr>
+nmap <leader>wq1 :wq!<cr>
+nmap <leader>wa :wa<cr>
 nmap <leader>qa :qa<cr>
+nmap <leader>qa1 :qa!<cr>
 nmap <leader>wqa :wqa<cr>
+nmap <leader>wqa1 :wqa!<cr>
 
 " Quickly toggle line numbers
 nmap <leader>n :set number!<cr>
