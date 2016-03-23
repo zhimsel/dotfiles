@@ -216,7 +216,7 @@ wt () {
       echo "We don't seem to be in a git repo"
       return 1
     fi
-    git worktree prune -v
+    git worktree prune
     git branch "$1" &> /dev/null
     wt_add="$(git worktree add "$wt_path" "$1" 2>&1)"
     if [[ $wt_add =~ ^fatal.*already\ checked\ out.* ]]
@@ -235,7 +235,7 @@ wtr () {
     current_wt="$(pwd)"
     cd "$main_wt" || return 1
     rm -rf "$current_wt" | return 1
-    git worktree prune -v
+    git worktree prune
   else
     echo "We don't seem to be in a git worktree"
     return 1
