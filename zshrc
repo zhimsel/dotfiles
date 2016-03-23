@@ -123,7 +123,7 @@ alias zrcl='vim ~/.zshrc.local'
 alias dm='docker-machine'
 alias dme='eval $(docker-machine env default)'
 alias wtp='git worktree prune -v'
-alias wtl='git worktree list'
+alias wtl='wtp && git worktree list'
 
 if [[ -x $(which nvim) ]]; then
   alias vvim=$(which vim)
@@ -201,33 +201,39 @@ newvenv2() {
 # load zmv module
 autoload -U zmv
 
-# add a new git-worktree
+# add a new git worktree
 wt () {
-  if [[ -d .git ]]; then
-    if [[ -z $1 ]]; then
-      echo "Please specify the branch to check out"
-    else
-      wt_path="$(basename $(pwd)).$1"
-      git worktree prune -v
-      git branch "$1" &> /dev/null
-      git worktree add ../"$wt_path" "$1"
-      cd ../"$wt_path"
+  if [[ -z $1 ]]; then
+    echo "Please specify the branch to check out"
+    return 1
+  else
+    if [[ -f .git ]]; then  # already in a worktree
+      cd "$(cat .git | cut -d' ' -f2)/../../.." || return 1
     fi
-  else echo "We don't seem to be in a git repo"
-    exit 1
+    if [[ -d .git ]]; then  # in main worktree
+      wt_path="../$(basename "$(pwd)").$1"
+    else
+      echo "We don't seem to be in a git repo"
+      return 1
+    fi
+    git worktree prune -v
+    git branch "$1" &> /dev/null
+    git worktree add "$wt_path" "$1" || return 1
+    cd "$wt_path"
   fi
 }
 
-# remove git-worktree
+# remove git worktree
 wtr () {
   if [[ -f .git ]]; then
     main_wt="$(cat .git | cut -d' ' -f2)/../../.."
     current_wt="$(pwd)"
-    cd "$main_wt" || exit 1
-    rm -rf "$current_wt"
+    cd "$main_wt" || return 1
+    rm -rf "$current_wt" | return 1
     git worktree prune -v
-  else echo "We don't seem to be in a git worktree"
-    exit 1
+  else
+    echo "We don't seem to be in a git worktree"
+    return 1
   fi
 }
 
