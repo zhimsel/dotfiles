@@ -88,7 +88,7 @@ if !has('nvim')
 endif
 set history=1000
 set iskeyword+=_,$,@,%,#,-
-set nofoldenable
+set foldenable
 
 
 " Enable syntax highlighting
@@ -457,7 +457,7 @@ set textwidth=80
 au BufRead,BufNewFile *.c set noexpandtab
 au BufRead,BufNewFile *.h set noexpandtab
 au BufRead,BufNewFile Makefile* set noexpandtab
-au BufRead,BufNewFile *.py,*.pyw set shiftwidth=4 tabstop=4
+au BufRead,BufNewFile *.py,*.pyw set filetype=python shiftwidth=4 tabstop=4
 au BufRead,BufNewFile *.java set shiftwidth=4 tabstop=4
 au BufRead,BufNewFile *.fountain   set filetype=fountain textwidth=0
 au BufRead,BufNewFile {Berksfile,Vagrantfile,Gemfile} set filetype=ruby
