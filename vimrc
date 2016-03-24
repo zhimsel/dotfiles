@@ -319,7 +319,7 @@ nnoremap <c-b> :Buffers<cr>
 nnoremap <c-f> :BLines<cr>
 nnoremap <c-g> :GitFiles<cr>
 nnoremap M :Marks<cr>
-let g:fzf_layout = { 'window': 'new', 'below': '12' }
+let g:fzf_layout = { 'window': 'new' }
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
