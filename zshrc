@@ -48,6 +48,7 @@ source ~/.zsh/opp/opp/*.zsh
 source ~/.zsh/berkshelf/berkshelf.plugin.zsh
 source ~/.zsh/git-prompt/git-prompt.plugin.zsh
 source ~/.zsh/autoenv/autoenv.zsh
+source ~/.zsh/completion-generator/zsh-completion-generator.plugin.zsh
 
 # setup autocomplete
 fpath=(~/.zsh/zsh-completions/src $fpath)

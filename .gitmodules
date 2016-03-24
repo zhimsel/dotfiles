@@ -25,3 +25,6 @@
 [submodule "fzf"]
 	path = fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule "zsh/completion-generator"]
+	path = zsh/completion-generator
+	url = git@github.com:RobSis/zsh-completion-generator.git
