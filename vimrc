@@ -135,6 +135,7 @@ nmap <leader>qa :qa<cr>
 nmap <leader>qa1 :qa!<cr>
 nmap <leader>wqa :wqa<cr>
 nmap <leader>wqa1 :wqa!<cr>
+nmap <leader>ss :SSave<cr>
 
 " Quickly toggle line numbers
 nmap <leader>n :set number!<cr>
