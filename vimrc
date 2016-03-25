@@ -39,6 +39,7 @@ Plug 'Lokaltog/vim-easymotion'
 Plug '~/.fzf'  " fzf is not just for vim, so it's managed externally
 Plug 'junegunn/fzf.vim'
 Plug 'wesQ3/vim-windowswap'
+Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-obsession'
 Plug 'wellle/targets.vim'
 Plug 'kopischke/vim-stay'
@@ -312,11 +313,12 @@ let g:pymode_lint = 0
 let g:pymode_rope = 0
 let g:pymode_doc = 0
 let g:pymode_run = 0
-let g:pymode_rope_completion = 0
+
+" BufExplorer settings
+nmap <silent> <C-b> :ToggleBufExplorer<cr> g:pymode_rope_completion = 0
 
 " fzf settings
 nnoremap <c-p> :Files<cr>
-nnoremap <c-b> :Buffers<cr>
 nnoremap <c-f> :BLines<cr>
 nnoremap <c-g> :GitFiles<cr>
 nnoremap M :Marks<cr>
