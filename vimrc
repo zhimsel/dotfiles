@@ -156,10 +156,14 @@ command WQ wq " stop that pesky shift key
 nnoremap Q q
 nnoremap q <Nop>
 
-" Remaps ' key (duplicated in ` anyway)
+" Remap ' key (duplicated in ` anyway)
 noremap ' "
+" Map '' to use system clipboard for next register action
 noremap '' "+
+" List registers
 noremap ''' :registers<cr>
+" Copy last register to system clipboard
+nmap <leader>'' :let @+=@"<cr>
 
 
 " Disable highlight when <leader><Esc>, <Esc><Esc, or F1 is pressed
