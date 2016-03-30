@@ -505,11 +505,12 @@ set splitbelow
 set splitright
 
 " tab shortcuts
-map <leader>tn :tabnew<cr>
+map <leader>t :tabnew<cr>
+map <leader>th :tabnext<cr>
+map <leader>tl :tabprevious<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove 
-map <leader>t :tabnext<cr>
 map <leader>1 1gt
 map <leader>2 2gt
 map <leader>3 3gt
@@ -519,8 +520,6 @@ map <leader>6 6gt
 map <leader>7 7gt
 map <leader>8 8gt
 map <leader>9 9gt
-map <leader><Left> :tabprevious<cr>
-map <leader><Right> :tabnext<cr>
 
 
 " Open splits
