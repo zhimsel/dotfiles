@@ -452,19 +452,20 @@ set nolist
 set textwidth=80
 
 " Configure per-filetype settings
-au BufRead,BufNewFile *.c set noexpandtab
-au BufRead,BufNewFile *.h set noexpandtab
-au BufRead,BufNewFile Makefile* set noexpandtab
-au BufRead,BufNewFile *.py,*.pyw set filetype=python shiftwidth=4 tabstop=4
-au BufRead,BufNewFile *.java set shiftwidth=4 tabstop=4
-au BufRead,BufNewFile *.fountain   set filetype=fountain textwidth=0
-au BufRead,BufNewFile {Berksfile,Vagrantfile,Gemfile} set filetype=ruby
-au BufRead,BufNewFile *.pp   set filetype=ruby
-au BufRead,BufNewFile *.yaml,*.yml   set filetype=yaml
-au BufRead,BufNewFile *.cf set filetype=cf3 commentstring=#\ %s smartindent
-au BufRead,BufNewFile COMMIT_EDITMSG setlocal commentstring=\%%s
-au BufRead,BufNewFile *.sql SQLSetType mysql
-au BufRead,BufNewFile *.md set filetype=markdown textwidth=0
+" based on filenames
+au BufRead,BufNewFile {Berksfile,Vagrantfile,Gemfile} setlocal filetype=ruby
+au BufRead,BufNewFile *.cf       setlocal filetype=cf3
+au BufRead,BufNewFile *.pp       setlocal filetype=ruby
+au BufRead,BufNewFile *.fountain setlocal filetype=fountain textwidth=0
+" based on filetypes
+au FileType {git*}   setlocal commentstring=\%%s
+au FileType make     setlocal noexpandtab
+au FileType java     setlocal shiftwidth=4 tabstop=4
+au FileType yaml     setlocal fdl=1 fdm=indent
+au FileType markdown setlocal textwidth=0
+au FileType python   setlocal sw=4 ts=4
+au FileType cf3      setlocal cms=#\ %s si fdm=indent fdl=1
+au FileType sql      SQLSetType mysql
 
 " Java settings
 let java_mark_braces_in_parens_as_errors=1
