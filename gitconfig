@@ -12,7 +12,7 @@
 [merge]
   tool = vimdiff
 [push]
-  default = tracking
+  default = upstream
 [pager]
   last = cat
 [grep]
