@@ -64,6 +64,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'renamer.vim', { 'on': 'Renamer' }
 Plug 'justinmk/vim-gtfo'
 Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
+Plug 'Raimondi/delimitMate'
 if has ('nvim')
   Plug 'Shougo/deoplete.nvim'
 else
@@ -348,6 +349,11 @@ let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
 let g:gist_clip_command = 'pbcopy'
 
+" delimitMate settings
+let g:delimitMate_expand_space = 1
+let g:delimitMate_jump_expansion = 1
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " User interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -475,10 +481,6 @@ let java_ignore_javadoc=1
 let java_highlight_java_lang_ids=1
 let java_highlight_functions="style"
 let java_minlines=150
-
-" autocomplete brackets
-inoremap {{      {}<Left>
-inoremap {{<CR>  {<CR>}<Esc>O
 
 " highlight trailing whitespace with red
 set list listchars=trail:.,tab:>.
