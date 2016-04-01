@@ -465,6 +465,7 @@ au BufRead,BufNewFile *.pp       setlocal filetype=ruby
 au BufRead,BufNewFile *.fountain setlocal filetype=fountain textwidth=0
 " based on filetypes
 au FileType {git*}   setlocal commentstring=\%%s
+au FileType gitcommit  :normal ggo
 au FileType make     setlocal noexpandtab
 au FileType java     setlocal shiftwidth=4 tabstop=4
 au FileType yaml     setlocal fdl=1 fdm=indent
