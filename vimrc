@@ -311,6 +311,11 @@ function! s:is_whitespace() "{{{
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~? '\s'
 endfunction "}}}
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return deoplete#mappings#smart_close_popup() . "\<CR>"
+endfunction
 
 " python-mode settings
 let g:pymode_lint = 0
