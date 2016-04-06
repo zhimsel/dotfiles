@@ -213,7 +213,7 @@ wt () {
       cd "$(cat .git | cut -d' ' -f2)/../../.." || return 1
     fi
     if [[ -d .git ]]; then  # in main worktree
-      wt_path="../$(basename "$(pwd)").$1"
+      wt_path="../${0:A:h:t}.$1"
     else
       echo "We don't seem to be in a git repo"
       return 1
@@ -234,9 +234,10 @@ wt () {
 wtr () {
   if [[ -f .git ]]; then
     main_wt="$(cat .git | cut -d' ' -f2)/../../.."
-    current_wt="$(pwd)"
+    current_wt="${0:A:h}"
     cd "$main_wt" || return 1
     rm -rf "$current_wt" || return 1
+    rm -rf "$main_wt/.git/worktrees/${current_wt:t}"
     git worktree prune
   else
     echo "We don't seem to be in a git worktree"
