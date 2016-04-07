@@ -42,6 +42,7 @@ Plug 'wesQ3/vim-windowswap'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-obsession'
 Plug 'wellle/targets.vim'
+Plug 'kopischke/vim-stay', { 'branch': 'fix/winjump' }
 Plug 'Konfekt/FastFold'
 Plug 'milkypostman/vim-togglelist'
 Plug 'mhinz/vim-startify'
@@ -358,6 +359,8 @@ let g:gist_clip_command = 'pbcopy'
 let g:delimitMate_expand_space = 1
 let g:delimitMate_jump_expansion = 1
 
+" vim-stay settings
+set viewoptions=cursor,folds,slash,unix
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " User interface
