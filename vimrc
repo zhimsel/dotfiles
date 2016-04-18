@@ -42,7 +42,7 @@ Plug 'wesQ3/vim-windowswap'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-obsession'
 Plug 'wellle/targets.vim'
-Plug 'kopischke/vim-stay', { 'branch': 'release/1.4.0' }
+Plug 'kopischke/vim-stay', { 'branch': 'fix/winjump' }
 Plug 'Konfekt/FastFold'
 Plug 'milkypostman/vim-togglelist'
 Plug 'mhinz/vim-startify'
