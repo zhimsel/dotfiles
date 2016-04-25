@@ -458,6 +458,7 @@ set wrap
 set linebreak
 set nolist
 set textwidth=80
+set colorcolumn=+0,+20,+40
 
 " Configure per-filetype settings
 " based on filenames
@@ -473,7 +474,7 @@ au FileType make        setlocal noexpandtab
 au FileType java        setlocal shiftwidth=4 tabstop=4
 au FileType yaml        setlocal fdl=1 fdm=indent
 au FileType markdown    setlocal textwidth=0
-au FileType python      setlocal sw=4 ts=4
+au FileType python      setlocal sw=4 ts=4 tw=80
 au FileType cf3         setlocal cms=#\ %s si fdm=indent fdl=1
 au FileType sql         SQLSetType mysql
 
