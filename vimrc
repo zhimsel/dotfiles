@@ -335,7 +335,6 @@ let g:fzf_action = {
 
 " startify settings
 let g:startify_list_order = ['sessions', 'bookmarks', 'dir', 'files']
-let g:startify_bookmarks = [ '~/dotfiles/vimrc', '~/dotfiles/zshrc' ]
 let g:startify_update_oldfiles = 1
 let g:startify_session_persistence = 1
 
