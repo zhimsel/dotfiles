@@ -326,7 +326,7 @@ nmap <silent> <C-b> :ToggleBufExplorer<cr> g:pymode_rope_completion = 0
 nnoremap <c-p> :Files<cr>
 nnoremap <c-f> :BLines<cr>
 nnoremap <c-g> :GitFiles<cr>
-nnoremap <c-m> :Marks<cr>
+nnoremap ``` :Marks<cr>
 let g:fzf_layout = { 'window': 'new' }
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
