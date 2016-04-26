@@ -392,6 +392,7 @@ set mouse=a " Enable mouse interaction
 if !has('nvim')
   set ttymouse=sgr " Set mouse mode to xterm2 (works best for most modern terminals)
 endif
+set cursorline " Highlight current line
 
 
 " change cursor shape based on mode (for iTerm2)
