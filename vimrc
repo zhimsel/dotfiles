@@ -215,6 +215,13 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#show_tab_nr = 1 " show tab numbers
 let g:airline#extensions#tabline#tab_nr_type = 1 " show only tab number
+let g:airline#extensions#default#section_truncate_width = {
+    \ 'x': 80,
+    \ 'y': 100,
+    \ 'z': 70,
+    \ 'error': 100,
+    \ 'warning': 100,
+    \ }
 let g:airline_powerline_fonts = 1
 
 " vim-gitgutter settings
