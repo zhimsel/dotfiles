@@ -394,6 +394,7 @@ if !has('nvim')
   set ttymouse=sgr " Set mouse mode to xterm2 (works best for most modern terminals)
 endif
 set cursorline " Highlight current line
+set noshowmode " Disable --INSERT-- text in command line. Reproduced in airline
 
 
 " change cursor shape based on mode (for iTerm2)
