@@ -48,7 +48,7 @@ Plug 'milkypostman/vim-togglelist'
 Plug 'mhinz/vim-startify'
 
 " Git plugins
-Plug 'mathstuf/vim-fugitive', { 'branch': 'git-workdir-support' }
+Plug 'tpope/vim-fugitive'
 Plug 'taq/vim-git-branch-info'
 Plug 'airblade/vim-gitgutter'
 Plug 'gregsexton/gitv'
