@@ -233,12 +233,17 @@ wt () {
 # remove git worktree
 wtr () {
   if [[ -f .git ]]; then
-    main_wt="$(cat .git | cut -d' ' -f2)/../../.."
-    current_wt="${0:A:h}"
-    cd "$main_wt" || return 1
-    rm -rf "$current_wt" || return 1
-    rm -rf "$main_wt/.git/worktrees/${current_wt:t}"
-    git worktree prune
+    if [[ "$(git status)" == *clean* ]]; then
+      main_wt="$(cat .git | cut -d' ' -f2)/../../.."
+      current_wt="${0:A:h}"
+      cd "$main_wt" || return 1
+      rm -rf "$current_wt" || return 1
+      rm -rf "$main_wt/.git/worktrees/${current_wt:t}"
+      git worktree prune
+    else
+      echo "Your working directory is not clean! Stash or commit your changes before continuing."
+      return 1
+    fi
   else
     echo "We don't seem to be in a git worktree"
     return 1
