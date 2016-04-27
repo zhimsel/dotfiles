@@ -486,6 +486,7 @@ au FileType markdown    setlocal textwidth=0
 au FileType python      setlocal sw=4 ts=4 tw=79
 au FileType cf3         setlocal cms=#\ %s si fdm=indent fdl=1
 au FileType sql         SQLSetType mysql
+au FileType sh          setlocal sw=4 ts=4
 
 " Java settings
 let java_mark_braces_in_parens_as_errors=1
