@@ -223,7 +223,7 @@ let g:airline#extensions#default#section_truncate_width = {
     \ 'warning': 100,
     \ }
 let g:airline_powerline_fonts = 1
-au BufWritePost,BufEnter,WinEnter,VimResized * AirlineRefresh
+au BufWritePost,BufEnter * AirlineRefresh
 
 " vim-gitgutter settings
 let g:gitgutter_sign_column_always = 1
