@@ -466,7 +466,7 @@ set wrap
 set linebreak
 set nolist
 set textwidth=80
-set colorcolumn=+0,+20,+40
+set colorcolumn=+1,+21,+41
 
 " Configure per-filetype settings
 " based on filenames
