@@ -482,7 +482,7 @@ au FileType make        setlocal noexpandtab
 au FileType java        setlocal shiftwidth=4 tabstop=4
 au FileType yaml        setlocal fdl=1 fdm=indent
 au FileType markdown    setlocal textwidth=0
-au FileType python      setlocal sw=4 ts=4 tw=80
+au FileType python      setlocal sw=4 ts=4 tw=79
 au FileType cf3         setlocal cms=#\ %s si fdm=indent fdl=1
 au FileType sql         SQLSetType mysql
 
