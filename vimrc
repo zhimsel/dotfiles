@@ -211,19 +211,40 @@ highlight Error term=reverse cterm=bold ctermfg=7 ctermbg=1 guifg=White guibg=Re
 
 " vim-airline settings
 set timeoutlen=500 " Set timeout for statusline redraw on escape
+au BufWritePost * AirlineRefresh
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#show_tab_nr = 1 " show tab numbers
 let g:airline#extensions#tabline#tab_nr_type = 1 " show only tab number
+let g:airline#extensions#whitespace#enabled = 0 " disable whitespace checking
+let g:airline#extensions#branch#format = 2 " truncate git branch paths
+let g:airline_section_b = airline#section#create(['file', 'readonly'])
+let g:airline_section_c = airline#section#create(['%{getcwd()}'])
+let g:airline_section_x = airline#section#create(['filetype'])
+au VimEnter * let g:airline_section_y = airline#section#create(['hunks', 'branch'])
+au VimEnter * let g:airline_section_z = airline#section#create(['windowswap', '%v:%l/%L'])
 let g:airline#extensions#default#section_truncate_width = {
     \ 'x': 80,
     \ 'y': 100,
-    \ 'z': 70,
     \ 'error': 100,
     \ 'warning': 100,
     \ }
-let g:airline_powerline_fonts = 1
-au BufWritePost * AirlineRefresh
+let g:airline_mode_map = {
+    \ '__' : '-',
+    \ 'n'  : 'N',
+    \ 'i'  : 'I',
+    \ 'R'  : 'R',
+    \ 'v'  : 'V',
+    \ 'V'  : 'VL',
+    \ 'c'  : 'C',
+    \ '' : 'VB',
+    \ 's'  : 'S',
+    \ 'S'  : 'SL',
+    \ '' : 'SB',
+    \ 't'  : 'T',
+    \ }
+au VimEnter * AirlineRefresh
 
 " vim-gitgutter settings
 let g:gitgutter_sign_column_always = 1
