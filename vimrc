@@ -364,8 +364,17 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit' }
 
 " startify settings
-let g:startify_list_order = ['sessions', 'bookmarks', 'dir', 'files']
+let g:startify_list_order = [
+      \ ['    MRU (dir)'], 'dir',
+      \ ['    MRU'], 'files',
+      \ ['    Sessions'], 'sessions',
+      \ ['    Bookmarks'], 'bookmarks',
+      \ ]
+" g:startify_bookmarks is defined in ~/.vimrc.local
 let g:startify_update_oldfiles = 1
+let g:startify_session_delete_buffers = 1
+let g:startify_change_to_dir = 1
+let g:startify_change_to_vcs_root = 1
 let g:startify_session_persistence = 1
 
 " CFEngine plugin settings
