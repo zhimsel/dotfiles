@@ -365,10 +365,10 @@ let g:fzf_action = {
 
 " startify settings
 let g:startify_list_order = [
-      \ ['    MRU (dir)'], 'dir',
-      \ ['    MRU'], 'files',
-      \ ['    Sessions'], 'sessions',
-      \ ['    Bookmarks'], 'bookmarks',
+      \ ['   MRU (dir)'], 'dir',
+      \ ['   MRU'], 'files',
+      \ ['   Sessions'], 'sessions',
+      \ ['   Bookmarks'], 'bookmarks',
       \ ]
 " g:startify_bookmarks is defined in ~/.vimrc.local
 let g:startify_update_oldfiles = 1
