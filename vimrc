@@ -66,6 +66,7 @@ Plug 'renamer.vim', { 'on': 'Renamer' }
 Plug 'justinmk/vim-gtfo'
 Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
 Plug 'Raimondi/delimitMate'
+Plug 'PeterRincker/vim-argumentative'
 if has ('nvim')
   Plug 'Shougo/deoplete.nvim'
 else
