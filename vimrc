@@ -224,7 +224,7 @@ let g:airline_section_b = airline#section#create(['file', 'readonly'])
 let g:airline_section_c = airline#section#create(['%{getcwd()}'])
 let g:airline_section_x = airline#section#create(['filetype'])
 au VimEnter * let g:airline_section_y = airline#section#create(['hunks', 'branch'])
-au VimEnter * let g:airline_section_z = airline#section#create(['windowswap', '%v:%l/%L'])
+au VimEnter * let g:airline_section_z = airline#section#create(['windowswap', '%3v:%4l/%L'])
 let g:airline#extensions#default#section_truncate_width = {
     \ 'x': 80,
     \ 'y': 100,
