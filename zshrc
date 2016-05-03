@@ -100,10 +100,11 @@ setopt EXTENDED_GLOB
 setopt LIST_PACKED
 unsetopt CORRECT_ALL
 setopt CORRECT
-setopt AUTO_PUSHD
+unsetopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_MINUS
 setopt EXTENDED_HISTORY
+unsetopt AUTO_CD
 MAILCHECK=0
 
 
