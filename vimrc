@@ -227,8 +227,9 @@ let g:airline_section_x = airline#section#create(['filetype'])
 au VimEnter * let g:airline_section_y = airline#section#create(['hunks', 'branch'])
 au VimEnter * let g:airline_section_z = airline#section#create(['windowswap', '%3v:%4l/%L'])
 let g:airline#extensions#default#section_truncate_width = {
+    \ 'c': 80,
     \ 'x': 80,
-    \ 'y': 100,
+    \ 'y': 60,
     \ 'error': 100,
     \ 'warning': 100,
     \ }
