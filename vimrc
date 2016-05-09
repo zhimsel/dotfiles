@@ -161,12 +161,8 @@ nnoremap q <Nop>
 
 " Remap ' key (duplicated in ` anyway)
 noremap ' "
-" Map '' to use system clipboard for next register action
-noremap '' "+
 " List registers
-noremap ''' :registers<cr>
-" Copy last register to system clipboard
-nmap <leader>'' :let @+=@"<cr>
+noremap '' :registers<cr>
 
 
 " Disable highlight when <leader><Esc>, <Esc><Esc, or F1 is pressed
@@ -537,7 +533,7 @@ set list listchars=trail:.,tab:>.
 highlight SpecialKey ctermfg=Red ctermbg=none
 
 " use system clipboard for main register (unless specified with '/")
-" set clipboard^=unnamed
+set clipboard^=unnamed
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
