@@ -516,7 +516,6 @@ au FileType yaml        setlocal fdl=1 fdm=indent
 au FileType markdown    setlocal textwidth=0
 au FileType python      setlocal sw=4 ts=4 tw=79
 au FileType cf3         setlocal cms=#\ %s si fdm=indent fdl=1
-au FileType sql         SQLSetType mysql
 au FileType sh          setlocal sw=4 ts=4
 
 " Java settings
