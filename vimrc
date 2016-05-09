@@ -161,12 +161,8 @@ nnoremap q <Nop>
 
 " Remap ' key (duplicated in ` anyway)
 noremap ' "
-" Map '' to use system clipboard for next register action
-noremap '' "+
 " List registers
-noremap ''' :registers<cr>
-" Copy last register to system clipboard
-nmap <leader>'' :let @+=@"<cr>
+noremap '' :registers<cr>
 
 
 " Disable highlight when <leader><Esc>, <Esc><Esc, or F1 is pressed
@@ -227,8 +223,9 @@ let g:airline_section_x = airline#section#create(['filetype'])
 au VimEnter * let g:airline_section_y = airline#section#create(['hunks', 'branch'])
 au VimEnter * let g:airline_section_z = airline#section#create(['windowswap', '%3v:%4l/%L'])
 let g:airline#extensions#default#section_truncate_width = {
+    \ 'c': 100,
     \ 'x': 80,
-    \ 'y': 100,
+    \ 'y': 60,
     \ 'error': 100,
     \ 'warning': 100,
     \ }
@@ -536,7 +533,7 @@ set list listchars=trail:.,tab:>.
 highlight SpecialKey ctermfg=Red ctermbg=none
 
 " use system clipboard for main register (unless specified with '/")
-" set clipboard^=unnamed
+set clipboard^=unnamed
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -551,7 +548,9 @@ nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
-tnoremap <C-\><C-\> <C-\><C-n>
+if has('nvim')
+  tnoremap <C-\><C-\> <C-\><C-n>
+endif
 
 " better split placements
 set splitbelow
