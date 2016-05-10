@@ -471,8 +471,6 @@ if exists("+undofile")
   set undofile
 endif
 
-set path=**
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Text, tab and indent related
