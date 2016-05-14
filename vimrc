@@ -504,6 +504,7 @@ au BufRead,BufNewFile *.cf       setlocal filetype=cf3
 au BufRead,BufNewFile *.pp       setlocal filetype=ruby
 au BufRead,BufNewFile *.fountain setlocal filetype=fountain textwidth=0
 au BufRead,BufNewFile term://*   setlocal nocursorline colorcolumn=0
+au BufRead,BufNewFile *.link     setlocal ft=
 " based on filetypes
 au FileType {git*}      setlocal commentstring=\%%s
 au FileType gitcommit   normal ggO
