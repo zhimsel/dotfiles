@@ -471,8 +471,6 @@ if exists("+undofile")
   set undofile
 endif
 
-set path=**
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Text, tab and indent related
@@ -496,7 +494,7 @@ set autoindent
 set wrap
 set linebreak
 set nolist
-set textwidth=80
+set textwidth=0
 set colorcolumn=+1,+21,+41
 
 " Configure per-filetype settings
@@ -516,8 +514,9 @@ au FileType yaml        setlocal fdl=1 fdm=indent
 au FileType markdown    setlocal textwidth=0
 au FileType python      setlocal sw=4 ts=4 tw=79
 au FileType cf3         setlocal cms=#\ %s si fdm=indent fdl=1
-au FileType sql         SQLSetType mysql
 au FileType sh          setlocal sw=4 ts=4
+au FileType cf3         setlocal tw=0
+au FileType vim         setlocal tw=0
 
 " Java settings
 let java_mark_braces_in_parens_as_errors=1
