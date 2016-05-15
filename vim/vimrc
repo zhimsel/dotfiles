@@ -451,12 +451,8 @@ inoremap <Esc> <Esc>`^
 if isdirectory($HOME . '/.vim/backup') == 0
   :silent !mkdir -p ~/.vim/backup >/dev/null 2>&1
 endif
-set backupdir-=.
-set backupdir+=.
-set backupdir-=~/
-set backupdir^=~/.vim/backup//
-set backupdir^=./.vim-backup/
-set nobackup
+set backupdir=~/.vim/backup//
+set backup
 
 if !has('nvim')
   set viminfo+=n~/.vim/viminfo
@@ -466,8 +462,7 @@ if exists("+undofile")
   if isdirectory($HOME . '/.vim/undo') == 0
     :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
   endif
-  set undodir=./.vim-undo//
-  set undodir+=~/.vim/undo//
+  set undodir=~/.vim/undo//
   set undofile
 endif
 
