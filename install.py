@@ -138,7 +138,7 @@ def create_link(link):
 
     # Get source file path
     source = (path.split(link)[0] + '/' +
-              (re.sub(r'^\.(.*)\.link$', r'\1',
+              (re.sub(r'^(.*)\.link$', r'\1',
                       path.split(link)[-1])))
     assert path.exists(source)
 
