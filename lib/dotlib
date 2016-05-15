@@ -7,7 +7,7 @@ declare -A subtrees=( \
 ["lib/zsh-opp"]="https://github.com/hchbaw/opp.zsh.git" \
 ["lib/zsh-git-prompt"]="https://github.com/zhimsel/zsh-git-prompt.git" \
 ["lib/zsh-completions"]="https://github.com/zsh-users/zsh-completions.git" \
-["lib/zsh-syntax-hightlighting"]="https://github.com/zsh-users/zsh-syntax-highlighting.git" \
+["lib/zsh-syntax-highlighting"]="https://github.com/zsh-users/zsh-syntax-highlighting.git" \
 ["lib/zsh-completion-generator"]="git@github.com:RobSis/zsh-completion-generator.git" \
 )
 
