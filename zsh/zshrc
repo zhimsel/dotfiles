@@ -41,12 +41,11 @@ export DISABLE_AUTO_UPDATE="true"
 export ZSH=$HOME/.zsh/oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-
 # load normal zsh plugins
-source ~/.zsh/opp/opp.zsh
-source ~/.zsh/opp/opp/*.zsh
-source ~/.zsh/git-prompt/git-prompt.plugin.zsh
-source ~/.zsh/completion-generator/zsh-completion-generator.plugin.zsh
+source $HOME/.zsh/opp/opp.zsh
+source $HOME/.zsh/opp/opp/*.zsh
+source $HOME/.zsh/git-prompt/git-prompt.plugin.zsh
+source $HOME/.zsh/completion-generator/zsh-completion-generator.plugin.zsh
 
 # setup autocomplete
 fpath=(~/.zsh/zsh-completions/src $fpath)
