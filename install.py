@@ -113,8 +113,8 @@ def backup_file(target):
     Return:
         (bool): True if successful
     """
-    if path.exists(target):
-        if path.exists(target + '~'):
+    if path.lexists(target):
+        if path.lexists(target + '~'):
             print(('{} (and its backup) already exist! ' +
                    'Ignoring. Please fix manually.').format(target))
             return False
@@ -153,13 +153,13 @@ def create_link(link):
 
         # Create target's parent dir if it doesn't exist
         target_basedir = path.split(target)[0]
-        if not path.isdir(target_basedir) or path.islink(target_basedir):
-            if backup_file(target_basedir):
-                print('{} does not exist, creating...'.format(target_basedir))
-                if not dry_run:
-                    os.makedirs(target_basedir)
-            else:
+        if path.islink(target_basedir):
+            if not backup_file(target_basedir):
                 continue
+        if not path.isdir(target_basedir):
+            print('{} does not exist, creating...'.format(target_basedir))
+            if not dry_run:
+                os.makedirs(target_basedir)
 
         # Is our link already set up?
         if path.islink(target):
