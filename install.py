@@ -153,12 +153,13 @@ def create_link(link):
 
         # Create target's parent dir if it doesn't exist
         target_basedir = path.split(target)[0]
-        if backup_file(target_basedir):
-            print('{} does not exist, creating...'.format(target_basedir))
-            if not dry_run:
-                os.makedirs(target_basedir)
-        else:
-            continue
+        if not path.isdir(target_basedir) or path.islink(target_basedir):
+            if backup_file(target_basedir):
+                print('{} does not exist, creating...'.format(target_basedir))
+                if not dry_run:
+                    os.makedirs(target_basedir)
+            else:
+                continue
 
         # Is our link already set up?
         if path.islink(target):
