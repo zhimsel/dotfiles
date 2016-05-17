@@ -1,0 +1,417 @@
+# zsh configuration
+# written by Zach Himsel, 2014-2016
+# https://github.com/zhimsel/dotfiles
+
+
+#############################################
+# general settings
+#############################################
+
+umask 077 # set default umask
+if [[ -x $(which nvim) ]]; then # set text editor
+  export EDITOR="nvim"
+else
+  export EDITOR="vim"
+fi
+
+# set $PATH
+export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin"
+export PATH="$HOME/bin:$PATH"
+
+# load oh-my-zsh and it's plugins
+plugins=( \
+          adb \
+          brew \
+          brew-cask \
+          command-not-found \
+          gem \
+          git-extras \
+          gnu-utils \
+          knife \
+          nmap \
+          osx \
+          pip \
+          rails \
+          rvm \
+          screen \
+          torrent \
+          vagrant \
+)
+export DISABLE_AUTO_UPDATE="true"
+export ZSH=$HOME/.zsh/oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+
+# load normal zsh plugins
+source $HOME/.zsh/opp/opp.zsh
+source $HOME/.zsh/opp/opp/*.zsh
+source $HOME/.zsh/git-prompt/git-prompt.plugin.zsh
+source $HOME/.zsh/completion-generator/zsh-completion-generator.plugin.zsh
+
+# setup autocomplete
+fpath=(~/.zsh/zsh-completions/src $fpath)
+fpath=(~/.zsh/custom-completions $fpath)
+autoload -Uz compinit
+compinit
+
+# load bash autocompletions
+autoload -Uz bashcompinit
+bashcompinit -i
+if [ -f ~/.bash_complete ]; then
+. ~/.bash_complete
+fi
+
+# load aws autocompletions
+if [ -f "$(which aws_completer)" ]; then
+     complete -C $(which aws_completer) aws
+fi
+
+
+# vi mode
+bindkey -v
+autoload -Uz edit-command-line
+bindkey -M vicmd 'v' edit-command-line
+export KETTIMEOUT=1
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
+bindkey -a u undo
+bindkey -a '^R' redo
+bindkey -sM vicmd '^[' '^G'
+bindkey -rM viins '^X'
+bindkey -M viins '^X,' _history-complete-newer \
+                 '^X/' _history-complete-older \
+                 '^X`' _bash_complete-word
+
+
+# misc keybindings
+bindkey -s '^e' 'cd ..\n' #go up a directory with ctrl-e
+
+
+# misc settings
+COMPLETION_WAITING_DOTS="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+HIST_STAMPS="yyyy.mm.dd"
+setopt PATH_DIRS
+setopt EXTENDED_GLOB
+setopt LIST_PACKED
+unsetopt CORRECT_ALL
+setopt CORRECT
+unsetopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_MINUS
+setopt EXTENDED_HISTORY
+unsetopt AUTO_CD
+MAILCHECK=0
+
+
+
+#############################################
+# aliases, functions, and modules
+#############################################
+
+# define aliases
+alias s='sudo'
+alias please='sudo $(fc -ln -1)'
+alias fucking='sudo'
+alias la='ls -lah'
+alias ltr='ls -ltrh'
+alias tree='tree -I .git'
+alias h='history'
+alias fuck='$(thefuck $(fc -ln -1))'
+alias zrcl='vim ~/.zshrc.local'
+alias dm='docker-machine'
+alias dme='eval $(docker-machine env default)'
+alias wtp='git worktree prune -v'
+alias wtl='wtp && git worktree list'
+
+if [[ -x $(which nvim) ]]; then
+  alias vvim=$(which vim)
+  alias vim='nvim'
+  alias vi='nvim'
+fi
+
+
+# make and open new directory
+function mkcd () {
+  mkdir -p "$1" &&
+  eval cd "\"\$$#\""
+}
+
+
+# create new blank executable file
+function xtouch () {
+  touch "$@" &&
+  eval chmod +x "$@"
+}
+
+
+# new cookbook function
+newcook() {
+  if [ $1 ] ; then
+    git clone git@github.com:zhimsel/skeleton-cookbook.git $1
+    cd $1; rm -rf .git/
+    egrep -r "skeleton" * .kitchen.yml | cut -d ':' -f 1 | sort | uniq | xargs -n 1 sed -i '' "s/skeleton/$1/g"
+  else
+    echo "Need the name of the cookbook."
+  fi
+}
+
+
+# interactive renaming
+imv() {
+  local src dst
+  for src; do
+    [[ -e $src ]] || { print -u2 "$src does not exist"; continue }
+    dst=$src
+    vared dst
+    [[ $src != $dst ]] && mkdir -p $dst:h && mv -n $src $dst
+  done
+}
+
+
+# delete current directory
+rmwd() {
+  local current_dir
+  current_dir=$(pwd)
+  cd .. || exit 1
+  rm -rf $current_dir
+}
+
+
+# new virtualenv
+newvenv3() {
+  [[ -e .venv ]] || virtualenv -p python3 .venv
+  echo "source \$(dirname \$0)/.venv/bin/activate" > .autoenv.zsh
+  echo "deactivate" > .autoenv_leave.zsh
+  source .venv/bin/activate
+  pip install --upgrade pip
+  echo "Created new venv with $(python -V)"
+}
+
+newvenv2() {
+  [[ -e .venv ]] || virtualenv -p python2.7 .venv
+  echo "source \$(dirname \$0)/.venv/bin/activate" > .autoenv.zsh
+  echo "deactivate" > .autoenv_leave.zsh
+  source .venv/bin/activate
+  pip install --upgrade pip
+  echo "Created new venv with $(python -V)"
+}
+
+# load zmv module
+autoload -U zmv
+
+# add a new git worktree
+wt () {
+  if [[ -z $1 ]]; then
+    echo "Please specify the branch to check out"
+    return 1
+  else
+    if [[ -f .git ]]; then  # already in a worktree
+      cd "$(cat .git | cut -d' ' -f2)/../../.." || return 1
+    fi
+    if [[ -d .git ]]; then  # in main worktree
+      wt_path="../${0:A:h:t}.$1"
+    else
+      echo "We don't seem to be in a git repo"
+      return 1
+    fi
+    git worktree prune
+    git branch "$1" &> /dev/null
+    wt_add="$(git worktree add "$wt_path" "$1" 2>&1)"
+    if [[ $wt_add =~ ^fatal.*already\ checked\ out.* ]]
+    then  # if it's already checked out, go there
+      cd "$(cut -d\' -f4  <<< "$wt_add")" || return 1
+    else  # otherwise, go to the one we just made
+      cd "$wt_path" || return 1
+    fi
+  fi
+}
+
+# remove git worktree
+wtr () {
+  if [[ -f .git ]]; then
+    if [[ "$(git status)" == *clean* ]]; then
+      main_wt="$(cat .git | cut -d' ' -f2)/../../.."
+      current_wt="${0:A:h}"
+      cd "$main_wt" || return 1
+      rm -rf "$current_wt" || return 1
+      rm -rf "$main_wt/.git/worktrees/${current_wt:t}"
+      git worktree prune
+    else
+      echo "Your working directory is not clean! Stash or commit your changes before continuing."
+      return 1
+    fi
+  else
+    echo "We don't seem to be in a git worktree"
+    return 1
+  fi
+}
+
+#
+# call this command to cleanup homebrew's cask
+cask-clean () {
+  while read cask; do
+    caskBasePath="/opt/homebrew-cask/Caskroom"
+    local caskDirectory="$caskBasePath/$cask"
+    local versionsToRemove="$(ls -vr --color=never $caskDirectory | sed 1,1d)"
+    if [[ -n $versionsToRemove ]]; then
+        while read versionToRemove ; do
+            echo "Removing $cask $versionToRemove..."
+            rm -rf "$caskDirectory/$versionToRemove"
+        done <<< "$versionsToRemove"
+    fi
+  done <<< "$(brew cask list)"
+}
+
+
+
+#############################################
+# visual/theme settings
+#############################################
+
+# set theme
+ZSH_THEME=""
+
+
+# prompt settings
+ZSH_THEME_GIT_PROMPT_NOCACHE="1"
+ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
+function precmd {
+local user_name="%(!.%{$fg[red]%}.%{$fg[green]%})%n%{$reset_color%}"
+local host_name="%{$fg[yellow]%}%m%{$reset_color%}"
+local current_dir="%{$fg[blue]%}%~%{$reset_color%}"
+local current_time="%{$fg[lightgrey]%}%*%{$reset_color%}"
+local git_status="$(if [[ ! -z $GIT_BRANCH ]]; then echo "$(git_super_status) ";fi)"
+local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
+local command_prompt="%(1j.%(!.%B[%j]%b #.%B[%j]%b $).%(!.#.$))"
+local py_venv="$(if [[ ! -z $VIRTUAL_ENV ]]; then echo "(venv) "; fi)"
+PROMPT="${current_time} ${user_name} at ${host_name} in ${current_dir} ${git_status}${py_venv}${return_code}
+${command_prompt} "
+}
+RPROMPT=""
+
+
+# Show a different cursor for different vim modes
+function zle-keymap-select zle-line-init
+{
+    # change cursor shape in iTerm2
+    if [[ $TMUX != "" ]]
+    then
+        case $KEYMAP in
+            vicmd)      print -n -- "\033Ptmux;\033\E]50;CursorShape=0\C-G\033\\";;  # block cursor
+            viins|main) print -n -- "\033Ptmux;\033\E]50;CursorShape=1\C-G\033\\";;  # line cursor
+        esac
+    else
+        case $KEYMAP in
+            vicmd)      print -n -- "\E]50;CursorShape=0\C-G";;  # block cursor
+            viins|main) print -n -- "\E]50;CursorShape=1\C-G";;  # line cursor
+        esac
+    fi
+
+    zle reset-prompt
+    zle -R
+}
+
+function zle-line-finish
+{
+    if [[ $TMUX != "" ]]
+    then
+        print -n -- "\033Ptmux;\033\E]50;CursorShape=0\C-G\033\\"
+    else
+        print -n -- "\E]50;CursorShape=0\C-G"
+    fi
+}
+
+zle -N zle-line-init
+zle -N zle-line-finish
+zle -N zle-keymap-select
+
+
+
+#############################################
+# credential agent setup
+#############################################
+
+# gpg-agent setup
+export GPGKEY=F7D2C279
+
+
+# ssh-agent setup
+env=~/.ssh/agent.env
+
+agent_is_running() {
+    if [ "$SSH_AUTH_SOCK" ]; then
+        # ssh-add returns:
+        #   0 = agent running, has keys
+        #   1 = agent running, no keys
+        #   2 = agent not running
+        ssh-add -l >/dev/null 2>&1 || [ $? -eq 1 ]
+    else
+        false
+    fi
+}
+
+agent_has_keys() {
+    ssh-add -l >/dev/null 2>&1
+}
+
+agent_load_env() {
+    . "$env" >/dev/null
+}
+
+agent_start() {
+    (umask 077; ssh-agent >"$env")
+    . "$env" >/dev/null
+}
+
+if ! agent_is_running; then
+    agent_load_env
+fi
+
+if ! agent_is_running; then
+    agent_start
+    ssh-add
+elif ! agent_has_keys; then
+    ssh-add
+fi
+
+unset env
+
+
+
+#############################################
+# local settings
+#############################################
+#
+# load machine-specific options, should always be last to prevent clobbering
+if [ -f ~/.zshrc.local ]; then
+     source ~/.zshrc.local
+fi
+
+
+#############################################
+# load some stuff that needs to go last
+#############################################
+
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# set up fzf
+if [[ $- == *i* ]]; then
+  if [[ -x $HOME/.fzf/fzf ]]; then
+    export PATH="$HOME/.fzf/bin:$PATH"
+    export MANPATH="$MANPATH:$HOME/.fzf/man"
+    export FZF_TMUX=0
+    source "$HOME/.fzf/shell/key-bindings.zsh"
+    source "$HOME/.fzf/shell/completion.zsh"
+   else
+     echo "fzf not found. Make sure ~/.fzf is symlinked."
+   fi
+fi
+
+# terminfo workaround for neovim pane switching issue
+# https://github.com/neovim/neovim/issues/2048#issuecomment-78045837
+ti_file="$HOME/.terminfo_$TERM.fixed"
+touch "$ti_file"
+infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > "$ti_file" || echo "infocomp failed"
+tic $ti_file

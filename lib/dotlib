@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+declare -A subtrees=( \
+["lib/fzf"]="https://github.com/junegunn/fzf.git" \
+["lib/vim-plug"]="https://github.com/junegunn/vim-plug.git" \
+["lib/oh-my-zsh"]="https://github.com/robbyrussell/oh-my-zsh.git" \
+["lib/zsh-opp"]="https://github.com/hchbaw/opp.zsh.git" \
+["lib/zsh-git-prompt"]="https://github.com/zhimsel/zsh-git-prompt.git" \
+["lib/zsh-completions"]="https://github.com/zsh-users/zsh-completions.git" \
+["lib/zsh-syntax-highlighting"]="https://github.com/zsh-users/zsh-syntax-highlighting.git" \
+["lib/zsh-completion-generator"]="git@github.com:RobSis/zsh-completion-generator.git" \
+)
+
+cd "$(dirname "$0")"/.. || exit 1
+
+for dir in "${!subtrees[@]}"
+do
+    url="${subtrees[$dir]}"
+
+    git subtree add --prefix "$dir" "$url" master --squash
+    git subtree pull --prefix "$dir" "$url" master --squash
+
+done
