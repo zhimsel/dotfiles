@@ -11,6 +11,7 @@
   commentchar = "%"
 [merge]
   tool = vimdiff
+  ff = false
 [push]
   default = upstream
 [pager]
