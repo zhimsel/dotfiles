@@ -771,6 +771,13 @@ class TestGoFZF < TestBase
     assert_equal %w[4 5 6 9], readonce.split($/)
   end
 
+  def test_bind_print_query
+    tmux.send_keys "seq 1 1000 | #{fzf '-m --bind=ctrl-j:print-query'}", :Enter
+    tmux.until { |lines| lines[-2].end_with? '/1000' }
+    tmux.send_keys 'print-my-query', 'C-j'
+    assert_equal %w[print-my-query], readonce.split($/)
+  end
+
   def test_long_line
     data = '.' * 256 * 1024
     File.open(tempname, 'w') do |f|
@@ -859,16 +866,27 @@ class TestGoFZF < TestBase
   def test_execute
     output = '/tmp/fzf-test-execute'
     opts = %[--bind \\"alt-a:execute(echo '[{}]' >> #{output}),alt-b:execute[echo '({}), ({})' >> #{output}],C:execute:echo '({}), [{}], @{}@' >> #{output}\\"]
-    tmux.send_keys "seq 100 | #{fzf opts}", :Enter
-    tmux.until { |lines| lines[-2].include? '100/100' }
-    tmux.send_keys :Escape, :a, :Escape, :a
+    wait = lambda { |exp| tmux.until { |lines| lines[-2].include? exp } }
+    tmux.send_keys "seq 100 | #{fzf opts}; sync", :Enter
+    wait['100/100']
+    tmux.send_keys :Escape, :a
+    wait['/100']
+    tmux.send_keys :Escape, :a
+    wait['/100']
     tmux.send_keys :Up
-    tmux.send_keys :Escape, :b, :Escape, :b
+    tmux.send_keys :Escape, :b
+    wait['/100']
+    tmux.send_keys :Escape, :b
+    wait['/100']
     tmux.send_keys :Up
     tmux.send_keys :C
+    wait['100/100']
     tmux.send_keys 'foobar'
-    tmux.until { |lines| lines[-2].include? '0/100' }
-    tmux.send_keys :Escape, :a, :Escape, :b, :Escape, :c
+    wait['0/100']
+    tmux.send_keys :Escape, :a
+    wait['/100']
+    tmux.send_keys :Escape, :b
+    wait['/100']
     tmux.send_keys :Enter
     readonce
     assert_equal ['["1"]', '["1"]', '("2"), ("2")', '("2"), ("2")', '("3"), ["3"], @"3"@'],
@@ -1026,7 +1044,7 @@ class TestGoFZF < TestBase
     end
   end
 
-  def test_canel
+  def test_cancel
     tmux.send_keys "seq 10 | #{fzf "--bind 2:cancel"}", :Enter
     tmux.until { |lines| lines[-2].include?('10/10') }
     tmux.send_keys '123'
@@ -1163,6 +1181,43 @@ class TestGoFZF < TestBase
     tmux.send_keys :Enter
   end
 
+  def test_jump
+    tmux.send_keys "seq 1000 | #{fzf "--multi --jump-labels 12345 --bind 'ctrl-j:jump'"}", :Enter
+    tmux.until { |lines| lines[-2] == '  1000/1000' }
+    tmux.send_keys 'C-j'
+    tmux.until { |lines| lines[-7] == '5 5' }
+    tmux.until { |lines| lines[-8] == '  6' }
+    tmux.send_keys '5'
+    tmux.until { |lines| lines[-7] == '> 5' }
+    tmux.send_keys :Tab
+    tmux.until { |lines| lines[-7] == ' >5' }
+    tmux.send_keys 'C-j'
+    tmux.until { |lines| lines[-7] == '5>5' }
+    tmux.send_keys '2'
+    tmux.until { |lines| lines[-4] == '> 2' }
+    tmux.send_keys :Tab
+    tmux.until { |lines| lines[-4] == ' >2' }
+    tmux.send_keys 'C-j'
+    tmux.until { |lines| lines[-7] == '5>5' }
+
+    # Press any key other than jump labels to cancel jump
+    tmux.send_keys '6'
+    tmux.until { |lines| lines[-3] == '> 1' }
+    tmux.send_keys :Tab
+    tmux.until { |lines| lines[-3] == '>>1' }
+    tmux.send_keys :Enter
+    assert_equal %w[5 2 1], readonce.split($/)
+  end
+
+  def test_jump_accept
+    tmux.send_keys "seq 1000 | #{fzf "--multi --jump-labels 12345 --bind 'ctrl-j:jump-accept'"}", :Enter
+    tmux.until { |lines| lines[-2] == '  1000/1000' }
+    tmux.send_keys 'C-j'
+    tmux.until { |lines| lines[-7] == '5 5' }
+    tmux.send_keys '3'
+    assert_equal '3', readonce.chomp
+  end
+
 private
   def writelines path, lines
     File.unlink path while File.exists? path
@@ -1229,7 +1284,7 @@ module TestShell
     tmux.send_keys :BTab, :BTab, pane: 1
     tmux.until(1) { |lines| lines[-2].include? '(2)' }
     tmux.send_keys :Enter, pane: 1
-    tmux.until { |lines| lines[-1].include? 'cat' }
+    tmux.until { |lines| lines[-1].include?('cat') || lines[-2].include?('cat') }
     tmux.send_keys :Enter
     tmux.until { |lines| lines[-1].include? 'test1test2' }
   end
@@ -1444,7 +1499,7 @@ module CompletionTest
     tmux.send_keys :BTab, :BTab, pane: 1
     tmux.until(1) { |lines| lines[-2].include? '(2)' }
     tmux.send_keys :Enter, pane: 1
-    tmux.until { |lines| lines[-1].include? 'cat' }
+    tmux.until { |lines| lines[-1].include?('cat') || lines[-2].include?('cat') }
     tmux.send_keys :Enter
     tmux.until { |lines| lines[-1].include? 'test3test4' }
   end
