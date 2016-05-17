@@ -46,6 +46,7 @@ Plug 'kopischke/vim-stay', { 'branch': 'release/1.4.0' }
 Plug 'Konfekt/FastFold'
 Plug 'milkypostman/vim-togglelist'
 Plug 'mhinz/vim-startify'
+Plug 'nathanaelkane/vim-indent-guides'
 
 " Git plugins
 Plug 'tpope/vim-fugitive'
