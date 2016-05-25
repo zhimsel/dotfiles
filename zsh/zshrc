@@ -51,7 +51,7 @@ source $HOME/.zsh/completion-generator/zsh-completion-generator.plugin.zsh
 fpath=(~/.zsh/zsh-completions/src $fpath)
 fpath=(~/.zsh/custom-completions $fpath)
 autoload -Uz compinit
-compinit
+compinit -u
 
 # load bash autocompletions
 autoload -Uz bashcompinit
