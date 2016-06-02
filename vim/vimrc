@@ -68,6 +68,7 @@ Plug 'justinmk/vim-gtfo'
 Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
 Plug 'Raimondi/delimitMate'
 Plug 'PeterRincker/vim-argumentative'
+Plug 'airblade/vim-rooter'
 if has ('nvim')
   Plug 'Shougo/deoplete.nvim'
 else
