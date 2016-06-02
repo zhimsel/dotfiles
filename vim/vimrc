@@ -547,7 +547,7 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 if has('nvim')
-  tnoremap <Esc><Esc> <C-\><C-n>
+  tnoremap <C-\><C-\> <C-\><C-n>
 endif
 
 " better split placements
