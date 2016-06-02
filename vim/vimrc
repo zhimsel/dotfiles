@@ -437,6 +437,7 @@ endif
 
 " Define text expansions
 iab #ube #!/usr/bin/env
+inoremap ds""  """<CR>"""O
 inoremap {{  {<CR>}<Esc>O
 
 " executes current file (if executable)
