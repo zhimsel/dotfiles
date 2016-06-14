@@ -869,31 +869,34 @@ class TestGoFZF < TestBase
 
   def test_execute
     output = '/tmp/fzf-test-execute'
-    opts = %[--bind \\"alt-a:execute(echo '[{}]' >> #{output}),alt-b:execute[echo '({}), ({})' >> #{output}],C:execute:echo '({}), [{}], @{}@' >> #{output}\\"]
+    opts = %[--bind \\"alt-a:execute(echo [{}] >> #{output}),alt-b:execute[echo /{}{}/ >> #{output}],C:execute:echo /{}{}{}/ >> #{output}\\"]
     wait = lambda { |exp| tmux.until { |lines| lines[-2].include? exp } }
-    tmux.send_keys "seq 100 | #{fzf opts}; sync", :Enter
-    wait['100/100']
+    writelines tempname, %w[foo'bar foo"bar foo$bar]
+    tmux.send_keys "cat #{tempname} | #{fzf opts}; sync", :Enter
+    wait['3/3']
     tmux.send_keys :Escape, :a
-    wait['/100']
+    wait['/3']
     tmux.send_keys :Escape, :a
-    wait['/100']
+    wait['/3']
     tmux.send_keys :Up
     tmux.send_keys :Escape, :b
-    wait['/100']
+    wait['/3']
     tmux.send_keys :Escape, :b
-    wait['/100']
+    wait['/3']
     tmux.send_keys :Up
     tmux.send_keys :C
-    wait['100/100']
-    tmux.send_keys 'foobar'
-    wait['0/100']
+    wait['3/3']
+    tmux.send_keys 'barfoo'
+    wait['0/3']
     tmux.send_keys :Escape, :a
-    wait['/100']
+    wait['/3']
     tmux.send_keys :Escape, :b
-    wait['/100']
+    wait['/3']
     tmux.send_keys :Enter
     readonce
-    assert_equal ['["1"]', '["1"]', '("2"), ("2")', '("2"), ("2")', '("3"), ["3"], @"3"@'],
+    assert_equal %w[[foo'bar] [foo'bar]
+                    /foo"barfoo"bar/ /foo"barfoo"bar/
+                    /foo$barfoo$barfoo$bar/],
       File.readlines(output).map(&:chomp)
   ensure
     File.unlink output rescue nil
@@ -901,21 +904,24 @@ class TestGoFZF < TestBase
 
   def test_execute_multi
     output = '/tmp/fzf-test-execute-multi'
-    opts = %[--multi --bind \\"alt-a:execute-multi(echo '[{}], @{}@' >> #{output}; sync)\\"]
-    tmux.send_keys "seq 100 | #{fzf opts}", :Enter
-    tmux.until { |lines| lines[-2].include? '100/100' }
+    opts = %[--multi --bind \\"alt-a:execute-multi(echo {}/{} >> #{output}; sync)\\"]
+    writelines tempname, %w[foo'bar foo"bar foo$bar foobar]
+    tmux.send_keys "cat #{tempname} | #{fzf opts}", :Enter
+    tmux.until { |lines| lines[-2].include? '4/4' }
     tmux.send_keys :Escape, :a
-    tmux.until { |lines| lines[-2].include? '/100' }
+    tmux.until { |lines| lines[-2].include? '/4' }
     tmux.send_keys :BTab, :BTab, :BTab
     tmux.send_keys :Escape, :a
-    tmux.until { |lines| lines[-2].include? '/100' }
+    tmux.until { |lines| lines[-2].include? '/4' }
     tmux.send_keys :Tab, :Tab
     tmux.send_keys :Escape, :a
-    tmux.until { |lines| lines[-2].include? '/100' }
+    tmux.until { |lines| lines[-2].include? '/4' }
     tmux.send_keys :Enter
     tmux.prepare
     readonce
-    assert_equal ['["1"], @"1"@', '["1" "2" "3"], @"1" "2" "3"@', '["1" "2" "4"], @"1" "2" "4"@'],
+    assert_equal [%[foo'bar/foo'bar],
+                  %[foo'bar foo"bar foo$bar/foo'bar foo"bar foo$bar],
+                  %[foo'bar foo"bar foobar/foo'bar foo"bar foobar]],
       File.readlines(output).map(&:chomp)
   ensure
     File.unlink output rescue nil
@@ -934,7 +940,7 @@ class TestGoFZF < TestBase
     tmux.until { |lines| lines[-2].include? '1/1' }
     tmux.send_keys 'C-c'
     tmux.prepare
-    assert_equal ['-c / "foo"bar'], File.readlines(output).map(&:chomp)
+    assert_equal ["-c / 'foo'bar"], File.readlines(output).map(&:chomp)
   ensure
     File.unlink output rescue nil
   end
@@ -1220,6 +1226,28 @@ class TestGoFZF < TestBase
     tmux.until { |lines| lines[-7] == '5 5' }
     tmux.send_keys '3'
     assert_equal '3', readonce.chomp
+  end
+
+  def test_preview
+    tmux.send_keys %[seq 1000 | #{FZF} --preview 'echo {{}-{}}' --bind ?:toggle-preview], :Enter
+    tmux.until { |lines| lines[1].include?(' {1-1}') }
+    tmux.send_keys '555'
+    tmux.until { |lines| lines[1].include?(' {555-555}') }
+    tmux.send_keys '?'
+    tmux.until { |lines| !lines[1].include?(' {555-555}') }
+    tmux.send_keys '?'
+    tmux.until { |lines| lines[1].include?(' {555-555}') }
+  end
+
+  def test_preview_hidden
+    tmux.send_keys %[seq 1000 | #{FZF} --preview 'echo {{}-{}}' --preview-window down:1:hidden --bind ?:toggle-preview], :Enter
+    tmux.until { |lines| lines[-1] == '>' }
+    tmux.send_keys '?'
+    tmux.until { |lines| lines[-2].include?(' {1-1}') }
+    tmux.send_keys '555'
+    tmux.until { |lines| lines[-2].include?(' {555-555}') }
+    tmux.send_keys '?'
+    tmux.until { |lines| lines[-1] == '> 555' }
   end
 
 private
