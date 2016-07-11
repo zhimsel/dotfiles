@@ -90,6 +90,10 @@ class Tmux
     go("send-keys -t #{target} #{args}")
   end
 
+  def paste str
+    %x[tmux setb '#{str.gsub("'", "'\\''")}' \\; pasteb -t #{win} \\; send-keys -t #{win} Enter]
+  end
+
   def capture pane = 0
     File.unlink TEMPNAME while File.exists? TEMPNAME
     wait do
@@ -362,7 +366,7 @@ class TestGoFZF < TestBase
   end
 
   def test_query_unicode
-    tmux.send_keys "(echo abc; echo 가나다) | #{fzf :query, '가다'}", :Enter
+    tmux.paste "(echo abc; echo 가나다) | #{fzf :query, '가다'}"
     tmux.until { |lines| lines[-2].include? '1/2' }
     tmux.send_keys :Enter
     assert_equal ['가나다'], readonce.split($/)
@@ -1313,16 +1317,29 @@ module TestShell
 
   def test_ctrl_t_unicode
     FileUtils.mkdir_p '/tmp/fzf-test'
-    tmux.send_keys 'cd /tmp/fzf-test; echo -n test1 > "fzf-unicode 테스트1"; echo -n test2 > "fzf-unicode 테스트2"', :Enter
+    tmux.paste 'cd /tmp/fzf-test; echo -n test1 > "fzf-unicode 테스트1"; echo -n test2 > "fzf-unicode 테스트2"'
     tmux.prepare
     tmux.send_keys 'cat ', 'C-t', pane: 0
     tmux.until(1) { |lines| lines.item_count >= 1 }
     tmux.send_keys 'fzf-unicode', pane: 1
     tmux.until(1) { |lines| lines[-2].start_with? '  2/' }
-    tmux.send_keys :BTab, :BTab, pane: 1
+
+    tmux.send_keys '1', pane: 1
+    tmux.until(1) { |lines| lines[-2].start_with? '  1/' }
+    tmux.send_keys :BTab, pane: 1
+    tmux.until(1) { |lines| lines[-2].include? '(1)' }
+
+    tmux.send_keys :BSpace, pane: 1
+    tmux.until(1) { |lines| lines[-2].start_with? '  2/' }
+
+    tmux.send_keys '2', pane: 1
+    tmux.until(1) { |lines| lines[-2].start_with? '  1/' }
+    tmux.send_keys :BTab, pane: 1
     tmux.until(1) { |lines| lines[-2].include? '(2)' }
+
     tmux.send_keys :Enter, pane: 1
     tmux.until { |lines| lines[-1].include?('cat') || lines[-2].include?('cat') }
+    tmux.until { |lines| lines[-1].include?('fzf-unicode') || lines[-2].include?('fzf-unicode') }
     tmux.send_keys :Enter
     tmux.until { |lines| lines[-1].include? 'test1test2' }
   end
@@ -1530,12 +1547,24 @@ module CompletionTest
 
   def test_file_completion_unicode
     FileUtils.mkdir_p '/tmp/fzf-test'
-    tmux.send_keys 'cd /tmp/fzf-test; echo -n test3 > "fzf-unicode 테스트1"; echo -n test4 > "fzf-unicode 테스트2"', :Enter
+    tmux.paste 'cd /tmp/fzf-test; echo -n test3 > "fzf-unicode 테스트1"; echo -n test4 > "fzf-unicode 테스트2"'
     tmux.prepare
     tmux.send_keys 'cat fzf-unicode**', :Tab, pane: 0
     tmux.until(1) { |lines| lines[-2].start_with? '  2/' }
-    tmux.send_keys :BTab, :BTab, pane: 1
+
+    tmux.send_keys '1', pane: 1
+    tmux.until(1) { |lines| lines[-2].start_with? '  1/' }
+    tmux.send_keys :BTab, pane: 1
+    tmux.until(1) { |lines| lines[-2].include? '(1)' }
+
+    tmux.send_keys :BSpace, pane: 1
+    tmux.until(1) { |lines| lines[-2].start_with? '  2/' }
+
+    tmux.send_keys '2', pane: 1
+    tmux.until(1) { |lines| lines[-2].start_with? '  1/' }
+    tmux.send_keys :BTab, pane: 1
     tmux.until(1) { |lines| lines[-2].include? '(2)' }
+
     tmux.send_keys :Enter, pane: 1
     tmux.until { |lines| lines[-1].include?('cat') || lines[-2].include?('cat') }
     tmux.send_keys :Enter
