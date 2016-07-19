@@ -122,7 +122,9 @@ try
   endtry
 
   if !has_key(dict, 'source') && !empty($FZF_DEFAULT_COMMAND)
-    let dict.source = $FZF_DEFAULT_COMMAND
+    let temps.source = tempname()
+    call writefile(split($FZF_DEFAULT_COMMAND, "\n"), temps.source)
+    let dict.source = (empty($SHELL) ? 'sh' : $SHELL) . ' ' . s:shellesc(temps.source)
   endif
 
   if has_key(dict, 'source')
@@ -280,6 +282,7 @@ function! s:calc_size(max, val, dict)
 
   let opts = get(a:dict, 'options', '').$FZF_DEFAULT_OPTS
   let margin = stridx(opts, '--inline-info') > stridx(opts, '--no-inline-info') ? 1 : 2
+  let margin += stridx(opts, '--header') > stridx(opts, '--no-header')
   return srcsz >= 0 ? min([srcsz + margin, size]) : size
 endfunction
 
