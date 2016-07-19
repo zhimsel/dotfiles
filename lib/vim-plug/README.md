@@ -182,9 +182,9 @@ Plug 'kovisoft/paredit', { 'for': ['clojure', 'scheme'] }
 " On-demand loading on both conditions
 Plug 'junegunn/vader.vim',  { 'on': 'Vader', 'for': 'vader' }
 
-" Code to execute when the plugin is loaded on demand
-Plug 'Valloric/YouCompleteMe', { 'for': 'cpp' }
-autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
+" Code to execute when the plugin is lazily loaded on demand
+Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
+autocmd! User goyo.vim echom 'Goyo is now loaded!'
 ```
 
 `for` option is generally not needed as most plugins for specific file types
@@ -199,6 +199,12 @@ In that case, use `do` option to describe the task to be performed.
 ```vim
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+```
+
+If the value starts with `:`, it will be recognized as a Vim command.
+
+```vim
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 ```
 
 If you need more control, you can pass a reference to a Vim function that
