@@ -10,7 +10,7 @@ To install these dotfiles (in say, a clean home directory), simply clone this re
 
 Each file that needs to be symlinked has a corresponding `.link` file. It's a simple text file that contains the paths where the related file should be linked. For instance, `vimrc` has a `vimrc.link` file that contains `~/.vimrc`. A symlink will be created at `~/.vimrc` that points to the `vimrc` file in this repo. The `.link` files support multiple link targets; just place each on on its own line.
 
-Please keep in mind that this script *should* not change any files, but it *might*, so please read the script and understand what it does before you run it. Any existing files are renamed with the '.local' extension. If a file with the '.local' extension already exists, it does nothing and notifies you that manual intervention is needed.
+Please keep in mind that this script *should* not change any files, but it *might*, so please read the script and understand what it does before you run it. Any existing files are backed up first.
 
 If you would like to only link *some* of the files, simply remove the corresponding `.link` file.
 
