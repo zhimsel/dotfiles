@@ -17,6 +17,7 @@
   last = cat
 [grep]
   linenumber = true
+  patternType = extended
 [tig]
   line-graphics = utf-8
   mouse = true
