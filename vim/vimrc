@@ -31,6 +31,7 @@ Plug 'jtratner/vim-flavored-markdown', { 'for': 'markdown' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'neilhwatson/vim_cf3', { 'for': 'cf3' }
 Plug 'klen/python-mode', { 'for': 'python' }
+Plug 'hashivim/vim-terraform'
 
 " Interface plugins
 Plug 'bling/vim-airline'
@@ -400,6 +401,9 @@ set viewoptions=cursor,folds,slash,unix
 " vim-better-whitespace settings
 command CurrentLineWhitespaceOff soft
 
+" vim-terraform settings
+let g:terraform_align = 1
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " User interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -522,6 +526,7 @@ au FileType cf3         setlocal cms=#\ %s si fdm=indent fdl=1
 au FileType sh          setlocal sw=2 ts=2 tw=79
 au FileType cf3         setlocal tw=0
 au FileType vim         setlocal tw=0
+au FileType terraform   setlocal tw=0 sw=4 ts=4 fdm=indent fdl=0
 
 " Java settings
 let java_mark_braces_in_parens_as_errors=1
