@@ -47,6 +47,9 @@ source $HOME/.zsh/opp/opp/*.zsh
 source $HOME/.zsh/git-prompt/git-prompt.plugin.zsh
 source $HOME/.zsh/completion-generator/zsh-completion-generator.plugin.zsh
 
+# load other plugins/RCs
+source $HOME/.git-subrepo/.rc
+
 # setup autocomplete
 fpath=(~/.zsh/zsh-completions/src $fpath)
 fpath=(~/.zsh/custom-completions $fpath)

@@ -41,6 +41,8 @@ pathadd ~/bin
 pathadd ~/.cabal/bin
 pathadd ~/.rvm/bin # Add RVM to PATH for scripting
 
+source ~/.git-subrepo/.rc
+
 
 ###########################################
 # Aliases and functions
