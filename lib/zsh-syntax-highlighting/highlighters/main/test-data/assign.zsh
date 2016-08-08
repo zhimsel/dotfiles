@@ -27,12 +27,12 @@
 # vim: ft=zsh sw=2 ts=2 et
 # -------------------------------------------------------------------------------------------------
 
-ZSH_HIGHLIGHT_STYLES[assign]=$unused_highlight
 BUFFER='A=1 b=("foo" bar)'
 
 expected_region_highlight=(
   "1 3 assign" # A=1
   "5 7 assign" # b=(
   "8 12 double-quoted-argument" # "foo"
+  "14 16 default" # bar
   "17 17 assign" # )
 )

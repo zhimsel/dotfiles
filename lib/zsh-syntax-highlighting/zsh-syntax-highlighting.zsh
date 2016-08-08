@@ -28,7 +28,9 @@
 # -------------------------------------------------------------------------------------------------
 
 
-if [[ -o function_argzero ]]; then
+# Set $0 to the expected value, regardless of functionargzero.
+0=${(%):-%N}
+if true; then
   # $0 is reliable
   ZSH_HIGHLIGHT_VERSION=$(<"${0:A:h}"/.version)
   ZSH_HIGHLIGHT_REVISION=$(<"${0:A:h}"/.revision-hash)
@@ -38,12 +40,6 @@ if [[ -o function_argzero ]]; then
     # the valid value (via `git rev-parse HEAD`, as Makefile does) might be costly, so:
     ZSH_HIGHLIGHT_REVISION=HEAD
   fi
-else
-  # $0 is unreliable, so the call to _zsh_highlight_load_highlighters will fail.
-  # TODO: If 'zmodload zsh/parameter' is available, ${funcsourcetrace[1]%:*} might serve as a substitute?
-  # TODO: also check POSIX_ARGZERO, but not it's not available in older zsh
-  echo "zsh-syntax-highlighting: error: not compatible with NO_FUNCTION_ARGZERO" >&2
-  return 1
 fi
 
 # -------------------------------------------------------------------------------------------------
@@ -61,6 +57,13 @@ _zsh_highlight()
 {
   # Store the previous command return code to restore it whatever happens.
   local ret=$?
+
+  # Remove all highlighting in isearch, so that only the underlining done by zsh itself remains.
+  # For details see FAQ entry 'Why does syntax highlighting not work while searching history?'.
+  if [[ $WIDGET == zle-isearch-update ]] && ! (( $+ISEARCHMATCH_ACTIVE )); then
+    region_highlight=()
+    return $ret
+  fi
 
   setopt localoptions warncreateglobal
   setopt localoptions noksharrays
@@ -85,7 +88,7 @@ _zsh_highlight()
     local highlighter; for highlighter in $ZSH_HIGHLIGHT_HIGHLIGHTERS; do
 
       # eval cache place for current highlighter and prepare it
-      cache_place="_zsh_highlight_${highlighter}_highlighter_cache"
+      cache_place="_zsh_highlight_highlighter_${highlighter}_cache"
       typeset -ga ${cache_place}
 
       # If highlighter needs to be invoked
@@ -115,13 +118,28 @@ _zsh_highlight()
     # Re-apply zle_highlight settings
 
     # region
-    (( REGION_ACTIVE )) && _zsh_highlight_apply_zle_highlight region standout "$MARK" "$CURSOR"
+    if (( REGION_ACTIVE == 1 )); then
+      _zsh_highlight_apply_zle_highlight region standout "$MARK" "$CURSOR"
+    elif (( REGION_ACTIVE == 2 )); then
+      () {
+        local needle=$'\n'
+        integer min max
+        if (( MARK > CURSOR )) ; then
+          min=$CURSOR max=$MARK
+        else
+          min=$MARK max=$CURSOR
+        fi
+        (( min = ${${BUFFER[1,$min]}[(I)$needle]} ))
+        (( max += ${${BUFFER:($max-1)}[(i)$needle]} - 1 ))
+        _zsh_highlight_apply_zle_highlight region standout "$min" "$max"
+      }
+    fi
 
     # yank / paste (zsh-5.1.1 and newer)
     (( $+YANK_ACTIVE )) && (( YANK_ACTIVE )) && _zsh_highlight_apply_zle_highlight paste standout "$YANK_START" "$YANK_END"
 
     # isearch
-    (( $+ISEARCH_ACTIVE )) && (( ISEARCH_ACTIVE )) && _zsh_highlight_apply_zle_highlight isearch underline "$ISEARCH_START" "$ISEARCH_END"
+    (( $+ISEARCHMATCH_ACTIVE )) && (( ISEARCHMATCH_ACTIVE )) && _zsh_highlight_apply_zle_highlight isearch underline "$ISEARCHMATCH_START" "$ISEARCHMATCH_END"
 
     # suffix
     (( $+SUFFIX_ACTIVE )) && (( SUFFIX_ACTIVE )) && _zsh_highlight_apply_zle_highlight suffix bold "$SUFFIX_START" "$SUFFIX_END"
@@ -136,7 +154,7 @@ _zsh_highlight()
   }
 }
 
-# Apply highlighting based on entries in the zle_highligh array.
+# Apply highlighting based on entries in the zle_highlight array.
 # This function takes four arguments:
 # 1. The exact entry (no patterns) in the zle_highlight array:
 #    region, paste, isearch, or suffix
@@ -196,9 +214,10 @@ _zsh_highlight_cursor_moved()
   [[ -n $CURSOR ]] && [[ -n ${_ZSH_HIGHLIGHT_PRIOR_CURSOR-} ]] && (($_ZSH_HIGHLIGHT_PRIOR_CURSOR != $CURSOR))
 }
 
-# Add a highlight defined by ZSH_HIGHLIGHT_STYLES
+# Add a highlight defined by ZSH_HIGHLIGHT_STYLES.
 #
-# Should be used by all highlighters aside from 'pattern' (cf. ZSH_HIGHLIGHT_PATTERN)
+# Should be used by all highlighters aside from 'pattern' (cf. ZSH_HIGHLIGHT_PATTERN).
+# Overwritten in tests/test-highlighting.zsh when testing.
 _zsh_highlight_add_highlight()
 {
   local -i start end
@@ -233,13 +252,25 @@ _zsh_highlight_bind_widgets()
 
   # Load ZSH module zsh/zleparameter, needed to override user defined widgets.
   zmodload zsh/zleparameter 2>/dev/null || {
-    echo 'zsh-syntax-highlighting: failed loading zsh/zleparameter.' >&2
+    print -r -- >&2 'zsh-syntax-highlighting: failed loading zsh/zleparameter.'
     return 1
   }
 
   # Override ZLE widgets to make them invoke _zsh_highlight.
+  local -U widgets_to_bind
+  widgets_to_bind=(${${(k)widgets}:#(.*|orig-*|run-help|which-command|beep|set-local-history|yank)})
+
+  # Always wrap special zle-line-finish widget. This is needed to decide if the
+  # current line ends and special highlighting logic needs to be applied.
+  # E.g. remove cursor imprint, don't highlight partial paths, ...
+  widgets_to_bind+=(zle-line-finish)
+
+  # Always wrap special zle-isearch-update widget to be notified of updates in isearch.
+  # This is needed because we need to disable highlighting in that case.
+  widgets_to_bind+=(zle-isearch-update)
+
   local cur_widget
-  for cur_widget in ${${(f)"$(builtin zle -la)"}:#(.*|orig-*|run-help|which-command|beep|set-local-history|yank)}; do
+  for cur_widget in $widgets_to_bind; do
     case $widgets[$cur_widget] in
 
       # Already rebound event: do nothing.
@@ -265,8 +296,15 @@ _zsh_highlight_bind_widgets()
       builtin) eval "_zsh_highlight_widget_${(q)cur_widget}() { _zsh_highlight_call_widget .${(q)cur_widget} -- \"\$@\" }"
                zle -N $cur_widget _zsh_highlight_widget_$cur_widget;;
 
+      # Incomplete or nonexistent widget: Bind to z-sy-h directly.
+      *) 
+         if [[ $cur_widget == zle-* ]] && [[ -z $widgets[$cur_widget] ]]; then
+           _zsh_highlight_widget_${cur_widget}() { :; _zsh_highlight }
+           zle -N $cur_widget _zsh_highlight_widget_$cur_widget
+         else
       # Default: unhandled case.
-      *) echo "zsh-syntax-highlighting: unhandled ZLE widget '$cur_widget'" >&2 ;;
+           print -r -- >&2 "zsh-syntax-highlighting: unhandled ZLE widget '$cur_widget'"
+         fi
     esac
   done
 }
@@ -281,7 +319,7 @@ _zsh_highlight_load_highlighters()
 
   # Check the directory exists.
   [[ -d "$1" ]] || {
-    echo "zsh-syntax-highlighting: highlighters directory '$1' not found." >&2
+    print -r -- >&2 "zsh-syntax-highlighting: highlighters directory '$1' not found."
     return 1
   }
 
@@ -293,7 +331,7 @@ _zsh_highlight_load_highlighters()
       . "$highlighter_dir/${highlighter}-highlighter.zsh"
       type "_zsh_highlight_${highlighter}_highlighter" &> /dev/null &&
       type "_zsh_highlight_${highlighter}_highlighter_predicate" &> /dev/null || {
-        echo "zsh-syntax-highlighting: '${highlighter}' highlighter should define both required functions '_zsh_highlight_${highlighter}_highlighter' and '_zsh_highlight_${highlighter}_highlighter_predicate' in '${highlighter_dir}/${highlighter}-highlighter.zsh'." >&2
+        print -r -- >&2 "zsh-syntax-highlighting: '${highlighter}' highlighter should define both required functions '_zsh_highlight_${highlighter}_highlighter' and '_zsh_highlight_${highlighter}_highlighter_predicate' in '${highlighter_dir}/${highlighter}-highlighter.zsh'."
       }
     }
   done
@@ -306,13 +344,13 @@ _zsh_highlight_load_highlighters()
 
 # Try binding widgets.
 _zsh_highlight_bind_widgets || {
-  echo 'zsh-syntax-highlighting: failed binding ZLE widgets, exiting.' >&2
+  print -r -- >&2 'zsh-syntax-highlighting: failed binding ZLE widgets, exiting.'
   return 1
 }
 
 # Resolve highlighters directory location.
 _zsh_highlight_load_highlighters "${ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR:-${${0:A}:h}/highlighters}" || {
-  echo 'zsh-syntax-highlighting: failed loading highlighters, exiting.' >&2
+  print -r -- >&@ 'zsh-syntax-highlighting: failed loading highlighters, exiting.'
   return 1
 }
 
@@ -324,8 +362,11 @@ _zsh_highlight_preexec_hook()
 }
 autoload -U add-zsh-hook
 add-zsh-hook preexec _zsh_highlight_preexec_hook 2>/dev/null || {
-    echo 'zsh-syntax-highlighting: failed loading add-zsh-hook.' >&2
+    print -r -- >&2 'zsh-syntax-highlighting: failed loading add-zsh-hook.'
   }
+
+# Load zsh/parameter module if available
+zmodload zsh/parameter 2>/dev/null || true
 
 # Initialize the array of active highlighters if needed.
 [[ $#ZSH_HIGHLIGHT_HIGHLIGHTERS -eq 0 ]] && ZSH_HIGHLIGHT_HIGHLIGHTERS=(main) || true

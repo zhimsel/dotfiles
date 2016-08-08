@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:robbyrussell/oh-my-zsh.git
+	branch = master
+	commit = a7de0fabd7ebbf1776942a8c7fde8ee33ed681b0
+	parent = bfeb628b7b462f7e8cb7ff62171c88cdb39a3e43
+	cmdver = 0.3.0

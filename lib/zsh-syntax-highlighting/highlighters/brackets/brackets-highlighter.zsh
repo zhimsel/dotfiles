@@ -1,5 +1,5 @@
 # -------------------------------------------------------------------------------------------------
-# Copyright (c) 2010-2011 zsh-syntax-highlighting contributors
+# Copyright (c) 2010-2016 zsh-syntax-highlighting contributors
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted
@@ -46,7 +46,7 @@ _zsh_highlight_brackets_highlighter_predicate()
 # Brackets highlighting function.
 _zsh_highlight_brackets_highlighter()
 {
-  local char quotetype style
+  local char style
   local -i bracket_color_size=${#ZSH_HIGHLIGHT_STYLES[(I)bracket-level-*]} buflen=${#BUFFER} level=0 matchingpos pos
   local -A levelpos lastoflevel matching
 
@@ -68,11 +68,7 @@ _zsh_highlight_brackets_highlighter()
         ;;
       ['"'\'])
         # Skip everything inside quotes
-        quotetype=$char
-        while (( pos < buflen )) ; do
-          (( pos++ ))
-          [[ $BUFFER[pos+1] == $quotetype ]] && break
-        done
+	pos=$BUFFER[(ib:pos+1:)$char]
         ;;
     esac
   done
@@ -80,7 +76,9 @@ _zsh_highlight_brackets_highlighter()
   # Now highlight all found brackets
   for pos in ${(k)levelpos}; do
     if (( $+matching[$pos] )); then
-      style=bracket-level-$(( (levelpos[$pos] - 1) % bracket_color_size + 1 ))
+      if (( bracket_color_size )); then
+        style=bracket-level-$(( (levelpos[$pos] - 1) % bracket_color_size + 1 ))
+      fi
     else
       style=bracket-error
     fi
@@ -88,10 +86,10 @@ _zsh_highlight_brackets_highlighter()
   done
 
   # If cursor is on a bracket, then highlight corresponding bracket, if any
-  pos=$CURSOR
+  pos=$((CURSOR + 1))
   if [[ -n $levelpos[$pos] ]] && [[ -n $matching[$pos] ]]; then
     local -i otherpos=$matching[$pos]
-    _zsh_highlight_add_highlight $otherpos $((otherpos + 1)) cursor-matchingbracket
+    _zsh_highlight_add_highlight $((otherpos - 1)) $otherpos cursor-matchingbracket
   fi
 }
 

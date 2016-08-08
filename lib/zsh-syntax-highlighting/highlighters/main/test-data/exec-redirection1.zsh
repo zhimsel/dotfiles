@@ -27,12 +27,11 @@
 # vim: ft=zsh sw=2 ts=2 et
 # -------------------------------------------------------------------------------------------------
 
-ZSH_HIGHLIGHT_STYLES[redirection]=$unused_highlight
 BUFFER='exec {foo}>&/tmp ls'
 
 expected_region_highlight=(
   "1 4 precommand" # exec
-  # TODO: "6 10 redirection 'issue #238'" # {foo}
+  "6 10 redirection 'issue #238'" # {foo}
   "11 12 redirection" # >&
   "13 16 path" # /tmp
   "18 19 command 'issue #238'" # ls

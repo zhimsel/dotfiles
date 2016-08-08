@@ -49,34 +49,39 @@ highlighter's documentation for details and examples.
 How to implement a new highlighter
 ----------------------------------
 
-To create your own `myhighlighter` highlighter:
+To create your own `acme` highlighter:
 
 * Create your script at
-    `highlighters/${myhighlighter}/${myhighlighter}-highlighter.zsh`.
+    `highlighters/acme/acme-highlighter.zsh`.
 
-* Implement the `_zsh_highlight_myhighlighter_highlighter_predicate` function.
+* Implement the `_zsh_highlight_acme_highlighter_predicate` function.
   This function must return 0 when the highlighter needs to be called and
   non-zero otherwise, for example:
 
-        _zsh_highlight_myhighlighter_highlighter_predicate() {
+        _zsh_highlight_acme_highlighter_predicate() {
           # Call this highlighter in SVN working copies
           [[ -d .svn ]]
         }
 
-* Implement the `_zsh_highlight_myhighlighter_highlighter` function.
+* Implement the `_zsh_highlight_acme_highlighter` function.
   This function does the actual syntax highlighting, by calling
   `_zsh_highlight_add_highlight` with the start and end of the region to
   be highlighted and the `ZSH_HIGHLIGHT_STYLES` key to use. Define the default
   style for that key in the highlighter script outside of any function with
-  `: ${ZSH_HIGHLIGHT_STYLES[key]:=value}`. For example:
+  `: ${ZSH_HIGHLIGHT_STYLES[key]:=value}`, being sure to prefix
+  the key with your highlighter name and a colon. For example:
 
-        : ${ZSH_HIGHLIGHT_STYLES[aurora]:=fg=green}
+        : ${ZSH_HIGHLIGHT_STYLES[acme:aurora]:=fg=green}
 
-        _zsh_highlight_myhighlighter_highlighter() {
+        _zsh_highlight_acme_highlighter() {
           # Colorize the whole buffer with the 'aurora' style
-          _zsh_highlight_add_highlight 0 $#BUFFER aurora
+          _zsh_highlight_add_highlight 0 $#BUFFER acme:aurora
         }
+
+* Name your own functions and global variables `_zsh_highlight_acme_*`.
 
 * Activate your highlighter in `~/.zshrc`:
 
-        ZSH_HIGHLIGHT_HIGHLIGHTERS+=(myhighlighter)
+        ZSH_HIGHLIGHT_HIGHLIGHTERS+=(acme)
+
+* [Write tests](../tests/README.md).

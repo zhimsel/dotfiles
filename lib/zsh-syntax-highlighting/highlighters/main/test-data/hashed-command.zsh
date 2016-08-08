@@ -28,9 +28,8 @@
 # -------------------------------------------------------------------------------------------------
 
 hash zsh_syntax_highlighting_hash=/doesnotexist
-ZSH_HIGHLIGHT_STYLES[hashed-command]=$unused_highlight
 BUFFER='zsh_syntax_highlighting_hash'
 
 expected_region_highlight=(
-  "1 28 hashed-command"
+  "1 28 hashed-command 'zsh/parameter cannot distinguish between hashed and command'"
 )
