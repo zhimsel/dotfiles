@@ -35,10 +35,7 @@
   co = checkout
   br = branch
   undo-last-commit = reset --soft HEAD~1
-  subf = submodule foreach 'git checkout master && echo "" && git pull'
-  sub = subtree
-  sba = "!f() { git subtree add --prefix $2 $1 master --squash; }; f"
-  sbu = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
+  sub = subrepo
   db = "!sh -c \"git diff $(git merge-base master HEAD) HEAD\"" # diff between HEAD and branch-off commit
   dm = "!sh -c \"git diff $(git merge-base master HEAD) master\"" #diff between HEAD and master
   lr = log --graph --decorate --abbrev-commit --pretty=log HEAD~1..origin # unpulled commits on remote
