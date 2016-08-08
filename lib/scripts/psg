@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Simple wrapper for grepping `ps` output
+
+for query in "$@"
+do
+  grep_list="$grep_list | grep --color -i $query"
+done
+
+if [[ $(uname) == "Darwin" ]]
+then
+  command="sudo ps aux -e $grep_list"
+else
+  command="ps -e aux $grep_list"
+fi
+eval "$command"

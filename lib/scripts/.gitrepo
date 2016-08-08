@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:zhimsel/scripts.git
+	branch = master
+	commit = 6cbadd380abf77da90f6e51b5f51cedf182e716f
+	parent = d892fd7414a5c870034cd4aa0df3992e60e4f31c
+	cmdver = 0.3.0

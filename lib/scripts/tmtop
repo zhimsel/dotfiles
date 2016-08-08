@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# This will display all files being opened/written by Time Machine
+
+sudo opensnoop -n backupd | grep -v 'Time Machine Backups' | grep -v '/Volumes/time-machine'

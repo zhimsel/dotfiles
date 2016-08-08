@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# this script is designed to check all hosts/IPs that it is given against
+# the shellshock vulnerability
+
+# print some usage text if no arguments are given
+[[ -n "$1" ]] || \
+{ echo "Usage: $(basename "$0") [server_list.txt] OR [server1 server2 server3] ..."; exit 0 ; }
+
+trap "exit 0" SIGINT SIGTERM
+
+SSH_OPTIONS="-oStrictHostKeyChecking=no -oBatchMode=yes -oConnectTimeout=5 -oPasswordAuthentication=no"
+
+
+# function to send the command to ssh
+ssh_command () {
+     echo "$1" | ssh "$SSH_OPTIONS" "$server" /bin/bash 2>&1
+}
+
+# check distribution type
+os_test () {
+     test=$(ssh_command "cat /etc/issue")
+     case "$test" in
+          *Ubuntu*)
+               os="debian";;
+          *Red*)
+               os="redhat";;
+          *CentOS*)
+               os="redhat";;
+          *)
+               os="other";;
+     esac
+}
+
+# run the bash upgrade, depending on distro
+run_upgrade () {
+     echo "Updating bash on $server ($test)"
+     echo "--------------------------------------------"
+     os_test
+     case "$os" in
+          redhat)
+               ssh_command "yum update -y bash";;
+          debian)
+               ssh_command "apt-get update > /dev/null && apt-get install --only-upgrade bash";;
+          other)
+               echo -e "Irregular OS: $server";;
+     esac
+     echo;echo;echo;echo
+}
+
+
+# if first arg is a file, then use that as the list of servers
+# otherwise use the remaining args as your server list and then do it!
+if [ -f "$1" ]; then
+     while read -r server; do
+          run_upgrade
+     done < "$1"
+else
+     for server in "$@"; do
+          run_upgrade
+     done
+fi
+

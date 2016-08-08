@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# this script will take a list of servers (as arguments, or lines in a file),
+# ssh into each one, and check if there are any read-only filesystems.
+
+. /etc/init.d/functions
+
+# specifiy some options
+EXCEPTION_LIST='kits'
+SSH_OPTIONS="ssh -o StrictHostKeyChecking=no -o NumberOfPasswordPrompts=0 -o ConnectTimeout=2"
+
+# print some usage text if no arguments are given
+[[ -n "$1" ]] || { echo "Usage: fsck-ro [server_list.txt] OR [server1 server2 server3] ..."; exit 0 ; }
+
+# if next arg is a file, then use that as the list of servers
+# otherwise use the remaining args as your server list
+if [ -f $1 ]; then
+     SERVERS=$(cat $1)
+else
+     SERVERS=$@
+fi
+
+
+for i in ${SERVERS}; do
+    echo; echo $i
+    CONNECTION_TEST=`${SSH_OPTIONS} ${i} hostname`
+    if [ $? -eq 0 ]; then
+        MOUNTS=`${SSH_OPTIONS} $i df -hP | grep -vE "Filesystem|/dev/shm|${EXCEPTION_LIST}" | awk '{print $6}'`
+        for j in ${MOUNTS}; do
+            ${SSH_OPTIONS} ${i} touch ${j}/touchtest111.txt
+            if [ $? -eq 0 ]; then
+              echo "  Touch file on ${j} succeeded `echo_success`"
+            else
+              echo "  Touch file on ${j} failed `echo_failure`"
+            fi
+            ${SSH_OPTIONS} ${i} rm -f ${j}/touchtest111.txt
+            if [ $? -eq 0 ]; then
+              echo "  Touch delete on ${j} succeeded `echo_success`"
+            else
+              echo "  Touch delete on ${j} failed `echo_failure`"
+            fi
+        done
+    else
+        echo "  ERROR: Can't connect `echo failure`"
+    fi
+done
+

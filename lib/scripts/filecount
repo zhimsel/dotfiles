@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# This script recursively counts how many files are in your current directory
+
+IFS=$'\n'
+find_results=($(find "$(pwd)" -maxdepth 1 -type d))
+
+get_results () {
+  echo "Getting results. May take a while."
+  for dir in ${find_results[*]}
+  do
+    echo "$(find "$dir" -type f | wc -l): $dir"
+  done
+}
+
+get_results | column -s ':' -t | sort -gr | less

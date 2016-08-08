@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# This script will bring the CPU of an OSX machine to 100% until killed.
+# Useful for warming up a cold laptop
+
+yes > /dev/null &
+yes > /dev/null &
+yes > /dev/null &
+yes > /dev/null &
+yes > /dev/null &
+yes > /dev/null &
+yes > /dev/null &
+yes > /dev/null &
+yes > /dev/null &
+yes > /dev/null &
+yes > /dev/null &
+
+read -r -p 'Press any key to stop ' -n 1
+echo ""
+killall yes
