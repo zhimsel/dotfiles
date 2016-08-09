@@ -105,11 +105,6 @@ if !has('nvim')
 endif
 set history=1000
 set iskeyword+=_,$,@,%,#,-
-set foldenable
-
-
-" Enable syntax highlighting
-syntax enable
 
 " Set color scheme
 set background=dark
@@ -117,10 +112,10 @@ silent! colorscheme solarized
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-    set guioptions-=T
-    set guioptions-=e
-    set t_Co=256
-    set guitablabel=%M\ %t
+  set guioptions-=T
+  set guioptions-=e
+  set t_Co=256
+  set guitablabel=%M\ %t
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -128,8 +123,8 @@ set encoding=utf8
 
 " Use 'Silent' for supressing 'Hit Enter to continue' prompt
 command! -nargs=1 Silent
-\ | execute ':silent !'.<q-args>
-\ | execute ':redraw!'
+      \ | execute ':silent !'.<q-args>
+      \ | execute ':redraw!'
 
 " }}}
 
@@ -181,9 +176,6 @@ noremap '' :registers<cr>
 " Disable highlight when <leader><Esc>, <Esc><Esc, or F1 is pressed
 map <silent> <F1> :noh<cr>
 nmap <silent> <Esc><Esc> :noh<cr>
-
-" Paste pdb block in (for python debugger)
-imap <C-p> import ipdb; ipdb.set_trace()
 
 " Remap 'K'; it's fucking annoying
 nnoremap K <Nop>
@@ -459,7 +451,8 @@ if !has('nvim')
 endif
 set cursorline " Highlight current line
 set noshowmode " Disable --INSERT-- text in command line. Reproduced in airline
-
+set foldenable " Enable folding
+syntax enable " Enable syntax highlighting
 
 " change cursor shape based on mode (for iTerm2)
 if has('nvim')
@@ -468,16 +461,6 @@ else
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
-
-" Define text expansions
-iab #ube #!/usr/bin/env
-inoremap ds""  """<CR>"""O
-
-" executes current file (if executable)
-nnoremap <leader>x :!%:p<cr>
-
-" stop <Esc> from moving the cursor
-inoremap <Esc> <Esc>`^
 
 " }}}
 
@@ -530,6 +513,16 @@ set colorcolumn=+1,+21,+41
 " use system clipboard for main register (unless specified with '/")
 set clipboard^=unnamed
 
+" Define text expansions
+iab #ube #!/usr/bin/env
+inoremap ds""  """<CR>"""O
+
+" executes current file (if executable)
+nnoremap <leader>x :!%:p<cr>
+
+" stop <Esc> from moving the cursor
+inoremap <Esc> <Esc>`^
+
 " }}}
 
 " Per-filetype settings {{{
@@ -551,6 +544,7 @@ au FileType java        setlocal shiftwidth=4 tabstop=4
 au FileType yaml        setlocal fdl=1 fdm=indent
 au FileType markdown    setlocal textwidth=0
 au FileType python      setlocal sw=4 ts=4 tw=79
+au FileType python      imap <C-p> import ipdb; ipdb.set_trace()
 au FileType cf3         setlocal cms=#\ %s si fdm=indent fdl=1 tw=0
 au FileType sh          setlocal sw=2 ts=2 tw=79
 au FileType vim         setlocal tw=0
@@ -568,6 +562,8 @@ nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
+
+" remap Terminal exit binding for nvim
 if has('nvim')
   tnoremap <C-\><C-\> <C-\><C-n>
 endif
@@ -593,11 +589,9 @@ map <leader>7 7gt
 map <leader>8 8gt
 map <leader>9 9gt
 
-
 " Open splits
 nmap <Leader>s :sp<cr>
 nmap <Leader>v :vsp<cr>
-
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
