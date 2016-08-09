@@ -1,19 +1,26 @@
+" vim:foldmethod=marker
+
+" This file is written with vim foldmarkers to enable easier viewing
+" It's designed to be viewed/edited from within vim. Each section has
+" fold markers at the beginning and end, so you can easily close each
+" section to find what you're looking for
+
 " Written by Zach Himsel, 2013-2016
 " https://github.com/zhimsel/dotfiles
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Load plugins (must come first)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugins {{{
+" Loading plugins must come first
 
 source ~/.vim/vim-plug/plug.vim
 call plug#begin('~/.vim/plugins')
 
-" Colors
+" Colors {{{
 Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline-themes'
+" }}}
 
-" Syntax plugins
+" Syntax plugins {{{
 if has('nvim')
   Plug 'benekastah/neomake'
 else
@@ -32,8 +39,9 @@ Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'neilhwatson/vim_cf3', { 'for': 'cf3' }
 Plug 'klen/python-mode', { 'for': 'python' }
 Plug 'hashivim/vim-terraform'
+" }}}
 
-" Interface plugins
+" Interface plugins {{{
 Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdtree'
 Plug 'Lokaltog/vim-easymotion'
@@ -49,8 +57,9 @@ Plug 'milkypostman/vim-togglelist'
 Plug 'mhinz/vim-startify'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ntpeters/vim-better-whitespace'
+" }}}
 
-" Git plugins
+" Git plugins {{{
 Plug 'tpope/vim-fugitive'
 Plug 'taq/vim-git-branch-info'
 Plug 'airblade/vim-gitgutter'
@@ -58,8 +67,9 @@ Plug 'gregsexton/gitv'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'  " required for gist-vim
 Plug 'Xuyuanp/nerdtree-git-plugin'
+" }}}}
 
-" Automation plugins
+" Automation plugins {{{
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
@@ -76,6 +86,7 @@ if has ('nvim')
 else
   Plug 'Shougo/neocomplete.vim'
 endif
+" }}}
 
 " Add locally-defined plugins
 if filereadable(glob("~/.vim-plug.local"))
@@ -84,10 +95,9 @@ endif
 
 call plug#end()
 
+" }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" General settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" General settings {{{
 
 set nocompatible
 if !has('nvim')
@@ -95,11 +105,6 @@ if !has('nvim')
 endif
 set history=1000
 set iskeyword+=_,$,@,%,#,-
-set foldenable
-
-
-" Enable syntax highlighting
-syntax enable
 
 " Set color scheme
 set background=dark
@@ -107,10 +112,10 @@ silent! colorscheme solarized
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-    set guioptions-=T
-    set guioptions-=e
-    set t_Co=256
-    set guitablabel=%M\ %t
+  set guioptions-=T
+  set guioptions-=e
+  set t_Co=256
+  set guitablabel=%M\ %t
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -118,13 +123,12 @@ set encoding=utf8
 
 " Use 'Silent' for supressing 'Hit Enter to continue' prompt
 command! -nargs=1 Silent
-\ | execute ':silent !'.<q-args>
-\ | execute ':redraw!'
+      \ | execute ':silent !'.<q-args>
+      \ | execute ':redraw!'
 
+" }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Key bindings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Key bindings {{{
 
 " Set leader key
 let mapleader = "\<space>"
@@ -173,9 +177,6 @@ noremap '' :registers<cr>
 map <silent> <F1> :noh<cr>
 nmap <silent> <Esc><Esc> :noh<cr>
 
-" Paste pdb block in (for python debugger)
-imap <C-p> import ipdb; ipdb.set_trace()
-
 " Remap 'K'; it's fucking annoying
 nnoremap K <Nop>
 vnoremap K <Nop>
@@ -190,27 +191,34 @@ vnoremap <Up> :m '<-2<CR>gv=gv
 vnoremap <Right> xp`[v`]
 vnoremap <Left> xhhp`[v`]
 
+" git keybindings (both vim-fugitive and vim-gitgutter)
+nmap <leader>ga :Silent Git add %<cr>:w<cr>
+nmap <leader>gv :Gitv<cr>
+nmap <leader>ha <Plug>GitGutterStageHunk
+nmap <leader>hr <Plug>GitGutterRevertHunk
+nmap <leader>hn <Plug>GitGutterNextHunk
+nmap <leader>hp <Plug>GitGutterPrevHunk
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
 
-" NERDtree settings
+" Plugin settings {{{
+
+" NERDtree settings {{{
 map <C-t> :NERDTreeToggle<CR>
 " Prevent vim from considering NERDtree a window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 let NERDTreeHighlightCursorline = 1
 let NERDTreeMouseMode = 1
 let NERDTreeShowLineNumbers = 1
+" }}}
 
-
-" vim-json settings
+" vim-json settings {{{
 set conceallevel=0 " Disable character concealing
 let g:vim_json_syntax_conceal = 0 " Force no concealing for json files
 highlight Error term=reverse cterm=bold ctermfg=7 ctermbg=1 guifg=White guibg=Red
+" }}}
 
-
-" vim-airline settings
+" vim-airline settings {{{
 set timeoutlen=500 " Set timeout for statusline redraw on escape
 au BufWritePost * AirlineRefresh
 let g:airline_powerline_fonts = 1
@@ -248,26 +256,18 @@ let g:airline_mode_map = {
     \ 't'  : 'T',
     \ }
 au VimEnter * AirlineRefresh
+" }}}
 
-" vim-gitgutter settings
+" vim-gitgutter settings {{{
 let g:gitgutter_sign_column_always = 1
 let g:gitgutter_realtime = 1
 let g:gitgutter_eager = 1
 highlight clear LineNr
 highlight clear SignColumn
 set numberwidth=1 " reduce extra spaces between signs and line numbers
+" }}}
 
-
-" git keybindings (both vim-fugitive and vim-gitgutter)
-nmap <leader>ga :Silent Git add %<cr>:w<cr>
-nmap <leader>gv :Gitv<cr>
-nmap <leader>ha <Plug>GitGutterStageHunk
-nmap <leader>hr <Plug>GitGutterRevertHunk
-nmap <leader>hn <Plug>GitGutterNextHunk
-nmap <leader>hp <Plug>GitGutterPrevHunk
-
-
-" vim-easymotion settings
+" vim-easymotion settings {{{
 hi link EasyMotionTarget DiffChange
 hi link EasyMotionTarget2First DiffChange
 hi link EasyMotionTarget2Second DiffAdd
@@ -280,9 +280,10 @@ map <leader><leader>h <Plug>(easymotion-linebackward)
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 
+" }}}
 
 if has('nvim')
-  " neomake settings
+  " neomake settings {{{
   autocmd! BufWritePost * Neomake
   let g:neomake_open_list = 0
   let g:neomake_verbose = 0
@@ -313,8 +314,9 @@ if has('nvim')
   let g:neomake_ruby_enabled_makers = ['rubocop']
   let g:neomake_python_enabled_makers = ['flake8']
   let g:neomake_chef_enabled_makers = ['foodcritic']
+  " }}}
 else
-  " syntastic settings
+  " syntastic settings {{{
   set statusline+=%#warningmsg#
   set statusline+=%{SyntasticStatuslineFlag()}
   set statusline+=%*
@@ -329,32 +331,37 @@ else
   nmap <script> <silent> <leader>\ :call ToggleLocationList()<CR>
   nmap <leader>[ :lprevious<cr>
   nmap <leader>] :lnext<cr>
+  " }}}
 endif
 
-" togglelist settings
+" togglelist settings {{{
 let g:toggle_list_no_mappings = 1
+" }}}
 
-" deoplete/neocomplete setting
+" deoplete/neocomplete settings {{{
 let g:deoplete#enable_at_startup = 1
 let g:neocomplete#enable_at_startup = 1
 set completeopt+=noinsert,noselect
 imap <expr><C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
 imap <expr><C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
-function! s:is_whitespace() "{{{
+function! s:is_whitespace()
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~? '\s'
-endfunction "}}}
+endfunction
+" }}}
 
-" python-mode settings
+" python-mode settings {{{
 let g:pymode_lint = 0
 let g:pymode_rope = 0
 let g:pymode_doc = 0
 let g:pymode_run = 0
+" }}}
 
-" BufExplorer settings
+" BufExplorer settings {{{
 nmap <silent> <C-b> :ToggleBufExplorer<cr> g:pymode_rope_completion = 0
+" }}}
 
-" fzf settings
+" fzf settings {{{
 nnoremap <c-p> :Files<cr>
 nnoremap <c-f> :BLines<cr>
 nnoremap <c-g> :GitFiles<cr>
@@ -364,8 +371,9 @@ let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
+" }}}
 
-" startify settings
+" startify settings {{{
 let g:startify_list_order = [
       \ ['   MRU (dir)'], 'dir',
       \ ['   MRU'], 'files',
@@ -379,34 +387,42 @@ let g:startify_change_to_dir = 1
 let g:startify_change_to_vcs_root = 1
 let g:startify_session_persistence = 1
 let g:startify_session_sort = 1
+" }}}
 
-" CFEngine plugin settings
+" CFEngine plugin settings {{{
 let g:EnableCFE3KeywordAbbreviations=1
+" }}}
 
-" Tabularize settings
+" Tabularize settings {{{
 command! -range CFalign <line1>,<line2>Tabularize /=>/r1l1l1
+" }}}
 
-" vim-gist settings
+" vim-gist settings {{{
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
 let g:gist_clip_command = 'pbcopy'
+" }}}
 
-" delimitMate settings
+" delimitMate settings {{{
 let g:delimitMate_expand_space = 1
 let g:delimitMate_jump_expansion = 1
+" }}}
 
-" vim-stay settings
+" vim-stay settings {{{
 set viewoptions=cursor,folds,slash,unix
+" }}}
 
-" vim-better-whitespace settings
+" vim-better-whitespace settings {{{
 command CurrentLineWhitespaceOff soft
+" }}}
 
-" vim-terraform settings
+" vim-terraform settings {{{
 let g:terraform_align = 1
+" }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" User interface
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+
+" User interface {{{
 
 " Set some built-in settings
 set number " show line numbers and set color
@@ -435,7 +451,8 @@ if !has('nvim')
 endif
 set cursorline " Highlight current line
 set noshowmode " Disable --INSERT-- text in command line. Reproduced in airline
-
+set foldenable " Enable folding
+syntax enable " Enable syntax highlighting
 
 " change cursor shape based on mode (for iTerm2)
 if has('nvim')
@@ -445,21 +462,10 @@ else
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
-" Define text expansions
-iab #ube #!/usr/bin/env
-inoremap ds""  """<CR>"""O
-inoremap {{  {<CR>}<Esc>O
+" }}}
 
-" executes current file (if executable)
-nnoremap <leader>x :!%:p<cr>
+" Vim files, backups and undo {{{
 
-" stop <Esc> from moving the cursor
-inoremap <Esc> <Esc>`^
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vim files, backups and undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 if isdirectory($HOME . '/.vim/backup') == 0
   :silent !mkdir -p ~/.vim/backup >/dev/null 2>&1
@@ -479,10 +485,9 @@ if exists("+undofile")
   set undofile
 endif
 
+" }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Text, tab and indent related {{{
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
@@ -505,7 +510,23 @@ set nolist
 set textwidth=0
 set colorcolumn=+1,+21,+41
 
-" Configure per-filetype settings
+" use system clipboard for main register (unless specified with '/")
+set clipboard^=unnamed
+
+" Define text expansions
+iab #ube #!/usr/bin/env
+inoremap ds""  """<CR>"""O
+
+" executes current file (if executable)
+nnoremap <leader>x :!%:p<cr>
+
+" stop <Esc> from moving the cursor
+inoremap <Esc> <Esc>`^
+
+" }}}
+
+" Per-filetype settings {{{
+
 " based on filenames
 au BufRead,BufNewFile {Berksfile,Vagrantfile,Gemfile} setlocal filetype=ruby
 au BufRead,BufNewFile *.cf       setlocal filetype=cf3
@@ -513,6 +534,7 @@ au BufRead,BufNewFile *.pp       setlocal filetype=ruby
 au BufRead,BufNewFile *.fountain setlocal filetype=fountain textwidth=0
 au BufRead,BufNewFile term://*   setlocal nocursorline colorcolumn=0
 au BufRead,BufNewFile *.link     setlocal ft=
+
 " based on filetypes
 au FileType {git*}      setlocal commentstring=\%%s
 au FileType gitcommit   normal ggjO
@@ -522,27 +544,15 @@ au FileType java        setlocal shiftwidth=4 tabstop=4
 au FileType yaml        setlocal fdl=1 fdm=indent
 au FileType markdown    setlocal textwidth=0
 au FileType python      setlocal sw=4 ts=4 tw=79
+au FileType python      imap <C-p> import ipdb; ipdb.set_trace()
 au FileType cf3         setlocal cms=#\ %s si fdm=indent fdl=1 tw=0
 au FileType sh          setlocal sw=2 ts=2 tw=79
 au FileType vim         setlocal tw=0
 au FileType terraform   setlocal tw=0 sw=4 ts=4 fdm=indent fdl=0
+" }}}
 
-" Java settings
-let java_mark_braces_in_parens_as_errors=1
-let java_highlight_all=1
-let java_highlight_debug=1
-let java_ignore_javadoc=1
-let java_highlight_java_lang_ids=1
-let java_highlight_functions="style"
-let java_minlines=150
+" Moving around, tabs, windows and buffers {{{
 
-" use system clipboard for main register (unless specified with '/")
-set clipboard^=unnamed
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Moving around, tabs, windows and buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Treat long lines as break lines (useful when moving around in them)
 "map j gj
 "map k gk
@@ -552,6 +562,8 @@ nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
+
+" remap Terminal exit binding for nvim
 if has('nvim')
   tnoremap <C-\><C-\> <C-\><C-n>
 endif
@@ -577,11 +589,9 @@ map <leader>7 7gt
 map <leader>8 8gt
 map <leader>9 9gt
 
-
 " Open splits
 nmap <Leader>s :sp<cr>
 nmap <Leader>v :vsp<cr>
-
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
@@ -607,10 +617,9 @@ if !has('nvim')
   set viminfo^=%
 endif
 
+" }}}
 
-""""""""""""""""""""""""""""""
-" => Status line
-""""""""""""""""""""""""""""""
+" Status line {{{
 " Always show the status line
 set laststatus=2	" always display the status line
 set showtabline=1
@@ -651,17 +660,11 @@ set statusline +=%2*%4v\ \ %*           "virtual column number
 set statusline +=%1*0x%04B\ %*          "character under cursor
 
 
+" }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"function! CmdLine(str)
-"    exe "menu Foo.Bar :" . a:str
-"    emenu Foo.Bar
-"    unmenu Foo
-"endfunction
+" Functions {{{
 
-function! VisualSelection(direction, extra_filter) range
+function! VisualSelection(direction, extra_filter) range "{{{
     let l:saved_reg = @"
     execute "normal! vgvy"
 
@@ -680,11 +683,9 @@ function! VisualSelection(direction, extra_filter) range
 
     let @/ = l:pattern
     let @" = l:saved_reg
-endfunction
+endfunction " }}}
 
-
-
-" Don't close window, when deleting a buffer
+" Don't close window, when deleting a buffer " {{{
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
    let l:currentBufNum = bufnr("%")
@@ -704,9 +705,10 @@ function! <SID>BufcloseCloseIt()
      execute("bdelete! ".l:currentBufNum)
    endif
 endfunction
+" }}}
 
-" Eatchar and Getchar functions for CFEngine
-fun! Getchar()
+" Eatchar and Getchar functions for CFEngine {{{
+function! Getchar()
   let c = getchar()
   if c != 0
     let c = nr2char(c)
@@ -714,15 +716,14 @@ fun! Getchar()
   return c
 endfun
 
-fun! Eatchar(pat)
+function! Eatchar(pat)
    let c = Getchar()
    return (c =~ a:pat) ? '' : c
 endfun
+" }}}
 
+" }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Local settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load local config (should always be last)
 if filereadable(glob("~/.vimrc.local"))
   source ~/.vimrc.local
