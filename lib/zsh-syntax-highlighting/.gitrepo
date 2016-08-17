@@ -6,6 +6,6 @@
 [subrepo]
 	remote = git@github.com:zsh-users/zsh-syntax-highlighting.git
 	branch = master
-	commit = 4ad311ec0a6837b7c83bcfd1a1bf12cceb03f363
-	parent = 7e021012c1298dc60ab6bda2e4c41d15df71283d
+	commit = 11c908196700c00c4662295f44747a5826615c4b
+	parent = 14f6c803906f56bf47745fd8f9feb49575b06930
 	cmdver = 0.3.0
