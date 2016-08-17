@@ -18,7 +18,7 @@ type Range struct {
 
 // Token contains the tokenized part of the strings and its prefix length
 type Token struct {
-	text         []rune
+	text         util.Chars
 	prefixLength int
 	trimLength   int
 }
@@ -75,15 +75,15 @@ func ParseRange(str *string) (Range, bool) {
 	return newRange(n, n), true
 }
 
-func withPrefixLengths(tokens [][]rune, begin int) []Token {
+func withPrefixLengths(tokens []util.Chars, begin int) []Token {
 	ret := make([]Token, len(tokens))
 
 	prefixLength := begin
 	for idx, token := range tokens {
 		// Need to define a new local variable instead of the reused token to take
 		// the pointer to it
-		ret[idx] = Token{token, prefixLength, util.TrimLen(token)}
-		prefixLength += len(token)
+		ret[idx] = Token{token, prefixLength, token.TrimLength()}
+		prefixLength += token.Length()
 	}
 	return ret
 }
@@ -94,59 +94,60 @@ const (
 	awkWhite
 )
 
-func awkTokenizer(input []rune) ([][]rune, int) {
+func awkTokenizer(input util.Chars) ([]util.Chars, int) {
 	// 9, 32
-	ret := [][]rune{}
-	str := []rune{}
+	ret := []util.Chars{}
 	prefixLength := 0
 	state := awkNil
-	for _, r := range input {
+	numChars := input.Length()
+	begin := 0
+	end := 0
+	for idx := 0; idx < numChars; idx++ {
+		r := input.Get(idx)
 		white := r == 9 || r == 32
 		switch state {
 		case awkNil:
 			if white {
 				prefixLength++
 			} else {
-				state = awkBlack
-				str = append(str, r)
+				state, begin, end = awkBlack, idx, idx+1
 			}
 		case awkBlack:
-			str = append(str, r)
+			end = idx + 1
 			if white {
 				state = awkWhite
 			}
 		case awkWhite:
 			if white {
-				str = append(str, r)
+				end = idx + 1
 			} else {
-				ret = append(ret, str)
-				state = awkBlack
-				str = []rune{r}
+				ret = append(ret, input.Slice(begin, end))
+				state, begin, end = awkBlack, idx, idx+1
 			}
 		}
 	}
-	if len(str) > 0 {
-		ret = append(ret, str)
+	if begin < end {
+		ret = append(ret, input.Slice(begin, end))
 	}
 	return ret, prefixLength
 }
 
 // Tokenize tokenizes the given string with the delimiter
-func Tokenize(runes []rune, delimiter Delimiter) []Token {
+func Tokenize(text util.Chars, delimiter Delimiter) []Token {
 	if delimiter.str == nil && delimiter.regex == nil {
 		// AWK-style (\S+\s*)
-		tokens, prefixLength := awkTokenizer(runes)
+		tokens, prefixLength := awkTokenizer(text)
 		return withPrefixLengths(tokens, prefixLength)
 	}
 
-	var tokens []string
 	if delimiter.str != nil {
-		tokens = strings.Split(string(runes), *delimiter.str)
-		for i := 0; i < len(tokens)-1; i++ {
-			tokens[i] = tokens[i] + *delimiter.str
-		}
-	} else if delimiter.regex != nil {
-		str := string(runes)
+		return withPrefixLengths(text.Split(*delimiter.str), 0)
+	}
+
+	// FIXME performance
+	var tokens []string
+	if delimiter.regex != nil {
+		str := text.ToString()
 		for len(str) > 0 {
 			loc := delimiter.regex.FindStringIndex(str)
 			if loc == nil {
@@ -157,9 +158,9 @@ func Tokenize(runes []rune, delimiter Delimiter) []Token {
 			str = str[last:]
 		}
 	}
-	asRunes := make([][]rune, len(tokens))
+	asRunes := make([]util.Chars, len(tokens))
 	for i, token := range tokens {
-		asRunes[i] = []rune(token)
+		asRunes[i] = util.RunesToChars([]rune(token))
 	}
 	return withPrefixLengths(asRunes, 0)
 }
@@ -167,7 +168,7 @@ func Tokenize(runes []rune, delimiter Delimiter) []Token {
 func joinTokens(tokens []Token) []rune {
 	ret := []rune{}
 	for _, token := range tokens {
-		ret = append(ret, token.text...)
+		ret = append(ret, token.text.ToRunes()...)
 	}
 	return ret
 }
@@ -175,7 +176,7 @@ func joinTokens(tokens []Token) []rune {
 func joinTokensAsRunes(tokens []Token) []rune {
 	ret := []rune{}
 	for _, token := range tokens {
-		ret = append(ret, token.text...)
+		ret = append(ret, token.text.ToRunes()...)
 	}
 	return ret
 }
@@ -185,19 +186,19 @@ func Transform(tokens []Token, withNth []Range) []Token {
 	transTokens := make([]Token, len(withNth))
 	numTokens := len(tokens)
 	for idx, r := range withNth {
-		part := []rune{}
+		parts := []util.Chars{}
 		minIdx := 0
 		if r.begin == r.end {
 			idx := r.begin
 			if idx == rangeEllipsis {
-				part = append(part, joinTokensAsRunes(tokens)...)
+				parts = append(parts, util.RunesToChars(joinTokensAsRunes(tokens)))
 			} else {
 				if idx < 0 {
 					idx += numTokens + 1
 				}
 				if idx >= 1 && idx <= numTokens {
 					minIdx = idx - 1
-					part = append(part, tokens[idx-1].text...)
+					parts = append(parts, tokens[idx-1].text)
 				}
 			}
 		} else {
@@ -224,17 +225,32 @@ func Transform(tokens []Token, withNth []Range) []Token {
 			minIdx = util.Max(0, begin-1)
 			for idx := begin; idx <= end; idx++ {
 				if idx >= 1 && idx <= numTokens {
-					part = append(part, tokens[idx-1].text...)
+					parts = append(parts, tokens[idx-1].text)
 				}
 			}
 		}
+		// Merge multiple parts
+		var merged util.Chars
+		switch len(parts) {
+		case 0:
+			merged = util.RunesToChars([]rune{})
+		case 1:
+			merged = parts[0]
+		default:
+			runes := []rune{}
+			for _, part := range parts {
+				runes = append(runes, part.ToRunes()...)
+			}
+			merged = util.RunesToChars(runes)
+		}
+
 		var prefixLength int
 		if minIdx < numTokens {
 			prefixLength = tokens[minIdx].prefixLength
 		} else {
 			prefixLength = 0
 		}
-		transTokens[idx] = Token{part, prefixLength, util.TrimLen(part)}
+		transTokens[idx] = Token{merged, prefixLength, merged.TrimLength()}
 	}
 	return transTokens
 }

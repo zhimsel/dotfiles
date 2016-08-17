@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	"github.com/junegunn/fzf/src/curses"
+	"github.com/junegunn/fzf/src/util"
 )
 
 func TestDelimiterRegex(t *testing.T) {
@@ -42,24 +43,24 @@ func TestDelimiterRegex(t *testing.T) {
 
 func TestDelimiterRegexString(t *testing.T) {
 	delim := delimiterRegexp("*")
-	tokens := Tokenize([]rune("-*--*---**---"), delim)
+	tokens := Tokenize(util.RunesToChars([]rune("-*--*---**---")), delim)
 	if delim.regex != nil ||
-		string(tokens[0].text) != "-*" ||
-		string(tokens[1].text) != "--*" ||
-		string(tokens[2].text) != "---*" ||
-		string(tokens[3].text) != "*" ||
-		string(tokens[4].text) != "---" {
+		tokens[0].text.ToString() != "-*" ||
+		tokens[1].text.ToString() != "--*" ||
+		tokens[2].text.ToString() != "---*" ||
+		tokens[3].text.ToString() != "*" ||
+		tokens[4].text.ToString() != "---" {
 		t.Errorf("%s %s %d", delim, tokens, len(tokens))
 	}
 }
 
 func TestDelimiterRegexRegex(t *testing.T) {
 	delim := delimiterRegexp("--\\*")
-	tokens := Tokenize([]rune("-*--*---**---"), delim)
+	tokens := Tokenize(util.RunesToChars([]rune("-*--*---**---")), delim)
 	if delim.str != nil ||
-		string(tokens[0].text) != "-*--*" ||
-		string(tokens[1].text) != "---*" ||
-		string(tokens[2].text) != "*---" {
+		tokens[0].text.ToString() != "-*--*" ||
+		tokens[1].text.ToString() != "---*" ||
+		tokens[2].text.ToString() != "*---" {
 		t.Errorf("%s %d", tokens, len(tokens))
 	}
 }
@@ -352,14 +353,14 @@ func TestDefaultCtrlNP(t *testing.T) {
 	check([]string{hist, "--bind=ctrl-p:accept"}, curses.CtrlP, actAccept)
 }
 
-func TestToggle(t *testing.T) {
-	optsFor := func(words ...string) *Options {
-		opts := defaultOptions()
-		parseOptions(opts, words)
-		postProcessOptions(opts)
-		return opts
-	}
+func optsFor(words ...string) *Options {
+	opts := defaultOptions()
+	parseOptions(opts, words)
+	postProcessOptions(opts)
+	return opts
+}
 
+func TestToggle(t *testing.T) {
 	opts := optsFor()
 	if opts.ToggleSort {
 		t.Error()
@@ -373,5 +374,33 @@ func TestToggle(t *testing.T) {
 	opts = optsFor("--bind=a:toggle-sort", "--bind=a:up")
 	if opts.ToggleSort {
 		t.Error()
+	}
+}
+
+func TestPreviewOpts(t *testing.T) {
+	opts := optsFor()
+	if !(opts.Preview.command == "" &&
+		opts.Preview.hidden == false &&
+		opts.Preview.position == posRight &&
+		opts.Preview.size.percent == true &&
+		opts.Preview.size.size == 50) {
+		t.Error()
+	}
+	opts = optsFor("--preview", "cat {}", "--preview-window=left:15:hidden")
+	if !(opts.Preview.command == "cat {}" &&
+		opts.Preview.hidden == true &&
+		opts.Preview.position == posLeft &&
+		opts.Preview.size.percent == false &&
+		opts.Preview.size.size == 15+2) {
+		t.Error(opts.Preview)
+	}
+
+	opts = optsFor("--preview-window=left:15:hidden", "--preview-window=down")
+	if !(opts.Preview.command == "" &&
+		opts.Preview.hidden == false &&
+		opts.Preview.position == posDown &&
+		opts.Preview.size.percent == true &&
+		opts.Preview.size.size == 50) {
+		t.Error(opts.Preview)
 	}
 }
