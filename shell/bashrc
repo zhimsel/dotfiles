@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # bash configuration file
 # written by Zach Himsel, 2013,2015
 # https://github.com/zhimsel/dotfiles
@@ -43,53 +45,15 @@ pathadd ~/.rvm/bin # Add RVM to PATH for scripting
 
 source ~/.git-subrepo/.rc
 
-
 ###########################################
 # Aliases and functions
 ###########################################
 
-alias vi=vim
-alias fucking="sudo"
-alias please="sudo !!"
-alias cdd="cd $OLDPWD"
-alias cls="clear"
-alias sc="systemctl"
-
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ......="cd ../../../../.."
-
 function mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
-
-# enable color support of ls/grep and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
 
 # some more ls aliases
 alias ll='ls -lh'
 alias la='ls -lah'
-
-alias py='python' # alias py to python
-
-# get external IP address
-alias ipecho='wget -qO- http://ipecho.net/plain ; echo'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Source extrenal bash_aliases file
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
 
 
 ###########################################
@@ -119,71 +83,6 @@ shopt -s checkwinsize
 case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
-
-
-
-###########################################
-# Autocompletion settings
-###########################################
-
-# enable programmable completion features
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
-
-# source user's bash_complete (if it exists)
-if [ -f ~/.bash_complete ]; then
-. ~/.bash_complete
-fi
-
-# set up AWS completions
-if [ -f $(which aws_completer) ]; then
-     complete -C $(which aws_completer) aws
-fi
-
-
-
-###########################################
-# Agent settings
-###########################################
-
-# Set up SSH agent
-env=~/.ssh/agent.env
-agent_is_running() {
-    if [ "$SSH_AUTH_SOCK" ]; then
-        # ssh-add returns:
-        #   0 = agent running, has keys
-        #   1 = agent running, no keys
-        #   2 = agent not running
-        ssh-add -l >/dev/null 2>&1 || [ $? -eq 1 ]
-    else
-        false
-    fi
-}
-agent_has_keys() {
-    ssh-add -l >/dev/null 2>&1
-}
-agent_load_env() {
-    . "$env" >/dev/null
-}
-agent_start() {
-    (umask 077; ssh-agent >"$env")
-    . "$env" >/dev/null
-}
-if ! agent_is_running; then
-    agent_load_env
-fi
-if ! agent_is_running; then
-    agent_start
-    ssh-add
-elif ! agent_has_keys; then
-    ssh-add
-fi
-unset env
 
 
 ###########################################
