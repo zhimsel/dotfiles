@@ -1,24 +1,50 @@
+#!/usr/bin/env zsh
+# vim: foldmethod=marker
+
 # zsh configuration
 # written by Zach Himsel, 2014-2016
 # https://github.com/zhimsel/dotfiles
 
+# This file is written with vim foldmarkers to enable easier viewing
+# It's designed to be viewed/edited from within vim. Each section has
+# fold markers at the beginning and end, so you can easily close each
+# section to find what you're looking for
 
-#############################################
-# general settings
-#############################################
+# General Settings {{{
 
 umask 077 # set default umask
+
 if [[ -x $(which nvim) ]]; then # set text editor
   export EDITOR="nvim"
 else
   export EDITOR="vim"
 fi
 
-# set $PATH
+# $PATH
 export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin"
 export PATH="$HOME/bin:$PATH"
 
-# load oh-my-zsh and it's plugins
+# Misc settings
+COMPLETION_WAITING_DOTS="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+HIST_STAMPS="yyyy.mm.dd"
+setopt PATH_DIRS
+setopt EXTENDED_GLOB
+setopt LIST_PACKED
+unsetopt CORRECT_ALL
+setopt CORRECT
+unsetopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_MINUS
+setopt EXTENDED_HISTORY
+unsetopt AUTO_CD
+MAILCHECK=0
+
+# }}}
+
+# Plugins {{{
+
+# Load Oh-My-ZSH and it's plugins
 plugins=( \
           adb \
           brew \
@@ -41,33 +67,37 @@ export DISABLE_AUTO_UPDATE="true"
 export ZSH=$HOME/.zsh/oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# load normal zsh plugins
+# Load normal zsh plugins/RCs
 source $HOME/.zsh/opp/opp.zsh
 source $HOME/.zsh/opp/opp/*.zsh
 source $HOME/.zsh/git-prompt/git-prompt.plugin.zsh
 source $HOME/.zsh/completion-generator/zsh-completion-generator.plugin.zsh
-
-# load other plugins/RCs
 source $HOME/.git-subrepo/.rc
+# }}}
 
-# setup autocomplete
+# Autocomplete {{{
+
+# base zsh autocompletion
 fpath=(~/.zsh/zsh-completions/src $fpath)
 fpath=(~/.zsh/custom-completions $fpath)
 autoload -Uz compinit
 compinit -u
 
-# load bash autocompletions
+# bash autocompletions
 autoload -Uz bashcompinit
 bashcompinit -i
 if [ -f ~/.bash_complete ]; then
 . ~/.bash_complete
 fi
 
-# load aws autocompletions
+# aws autocompletions
 if [ -f "$(which aws_completer)" ]; then
      complete -C $(which aws_completer) aws
 fi
 
+# }}}
+
+# Keybinding Settings {{{
 
 # vi mode
 bindkey -v
@@ -86,34 +116,13 @@ bindkey -M viins '^X,' _history-complete-newer \
                  '^X/' _history-complete-older \
                  '^X`' _bash_complete-word
 
-
 # misc keybindings
 bindkey -s '^e' 'cd ..\n' #go up a directory with ctrl-e
 
+# }}}
 
-# misc settings
-COMPLETION_WAITING_DOTS="true"
-DISABLE_UNTRACKED_FILES_DIRTY="true"
-HIST_STAMPS="yyyy.mm.dd"
-setopt PATH_DIRS
-setopt EXTENDED_GLOB
-setopt LIST_PACKED
-unsetopt CORRECT_ALL
-setopt CORRECT
-unsetopt AUTO_PUSHD
-setopt PUSHD_IGNORE_DUPS
-setopt PUSHD_MINUS
-setopt EXTENDED_HISTORY
-unsetopt AUTO_CD
-MAILCHECK=0
+# Aliases {{{
 
-
-
-#############################################
-# aliases, functions, and modules
-#############################################
-
-# define aliases
 alias s='sudo'
 alias please='sudo $(fc -ln -1)'
 alias fucking='sudo'
@@ -123,6 +132,7 @@ alias tree='tree -I .git'
 alias h='history'
 alias fuck='$(thefuck $(fc -ln -1))'
 alias zrcl='vim ~/.zshrc.local'
+alias vrcl='vim ~/.vimrc.local'
 alias dm='docker-machine'
 alias dme='eval $(docker-machine env default)'
 alias wtp='git worktree prune -v'
@@ -134,23 +144,32 @@ if [[ -x $(which nvim) ]]; then
   alias vi='nvim'
 fi
 
+# }}}
 
-# make and open new directory
-function mkcd () {
+# Functions {{{
+
+# Make and open new directory
+mkcd() { # {{{
   mkdir -p "$1" &&
   eval cd "\"\$$#\""
-}
+} # }}}}
 
+# Delete current directory
+rmwd() { # {{{
+  local current_dir
+  current_dir=$(pwd)
+  cd .. || exit 1
+  rm -rf $current_dir
+} # }}}
 
-# create new blank executable file
-function xtouch () {
+# Create new blank executable file
+xtouch() { # {{{
   touch "$@" &&
   eval chmod +x "$@"
-}
+} # }}}
 
-
-# new cookbook function
-newcook() {
+# New cookbook function
+newcook() { # {{{
   if [ $1 ] ; then
     git clone git@github.com:zhimsel/skeleton-cookbook.git $1
     cd $1; rm -rf .git/
@@ -158,11 +177,10 @@ newcook() {
   else
     echo "Need the name of the cookbook."
   fi
-}
+} # }}}
 
-
-# interactive renaming
-imv() {
+# Interactive renaming
+imv() { # {{{
   local src dst
   for src; do
     [[ -e $src ]] || { print -u2 "$src does not exist"; continue }
@@ -170,42 +188,28 @@ imv() {
     vared dst
     [[ $src != $dst ]] && mkdir -p $dst:h && mv -n $src $dst
   done
-}
+} # }}}
 
-
-# delete current directory
-rmwd() {
-  local current_dir
-  current_dir=$(pwd)
-  cd .. || exit 1
-  rm -rf $current_dir
-}
-
-
-# new virtualenv
-newvenv3() {
+# Create new virtualenvs
+newvenv3() { # {{{
   [[ -e .venv ]] || virtualenv -p python3 .venv
   echo "source \$(dirname \$0)/.venv/bin/activate" > .autoenv.zsh
   echo "deactivate" > .autoenv_leave.zsh
   source .venv/bin/activate
   pip install --upgrade pip
   echo "Created new venv with $(python -V)"
-}
-
-newvenv2() {
+} # }}}
+newvenv2() { # {{{
   [[ -e .venv ]] || virtualenv -p python2.7 .venv
   echo "source \$(dirname \$0)/.venv/bin/activate" > .autoenv.zsh
   echo "deactivate" > .autoenv_leave.zsh
   source .venv/bin/activate
   pip install --upgrade pip
   echo "Created new venv with $(python -V)"
-}
+} # }}}
 
-# load zmv module
-autoload -U zmv
-
-# add a new git worktree
-wt () {
+# Manage git worktrees
+wt () { # {{{
   if [[ -z $1 ]]; then
     echo "Please specify the branch to check out"
     return 1
@@ -229,10 +233,8 @@ wt () {
       cd "$wt_path" || return 1
     fi
   fi
-}
-
-# remove git worktree
-wtr () {
+} # }}}
+wtr () { # {{{
   if [[ -f .git ]]; then
     if [[ "$(git status)" == *clean* ]]; then
       main_wt="$(cat .git | cut -d' ' -f2)/../../.."
@@ -249,11 +251,10 @@ wtr () {
     echo "We don't seem to be in a git worktree"
     return 1
   fi
-}
+} # }}}
 
-#
-# call this command to cleanup homebrew's cask
-cask-clean () {
+# cleanup homebrew's cask
+cask-clean () { # {{{
   while read cask; do
     caskBasePath="/opt/homebrew-cask/Caskroom"
     local caskDirectory="$caskBasePath/$cask"
@@ -265,19 +266,16 @@ cask-clean () {
         done <<< "$versionsToRemove"
     fi
   done <<< "$(brew cask list)"
-}
+} # }}}
 
+# }}}
 
-
-#############################################
-# visual/theme settings
-#############################################
+# Visual/Theme Settings {{{
 
 # set theme
 ZSH_THEME=""
 
-
-# prompt settings
+# Prompt Settings {{{
 ZSH_THEME_GIT_PROMPT_NOCACHE="1"
 ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
 function precmd {
@@ -293,9 +291,9 @@ PROMPT="${current_time} ${user_name} at ${host_name} in ${current_dir} ${git_sta
 ${command_prompt} "
 }
 RPROMPT=""
+# }}}
 
-
-# Show a different cursor for different vim modes
+# Show a different cursor for different vim modes {{{
 function zle-keymap-select zle-line-init
 {
     # change cursor shape in iTerm2
@@ -329,18 +327,16 @@ function zle-line-finish
 zle -N zle-line-init
 zle -N zle-line-finish
 zle -N zle-keymap-select
+# }}}
 
+# }}}
 
+# Credential Agents {{{
 
-#############################################
-# credential agent setup
-#############################################
-
-# gpg-agent setup
+# gpg-agent
 export GPGKEY=F7D2C279
 
-
-# ssh-agent setup
+# ssh-agent {{{
 env=~/.ssh/agent.env
 
 agent_is_running() {
@@ -380,23 +376,22 @@ elif ! agent_has_keys; then
 fi
 
 unset env
+# }}}
 
+# }}}
 
+# Local Settings {{{
 
-#############################################
-# local settings
-#############################################
-#
 # load machine-specific options, should always be last to prevent clobbering
 if [ -f ~/.zshrc.local ]; then
      source ~/.zshrc.local
 fi
 
+# }}}
 
-#############################################
-# load some stuff that needs to go last
-#############################################
+# Load some stuff that needs to go last {{{
 
+# set up zsh-syntax-highlighting
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # set up fzf
@@ -418,3 +413,5 @@ ti_file="$HOME/.terminfo_$TERM.fixed"
 touch "$ti_file"
 infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > "$ti_file" || echo "infocomp failed"
 tic $ti_file
+
+# }}}
