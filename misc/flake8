@@ -3,3 +3,4 @@ max-line-length = 80
 exclude = tests/*
 max-complexity = 20
 ignore = E702,C901
+builtins = unicode
