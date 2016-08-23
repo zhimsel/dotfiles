@@ -6,6 +6,6 @@
 [subrepo]
 	remote = git@github.com:junegunn/fzf.git
 	branch = master
-	commit = 935272824ebb7ec6de3cd981caf71c8b5208f9b3
-	parent = 41cafe1beeecaea3bfa0670387793d79c78184de
+	commit = f958c9daf59439240c36d74f42187333c23bd8a4
+	parent = 75894f60905f720b8f031bf90796931026295b2b
 	cmdver = 0.3.0

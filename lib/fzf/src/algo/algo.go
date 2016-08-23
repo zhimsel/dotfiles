@@ -22,21 +22,14 @@ func indexAt(index int, max int, forward bool) int {
 	return max - index - 1
 }
 
-func runeAt(text util.Chars, index int, max int, forward bool) rune {
-	if forward {
-		return text.Get(index)
-	}
-	return text.Get(max - index - 1)
-}
-
 // Result conatins the results of running a match function.
 type Result struct {
-	Start int32
-	End   int32
+	Start int
+	End   int
 
 	// Items are basically sorted by the lengths of matched substrings.
 	// But we slightly adjust the score with bonus for better results.
-	Bonus int32
+	Bonus int
 }
 
 type charClass int
@@ -49,8 +42,8 @@ const (
 	charNumber
 )
 
-func evaluateBonus(caseSensitive bool, text util.Chars, pattern []rune, sidx int, eidx int) int32 {
-	var bonus int32
+func evaluateBonus(caseSensitive bool, text util.Chars, pattern []rune, sidx int, eidx int) int {
+	var bonus int
 	pidx := 0
 	lenPattern := len(pattern)
 	consecutive := false
@@ -70,7 +63,7 @@ func evaluateBonus(caseSensitive bool, text util.Chars, pattern []rune, sidx int
 			class = charNonWord
 		}
 
-		var point int32
+		var point int
 		if prevClass == charNonWord && class != charNonWord {
 			// Word boundary
 			point = 2
@@ -136,7 +129,7 @@ func FuzzyMatch(caseSensitive bool, forward bool, text util.Chars, pattern []run
 	lenPattern := len(pattern)
 
 	for index := 0; index < lenRunes; index++ {
-		char := runeAt(text, index, lenRunes, forward)
+		char := text.Get(indexAt(index, lenRunes, forward))
 		// This is considerably faster than blindly applying strings.ToLower to the
 		// whole string
 		if !caseSensitive {
@@ -164,7 +157,7 @@ func FuzzyMatch(caseSensitive bool, forward bool, text util.Chars, pattern []run
 	if sidx >= 0 && eidx >= 0 {
 		pidx--
 		for index := eidx - 1; index >= sidx; index-- {
-			char := runeAt(text, index, lenRunes, forward)
+			char := text.Get(indexAt(index, lenRunes, forward))
 			if !caseSensitive {
 				if char >= 'A' && char <= 'Z' {
 					char += 32
@@ -188,7 +181,7 @@ func FuzzyMatch(caseSensitive bool, forward bool, text util.Chars, pattern []run
 			sidx, eidx = lenRunes-eidx, lenRunes-sidx
 		}
 
-		return Result{int32(sidx), int32(eidx),
+		return Result{sidx, eidx,
 			evaluateBonus(caseSensitive, text, pattern, sidx, eidx)}
 	}
 	return Result{-1, -1, 0}
@@ -215,7 +208,7 @@ func ExactMatchNaive(caseSensitive bool, forward bool, text util.Chars, pattern 
 
 	pidx := 0
 	for index := 0; index < lenRunes; index++ {
-		char := runeAt(text, index, lenRunes, forward)
+		char := text.Get(indexAt(index, lenRunes, forward))
 		if !caseSensitive {
 			if char >= 'A' && char <= 'Z' {
 				char += 32
@@ -235,7 +228,7 @@ func ExactMatchNaive(caseSensitive bool, forward bool, text util.Chars, pattern 
 					sidx = lenRunes - (index + 1)
 					eidx = lenRunes - (index - lenPattern + 1)
 				}
-				return Result{int32(sidx), int32(eidx),
+				return Result{sidx, eidx,
 					evaluateBonus(caseSensitive, text, pattern, sidx, eidx)}
 			}
 		} else {
@@ -262,7 +255,7 @@ func PrefixMatch(caseSensitive bool, forward bool, text util.Chars, pattern []ru
 		}
 	}
 	lenPattern := len(pattern)
-	return Result{0, int32(lenPattern),
+	return Result{0, lenPattern,
 		evaluateBonus(caseSensitive, text, pattern, 0, lenPattern)}
 }
 
@@ -286,7 +279,7 @@ func SuffixMatch(caseSensitive bool, forward bool, text util.Chars, pattern []ru
 	lenPattern := len(pattern)
 	sidx := trimmedLen - lenPattern
 	eidx := trimmedLen
-	return Result{int32(sidx), int32(eidx),
+	return Result{sidx, eidx,
 		evaluateBonus(caseSensitive, text, pattern, sidx, eidx)}
 }
 
@@ -301,7 +294,7 @@ func EqualMatch(caseSensitive bool, forward bool, text util.Chars, pattern []run
 		runesStr = strings.ToLower(runesStr)
 	}
 	if runesStr == string(pattern) {
-		return Result{0, int32(len(pattern)), 0}
+		return Result{0, len(pattern), 0}
 	}
 	return Result{-1, -1, 0}
 }
