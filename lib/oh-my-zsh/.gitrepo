@@ -6,6 +6,6 @@
 [subrepo]
 	remote = git@github.com:robbyrussell/oh-my-zsh.git
 	branch = master
-	commit = 9e81b79d90606bc0afb6ce17867ff4d42df3ab37
-	parent = 6ed4e68aaf99b912dcda4867cf503ca31280529a
+	commit = 3c8a33364f64975970839eeded921c3ed85ad507
+	parent = 54fd3df246b41983c22ff025a550388d6791791e
 	cmdver = 0.3.0
