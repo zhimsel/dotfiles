@@ -39,6 +39,7 @@ Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'neilhwatson/vim_cf3', { 'for': 'cf3' }
 Plug 'klen/python-mode', { 'for': 'python' }
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
+Plug 'zhimsel/terraform-vim-folding', { 'for': 'terraform' }
 " }}}
 
 " Interface plugins {{{
@@ -548,7 +549,7 @@ au FileType python      imap <C-p> import ipdb; ipdb.set_trace()
 au FileType cf3         setlocal cms=#\ %s si fdm=indent fdl=1 tw=0
 au FileType sh          setlocal sw=2 ts=2 tw=79
 au FileType vim         setlocal tw=0
-au FileType terraform   setlocal tw=0 sw=4 ts=4 fdm=indent fdl=0
+au FileType terraform   setlocal tw=0 sw=4 ts=4 fdl=0
 " }}}
 
 " Moving around, tabs, windows and buffers {{{
