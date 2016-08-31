@@ -200,6 +200,9 @@ nmap <leader>hr <Plug>GitGutterRevertHunk
 nmap <leader>hn <Plug>GitGutterNextHunk
 nmap <leader>hp <Plug>GitGutterPrevHunk
 
+" folding binding
+nnoremap <space> za
+
 " }}}
 
 " Plugin settings {{{
