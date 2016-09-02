@@ -198,7 +198,7 @@ mkvenv() { # {{{
     echo "source \$(dirname \$0)/.venv/bin/activate" > .autoenv.zsh
     echo "deactivate" > .autoenv_leave.zsh
     source .venv/bin/activate
-    pip install --upgrade pip neovim ipdb docopt
+    pip install --upgrade pip neovim ipdb docopt flake8
     echo "Created new virtualenv with $(python -V)"
   else
     echo "Please specify which python version with \"newvenv [2,3]\""
