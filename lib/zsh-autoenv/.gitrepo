@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:Tarrasch/zsh-autoenv.git
+	branch = master
+	commit = 998c09addd0c9856fb5a42a6ebb2f90b09f55f89
+	parent = 6018f28420482a24598ab5a4a99096305c3c0a4d
+	cmdver = 0.3.0
