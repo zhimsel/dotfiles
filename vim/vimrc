@@ -22,7 +22,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Syntax plugins {{{
 if has('nvim')
-  Plug 'benekastah/neomake'
+  Plug 'zhimsel/neomake', { 'branch': 'cfengine' }
 else
   Plug 'scrooloose/syntastic'
 endif
