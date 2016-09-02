@@ -192,21 +192,17 @@ imv() { # {{{
 } # }}}
 
 # Create new virtualenvs
-newvenv3() { # {{{
-  [[ -e .venv ]] || virtualenv -p python3 .venv
-  echo "source \$(dirname \$0)/.venv/bin/activate" > .autoenv.zsh
-  echo "deactivate" > .autoenv_leave.zsh
-  source .venv/bin/activate
-  pip install --upgrade pip
-  echo "Created new venv with $(python -V)"
-} # }}}
-newvenv2() { # {{{
-  [[ -e .venv ]] || virtualenv -p python2.7 .venv
-  echo "source \$(dirname \$0)/.venv/bin/activate" > .autoenv.zsh
-  echo "deactivate" > .autoenv_leave.zsh
-  source .venv/bin/activate
-  pip install --upgrade pip
-  echo "Created new venv with $(python -V)"
+mkvenv() { # {{{
+  if [[ $1 =~ '[2,3]' ]]; then
+    [[ -e .venv ]] || virtualenv -p python${1} .venv
+    echo "source \$(dirname \$0)/.venv/bin/activate" > .autoenv.zsh
+    echo "deactivate" > .autoenv_leave.zsh
+    source .venv/bin/activate
+    pip install --upgrade pip neovim ipdb docopt
+    echo "Created new virtualenv with $(python -V)"
+  else
+    echo "Please specify which python version with \"newvenv [2,3]\""
+  fi
 } # }}}
 
 # Manage git worktrees
