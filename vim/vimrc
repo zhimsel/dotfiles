@@ -21,11 +21,7 @@ Plug 'vim-airline/vim-airline-themes'
 " }}}
 
 " Syntax plugins {{{
-if has('nvim')
-  Plug 'zhimsel/neomake', { 'branch': 'cfengine' }
-else
-  Plug 'scrooloose/syntastic'
-endif
+Plug 'zhimsel/neomake', { 'branch': 'cfengine' }
 Plug 'svermeulen/vim-extended-ft'
 Plug 'avakhov/vim-yaml', { 'for': ['yaml', 'yml'] }
 Plug 'elzr/vim-json', { 'for': 'json' }
@@ -286,57 +282,44 @@ omap / <Plug>(easymotion-tn)
 
 " }}}
 
-if has('nvim')
-  " neomake settings {{{
-  autocmd! BufWritePost * Neomake
-  let g:neomake_open_list = 0
-  let g:neomake_verbose = 0
-  function! <SID>LocationPrevious()
-    try
-      lprev
-    catch /^Vim\%((\a\+)\)\=:E553/
-      llast
-    catch /^Vim\%((\a\+)\)\=:E42/
-    catch /^Vim\%((\a\+)\)\=:E776/
-    endtry
-  endfunction
-  function! <SID>LocationNext()
-    try
-      lnext
-    catch /^Vim\%((\a\+)\)\=:E553/
-      lfirst
-    catch /^Vim\%((\a\+)\)\=:E42/
-    catch /^Vim\%((\a\+)\)\=:E776/
-    endtry
-  endfunction
-  nnoremap <silent> <Plug>LocationPrevious    :<C-u>exe 'call <SID>LocationPrevious()'<CR>
-  nnoremap <silent> <Plug>LocationNext        :<C-u>exe 'call <SID>LocationNext()'<CR>
-  nmap <silent> <leader>[    <Plug>LocationPrevious
-  nmap <silent> <leader>]    <Plug>LocationNext
-  nmap <script> <silent> <leader>\ :call ToggleLocationList()<CR>
-  let g:neomake_sh_enabled_makers = ['shellcheck']
-  let g:neomake_ruby_enabled_makers = ['rubocop']
-  let g:neomake_python_enabled_makers = ['flake8']
-  let g:neomake_chef_enabled_makers = ['foodcritic']
-  " }}}
-else
-  " syntastic settings {{{
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
-  let g:syntastic_always_populate_loc_list = 1
-  let g:syntastic_check_on_open = 1
-  let g:syntastic_loc_list_height = 5
-  let g:syntastic_check_on_wq = 0
-  let g:syntastic_sh_checkers = ['shellcheck']
-  let g:syntastic_ruby_checkers = ['rubocop']
-  let g:syntastic_python_checkers = ['flake8']
-  let g:syntastic_chef_checkers = ['foodcritic']
-  nmap <script> <silent> <leader>\ :call ToggleLocationList()<CR>
-  nmap <leader>[ :lprevious<cr>
-  nmap <leader>] :lnext<cr>
-  " }}}
-endif
+" neomake settings {{{
+autocmd! BufWritePost * Neomake
+
+let g:neomake_open_list = 0
+let g:neomake_verbose = 0
+
+let g:neomake_sh_enabled_makers = ['shellcheck']
+let g:neomake_ruby_enabled_makers = ['rubocop']
+let g:neomake_python_enabled_makers = ['flake8']
+let g:neomake_chef_enabled_makers = ['foodcritic']
+
+function! <SID>LocationPrevious()
+  try
+    lprev
+  catch /^Vim\%((\a\+)\)\=:E553/
+    llast
+  catch /^Vim\%((\a\+)\)\=:E42/
+  catch /^Vim\%((\a\+)\)\=:E776/
+  endtry
+endfunction
+
+function! <SID>LocationNext()
+  try
+    lnext
+  catch /^Vim\%((\a\+)\)\=:E553/
+    lfirst
+  catch /^Vim\%((\a\+)\)\=:E42/
+  catch /^Vim\%((\a\+)\)\=:E776/
+  endtry
+endfunction
+
+nnoremap <silent> <Plug>LocationPrevious    :<C-u>exe 'call <SID>LocationPrevious()'<CR>
+nnoremap <silent> <Plug>LocationNext        :<C-u>exe 'call <SID>LocationNext()'<CR>
+nmap <silent> <leader>[    <Plug>LocationPrevious
+nmap <silent> <leader>]    <Plug>LocationNext
+nmap <script> <silent> <leader>\ :call ToggleLocationList()<CR>
+
+" }}}
 
 " togglelist settings {{{
 let g:toggle_list_no_mappings = 1
