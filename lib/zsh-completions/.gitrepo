@@ -6,6 +6,6 @@
 [subrepo]
 	remote = git@github.com:zsh-users/zsh-completions.git
 	branch = master
-	commit = e09fa74f2d1bf66fd4838294451b42d872c9b71b
-	parent = 1a1b2095ed965cc0b58dfb123b8a1ce783654285
+	commit = d04a31c48d7ab3bff907d09a76a2bb58eedaba7e
+	parent = f303a06e520f5b4ced3cfe596d8050a0eb6b4b64
 	cmdver = 0.3.0
