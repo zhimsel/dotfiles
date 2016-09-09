@@ -12,7 +12,6 @@ Usage:
 
 Options:
     -h --help       Show this screen
-    -d --dry-run    Don't actually link anything, just pretend
 """
 
 # Imports
@@ -27,14 +26,6 @@ assert sys.version_info >= (3, 0), "Python 3 or newer required"
 
 # Global objects
 dotfiles_path = path.split(path.abspath(sys.argv[0]))[0]
-
-# Dry run?
-args = docopt(__doc__)
-if args['--dry-run']:
-    dry_run = True
-    print("Detected '--dry-run', I won't actually change anything...")
-else:
-    dry_run = False
 
 
 # Define our functions
@@ -53,11 +44,38 @@ def prompt(question):
     negatives = ('n', 'N', 'no', 'No', 'NO')
 
     while True:
-        answer = input(question + ' ')
+        answer = input(question + ' (y/n) ')
         if answer in affirmatives:
             return True
         if answer in negatives:
             return False
+
+def changelog(prefix, filename, comment=None):
+    """
+    Format and print a proposed change to stdout
+
+    Args:
+        prefix (str): message prefix
+        filename (str): filename of the change
+        comment (str): optional postfix comment
+    """
+    assert isinstance(prefix, str)
+    assert isinstance(filename, str)
+    assert isinstance(comment, (str, None))
+
+    valid_prefixes = frozenset(['ERROR',
+                                'BACKUP',
+                                'LINK'])
+    assert prefix in valid_prefixes
+
+    if comment is not None:
+        postfix = '  ({})'.format(comment)
+
+    spaces = (' ' * (len(max(valid_prefixes, key=len)) - len(prefix) - 1))
+
+    msg = (prefix + ':' + spaces + filename + postfix)
+
+    print(msg)
 
 
 def check_environment():
@@ -79,7 +97,7 @@ def check_environment():
     return check_status
 
 
-def get_link_list(root_path):
+def get_linkfile_list(root_path):
     """
     Get a list of .link files
 
@@ -103,37 +121,43 @@ def get_link_list(root_path):
     return links
 
 
-def backup_file(target):
+def backup_target_file(target, report=False):
     """
     Check if a file exists. If so, attempt to back it up.
 
     Args:
         target (str): target file path
+        report (bool): should we actually do it, or just report changes?
 
     Return:
-        (bool): True if successful
+        (bool): True if backup was successful or unnecessary
     """
     if path.lexists(target):
         if path.lexists(target + '~'):
-            print(('{} (and its backup) already exist! ' +
-                   'Ignoring. Please fix manually.').format(target))
+            if report:
+                changelog('ERROR', target, ('Cannot back up: backup already ' +
+                                            'exists! Please fix manually.'))
             return False
         else:
-            print('{} already exists! Backing up to {}...'
-                  .format(target, (path.split(target)[-1] + "~")))
-            if not dry_run:
+            if report:
+                changelog('BACKUP', target, 'backing up existing file to {}'
+                          .format(target, (path.split(target)[-1] + "~")))
+            else:
+                print('backing up')
                 os.rename(target, (target + '~'))
     return True
 
 
-def create_link(link):
+def create_link(link, report=False):
     """
     Create the right links for each *.link file
 
     Args:
         link (str): path to *.link file
+        report (bool): should we actually link, or just report changes?
     """
     assert isinstance(link, str)
+    assert isinstance(report, bool)
     assert path.isfile(link)
 
     # Get source file path
@@ -154,46 +178,48 @@ def create_link(link):
         # Create target's parent dir if it doesn't exist
         target_basedir = path.split(target)[0]
         if path.islink(target_basedir):
-            if not backup_file(target_basedir):
+            if not backup_target_file(target_basedir, report):
                 continue
         if not path.isdir(target_basedir):
-            print('{} does not exist, creating...'.format(target_basedir))
-            if not dry_run:
+            if not report:
+                print('mkdir')
                 os.makedirs(target_basedir)
 
         # Is our link already set up?
         if path.islink(target):
             if os.readlink(target) == source:
-                print('Link for {} already exists, skipping...'.format(target))
                 continue
 
         # If not, is a file there? Back it up!
-        if not backup_file(target):
+        if not backup_target_file(target, report):
             continue
 
         # If we're still here, create our symlink
-        print('Linking {} -> {}'.format(source, target))
-        if not dry_run:
+        if report:
+            changelog('LINK', target, 'to {}'.format(source))
+        else:
             os.symlink(source, target)
 
 
 def main():
-    """
-    Stuff happens here
-    """
-    if not dry_run:
-        if not prompt("Running this installer MAY alter existing files in "
-                      "your home directory.\nYou can use --dry-run to try "
-                      "see what will be changed first.\n"
-                      "Do you wish to continue?"):
-            sys.exit(0)
+    docopt(__doc__, argv=None, help=True)
 
     if not check_environment():
         sys.exit(1)
 
-    links = get_link_list(dotfiles_path)
-    for link in links:
-        create_link(link)
+    linkfile_list = get_linkfile_list(dotfiles_path)
+
+    print('The following changes will be made:')
+    for link in linkfile_list:
+        create_link(link, report=True)
+
+    if prompt('\nDo you wish to continue?'):
+        for link in linkfile_list:
+            create_link(link)
+        print('Done.')
+    else:
+        print('Aborting...')
+        sys.exit(0)
 
 if __name__ == "__main__":
     main()
