@@ -40,9 +40,6 @@ setopt EXTENDED_HISTORY
 unsetopt AUTO_CD
 MAILCHECK=0
 
-# Shellcheck settings
-export SHELLCHECK_OPTS="-e SC2039"
-
 # }}}
 
 # Plugins {{{
