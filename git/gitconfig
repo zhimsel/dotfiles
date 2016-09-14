@@ -48,3 +48,4 @@
   wtl = worktree list
   st = stash
   pr = "!sh -c \"hub pull-request -o\""
+  pbr= push -u origin head
