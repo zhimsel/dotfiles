@@ -396,7 +396,7 @@ let g:delimitMate_jump_expansion = 1
 " }}}
 
 " vim-stay settings {{{
-set viewoptions=cursor,folds,slash,unix
+set viewoptions=cursor,slash,unix
 " }}}
 
 " vim-better-whitespace settings {{{
