@@ -32,7 +32,7 @@ Plug 'fountain.vim', { 'for': 'fountain' }
 Plug 'tpope/vim-git', { 'for': 'git' }
 Plug 'jtratner/vim-flavored-markdown', { 'for': 'markdown' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-Plug '~/vim_cf3', { 'for': 'cf3' }
+Plug '~/vim_cf3', { 'for': 'cf3' }  " temporarily sourced locally during development (see git-blame for link)
 Plug 'klen/python-mode', { 'for': 'python' }
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 Plug 'zhimsel/terraform-vim-folding', { 'for': 'terraform' }
