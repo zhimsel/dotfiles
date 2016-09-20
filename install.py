@@ -20,15 +20,31 @@ from os import path
 import sys
 import re
 from docopt import docopt
+import git
 
 # Make sure we're running python3
 assert sys.version_info >= (3, 0), "Python 3 or newer required"
 
-# Global objects
-dotfiles_path = path.split(path.abspath(sys.argv[0]))[0]
-
+args = docopt(__doc__, argv=None, help=True)
 
 # Define our functions
+def error(message, exit=False):
+    """
+    Print a message to stderr and, optionally, quit
+
+    Args:
+        message (str): message to print
+        exit (bool): should we quit the program?
+    """
+    assert isinstance(message, str)
+    assert isinstance(exit, bool)
+
+    print >> sys.stderr, message
+
+    if exit:
+        sys.exit(1)
+
+
 def prompt(question):
     """
     Ask the given question.
@@ -49,6 +65,7 @@ def prompt(question):
             return True
         if answer in negatives:
             return False
+
 
 def changelog(prefix, filename, comment=None):
     """
@@ -78,23 +95,52 @@ def changelog(prefix, filename, comment=None):
     print(msg)
 
 
-def check_environment():
+def clone_missing_submodules(repo):
+    """
+    Install/clone any missing git submodule dependencies
+
+    Args:
+        repo (git.Repo): Git Repo object for our dotfiles
+    """
+    assert isinstance(repo, git.Repo)
+
+    for submodule in repo.submodules:
+        if not submodule.module_exists():
+            print('Cloning {}...'.format(submodule.path))
+            submodule.update()
+
+
+def check_environment(repo):
     """
     Check environment for dependencies and whatnot
+
+    Args:
+        repo (git.Repo): Git Repo object for our dotfiles
 
     Returns:
         (bool): True if all checks pass
     """
-    check_status = True
+    assert isinstance(repo, git.Repo)
 
     # Make sure $HOME is not a git repo
     homedir = path.expanduser("~")
     if path.exists(homedir + '/.git'):
-        check_status = False
-        print('ERROR: Existing ~/.git repo detected! '
-              'Please remove the old gitdir before proceeding.')
+        msg = ('ERROR: Existing ~/.git repo detected! '
+               'Please remove the old gitdir before proceeding.')
+        error(msg, exit=True)
 
-    return check_status
+    # Check if we're missing any git submodules
+    missing_submodules = list()
+    for submodule in repo.submodules:
+        if not submodule.module_exists():
+            missing_submodules.append(submodule.path)
+    if len(missing_submodules) > 0:
+        print('It looks like we are missing the following git submodules:')
+        for submodule in missing_submodules:
+            print(submodule)
+        if prompt('\nWould you like to clone them?'):
+            clone_missing_submodules(repo)
+            print('')
 
 
 def get_linkfile_list(root_path):
@@ -112,7 +158,7 @@ def get_linkfile_list(root_path):
 
     links = list()
 
-    for root, dirs, files in os.walk(dotfiles_path):
+    for root, dirs, files in os.walk(root_path):
         for file in files:
             ext = path.splitext(file)[-1]
             if ext == '.link':
@@ -201,11 +247,12 @@ def create_link(link, report=False):
             os.symlink(source, target)
 
 
-def main():
-    docopt(__doc__, argv=None, help=True)
+def main(args):
+    dotfiles_path = path.split(path.abspath(sys.argv[0]))[0]
+    dotfiles_repo = git.Repo(dotfiles_path)
 
-    if not check_environment():
-        sys.exit(1)
+    # Check to make sure everything we need is there
+    check_environment(dotfiles_repo)
 
     linkfile_list = get_linkfile_list(dotfiles_path)
 
@@ -222,4 +269,4 @@ def main():
         sys.exit(0)
 
 if __name__ == "__main__":
-    main()
+    main(args)
