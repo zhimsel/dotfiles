@@ -254,8 +254,10 @@ def main(args):
     # Check to make sure everything we need is there
     check_environment(dotfiles_repo)
 
+    # Generate link list
     linkfile_list = get_linkfile_list(dotfiles_path)
 
+    # Output proposed changes
     print('The following changes will be made:')
     for link in linkfile_list:
         create_link(link, report=True)
