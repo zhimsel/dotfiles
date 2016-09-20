@@ -50,6 +50,7 @@ plugins=( \
           brew \
           brew-cask \
           command-not-found \
+          docker \
           gem \
           git-extras \
           gnu-utils \

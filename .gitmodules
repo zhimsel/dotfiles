@@ -3,8 +3,8 @@
 	url = git@github.com:junegunn/fzf.git
 [submodule "lib/oh-my-zsh"]
 	path = lib/oh-my-zsh
-	url = git@github.com:robbyrussell/oh-my-zsh.git
-	branch = master
+	url = git@github.com:zhimsel/oh-my-zsh.git
+	branch = docker-update
 [submodule "lib/scripts"]
 	path = lib/scripts
 	url = git@github.com:zhimsel/scripts.git
