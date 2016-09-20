@@ -1,0 +1,39 @@
+[submodule "lib/fzf"]
+	path = lib/fzf
+	url = git@github.com:junegunn/fzf.git
+[submodule "lib/oh-my-zsh"]
+	path = lib/oh-my-zsh
+	url = git@github.com:robbyrussell/oh-my-zsh.git
+	branch = master
+[submodule "lib/scripts"]
+	path = lib/scripts
+	url = git@github.com:zhimsel/scripts.git
+	branch = master
+[submodule "lib/vim-plug"]
+	path = lib/vim-plug
+	url = git@github.com:junegunn/vim-plug.git
+	branch = master
+[submodule "lib/zsh-autoenv"]
+	path = lib/zsh-autoenv
+	url = git@github.com:Tarrasch/zsh-autoenv.git
+	branch = master
+[submodule "lib/zsh-completion-generator"]
+	path = lib/zsh-completion-generator
+	url = git@github.com:RobSis/zsh-completion-generator.git
+	branch = master
+[submodule "lib/zsh-completions"]
+	path = lib/zsh-completions
+	url = git@github.com:zsh-users/zsh-completions.git
+	branch = master
+[submodule "lib/zsh-git-prompt"]
+	path = lib/zsh-git-prompt
+	url = git@github.com:zhimsel/zsh-git-prompt.git
+	branch = master
+[submodule "lib/zsh-opp"]
+	path = lib/zsh-opp
+	url = git@github.com:hchbaw/opp.zsh.git
+	branch = master
+[submodule "lib/zsh-syntax-highlighting"]
+	path = lib/zsh-syntax-highlighting
+	url = git@github.com:zsh-users/zsh-syntax-highlighting.git
+	branch = master

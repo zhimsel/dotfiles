@@ -2,4 +2,4 @@
 
 This directory contains all the remote dependencies that these config files depends on.
 
-To manage these dependencies, I use [git-subrepo](https://github.com/ingydotnet/git-subrepo). This combines the benefits of subtrees and submodules, while still being transparent for non-contributor users.
+To manage these dependencies, they are placed here as [git submodules](https://git-scm.com/docs/git-submodule). This requires an extra step for a user, which is simply to run `git submodule update --init --recursive` (this is also done by the `install.py` script).
