@@ -55,7 +55,6 @@ packages=(\
   exiftool
   htop-osx
   hub
-  hub
   iftop
   irssi
   jq
