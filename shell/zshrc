@@ -212,15 +212,23 @@ wt () { # {{{
     echo "Please specify the branch to check out"
     return 1
   else
-    if [[ -f .git ]]; then  # already in a worktree
-      cd "$(cat .git | cut -d' ' -f2)/../../.." || return 1
-    fi
-    if [[ -d .git ]]; then  # in main worktree
-      wt_path="../${0:A:h:t}.$1"
-    else
-      echo "We don't seem to be in a git repo"
-      return 1
-    fi
+    working_dir="$(pwd)"
+    while true; do
+      if [[ -f .git ]]; then  # already in a worktree
+        cd "$(cat .git | cut -d' ' -f2)/../../.." || return 1
+        break
+      elif [[ -d .git ]]; then  # in main worktree
+        wt_path="../${0:A:h:t}.$1"
+        break
+      elif [[ "$(pwd)" == '/' ]]; then  # exhausted the whole dir tree
+        echo "We don't seem to be in a git worktree"
+        cd $working_dir
+        return 1
+      else  # walk up to the parent dir and try again
+        cd ..
+        continue
+      fi
+    done
     git worktree prune
     git branch "$1" &> /dev/null
     wt_add="$(git worktree add "$wt_path" "$1" 2>&1)"
@@ -230,6 +238,7 @@ wt () { # {{{
     else  # otherwise, go to the one we just made
       cd "$wt_path" || return 1
     fi
+    return 0
   fi
 } # }}}
 wtr () { # {{{
