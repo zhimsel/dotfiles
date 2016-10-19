@@ -197,6 +197,11 @@ nmap <leader>hr <Plug>GitGutterRevertHunk
 nmap <leader>hn <Plug>GitGutterNextHunk
 nmap <leader>hp <Plug>GitGutterPrevHunk
 
+" redraw screen (for nvim window-resize bug)
+if has('nvim')
+  nnoremap <leader>r :redraw!<cr>
+endif
+
 " }}}
 
 " Plugin settings {{{
