@@ -529,6 +529,7 @@ au BufRead,BufNewFile *.link     setlocal ft=
 
 " based on filetypes
 au FileType {git*}      setlocal commentstring=\%%s
+au FileType gitcommit   setlocal tw=50
 au FileType gitcommit   normal ggjO
 au FileType gitcommit   au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 au FileType make        setlocal noexpandtab
