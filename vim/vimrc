@@ -42,7 +42,7 @@ Plug 'zhimsel/terraform-vim-folding', { 'for': 'terraform' }
 Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdtree'
 Plug 'Lokaltog/vim-easymotion'
-Plug '~/.fzf'  " fzf is not just for vim, so it's managed externally
+Plug 'junegunn/fzf'  " Don't run installer script, shell fzf is managed externally
 Plug 'junegunn/fzf.vim'
 Plug 'wesQ3/vim-windowswap'
 Plug 'jlanzarotta/bufexplorer'

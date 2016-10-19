@@ -108,9 +108,7 @@ export KETTIMEOUT=1
 bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
-bindkey '^r' history-incremental-search-backward
 bindkey -a u undo
-bindkey -a '^R' redo
 bindkey -sM vicmd '^[' '^G'
 bindkey -rM viins '^X'
 bindkey -M viins '^X,' _history-complete-newer \
@@ -406,21 +404,13 @@ fi
 
 # Load some stuff that needs to go last {{{
 
+# Set up fzf
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+if [[ -f $HOME/.fzf.zsh ]]; then
+  source $HOME/.fzf.zsh
+fi
 # set up zsh-syntax-highlighting
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# set up fzf
-if [[ $- == *i* ]]; then
-  if [[ -x $HOME/.fzf/fzf ]]; then
-    export PATH="$HOME/.fzf/bin:$PATH"
-    export MANPATH="$MANPATH:$HOME/.fzf/man"
-    export FZF_TMUX=0
-    source "$HOME/.fzf/shell/key-bindings.zsh"
-    source "$HOME/.fzf/shell/completion.zsh"
-   else
-     echo "fzf not found. Make sure ~/.fzf is symlinked."
-   fi
-fi
 
 # terminfo workaround for neovim pane switching issue
 # https://github.com/neovim/neovim/issues/2048#issuecomment-78045837

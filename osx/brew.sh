@@ -53,6 +53,7 @@ packages=(\
   awscli
   cmake
   exiftool
+  fzf  # don't forget to run the installer script after install (see "caveats")
   htop-osx
   hub
   iftop
@@ -77,7 +78,6 @@ packages=(\
   vagrant-completion
   watch
   wget
-
 )
 
 cask_packages=(\

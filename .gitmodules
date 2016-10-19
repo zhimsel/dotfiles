@@ -1,6 +1,3 @@
-[submodule "lib/fzf"]
-	path = lib/fzf
-	url = git@github.com:junegunn/fzf.git
 [submodule "lib/oh-my-zsh"]
 	path = lib/oh-my-zsh
 	url = git@github.com:robbyrussell/oh-my-zsh.git
