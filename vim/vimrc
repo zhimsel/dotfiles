@@ -379,6 +379,7 @@ let g:EnableCFE3KeywordAbbreviations=1
 
 " Tabularize settings {{{
 command! -range CFalign <line1>,<line2>Tabularize /=>/r1l1l1
+command! -range CFstring <line1>,<line2>Tabularize /string/l1r1l1
 " }}}
 
 " vim-gist settings {{{
