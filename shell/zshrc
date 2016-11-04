@@ -214,7 +214,6 @@ wt () { # {{{
     while true; do
       if [[ -f .git ]]; then  # already in a worktree
         cd "$(cat .git | cut -d' ' -f2)/../../.." || return 1
-        break
       elif [[ -d .git ]]; then  # in main worktree
         wt_path="../${0:A:h:t}.$1"
         break
@@ -236,6 +235,7 @@ wt () { # {{{
     else  # otherwise, go to the one we just made
       cd "$wt_path" || return 1
     fi
+    unset working_dir wt_path wt_add
     return 0
   fi
 } # }}}
