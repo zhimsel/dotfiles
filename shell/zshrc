@@ -295,12 +295,18 @@ local user_name="%(!.%{$fg[red]%}.%{$fg[green]%})%n%{$reset_color%}"
 local host_name="%{$fg[yellow]%}%m%{$reset_color%}"
 local current_dir="%{$fg[blue]%}%~%{$reset_color%}"
 local current_time="%{$fg[lightgrey]%}%*%{$reset_color%}"
-local git_status="$(if [[ ! -z $GIT_BRANCH ]]; then echo "$(git_super_status) ";fi)"
 local return_code="%(?..%{$fg[red]%}↳ %? %{$reset_color%})"
 local command_prompt="%(1j.%(!.%B[%j]%b #.%B[%j]%b $).%(!.#.$))"
+local git_status="$(if [[ ! -z $GIT_BRANCH ]]; then echo "$(git_super_status) ";fi)"
 local py_venv="$(if [[ ! -z $VIRTUAL_ENV ]]; then echo "(venv) "; fi)"
 local vbox_active="$(if [[ ! -z $(ls -H $HOME/.vbox_vms_dir/ 2>/dev/null) ]]; then echo "(vbox) "; fi)"
-PROMPT="${return_code}${current_time} ${user_name} at ${host_name} in ${current_dir} ${git_status}${py_venv}${vbox_active}
+local env_metadata="${git_status}${py_venv}${vbox_active}"
+if [[ ! -z $env_metadata ]]; then
+  newline=$'\n' env_info="${newline}${env_metadata}"
+else
+  env_info=""
+fi
+PROMPT="${return_code}${current_time} ${user_name} at ${host_name} in ${current_dir} ${env_info}
 ${command_prompt} "
 RPROMPT=""
 }
