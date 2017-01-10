@@ -136,6 +136,7 @@ alias dm='docker-machine'
 alias dme='eval $(docker-machine env default)'
 alias wtp='git worktree prune -v'
 alias wtl='wtp && git worktree list'
+alias gco='hub browse -- commit/$(git rev-parse HEAD)'
 alias dockviz="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
 
 if [[ -x $(which nvim) ]]; then
