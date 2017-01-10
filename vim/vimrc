@@ -374,6 +374,7 @@ let g:startify_session_sort = 1
 
 " CFEngine plugin settings {{{
 let g:DisableCF3Ftplugin=1
+let g:EnableCFE3KeywordAbbreviations=1
 " }}}
 
 " Tabularize settings {{{
