@@ -31,8 +31,6 @@
   f = fetch -p
   c = commit -v
   a = add
-  ck = checkout
-  co = checkout
   br = branch
   undo-last-commit = reset --soft HEAD~1
   sub = submodule
@@ -49,4 +47,5 @@
   wtl = worktree list
   st = stash
   pr = "!sh -c \"hub pull-request -o\""
+  co="!sh -c \"hub browse -- commit/$(git rev-parse HEAD)\""  # open commit on Github in browser
   pbr= push -u origin head
