@@ -36,8 +36,8 @@
   undo-last-commit = reset --soft HEAD~1
   sub = submodule
   subf = submodule update --init --recursive --remote
-  db = "!sh -c \"git diff $(git merge-base master HEAD) HEAD\"" # diff between HEAD and branch-off commit
-  dm = "!sh -c \"git diff $(git merge-base master HEAD) master\"" #diff between HEAD and master
+  db = "!sh -c \"git diff $(git merge-base master HEAD) HEAD\"" # what's changed in our branch?
+  dm = "!sh -c \"git diff $(git merge-base master HEAD) master\"" # what's changed in master since we branched?
   lr = log --graph --decorate --abbrev-commit --pretty=log HEAD~1..origin # unpulled commits on remote
   ll = log --graph --decorate --pretty=medium --all #better longer log
   l = log --graph --decorate --abbrev-commit --all --pretty=log # better log
