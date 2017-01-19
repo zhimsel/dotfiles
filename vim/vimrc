@@ -75,7 +75,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'renamer.vim', { 'on': 'Renamer' }
 Plug 'justinmk/vim-gtfo'
-Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
+Plug 'godlygeek/tabular'
 Plug 'Raimondi/delimitMate'
 Plug 'PeterRincker/vim-argumentative'
 if has ('nvim')
@@ -377,8 +377,8 @@ let g:EnableCFE3KeywordAbbreviations=1
 " }}}
 
 " Tabularize settings {{{
-command! -range CFalign <line1>,<line2>Tabularize /=>/r1l1l1
-command! -range CFstring <line1>,<line2>Tabularize /string/l1r1l1
+call plug#load('tabular')  " plug must be loaded manually for below commands to work
+AddTabularPattern cf /\w\+\s=>/l1r1l1
 " }}}
 
 " vim-gist settings {{{
@@ -539,7 +539,8 @@ au FileType markdown    setlocal textwidth=0
 au FileType python      setlocal sw=4 ts=4 tw=79
 au FileType python      imap <C-p> import ipdb; ipdb.set_trace()
 au FileType python      imap <C-o> import IPython; IPython.embed()
-au FileType cf3         setlocal cms=#\ %s si tw=0
+au FileType cf3         setlocal cms=#\ %s tw=0
+au FileType cf3         nnoremap <leader>= :Tabularize cf<cr>
 au FileType sh          setlocal sw=2 ts=2 tw=79
 au FileType vim         setlocal tw=0
 au FileType terraform   setlocal tw=0 sw=2 ts=2 fdl=0
