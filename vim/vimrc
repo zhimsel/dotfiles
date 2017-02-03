@@ -541,6 +541,7 @@ au FileType python      imap <C-p> import ipdb; ipdb.set_trace()
 au FileType python      imap <C-o> import IPython; IPython.embed()
 au FileType cf3         setlocal cms=#\ %s tw=0
 au FileType cf3         nnoremap <leader>= :Tabularize cf<cr>
+au FileType cf3         nnoremap <leader>c :s/comment\s=>\s"\(.*\)"[;,]/#\ \1<cr>
 au FileType sh          setlocal sw=2 ts=2 tw=79
 au FileType vim         setlocal tw=0
 au FileType terraform   setlocal tw=0 sw=2 ts=2 fdl=0
