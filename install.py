@@ -27,6 +27,7 @@ assert sys.version_info >= (3, 0), "Python 3 or newer required"
 
 args = docopt(__doc__, argv=None, help=True)
 
+
 # Define our functions
 def error(message, exit=False):
     """
@@ -269,6 +270,7 @@ def main(args):
     else:
         print('Aborting...')
         sys.exit(0)
+
 
 if __name__ == "__main__":
     main(args)
