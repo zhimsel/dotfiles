@@ -33,7 +33,7 @@ Plug 'tpope/vim-git', { 'for': 'git' }
 Plug 'jtratner/vim-flavored-markdown', { 'for': 'markdown' }
 Plug 'JamshedVesuna/vim-markdown-preview', { 'for': 'markdown' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-Plug '~/vim_cf3', { 'for': 'cf3' }  " temporarily sourced locally during development (see git-blame for link)
+Plug 'neilhwatson/vim_cf3', { 'for': 'cf3' }
 Plug 'klen/python-mode', { 'for': 'python' }
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 Plug 'zhimsel/terraform-vim-folding', { 'for': 'terraform' }
