@@ -206,7 +206,7 @@ endif
 " Plugin settings {{{
 
 " NERDtree settings {{{
-map <C-t> :NERDTreeToggle<CR>
+map <C-p> :NERDTreeToggle<CR>
 " Prevent vim from considering NERDtree a window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 let NERDTreeHighlightCursorline = 1
@@ -345,7 +345,7 @@ nmap <silent> <C-b> :ToggleBufExplorer<cr> g:pymode_rope_completion = 0
 " }}}
 
 " fzf settings {{{
-nnoremap <c-p> :Files<cr>
+nnoremap <c-t> :Files<cr>
 nnoremap <c-f> :BLines<cr>
 nnoremap <c-g> :GitFiles<cr>
 nnoremap ``` :Marks<cr>
