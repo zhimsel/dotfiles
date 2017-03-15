@@ -4,3 +4,4 @@ ipdb>=0.10.0
 neovim>=0.1.7
 powerline-status>=2.3
 flake8>=3.3.0
+GitPython>=2.1.3
