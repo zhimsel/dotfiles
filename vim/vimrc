@@ -376,11 +376,6 @@ let g:startify_session_sort = 1
 let g:EnableCFE3KeywordAbbreviations=0
 " }}}
 
-" Tabularize settings {{{
-call plug#load('tabular')  " plug must be loaded manually for below commands to work
-AddTabularPattern cf /\w\+\s=>/l1r1l1
-" }}}
-
 " vim-gist settings {{{
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
@@ -540,6 +535,7 @@ au FileType python      setlocal sw=4 ts=4 tw=79
 au FileType python      imap <C-p> from pprint import pprint; import ipdb; ipdb.set_trace()
 au FileType python      imap <C-o> import IPython; IPython.embed()
 au FileType cf3         setlocal cms=#\ %s tw=0
+au FileType cf3         AddTabularPattern! cf /\w\+\s=>/l1r1l1
 au FileType cf3         nnoremap <leader>= :Tabularize cf<cr>
 au FileType cf3         nnoremap <leader>c :s/comment\s=>\s"\(.*\)"[;,]/#\ \1<cr>
 au FileType cf3         iab <buffer> = =>
