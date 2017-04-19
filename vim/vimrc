@@ -289,6 +289,17 @@ let g:neomake_ruby_enabled_makers = ['rubocop']
 let g:neomake_python_enabled_makers = ['flake8']
 let g:neomake_chef_enabled_makers = ['foodcritic']
 
+if executable('git')
+  let promises_path = systemlist('echo $(git rev-parse --show-toplevel)/promises.cf')[0]
+  let g:neomake_cf3_cfpromises_maker = {
+        \ 'exe': 'cf-promises',
+        \ 'args': ['-cf', promises_path],
+        \ 'append_file': 0,
+        \ 'errorformat':
+        \   '%E%f:%l:%c: error: %m',
+        \ }
+endif
+
 function! <SID>LocationPrevious()
   try
     lprev
