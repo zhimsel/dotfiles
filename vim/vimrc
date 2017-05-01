@@ -78,7 +78,7 @@ Plug 'justinmk/vim-gtfo'
 Plug 'godlygeek/tabular'
 Plug 'Raimondi/delimitMate'
 Plug 'PeterRincker/vim-argumentative'
-if has ('nvim')
+if has('nvim')
   Plug 'Shougo/deoplete.nvim'
 else
   Plug 'Shougo/neocomplete.vim'
