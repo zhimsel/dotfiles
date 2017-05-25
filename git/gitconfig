@@ -50,4 +50,4 @@
   st = stash
   pr = "!sh -c \"hub pull-request -o\""
   cgo="!sh -c \"hub browse -- commit/$(git rev-parse HEAD)\""  # open commit on Github in browser
-  pbr= push -u origin head
+  pbr= push -u origin HEAD
