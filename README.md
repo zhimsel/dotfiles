@@ -1,6 +1,6 @@
 # zhimsel/dotfiles
 
-[![Build Status](https://travis-ci.org/zhimsel/dotfiles.svg?branch=master)](https://travis-ci.org/zhimsel/dotfiles)
+[![Build Status](https://travis-ci.org/zhimsel/dotfiles.svg?branch=master)](https://travis-ci.org/zhimseldotfiles)
 
 These are my config files. I use them live, in 'production'. You're welcome to use them directly, or fork them. Keep in mind they may change suddenly, frequently, and for seemingly no reason. They may (and do) break. Use them at your own risk (minimal as that is).
 
