@@ -30,8 +30,8 @@ Plug 'vim-scripts/SQLComplete.vim', { 'for': 'sql' }
 Plug 'rstacruz/sparkup', { 'for': 'html' }
 Plug 'vim-scripts/fountain.vim', { 'for': 'fountain' }
 Plug 'tpope/vim-git', { 'for': 'git' }
-Plug 'jtratner/vim-flavored-markdown', { 'for': 'markdown' }
-Plug 'JamshedVesuna/vim-markdown-preview', { 'for': 'markdown' }
+Plug 'jtratner/vim-flavored-markdown', { 'for': ['markdown', 'gitcommit'] }
+Plug 'JamshedVesuna/vim-markdown-preview', { 'for': ['markdown', 'gitcommit'] }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'neilhwatson/vim_cf3', { 'for': 'cf3' }
 Plug 'klen/python-mode', { 'for': 'python' }
@@ -538,6 +538,7 @@ au FileType {git*}      setlocal commentstring=\%%s
 au FileType gitcommit   setlocal tw=72 colorcolumn=+1,-21
 au FileType gitcommit   normal ggjO
 au FileType gitcommit   au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+au FileType gitcommit   inoremap <leader>gp :call Vim_Markdown_Preview()
 au FileType make        setlocal noexpandtab
 au FileType java        setlocal shiftwidth=4 tabstop=4
 au FileType yaml        setlocal fdl=1 fdm=indent
