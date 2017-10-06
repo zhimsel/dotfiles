@@ -16,10 +16,6 @@ Please keep in mind that this script *should* not change any files, but it *migh
 
 If you would like to only link *some* of the files, simply remove the corresponding `.link` file.
 
-### Errors
-
-If you get an error about `zsh/git-prompt/dist` missing, this means that the zsh has detected you have haskell installed on your machine, but the haskell binaries for zsh-git-prompt have not been compiled. To fix this, simply `cd` into [lib/zsh/git-prompt](/lib/zsh/git-prompt) and run `cabal build`.
-
 ### License
 
 These files are licensed under the [MIT license](/LICENSE) and are freely available for any use.
