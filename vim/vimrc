@@ -525,35 +525,38 @@ inoremap <Esc> <Esc>`^
 
 " Per-filetype settings {{{
 
-" based on filenames
-au BufRead,BufNewFile {Berksfile,Vagrantfile,Gemfile} setlocal filetype=ruby
-au BufRead,BufNewFile *.cf       setlocal filetype=cf3
-au BufRead,BufNewFile *.pp       setlocal filetype=ruby
-au BufRead,BufNewFile *.fountain setlocal filetype=fountain textwidth=0
-au BufRead,BufNewFile term://*   setlocal nocursorline colorcolumn=0
-au BufRead,BufNewFile *.link     setlocal ft=
+" Misc
+au BufRead,BufNewFile *.link    setlocal ft=
+au BufRead,BufNewFile term://*  setlocal nocursorline colorcolumn=0
+au FileType           make      setlocal noexpandtab
+au FileType           java      setlocal shiftwidth=4 tabstop=4
+au FileType           yaml      setlocal fdl=1 fdm=indent
+au FileType           markdown  setlocal textwidth=0
+au FileType           sh        setlocal sw=2 ts=2 tw=79
+au FileType           vim       setlocal tw=0
+au FileType           terraform setlocal tw=0 sw=2 ts=2 fdl=0
 
-" based on filetypes
-au FileType {git*}      setlocal commentstring=\%%s
-au FileType gitcommit   setlocal tw=72 colorcolumn=+1,-21
-au FileType gitcommit   normal ggjO
-au FileType gitcommit   au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
-au FileType gitcommit   inoremap <leader>gp :call Vim_Markdown_Preview()
-au FileType make        setlocal noexpandtab
-au FileType java        setlocal shiftwidth=4 tabstop=4
-au FileType yaml        setlocal fdl=1 fdm=indent
-au FileType markdown    setlocal textwidth=0
+" Ruby
+au BufRead,BufNewFile {Berksfile,Vagrantfile,Gemfile} setlocal filetype=ruby
+au BufRead,BufNewFile *.pp                            setlocal filetype=ruby
+
+" Git
+au BufEnter           COMMIT_EDITMSG  call setpos('.', [0, 1, 1, 0])
+au BufRead,BufNewFile PULLREQ_EDITMSG setlocal ft=markdown cms=\%%s tw=72 colorcolumn=+1,-21
+au BufRead,BufNewFile PULLREQ_EDITMSG nnoremap <leader>gp :call Vim_Markdown_Preview()<cr>
+au FileType           gitcommit       setlocal tw=72 cms=\%%s colorcolumn=+1,-21
+
+" CFEngine
+au BufRead,BufNewFile *.cf setlocal filetype=cf3 cms=#\ %s tw=0
+au FileType            cf3 AddTabularPattern! cf /\w\+\s=>/l1r1l1
+au FileType            cf3 nnoremap <leader>= :Tabularize cf<cr>
+au FileType            cf3 nnoremap <leader>c :s/comment\s=>\s"\(.*\)"[;,]/#\ \1<cr>
+au FileType            cf3 iab <buffer> = =>
+
+" Python
 au FileType python      setlocal sw=4 ts=4 tw=79
 au FileType python      imap <C-p> from pprint import pprint; import ipdb; ipdb.set_trace()
 au FileType python      imap <C-o> import IPython; IPython.embed()
-au FileType cf3         setlocal cms=#\ %s tw=0
-au FileType cf3         AddTabularPattern! cf /\w\+\s=>/l1r1l1
-au FileType cf3         nnoremap <leader>= :Tabularize cf<cr>
-au FileType cf3         nnoremap <leader>c :s/comment\s=>\s"\(.*\)"[;,]/#\ \1<cr>
-au FileType cf3         iab <buffer> = =>
-au FileType sh          setlocal sw=2 ts=2 tw=79
-au FileType vim         setlocal tw=0
-au FileType terraform   setlocal tw=0 sw=2 ts=2 fdl=0
 " }}}
 
 " Moving around, tabs, windows and buffers {{{
