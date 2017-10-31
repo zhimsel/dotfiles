@@ -546,9 +546,9 @@ au BufRead,BufNewFile *.pp                            setlocal filetype=ruby
 " Git
 au BufRead,BufNewFile COMMIT_EDITMSG  normal ggjO
 au BufEnter           COMMIT_EDITMSG  call setpos('.', [0, 1, 1, 0])
-au BufRead,BufNewFile PULLREQ_EDITMSG setlocal ft=markdown cms=\%%s tw=72 colorcolumn=+1,-21
+au BufRead,BufNewFile PULLREQ_EDITMSG setlocal ft=markdown cms=\%%s tw=72 colorcolumn=+1,-21 spell
 au BufRead,BufNewFile PULLREQ_EDITMSG nnoremap <leader>gp :call Vim_Markdown_Preview()<cr>
-au FileType           gitcommit       setlocal tw=72 cms=\%%s colorcolumn=+1,-21
+au FileType           gitcommit       setlocal tw=72 cms=\%%s colorcolumn=+1,-21 spell
 
 " CFEngine
 au BufRead,BufNewFile *.cf setlocal filetype=cf3 cms=#\ %s tw=0
