@@ -37,8 +37,8 @@
   whoops = reset --soft HEAD~1  # "undo last commit, leaving changes staged"
   sub = submodule
   subf = submodule update --init --recursive --remote
-  db = "!sh -c \"git diff $(git merge-base master HEAD) HEAD\"" # what's changed in our branch?
-  dm = "!sh -c \"git diff $(git merge-base master HEAD) master\"" # what's changed in master since we branched?
+  db = "!git diff $(git merge-base master HEAD) HEAD" # what's changed in our branch?
+  dm = "!git diff $(git merge-base master HEAD) master" # what's changed in master since we branched?
   lr = log --graph --decorate --abbrev-commit --pretty=log HEAD~1..origin # unpulled commits on remote
   ll = log --graph --decorate --pretty=medium --all #better longer log
   l = log --graph --decorate --abbrev-commit --all --pretty=log # better log
@@ -48,7 +48,7 @@
   wtp = worktree prune -v
   wtl = worktree list
   st = stash
-  pr = "!sh -c \"hub pull-request -o\""
-  cgo="!sh -c \"hub browse -- commit/$(git rev-parse HEAD)\""  # open commit on Github in browser
-  pbr= push -u origin HEAD
-  brm = "!sh -c \"f() { if [ -z $1 ]; then echo 'Please supply a branch name'; else git branch $1 && git reset --hard $(git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD)) && git checkout $1; fi }; f\""
+  pr = "!hub pull-request -o"
+  cgo = "!hub browse -- commit/$(git rev-parse HEAD)"  # open commit on Github in browser
+  pbr = push -u origin HEAD
+  brm = "!f() { if [ -z $1 ]; then echo 'Please supply a branch name'; else git branch $1 && git reset --hard $(git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD)) && git checkout $1; fi }; f"
