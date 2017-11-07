@@ -51,3 +51,4 @@
   pr = "!sh -c \"hub pull-request -o\""
   cgo="!sh -c \"hub browse -- commit/$(git rev-parse HEAD)\""  # open commit on Github in browser
   pbr= push -u origin HEAD
+  brm = "!sh -c \"f() { if [ -z $1 ]; then echo 'Please supply a branch name'; else git branch $1 && git reset --hard $(git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD)) && git checkout $1; fi }; f\""
