@@ -8,8 +8,9 @@
 ehthumbs.db
 Thumbs.db
 
-# swap files
+# swap/backup files
 *.swp
+*.bak
 
 
 # Vim Files #
