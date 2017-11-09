@@ -1,6 +1,5 @@
 [flake8]
 max-line-length = 79
-exclude = tests/*
 filename = *
 max-complexity = 20
 ignore = C901
