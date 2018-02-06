@@ -4,7 +4,7 @@ python:
 
 # install dependencies
 install:
-  - pip install -r requirements.txt
+  - pip install flake8
 
 # run tests
 script:
