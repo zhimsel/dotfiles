@@ -300,7 +300,8 @@ local command_prompt="%(1j.%(!.%B[%j]%b #.%B[%j]%b $).%(!.#.$))"
 local git_status="$(if [[ ! -z $GIT_BRANCH ]]; then echo "$(git_super_status) ";fi)"
 local py_venv="$(if [[ ! -z $VIRTUAL_ENV ]]; then echo "(venv) "; fi)"
 local vbox_active="$(if [[ ! -z $(ls -H $HOME/.vbox_vms_dir/ 2>/dev/null) ]]; then echo "(vbox) "; fi)"
-local env_metadata="${git_status}${py_venv}${vbox_active}"
+local aws_profile="$(if [[ ! -z $AWS_PROFILE ]]; then echo "(aws:${AWS_PROFILE}) "; fi)"
+local env_metadata="${git_status}${py_venv}${vbox_active}${aws_profile}"
 if [[ ! -z $env_metadata ]]; then
   newline=$'\n' env_info="${newline}${env_metadata}"
 else
