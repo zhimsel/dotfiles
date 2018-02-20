@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """install
 
 Install symlinks for all specified files within this repo
@@ -21,9 +21,6 @@ import sys
 import re
 from docopt import docopt
 import git
-
-# Make sure we're running python3
-assert sys.version_info >= (3, 0), "Python 3 or newer required"
 
 args = docopt(__doc__, argv=None, help=True)
 
@@ -61,7 +58,7 @@ def prompt(question):
     negatives = ('n', 'N', 'no', 'No', 'NO')
 
     while True:
-        answer = input(question + ' (y/n) ')
+        answer = raw_input(question + ' (y/n) ')
         if answer in affirmatives:
             return True
         if answer in negatives:
