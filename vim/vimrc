@@ -560,7 +560,7 @@ au FileType            cf3 iab <buffer> = =>
 
 " Python
 au FileType python      setlocal sw=4 ts=4 tw=79 fo+=t
-au FileType python      imap <C-p> from pprint import pprint; import ipdb; ipdb.set_trace()
+au FileType python      imap <C-p> import ipdb; ipdb.set_trace()
 au FileType python      imap <C-o> import IPython; IPython.embed()
 " }}}
 
