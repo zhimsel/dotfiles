@@ -355,6 +355,7 @@ let g:pymode_trim_whitespaces = 0
 
 " BufExplorer settings {{{
 nmap <silent> <C-b> :ToggleBufExplorer<cr> g:pymode_rope_completion = 0
+let g:bufExplorerFindActive=0
 " }}}
 
 " fzf settings {{{
