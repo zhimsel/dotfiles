@@ -22,8 +22,6 @@ import re
 from docopt import docopt
 import git
 
-args = docopt(__doc__, argv=None, help=True)
-
 
 # Define our functions
 def error(message, exit=False):
@@ -248,4 +246,5 @@ def main(args):
 
 
 if __name__ == "__main__":
+    args = docopt(__doc__, argv=None, help=True)
     main(args)
