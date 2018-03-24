@@ -393,7 +393,6 @@ let g:EnableCFE3KeywordAbbreviations=0
 " vim-gist settings {{{
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
-let g:gist_clip_command = 'pbcopy'
 " }}}
 
 " delimitMate settings {{{
@@ -419,7 +418,6 @@ let g:markdown_fold_style = 'nested'
 
 " vim-markdown-preview settings {{{
 let vim_markdown_preview_hotkey='<leader>gp'
-let vim_markdown_preview_browser='Google Chrome'
 let vim_markdown_preview_github=1
 " }}}
 
