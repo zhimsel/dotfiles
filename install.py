@@ -34,9 +34,6 @@ def error(message, exit=False):
         message (str): message to print
         exit (bool): should we quit the program?
     """
-    assert isinstance(message, str)
-    assert isinstance(exit, bool)
-
     print >> sys.stderr, message
 
     if exit:
@@ -52,8 +49,6 @@ def prompt(question):
     Args:
         question (string): Question to ask
     """
-    assert isinstance(question, str)
-
     affirmatives = ('y', 'Y', 'yes', 'Yes', 'YES')
     negatives = ('n', 'N', 'no', 'No', 'NO')
 
@@ -74,14 +69,9 @@ def changelog(prefix, filename, comment=None):
         filename (str): filename of the change
         comment (str): optional postfix comment
     """
-    assert isinstance(prefix, str)
-    assert isinstance(filename, str)
-    assert isinstance(comment, (str, None))
-
     valid_prefixes = frozenset(['ERROR',
                                 'BACKUP',
                                 'LINK'])
-    assert prefix in valid_prefixes
 
     if comment is not None:
         postfix = '  ({})'.format(comment)
@@ -100,8 +90,6 @@ def clone_missing_submodules(repo):
     Args:
         repo (git.Repo): Git Repo object for our dotfiles
     """
-    assert isinstance(repo, git.Repo)
-
     for submodule in repo.submodules:
         if not submodule.module_exists():
             print('Cloning {}...'.format(submodule.path))
@@ -118,8 +106,6 @@ def check_environment(repo):
     Returns:
         (bool): True if all checks pass
     """
-    assert isinstance(repo, git.Repo)
-
     # Make sure $HOME is not a git repo
     homedir = path.expanduser("~")
     if path.exists(homedir + '/.git'):
@@ -151,9 +137,6 @@ def get_linkfile_list(root_path):
     Returns:
         (list): full paths to every .link file in the root_path
     """
-    assert isinstance(root_path, str)
-    assert path.isdir(root_path)
-
     links = list()
 
     for root, dirs, files in os.walk(root_path):
@@ -200,15 +183,10 @@ def create_link(link, report=False):
         link (str): path to *.link file
         report (bool): should we actually link, or just report changes?
     """
-    assert isinstance(link, str)
-    assert isinstance(report, bool)
-    assert path.isfile(link)
-
     # Get source file path
     source = (path.split(link)[0] + '/' +
               (re.sub(r'^(.*)\.link$', r'\1',
                       path.split(link)[-1])))
-    assert path.exists(source)
 
     # Get target files' paths from contents of $link
     targets = list()
