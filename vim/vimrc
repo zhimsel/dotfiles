@@ -12,7 +12,7 @@
 " Plugins {{{
 " Loading plugins must come first
 
-source ~/.vim/vim-plug/plug.vim
+source ~/.vim/vim-plug/plug.vim  " managed externally (via dotfiles submodules)
 call plug#begin('~/.vim/plugins')
 
 " Colors {{{
@@ -44,7 +44,7 @@ Plug 'zhimsel/terraform-vim-folding', { 'for': 'terraform' }
 Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdtree'
 Plug 'Lokaltog/vim-easymotion'
-Plug 'junegunn/fzf'  " Don't run installer script, shell fzf is managed externally
+Plug 'junegunn/fzf'  " Don't run installer script, shell fzf is managed externally (via dotfiles submodules)
 Plug 'junegunn/fzf.vim'
 Plug 'wesQ3/vim-windowswap'
 Plug 'jlanzarotta/bufexplorer'
@@ -156,10 +156,11 @@ command WW w !sudo tee % > /dev/null
 " Toggle paste mode on and off
 nmap <leader>p :set paste!<cr>
 
-command W write " stop that pesky shift key
-command Q quit " stop that pesky shift key
-command Wq wq " stop that pesky shift key
-command WQ wq " stop that pesky shift key
+" bypass that pesky shift key
+command W write
+command Q quit
+command Wq wq
+command WQ wq
 
 " Remaps the macro record key 'q' to 'Q' instead
 nnoremap Q q
@@ -171,8 +172,7 @@ noremap ' "
 noremap '' :registers<cr>
 
 
-" Disable highlight when <leader><Esc>, <Esc><Esc, or F1 is pressed
-map <silent> <F1> :noh<cr>
+" Disable highlight when <Esc><Esc> is pressed
 nmap <silent> <Esc><Esc> :noh<cr>
 
 " Remap 'K'; it's fucking annoying
@@ -301,6 +301,7 @@ if executable('git')
         \ }
 endif
 
+" Move to prev/next location in LocationList window (used below)
 function! <SID>LocationPrevious()
   try
     lprev
@@ -310,7 +311,6 @@ function! <SID>LocationPrevious()
   catch /^Vim\%((\a\+)\)\=:E776/
   endtry
 endfunction
-
 function! <SID>LocationNext()
   try
     lnext
@@ -337,8 +337,10 @@ let g:toggle_list_no_mappings = 1
 let g:deoplete#enable_at_startup = 1
 let g:neocomplete#enable_at_startup = 1
 set completeopt+=noinsert,noselect
+" use ctrl-j and ctrl-k to navigate auto-complete suggestion list
 imap <expr><C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
 imap <expr><C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
+" highlight trailing whitespaces
 function! s:is_whitespace()
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~? '\s'
@@ -377,7 +379,7 @@ let g:startify_list_order = [
       \ ['   Sessions'], 'sessions',
       \ ['   Bookmarks'], 'bookmarks',
       \ ]
-" g:startify_bookmarks is defined in ~/.vimrc.local
+" 'g:startify_bookmarks' is defined in ~/.vimrc.local
 let g:startify_update_oldfiles = 1
 let g:startify_session_delete_buffers = 1
 let g:startify_change_to_dir = 1
@@ -593,7 +595,7 @@ map <leader>th :tabnext<cr>
 map <leader>tl :tabprevious<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
+map <leader>tm :tabmove
 map <leader>1 1gt
 map <leader>2 2gt
 map <leader>3 3gt
@@ -604,7 +606,7 @@ map <leader>7 7gt
 map <leader>8 8gt
 map <leader>9 9gt
 
-" Open splits
+" Open new splits
 nmap <Leader>s :sp<cr>
 nmap <Leader>v :vsp<cr>
 
@@ -660,6 +662,7 @@ let g:git_branch_status_nogit=''
 let g:git_branch_status_ignore_remotes=1
 let g:git_branch_status_check_write=1
 
+" Statusline to be used when Airline is not loaded
 set statusline=
 set statusline +=%1*\ %n\ %*            "buffer number
 set statusline +=%2*\ %<%F%*            "full path
@@ -678,6 +681,7 @@ set statusline +=%1*0x%04B\ %*          "character under cursor
 " }}}
 
 " Functions {{{
+" these functions are likely used elsewhere in this config
 
 function! VisualSelection(direction, extra_filter) range "{{{
     let l:saved_reg = @"
