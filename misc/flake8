@@ -1,6 +1,8 @@
 [flake8]
 max-line-length = 79
-filename = *
 max-complexity = 20
-ignore = C901
+ignore =
+  C901  # "too complex" error
+exclude =
+  *.pyc  # there's no need to lint compiled python files
 builtins = unicode
