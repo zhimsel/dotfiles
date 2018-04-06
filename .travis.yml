@@ -8,7 +8,10 @@ git:
 # install dependencies
 install:
   - pip install flake8
+  - git clone --depth 1 https://github.com/syngan/vim-vimlint /tmp/vim-vimlint
+  - git clone --depth 1 https://github.com/ynkdir/vim-vimlparser /tmp/vim-vimlparser
 
 # run tests
 script:
   - flake8 install.py
+  - sh /tmp/vim-vimlint/bin/vimlint.sh -l /tmp/vim-vimlint -p /tmp/vim-vimlparser -v autoload vim/vimrc
