@@ -36,7 +36,7 @@ Plug 'nelstrom/vim-markdown-folding', { 'for': ['markdown'] }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'neilhwatson/vim_cf3', { 'for': 'cf3' }
 Plug 'klen/python-mode', { 'for': 'python' }
-Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
+Plug 'zhimsel/vim-terraform', { 'branch': 'heredoc_whitespace', 'for': 'terraform' }
 Plug 'zhimsel/terraform-vim-folding', { 'for': 'terraform' }
 " }}}
 
