@@ -14,4 +14,4 @@ install:
 # run tests
 script:
   - flake8 install.py
-  - sh /tmp/vim-vimlint/bin/vimlint.sh -l /tmp/vim-vimlint -p /tmp/vim-vimlparser -v autoload vim/vimrc
+  - sh /tmp/vim-vimlint/bin/vimlint.sh -l /tmp/vim-vimlint -p /tmp/vim-vimlparser -e EVL103=1 -v autoload vim/vimrc

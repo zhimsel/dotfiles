@@ -129,7 +129,6 @@ command! -nargs=1 Silent
 " Key bindings {{{
 
 " Set leader key
-let mapleader = "\<space>"
 let g:mapleader = "\<space>"
 
 " Fast saving/opening/quitting
@@ -210,9 +209,9 @@ endif
 map <C-p> :NERDTreeToggle<CR>
 " Prevent vim from considering NERDtree a window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-let NERDTreeHighlightCursorline = 1
-let NERDTreeMouseMode = 1
-let NERDTreeShowLineNumbers = 1
+let g:NERDTreeHighlightCursorline = 1
+let g:NERDTreeMouseMode = 1
+let g:NERDTreeShowLineNumbers = 1
 " }}}
 
 " vim-json settings {{{
@@ -291,7 +290,7 @@ let g:neomake_python_enabled_makers = ['flake8']
 let g:neomake_chef_enabled_makers = ['foodcritic']
 
 if executable('git')
-  let promises_path = systemlist('echo $(git rev-parse --show-toplevel)/promises.cf')[0]
+  let g:promises_path = systemlist('echo $(git rev-parse --show-toplevel)/promises.cf')[0]
   let g:neomake_cf3_cfpromises_maker = {
         \ 'exe': 'cf-promises',
         \ 'args': ['-cf', promises_path],
@@ -419,8 +418,8 @@ let g:markdown_fold_style = 'nested'
 " }}}
 
 " vim-markdown-preview settings {{{
-let vim_markdown_preview_hotkey='<leader>gp'
-let vim_markdown_preview_github=1
+let g:vim_markdown_preview_hotkey='<leader>gp'
+let g:vim_markdown_preview_github=1
 " }}}
 
 " }}}
