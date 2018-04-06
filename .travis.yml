@@ -2,6 +2,9 @@ language: python
 python:
   - "2.7"
 
+git:
+  depth: 3
+
 # install dependencies
 install:
   - pip install flake8
