@@ -255,6 +255,7 @@ au VimEnter * AirlineRefresh
 " }}}
 
 " vim-gitgutter settings {{{
+set updatetime=100  " 100ms refresh time
 set signcolumn=yes
 let g:gitgutter_realtime = 1
 let g:gitgutter_eager = 1
