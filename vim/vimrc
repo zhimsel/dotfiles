@@ -257,8 +257,6 @@ au VimEnter * AirlineRefresh
 " vim-gitgutter settings {{{
 set updatetime=100  " 100ms refresh time
 set signcolumn=yes
-let g:gitgutter_realtime = 1
-let g:gitgutter_eager = 1
 highlight clear LineNr
 highlight clear SignColumn
 set numberwidth=1 " reduce extra spaces between signs and line numbers
