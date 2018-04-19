@@ -145,6 +145,10 @@ nmap <leader>wqa :wqa<cr>
 nmap <leader>wqa1 :wqa!<cr>
 nmap <leader>ss :SSave<cr>
 
+" Lazier versions of 'copy all' and 'delete all'
+nmap <leader>5y :%y
+nmap <leader>5d :%d
+
 " Quickly toggle line numbers
 nmap <leader>n :set number!<cr>
 nmap <leader>N :set relativenumber!<cr>
