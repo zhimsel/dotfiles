@@ -9,6 +9,8 @@
   safecrlf = false
   excludesfile = ~/.gitignore_global
   commentchar = "%"
+[commit]
+  verbose = 1
 [merge]
   tool = vimdiff
   conflictstyle = diff3
@@ -30,7 +32,7 @@
   last = log -1 HEAD
   s = status
   f = fetch -p
-  c = commit -v
+  c = commit
   co = checkout
   a = add
   br = branch
