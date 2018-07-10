@@ -50,7 +50,7 @@ Plug 'wesQ3/vim-windowswap'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-obsession'
 Plug 'wellle/targets.vim'
-Plug 'zhimsel/vim-stay', { 'branch': 'master' }
+Plug 'zhimsel/vim-stay', { 'branch': 'fix/openerror' }
 Plug 'Konfekt/FastFold'
 Plug 'milkypostman/vim-togglelist'
 Plug 'mhinz/vim-startify'
