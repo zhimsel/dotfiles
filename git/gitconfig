@@ -36,6 +36,7 @@
   co = checkout
   a = add
   br = branch
+  rb = rebase
   whoops = reset --soft HEAD~1  # "undo last commit, leaving changes staged"
   sub = submodule
   subf = submodule update --init --recursive --remote
