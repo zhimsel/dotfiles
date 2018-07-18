@@ -50,7 +50,7 @@ Plug 'wesQ3/vim-windowswap'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-obsession'
 Plug 'wellle/targets.vim'
-Plug 'zhimsel/vim-stay'
+Plug '~/dev/vim-stay'  " Load vim-stay locally to ease development and testing
 Plug 'Konfekt/FastFold'
 Plug 'milkypostman/vim-togglelist'
 Plug 'mhinz/vim-startify'
