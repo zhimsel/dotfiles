@@ -57,3 +57,4 @@
   pbr = push -u origin HEAD
   brm = "!f() { if [ -z $1 ]; then echo 'Please supply a branch name'; else git branch $1 && git reset --hard $(git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD)) && git checkout $1; fi }; f"
   rbm = "!git rebase -i $(git merge-base --fork-point master)"
+  pmb = "!git branch --merged | grep -v '^\\*\\|master\\|dev' | xargs -n1 git branch -d"  # prune merged branches
