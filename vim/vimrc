@@ -35,7 +35,7 @@ Plug 'JamshedVesuna/vim-markdown-preview', { 'for': ['markdown', 'gitcommit'] }
 Plug 'nelstrom/vim-markdown-folding', { 'for': ['markdown'] }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'neilhwatson/vim_cf3', { 'for': 'cf3' }
-Plug 'zhimsel/python-mode', { 'for': 'python' , 'branch': 'dot_hi_fix'}
+Plug 'zhimsel/python-mode', { 'for': 'python' , 'branch': 'dot_hi_fix_master'}
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 Plug 'zhimsel/terraform-vim-folding', { 'for': 'terraform' }
 " }}}
