@@ -46,22 +46,12 @@ MAILCHECK=0
 
 # Load Oh-My-ZSH and it's plugins
 plugins=( \
-          adb \
-          brew \
-          brew-cask \
-          command-not-found \
           docker \
           gem \
           git-extras \
-          gnu-utils \
-          knife \
-          nmap \
-          osx \
           pip \
-          rails \
           rvm \
           screen \
-          torrent \
           vagrant \
 )
 export DISABLE_AUTO_UPDATE="true"
