@@ -1,6 +1,7 @@
 [user]
   email = zach@himsel.net
   name = Zach Himsel
+  signingkey = CA5B6466CFA962A5
 [github]
   user = zhimsel
 [core]
@@ -11,6 +12,7 @@
   commentchar = "%"
 [commit]
   verbose = 1
+  gpgsign = true
 [merge]
   tool = vimdiff
   conflictstyle = diff3
