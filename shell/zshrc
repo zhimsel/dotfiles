@@ -339,57 +339,6 @@ zle -N zle-line-finish
 zle -N zle-keymap-select
 # }}}
 
-# }}}
-
-# Credential Agents {{{
-
-# gpg-agent
-export GPGKEY=F7D2C279
-
-# ssh-agent {{{
-env=~/.ssh/agent.env
-
-agent_is_running() {
-    if [ "$SSH_AUTH_SOCK" ]; then
-        # ssh-add returns:
-        #   0 = agent running, has keys
-        #   1 = agent running, no keys
-        #   2 = agent not running
-        ssh-add -l >/dev/null 2>&1 || [ $? -eq 1 ]
-    else
-        false
-    fi
-}
-
-agent_has_keys() {
-    ssh-add -l >/dev/null 2>&1
-}
-
-agent_load_env() {
-    . "$env" >/dev/null
-}
-
-agent_start() {
-    (umask 077; ssh-agent >"$env")
-    . "$env" >/dev/null
-}
-
-if ! agent_is_running; then
-    agent_load_env
-fi
-
-if ! agent_is_running; then
-    agent_start
-    ssh-add
-elif ! agent_has_keys; then
-    ssh-add
-fi
-
-unset env
-# }}}
-
-# }}}
-
 # Local Settings {{{
 
 # load machine-specific options, should always be last to prevent clobbering
