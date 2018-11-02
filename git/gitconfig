@@ -54,6 +54,8 @@
   wtl = worktree list
   st = stash
   pr = "!hub pull-request -o"
+  bgo = "!hub browse -- compare/$(git symbolic-ref --short HEAD)"  # open branch on Github in browser
+  bc = "!hub browse -u -- compare/$(git symbolic-ref --short HEAD) | pbcopy "  # copy branch URL to clipboard
   cgo = "!hub browse -- commit/$(git rev-parse HEAD)"  # open commit on Github in browser
   cc = "!hub browse -u -- commit/$(git rev-parse HEAD) | pbcopy"  # copy Github commit link to clipboard
   pbr = push -u origin HEAD
