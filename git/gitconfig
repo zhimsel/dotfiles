@@ -20,6 +20,7 @@
   default = upstream
 [pager]
   last = cat
+  branch = cat
 [grep]
   linenumber = true
   patternType = extended
