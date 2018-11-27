@@ -12,6 +12,11 @@
 
 # General Settings {{{
 
+# Source the machine-specific "pre-config" zshrc if it exists
+if [ -f ~/.zshrc.prelocal ]; then
+     source ~/.zshrc.prelocal
+fi
+
 umask 077 # set default umask
 
 if [[ -x $(which nvim) ]]; then # set text editor
