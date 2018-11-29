@@ -51,14 +51,17 @@ MAILCHECK=0
 
 # Load Oh-My-ZSH and it's plugins
 plugins=( \
-          docker \
           gem \
           git-extras \
           pip \
           rvm \
           screen \
-          vagrant \
 )
+# Load per-machine plugins. To use, create a ~/.zshplugins.local file with the following:
+# plugins+=( plugin1 plugin2 )
+if [ -f "$HOME/.zshplugins.local" ]; then
+  source "$HOME/.zshplugins.local"
+fi
 export DISABLE_AUTO_UPDATE="true"
 export ZSH=$HOME/.zsh/oh-my-zsh
 source $ZSH/oh-my-zsh.sh
