@@ -523,6 +523,7 @@ set clipboard^=unnamed
 " Define text expansions
 iab #ube #!/usr/bin/env
 inoremap ds""  """<CR>"""O
+inoremap ds`` ```<CR>```O
 
 " executes current file (if executable)
 nnoremap <leader>x :!%:p<cr>
