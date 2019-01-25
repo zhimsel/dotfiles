@@ -74,7 +74,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
-Plug 'vim-scripts/renamer.vim', { 'on': 'Renamer' }
+Plug 'qpkorr/vim-renamer', { 'on': 'Renamer' }
 Plug 'justinmk/vim-gtfo'
 Plug 'godlygeek/tabular'
 Plug 'Raimondi/delimitMate'
