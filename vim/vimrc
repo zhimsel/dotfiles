@@ -572,6 +572,10 @@ au FileType            cf3 iab <buffer> = =>
 au FileType python      setlocal sw=4 ts=4 tw=0 colorcolumn=80,100,120
 au FileType python      imap <C-p> import ipdb; ipdb.set_trace()
 au FileType python      imap <C-o> import IPython; IPython.embed()
+
+" JSON
+au FileType json    setlocal fdm=syntax
+
 " }}}
 
 " Moving around, tabs, windows and buffers {{{
