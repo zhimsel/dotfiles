@@ -32,7 +32,6 @@ export PATH="$HOME/bin:$PATH"
 # Misc settings
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-HIST_STAMPS="yyyy.mm.dd"
 setopt PATH_DIRS
 setopt EXTENDED_GLOB
 setopt LIST_PACKED
@@ -126,6 +125,7 @@ alias fucking='sudo'
 alias la='ls -lah'
 alias ltr='ls -ltrh'
 alias tree='tree -I .git'
+alias history='fc -il 1'
 alias h='history'
 alias fuck='$(thefuck $(fc -ln -1))'
 alias zrcl='vim ~/.zshrc.local'
