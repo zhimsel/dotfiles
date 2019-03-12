@@ -36,6 +36,7 @@
   s = status
   f = fetch -p
   c = commit
+  amend = commit --amend --no-edit
   co = checkout
   a = add
   br = branch
