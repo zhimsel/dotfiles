@@ -119,17 +119,15 @@ bindkey -s '^e' 'cd ..\n' #go up a directory with ctrl-e
 
 # Aliases {{{
 
-alias s='sudo'
-alias please='sudo $(fc -ln -1)'
-alias fucking='sudo'
+alias s='sudo -HE'
+alias se='sudoedit'
+alias please='s $(fc -ln -1)'
 alias la='ls -lah'
 alias ltr='ls -ltrh'
 alias tree='tree -I .git'
 alias history='fc -il 1'
 alias h='history'
 alias fuck='$(thefuck $(fc -ln -1))'
-alias zrcl='vim ~/.zshrc.local'
-alias vrcl='vim ~/.vimrc.local'
 alias dm='docker-machine'
 alias dme='eval $(docker-machine env default)'
 alias wtp='git worktree prune -v'
