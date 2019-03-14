@@ -57,6 +57,7 @@ Plug 'milkypostman/vim-togglelist'
 Plug 'mhinz/vim-startify'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'mbbill/undotree'
 " }}}
 
 " Git plugins {{{
