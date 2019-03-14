@@ -36,6 +36,7 @@ Plug 'nelstrom/vim-markdown-folding', { 'for': ['markdown'] }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'neilhwatson/vim_cf3', { 'for': 'cf3' }
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 Plug 'zhimsel/terraform-vim-folding', { 'for': 'terraform' }
 " }}}
@@ -357,6 +358,11 @@ let g:pymode_rope = 0
 let g:pymode_doc = 0
 let g:pymode_run = 0
 let g:pymode_trim_whitespaces = 0
+" }}}
+
+" simpylFold settings {{{
+let g:SimpylFold_docstring_preview = 1
+let g:SimpylFold_fold_import = 0
 " }}}
 
 " BufExplorer settings {{{
