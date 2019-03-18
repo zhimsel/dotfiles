@@ -31,7 +31,7 @@ Plug 'rstacruz/sparkup', { 'for': 'html' }
 Plug 'vim-scripts/fountain.vim', { 'for': 'fountain' }
 Plug 'tpope/vim-git', { 'for': 'git' }
 Plug 'jtratner/vim-flavored-markdown', { 'for': ['markdown', 'gitcommit'] }
-Plug 'JamshedVesuna/vim-markdown-preview', { 'for': ['markdown', 'gitcommit'] }
+Plug 'zhimsel/vim-markdown-preview', { 'for': ['markdown', 'gitcommit'], 'branch': 'default_browser_assumption' }
 Plug 'nelstrom/vim-markdown-folding', { 'for': ['markdown'] }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'neilhwatson/vim_cf3', { 'for': 'cf3' }
