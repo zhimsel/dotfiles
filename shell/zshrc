@@ -186,17 +186,23 @@ imv() { # {{{
   done
 } # }}}
 
-# Create new virtualenvs
+# Create new virtualenvs and fix existing ones
 mkvenv() { # {{{
-  if [[ $1 =~ '[2,3]' ]]; then
-    [[ -e .venv ]] || virtualenv -p python${1} .venv
-    echo "source \$(dirname \$0)/.venv/bin/activate" > .autoenv.zsh
-    echo "deactivate" > .autoenv_leave.zsh
-    source .venv/bin/activate
-    pip install --upgrade pip neovim ipdb docopt flake8
-    echo "Created new virtualenv with $(python -V)"
+  if [[ -z "$VIRTUAL_ENV" ]]; then
+    if [[ $1 =~ '[2,3]' ]]; then
+      [[ -e .venv ]] && find -L .venv -type l | xargs rm -v
+      virtualenv -p python${1} .venv
+      [[ -f .autoenv.zsh ]] || echo "source \$(dirname \$0)/.venv/bin/activate" > .autoenv.zsh
+      [[ -f .autoenv_leave.zsh ]] || echo "deactivate" > .autoenv_leave.zsh
+      source .venv/bin/activate
+      pip install --upgrade pip neovim ipdb flake8
+      pyver="$(python -V)"
+      echo "Created virtualenv with $pyver"
+    else
+      echo "Please specify which python version with \"mkvenv [2,3]\""
+    fi
   else
-    echo "Please specify which python version with \"newvenv [2,3]\""
+    echo "venv is still active! Please run 'deactivate' first."
   fi
 } # }}}
 
