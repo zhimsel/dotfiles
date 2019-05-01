@@ -554,7 +554,7 @@ au FileType           terraform setlocal tw=0 sw=2 ts=2 fdl=0
 au FileType           dosini    setlocal cms=#\ %s
 
 " Markdown
-au FileType markdown setlocal textwidth=0
+au FileType markdown setlocal textwidth=0 spell
 au FileType markdown let b:delimitMate_expand_space = 0
 
 " Ruby
