@@ -551,7 +551,7 @@ au FileType           yaml                      setlocal fdl=1 fdm=indent
 au FileType           sh                        setlocal sw=2 ts=2 tw=79
 au FileType           vim                       setlocal tw=0
 au FileType           terraform                 setlocal tw=0 sw=2 ts=2 fdl=0
-au FileType           dosini                    setlocal cms=#\ %s
+au FileType           dosini,cfg,conf           setlocal cms=#\ %s
 
 " Markdown
 au FileType markdown setlocal textwidth=0 spell
