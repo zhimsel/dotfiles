@@ -10,6 +10,7 @@
   safecrlf = false
   excludesfile = ~/.gitignore_global
   commentchar = "%"
+  pager = cat
 [commit]
   verbose = 1
   gpgsign = true
@@ -18,9 +19,10 @@
   conflictstyle = diff3
 [push]
   default = upstream
+[color]
+  ui = always
 [pager]
-  last = cat
-  branch = cat
+  log = less
 [grep]
   linenumber = true
   patternType = extended
