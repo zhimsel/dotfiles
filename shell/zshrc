@@ -188,22 +188,21 @@ imv() { # {{{
 
 # Create new virtualenvs and fix existing ones
 mkvenv() { # {{{
-  if [[ -z "$VIRTUAL_ENV" ]]; then
-    if [[ $1 =~ '[2,3]' ]]; then
-      [[ -e .venv ]] && find -L .venv -type l | xargs rm -v
-      virtualenv -p python${1} .venv
-      [[ -f .autoenv.zsh ]] || echo "source \$(dirname \$0)/.venv/bin/activate" > .autoenv.zsh
-      [[ -f .autoenv_leave.zsh ]] || echo "deactivate" > .autoenv_leave.zsh
-      source .venv/bin/activate
-      pip install --upgrade pip neovim ipdb flake8
-      pyver="$(python -V)"
-      echo "Created virtualenv with $pyver"
-    else
-      echo "Please specify which python version with \"mkvenv [2,3]\""
-    fi
-  else
-    echo "venv is still active! Please run 'deactivate' first."
-  fi
+  yell() { echo "$*" >&2; }
+  die() { yell "$*"; exit 111; }
+  try() { "$@" || die "cannot $*"; }
+  if [[ -z $1 ]]; then die "Please specify a python version and project name: mkvenv <2,3> [venv_name]"; fi
+  if [[ -n $2 ]]; then venv_dir="$HOME/.venv/$2"; else venv_dir="$HOME/.venv/$(basename $(pwd))"; fi
+  if [[ -n "$VIRTUAL_ENV" ]]; then die echo "A virtualenv is active! Please run 'deactivate' first."; fi
+  yell "Creating python${1} virtualenv for $(pwd) in $venv_dir"
+  try mkdir -p "$venv_dir"
+  [[ -e "$venv_dir" ]] && find -L "$venv_dir" -type l | xargs rm -v
+  try virtualenv -p "python${1}" "$venv_dir"
+  source ${venv_dir}/bin/activate
+  pip install --upgrade pip
+  pip install --upgrade -r "$HOME/.pip_packages_base.txt"
+  [[ -f .autoenv.zsh ]] || echo "source ${venv_dir}/bin/activate" > .autoenv.zsh
+  [[ -f .autoenv_leave.zsh ]] || echo "deactivate" > .autoenv_leave.zsh
 } # }}}
 
 # Manage git worktrees
@@ -300,9 +299,9 @@ local current_time="%{$fg[lightgrey]%}%*%{$reset_color%}"
 local return_code="%(?..%{$fg[red]%}↳ %? %{$reset_color%})"
 local command_prompt="%(1j.%(!.%B[%j]%b #.%B[%j]%b $).%(!.#.$))"
 local git_status=$(git rev-parse --is-inside-work-tree &> /dev/null && echo "$(git_super_status) ")
-local py_venv=$(if [[ ! -z $VIRTUAL_ENV ]]; then echo "(venv|$(realpath --relative-to=`pwd` $VIRTUAL_ENV)) "; fi)
+local py_venv=$(if [[ ! -z $VIRTUAL_ENV ]]; then echo "(venv:$(basename $VIRTUAL_ENV)) "; fi)
 local vbox_active=$(if [[ ! -z $(ls -H $HOME/.vbox_vms_dir/ 2>/dev/null) ]]; then echo "(vbox) "; fi)
-local aws_profile=$(if [[ ! -z $AWS_PROFILE ]]; then echo "(aws|${AWS_PROFILE}) "; fi)
+local aws_profile=$(if [[ ! -z $AWS_PROFILE ]]; then echo "(aws:${AWS_PROFILE}) "; fi)
 local env_metadata="${git_status}${py_venv}${vbox_active}${aws_profile}"
 if [[ ! -z $env_metadata ]]; then
   newline=$'\n' env_info="${newline}${env_metadata}"
@@ -369,6 +368,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 if [[ -f $HOME/.fzf.zsh ]]; then
   source $HOME/.fzf.zsh
 fi
+
 # set up zsh-syntax-highlighting
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
