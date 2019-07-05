@@ -54,7 +54,6 @@ Plug 'wellle/targets.vim'
 Plug '~/dev/vim-stay'  " Load vim-stay locally to ease development and testing
 Plug 'Konfekt/FastFold'
 Plug 'milkypostman/vim-togglelist'
-Plug 'mhinz/vim-startify'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'mbbill/undotree'
@@ -212,12 +211,12 @@ endif
 " Plugin settings {{{
 
 " NERDtree settings {{{
-map <C-p> :NERDTreeToggle<CR>
-" Prevent vim from considering NERDtree a window
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+nnoremap <C-p> :NERDTreeFocus<CR>
+nnoremap <C-o> :NERDTreeFind<CR>
 let g:NERDTreeHighlightCursorline = 1
 let g:NERDTreeMouseMode = 1
 let g:NERDTreeShowLineNumbers = 1
+let g:NERDTreeWinSize = 41
 " }}}
 
 " vim-json settings {{{
@@ -381,22 +380,6 @@ let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
-" }}}
-
-" startify settings {{{
-let g:startify_list_order = [
-      \ ['   MRU (dir)'], 'dir',
-      \ ['   MRU'], 'files',
-      \ ['   Sessions'], 'sessions',
-      \ ['   Bookmarks'], 'bookmarks',
-      \ ]
-" 'g:startify_bookmarks' is defined in ~/.vimrc.local
-let g:startify_update_oldfiles = 1
-let g:startify_session_delete_buffers = 1
-let g:startify_change_to_dir = 1
-let g:startify_change_to_vcs_root = 1
-let g:startify_session_persistence = 1
-let g:startify_session_sort = 1
 " }}}
 
 " CFEngine plugin settings {{{
