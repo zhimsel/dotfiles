@@ -1,8 +1,9 @@
 [flake8]
-max-line-length = 79
+max-line-length = 99
 max-complexity = 20
-ignore =
-  C901  # "too complex" error
 exclude =
-  *.pyc  # there's no need to lint compiled python files
+  # there's no need to lint compiled python files
+  *.pyc,
+  # exclude some common directories
+  .venv,.git,.tox,
 builtins = unicode
