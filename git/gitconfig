@@ -24,6 +24,8 @@
   ui = always
 [pager]
   log = less
+  diff = less
+  show = less
 [grep]
   linenumber = true
   patternType = extended
