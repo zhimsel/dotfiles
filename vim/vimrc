@@ -33,6 +33,7 @@ Plug 'tpope/vim-git', { 'for': 'git' }
 Plug 'jtratner/vim-flavored-markdown', { 'for': ['markdown', 'gitcommit'] }
 Plug 'zhimsel/vim-markdown-preview', { 'for': ['markdown', 'gitcommit'], 'branch': 'default_browser_assumption' }
 Plug 'nelstrom/vim-markdown-folding', { 'for': ['markdown'] }
+Plug 'gu-fan/riv.vim', { 'for': ['rst'] }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'neilhwatson/vim_cf3', { 'for': 'cf3' }
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
@@ -539,6 +540,8 @@ au FileType           dosini,cfg,conf           setlocal cms=#\ %s
 " Markdown
 au FileType markdown setlocal textwidth=0 spell
 au FileType markdown let b:delimitMate_expand_space = 0
+
+au FileType rst nnoremap <leader>gp :split \| resize 20 \| terminal restview %<cr>
 
 " Ruby
 au BufRead,BufNewFile {Berksfile,Vagrantfile,Gemfile} setlocal filetype=ruby
