@@ -211,6 +211,10 @@ endif
 
 " Plugin settings {{{
 
+" UndoTree settings {{{
+nnoremap <leader>u :UndotreeToggle<CR>
+" }}}
+
 " NERDtree settings {{{
 nnoremap <C-p> :NERDTreeFocus<CR>
 nnoremap <C-o> :NERDTreeFind<CR>
