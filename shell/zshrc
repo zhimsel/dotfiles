@@ -188,16 +188,13 @@ imv() { # {{{
 
 # Create new virtualenvs and fix existing ones
 mkvenv() { # {{{
-  yell() { echo "$*" >&2; }
-  die() { yell "$*"; exit 111; }
-  try() { "$@" || die "cannot $*"; }
-  if [[ -z $1 ]]; then die "Please specify a python version and project name: mkvenv <2,3> [venv_name]"; fi
+  if [[ -z $1 ]]; then "Please specify a python version and project name: mkvenv <2,3> [venv_name]"; return 1; fi
   if [[ -n $2 ]]; then venv_dir="$HOME/.venv/$2"; else venv_dir="$HOME/.venv/$(basename $(pwd))"; fi
-  if [[ -n "$VIRTUAL_ENV" ]]; then die echo "A virtualenv is active! Please run 'deactivate' first."; fi
-  yell "Creating python${1} virtualenv for $(pwd) in $venv_dir"
-  try mkdir -p "$venv_dir"
+  if [[ -n "$VIRTUAL_ENV" ]]; then echo "A virtualenv is active! Please run 'deactivate' first."; return 1; fi
+  echo "Creating python${1} virtualenv for $(pwd) in $venv_dir"
+  mkdir -p "$venv_dir" || return 1
   [[ -e "$venv_dir" ]] && find -L "$venv_dir" -type l | xargs rm -v
-  try virtualenv -p "python${1}" "$venv_dir"
+  virtualenv -p "python${1}" "$venv_dir" || return 1
   source ${venv_dir}/bin/activate
   pip install --upgrade pip
   pip install --upgrade -r "$HOME/.pip_packages_base.txt"
