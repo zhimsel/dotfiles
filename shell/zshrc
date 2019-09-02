@@ -133,6 +133,7 @@ alias dme='eval $(docker-machine env default)'
 alias wtp='git worktree prune -v'
 alias wtl='wtp && git worktree list'
 alias dockviz="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
+alias vmv='vim -c Renamer'
 
 if [[ -x $(which nvim) ]]; then
   alias vvim=$(which vim)
