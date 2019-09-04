@@ -196,7 +196,7 @@ vnoremap <Right> xp`[v`]
 vnoremap <Left> xhhp`[v`]
 
 " git keybindings (both vim-fugitive and vim-gitgutter)
-nmap <leader>ga :Silent Git add %<cr>:w<cr>
+nmap <leader>ga :w<cr>:silent Git add %<cr>
 nmap <leader>gv :Gitv<cr>
 nmap <leader>ha <Plug>GitGutterStageHunk
 nmap <leader>hr <Plug>GitGutterRevertHunk
