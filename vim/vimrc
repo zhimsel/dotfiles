@@ -65,7 +65,6 @@ Plug 'tpope/vim-abolish', { 'on': 'Subvert' }
 Plug 'tpope/vim-fugitive'
 Plug 'taq/vim-git-branch-info'
 Plug 'airblade/vim-gitgutter'
-Plug 'gregsexton/gitv'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'  " required for gist-vim
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -197,7 +196,6 @@ vnoremap <Left> xhhp`[v`]
 
 " git keybindings (both vim-fugitive and vim-gitgutter)
 nmap <leader>ga :w<cr>:silent Git add %<cr>
-nmap <leader>gv :Gitv<cr>
 nmap <leader>ha <Plug>GitGutterStageHunk
 nmap <leader>hr <Plug>GitGutterRevertHunk
 nmap <leader>hn <Plug>GitGutterNextHunk
