@@ -319,7 +319,7 @@ if [[ ! -z $env_metadata ]]; then
 else
   env_info=""
 fi
-PROMPT="${return_code}${current_time} ${user_name} at ${host_name} in ${current_dir} ${env_info}
+PROMPT=$'\n'"${return_code}${current_time} ${user_name} at ${host_name} in ${current_dir} ${env_info}
 ${command_prompt} "
 RPROMPT=""
 }
