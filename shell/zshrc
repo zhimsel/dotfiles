@@ -279,6 +279,18 @@ cask-clean () { # {{{
   done <<< "$(brew cask list)"
 } # }}}
 
+# switch aws-vault profiles
+aws-vault-use () { # {{{
+  local profile output
+  profile="$1"
+  output="$(aws-vault exec "$profile" -- env)"
+  if [[ $? -ne 0 ]]; then
+    echo "$output" >&2
+    return 1
+  fi
+  eval "$(echo "$output" | awk '/^AWS/ { print "export " $1 }')"
+} # }}}
+
 # }}}
 
 # Visual/Theme Settings {{{
@@ -300,7 +312,8 @@ local git_status=$(git rev-parse --is-inside-work-tree &> /dev/null && echo "$(g
 local py_venv=$(if [[ ! -z $VIRTUAL_ENV ]]; then echo "(venv:$(basename $VIRTUAL_ENV)) "; fi)
 local vbox_active=$(if [[ ! -z $(ls -H $HOME/.vbox_vms_dir/ 2>/dev/null) ]]; then echo "(vbox) "; fi)
 local aws_profile=$(if [[ ! -z $AWS_PROFILE ]]; then echo "(aws:${AWS_PROFILE}) "; fi)
-local env_metadata="${git_status}${py_venv}${vbox_active}${aws_profile}"
+local aws_vault_profile=$(if [[ ! -z $AWS_VAULT ]]; then echo "(aws-vault:${AWS_VAULT}) "; fi)
+local env_metadata="${git_status}${py_venv}${vbox_active}${aws_profile}${aws_vault_profile}"
 if [[ ! -z $env_metadata ]]; then
   newline=$'\n' env_info="${newline}${env_metadata}"
 else
