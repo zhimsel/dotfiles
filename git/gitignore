@@ -23,3 +23,7 @@ Session.vim
 ####################
 .autoenv*
 .venv
+
+# Terraform #
+#############
+.tfplan
