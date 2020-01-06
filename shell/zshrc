@@ -145,6 +145,13 @@ fi
 
 # Functions {{{
 
+# Provide list of recent directories to switch to
+cdir () { # {{{
+  local target
+  target=$(dirs -v | fzf | awk '{ print $1}')
+  if [[ -n $target ]]; then cd $target; fi
+} # }}}
+
 # Make and open new directory
 mkcd() { # {{{
   mkdir -p "$1" &&
