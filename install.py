@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """install
 
 Install symlinks for all specified files within this repo
@@ -51,7 +51,7 @@ def prompt(question):
     negatives = ('n', 'N', 'no', 'No', 'NO')
 
     while True:
-        answer = raw_input(question + ' (y/n) ')
+        answer = input(question + ' (y/n) ')
         if answer in affirmatives:
             return True
         if answer in negatives:
