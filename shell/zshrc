@@ -149,7 +149,7 @@ fi
 cdir () { # {{{
   local target
   target=$(dirs -v | fzf | awk '{ print $1}')
-  if [[ -n $target ]]; then cd $target; fi
+  if [[ -n $target ]]; then cd ~$target; fi
 } # }}}
 
 # Make and open new directory
