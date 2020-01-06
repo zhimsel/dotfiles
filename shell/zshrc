@@ -172,17 +172,6 @@ xtouch() { # {{{
   eval chmod +x "$@"
 } # }}}
 
-# New cookbook function
-newcook() { # {{{
-  if [ $1 ] ; then
-    git clone git@github.com:zhimsel/skeleton-cookbook.git $1
-    cd $1; rm -rf .git/
-    egrep -r "skeleton" * .kitchen.yml | cut -d ':' -f 1 | sort | uniq | xargs -n 1 sed -i '' "s/skeleton/$1/g"
-  else
-    echo "Need the name of the cookbook."
-  fi
-} # }}}
-
 # Interactive renaming
 imv() { # {{{
   local src dst
@@ -269,21 +258,6 @@ wtr () { # {{{
       cd ..
     fi
   done
-} # }}}
-
-# cleanup homebrew's cask
-cask-clean () { # {{{
-  while read cask; do
-    caskBasePath="/opt/homebrew-cask/Caskroom"
-    local caskDirectory="$caskBasePath/$cask"
-    local versionsToRemove="$(ls -vr --color=never $caskDirectory | sed 1,1d)"
-    if [[ -n $versionsToRemove ]]; then
-        while read versionToRemove ; do
-            echo "Removing $cask $versionToRemove..."
-            rm -rf "$caskDirectory/$versionToRemove"
-        done <<< "$versionsToRemove"
-    fi
-  done <<< "$(brew cask list)"
 } # }}}
 
 # switch aws-vault profiles
