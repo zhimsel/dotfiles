@@ -32,13 +32,14 @@ packages=(\
   bash-completion
 
   # Install `wget` with IRI support.
-  wget --with-iri
+  wget
 
   # Install more recent versions of some OS X tools.
-  vim --override-system-vi
-  homebrew/dupes/grep
-  homebrew/dupes/openssh
-  homebrew/dupes/screen
+  vim
+  nvim
+  grep
+  openssh
+  screen
   ack
   git
   p7zip
@@ -49,11 +50,10 @@ packages=(\
   gnupg
 
   # Misc packages
-  android-platform-tools
   awscli
   cmake
-  exiftool
   fzf  # don't forget to run the installer script after install (see "caveats")
+  ag
   htop-osx
   hub
   iftop
@@ -61,7 +61,6 @@ packages=(\
   jq
   lame
   links
-  macvim
   markdown
   ncdu
   ncurses
