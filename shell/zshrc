@@ -156,7 +156,7 @@ cdir () { # {{{
 mkcd() { # {{{
   mkdir -p "$1" &&
   eval cd "\"\$$#\""
-} # }}}}
+} # }}}
 
 # Delete current directory
 rmwd() { # {{{
@@ -234,6 +234,7 @@ wt () { # {{{
     return 0
   fi
 } # }}}
+
 wtr () { # {{{
   working_dir="$(pwd)"
   while true; do
