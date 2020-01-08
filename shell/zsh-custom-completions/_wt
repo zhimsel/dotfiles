@@ -6,7 +6,7 @@ _wt() {
   _arguments '1: :->branch'
 
   case $state in
-    (branch) _arguments '1:branches:($(git br | sed "s/^[\*|\ ]\ //"))' ;;
+    (branch) _arguments '1:branches:($(git branch --no-color | sed "s/^[\*|\ ]\ //"))' ;;
   esac
 }
 
