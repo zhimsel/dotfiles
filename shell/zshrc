@@ -66,8 +66,6 @@ export ZSH=$HOME/.zsh/oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 # Load normal zsh plugins/RCs
-source $HOME/.zsh/opp/opp.zsh
-source $HOME/.zsh/opp/opp/*.zsh
 source $HOME/.zsh/git-prompt/git-prompt.plugin.zsh
 source $HOME/.zsh/completion-generator/zsh-completion-generator.plugin.zsh
 source $HOME/.zsh/zsh-autoenv/autoenv.zsh
