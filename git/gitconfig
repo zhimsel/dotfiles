@@ -4,6 +4,8 @@
   signingkey = CA5B6466CFA962A5
 [github]
   user = zhimsel
+[hub]
+	protocol = ssh
 [core]
   eol = lf
   autocrlf = input
@@ -21,7 +23,7 @@
 [push]
   default = upstream
 [color]
-  ui = always
+  ui = auto
 [pager]
   log = less
   diff = less
@@ -73,5 +75,3 @@
   rbm = "!git rebase -i $(git merge-base --fork-point master)"
   pmb = "!git branch --merged | grep -v '^\\*\\|master\\|dev' | xargs -n1 git branch -d"  # prune merged branches
   psb = "!git checkout -q master && git for-each-ref refs/heads/ \"--format=%(refname:short)\" | while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == \"-\"* ]] && git branch -D $branch; done && git checkout -q -"  # prune squashed branches (from https://github.com/not-an-aardvark/git-delete-squashed)
-[hub]
-	protocol = ssh
