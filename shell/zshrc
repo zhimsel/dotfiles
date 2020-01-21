@@ -372,13 +372,6 @@ fi
 # set up zsh-syntax-highlighting
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# terminfo workaround for neovim pane switching issue
-# https://github.com/neovim/neovim/issues/2048#issuecomment-78045837
-ti_file="$HOME/.terminfo_$TERM.fixed"
-touch "$ti_file"
-infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > "$ti_file" || echo "infocomp failed"
-tic $ti_file
-
 # make $PATH contain only unique elements
 typeset -gU path
 
