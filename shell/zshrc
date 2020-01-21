@@ -26,8 +26,7 @@ else
 fi
 
 # $PATH
-export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin"
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH"
 
 # Path settings
 setopt path_dirs
@@ -373,6 +372,6 @@ fi
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # make $PATH contain only unique elements
-typeset -gU path
+typeset -gU PATH path
 
 # }}}
