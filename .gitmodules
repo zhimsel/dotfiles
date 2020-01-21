@@ -6,23 +6,6 @@
 	path = lib/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
 	branch = master
-[submodule "lib/zsh-autoenv"]
-	path = lib/zsh-autoenv
-	url = https://github.com/Tarrasch/zsh-autoenv.git
-	branch = master
-[submodule "lib/zsh-completion-generator"]
-	path = lib/zsh-completion-generator
-	url = https://github.com/RobSis/zsh-completion-generator.git
-	branch = master
-[submodule "lib/zsh-completions"]
-	path = lib/zsh-completions
-	url = https://github.com/zsh-users/zsh-completions.git
-	branch = master
-[submodule "lib/zsh-git-prompt"]
-	path = lib/zsh-git-prompt
-	url = https://github.com/zhimsel/zsh-git-prompt.git
-	branch = master
-[submodule "lib/zsh-syntax-highlighting"]
-	path = lib/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-	branch = master
+[submodule "lib/zplug"]
+	path = lib/zplug
+	url = https://github.com/zplug/zplug

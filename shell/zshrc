@@ -66,17 +66,25 @@ zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
 
 # Plugins {{{
 
-source $HOME/.zsh/git-prompt/git-prompt.plugin.zsh
-source $HOME/.zsh/completion-generator/zsh-completion-generator.plugin.zsh
-source $HOME/.zsh/zsh-autoenv/autoenv.zsh
+export ZPLUG_HOME="$HOME/.zsh/zplug"
+source $ZPLUG_HOME/init.zsh
+
+zplug "RobSis/zsh-completion-generator"
+zplug "Tarrasch/zsh-autoenv"
+zplug "zhimsel/zsh-git-prompt"
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-syntax-highlighting", defer:3
+
+source $HOME/.zplug.local
+zplug load
+
 # }}}
 
 # Autocomplete {{{
 
 # base zsh autocompletion
-fpath=(~/.zsh/zsh-completions/src $fpath)
 fpath=(~/.zsh/custom-completions $fpath)
-autoload -Uz compaudit compinit
+autoload -Uz compinit
 compinit -u
 
 # bash autocompletions
@@ -367,9 +375,6 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 if [[ -f $HOME/.fzf.zsh ]]; then
   source $HOME/.fzf.zsh
 fi
-
-# set up zsh-syntax-highlighting
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # make $PATH contain only unique elements
 typeset -gU PATH path
