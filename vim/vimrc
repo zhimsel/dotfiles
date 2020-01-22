@@ -218,9 +218,16 @@ nnoremap <leader>u :UndotreeToggle<CR>
 " }}}
 
 " NERDtree settings {{{
+" main maps
 nnoremap <C-p> :NERDTreeFocus<CR>
 nnoremap <C-o> :NERDTreeFind<CR>
 nnoremap <C-i> :NERDTree<CR>
+" internal maps
+let g:NERDTreeMapOpenSplit='s'
+let g:NERDTreeMapPreviewSplit='gs'
+let g:NERDTreeMapOpenVSplit='v'
+let g:NERDTreeMapPreviewVSplit='gv'
+" options
 let g:NERDTreeHighlightCursorline = 1
 let g:NERDTreeMouseMode = 1
 let g:NERDTreeWinSize = 41
