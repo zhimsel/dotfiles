@@ -53,7 +53,7 @@ Plug 'wesQ3/vim-windowswap'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-obsession'
 Plug 'wellle/targets.vim'
-Plug '~/dev/vim-stay'  " Load vim-stay locally to ease development and testing
+Plug 'git@github.com:zhimsel/vim-stay.git', { 'dir': '~/dev/vim-stay', 'frozen': 'true' }
 Plug 'Konfekt/FastFold'
 Plug 'milkypostman/vim-togglelist'
 Plug 'nathanaelkane/vim-indent-guides'
