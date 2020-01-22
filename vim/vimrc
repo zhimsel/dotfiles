@@ -12,6 +12,7 @@
 " Plugins {{{
 " Loading plugins must come first
 
+let g:plug_window = 'enew'
 source ~/.vim/vim-plug/plug.vim  " managed externally (via dotfiles submodules)
 call plug#begin('~/.vim/plugins')
 
