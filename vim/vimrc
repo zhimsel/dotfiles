@@ -69,6 +69,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'  " required for gist-vim
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'rbgrouleff/bclose.vim'
+Plug 'iberianpig/tig-explorer.vim'
 " }}}}
 
 " Automation plugins {{{
@@ -292,6 +294,16 @@ let g:gitgutter_max_signs = 10000
 highlight clear LineNr
 highlight clear SignColumn
 set numberwidth=1 " reduce extra spaces between signs and line numbers
+" }}}
+
+" tig-explorer settings {{{
+nnoremap <Leader>gl :TigOpenProjectRootDir<CR>
+nnoremap <Leader>gL :TigOpenCurrentFile<CR>
+nnoremap <Leader>gg :TigGrep<CR>
+nnoremap <Leader>ggr :TigGrepResume<CR>
+vnoremap <Leader>gg y:TigGrep<Space><C-R>"<CR>
+nnoremap <Leader>gb :TigBlame<CR>
+nnoremap <Leader>gs :TigStatus<CR>
 " }}}
 
 " vim-easymotion settings {{{
