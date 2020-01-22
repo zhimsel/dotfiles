@@ -220,10 +220,11 @@ nnoremap <leader>u :UndotreeToggle<CR>
 " NERDtree settings {{{
 nnoremap <C-p> :NERDTreeFocus<CR>
 nnoremap <C-o> :NERDTreeFind<CR>
+nnoremap <C-i> :NERDTree<CR>
 let g:NERDTreeHighlightCursorline = 1
 let g:NERDTreeMouseMode = 1
-let g:NERDTreeShowLineNumbers = 1
 let g:NERDTreeWinSize = 41
+let g:NERDTreeShowHidden = 1
 " }}}
 
 " vim-json settings {{{
@@ -649,6 +650,10 @@ map <leader>9 9gt
 " Open new splits
 nmap <Leader>s :sp<cr>
 nmap <Leader>v :vsp<cr>
+
+" Maximize window
+nnoremap <C-w>- <C-w>\|
+nnoremap <C-w> <C-w>\|
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
