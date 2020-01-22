@@ -51,7 +51,8 @@
   br = branch
   rb = rebase
   rbi = rebase --interactive
-  whoops = reset --soft HEAD~1  # "undo last commit, leaving changes staged"
+  whoops = reset --soft HEAD~1  # undo last commit, leaving changes staged
+  back = reset --hard HEAD~1  # undo last commit, dropping changes
   sub = submodule
   subf = submodule update --init --recursive --remote
   db = "!git diff $(git merge-base master HEAD) HEAD" # what's changed in our branch?
