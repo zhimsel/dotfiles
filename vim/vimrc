@@ -40,7 +40,6 @@ Plug 'neilhwatson/vim_cf3', { 'for': 'cf3' }
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
-Plug 'zhimsel/terraform-vim-folding', { 'for': 'terraform' }
 " }}}
 
 " Interface plugins {{{
@@ -444,7 +443,7 @@ let g:delimitMate_jump_expansion = 1
 " }}}
 
 " vim-stay settings {{{
-set viewoptions=cursor,slash,unix
+set viewoptions=cursor,folds,slash,unix
 " }}}
 
 " vim-better-whitespace settings {{{
@@ -580,7 +579,7 @@ au FileType           java                      setlocal shiftwidth=4 tabstop=4
 au FileType           yaml                      setlocal fdl=1 fdm=indent
 au FileType           sh                        setlocal sw=2 tw=79
 au FileType           vim                       setlocal tw=0
-au FileType           terraform                 setlocal tw=0 sw=2 fdl=0
+au FileType           terraform                 setlocal tw=0 sw=2 fdm=syntax
 au FileType           dosini,cfg,conf           setlocal cms=#\ %s
 
 " Markdown
