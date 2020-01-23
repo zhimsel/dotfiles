@@ -412,7 +412,7 @@ let g:SimpylFold_fold_import = 0
 " }}}
 
 " BufExplorer settings {{{
-nmap <silent> <C-b> :ToggleBufExplorer<cr> g:pymode_rope_completion = 0
+nmap <silent> <Leader>b :ToggleBufExplorer<cr> g:pymode_rope_completion = 0
 let g:bufExplorerFindActive=0
 " }}}
 
@@ -420,6 +420,7 @@ let g:bufExplorerFindActive=0
 nnoremap <c-t> :Files<cr>
 nnoremap <c-f> :BLines<cr>
 nnoremap <c-g> :GitFiles<cr>
+nnoremap <c-b> :Buffers<cr>
 nnoremap ``` :Marks<cr>
 let g:fzf_layout = { 'window': 'new' }
 let g:fzf_action = {
