@@ -202,6 +202,7 @@ nmap <leader>ha <Plug>(GitGutterStageHunk)
 nmap <leader>hr <Plug>(GitGutterUndoHunk)
 nmap <leader>hn <Plug>(GitGutterNextHunk)
 nmap <leader>hp <Plug>(GitGutterPrevHunk)
+nmap <leader>gc :Git commit<cr>
 
 " redraw screen (for nvim window-resize bug)
 if has('nvim')
