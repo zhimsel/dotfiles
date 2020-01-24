@@ -163,6 +163,9 @@ command WW w !sudo tee % > /dev/null
 " Toggle paste mode on and off
 nmap <leader>p :set paste!<cr>
 
+" Double-click a fold to open it
+nnoremap <expr> <2-LeftMouse> foldclosed(line('.')) == -1 ? "\<2-LeftMouse>" : 'zo'
+
 " bypass that pesky shift key
 command W write
 command Q quit
