@@ -562,9 +562,6 @@ inoremap ds`` ```<CR>```O
 " executes current file (if executable)
 nnoremap <leader>x :!%:p<cr>
 
-" stop <Esc> from moving the cursor
-inoremap <Esc> <Esc>`^
-
 " }}}
 
 " Per-filetype settings {{{
