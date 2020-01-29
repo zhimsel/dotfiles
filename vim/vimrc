@@ -430,6 +430,7 @@ let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
+autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
 " }}}
 
 " CFEngine plugin settings {{{
@@ -501,14 +502,6 @@ set cursorline " Highlight current line
 set noshowmode " Disable --INSERT-- text in command line. Reproduced in airline
 set foldenable " Enable folding
 syntax enable " Enable syntax highlighting
-
-" change cursor shape based on mode (for iTerm2)
-if has('nvim')
-  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
 
 " }}}
 
@@ -635,7 +628,7 @@ nmap <C-l> <C-w>l
 
 " remap Terminal exit binding for nvim
 if has('nvim')
-  tnoremap <C-\><C-\> <C-\><C-n>
+  tnoremap <Esc> <C-\><C-n>
 endif
 
 " better split placements

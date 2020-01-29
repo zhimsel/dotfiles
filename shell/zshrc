@@ -372,8 +372,6 @@ fi
 # Load some stuff that needs to go last {{{
 
 # Set up fzf
-export FZF_DEFAULT_COMMAND='ag --skip-vcs-ignores --hidden --ignore .git -g ""'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 if [[ -f $HOME/.fzf.zsh ]]; then
   source $HOME/.fzf.zsh
 fi
