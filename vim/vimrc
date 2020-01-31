@@ -576,8 +576,11 @@ au FileType           java                      setlocal shiftwidth=4 tabstop=4
 au FileType           yaml                      setlocal fdl=1 fdm=indent
 au FileType           sh                        setlocal sw=2 tw=79
 au FileType           vim                       setlocal tw=0
-au FileType           terraform                 setlocal tw=0 sw=2 fdm=syntax
 au FileType           dosini,cfg,conf           setlocal cms=#\ %s
+
+" Terraform
+au FileType           terraform   setlocal tw=0 sw=2 fdm=syntax
+au BufRead,BufNewFile *.tpl       setlocal ft=
 
 " Markdown
 au FileType markdown setlocal textwidth=0 shiftwidth=4 spell
