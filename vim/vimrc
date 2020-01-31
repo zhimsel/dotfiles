@@ -226,9 +226,8 @@ nnoremap <leader>u :UndotreeToggle<CR>
 
 " NERDtree settings {{{
 " main maps
-nnoremap <C-p> :NERDTreeFocus<CR>
+nnoremap <Tab> :NERDTreeFocus<CR>
 nnoremap <C-o> :NERDTreeFind<CR>
-nnoremap <C-i> :NERDTree<CR>
 " internal maps
 let g:NERDTreeMapOpenSplit='s'
 let g:NERDTreeMapPreviewSplit='gs'
