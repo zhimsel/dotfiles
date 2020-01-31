@@ -73,6 +73,7 @@ Plug 'iberianpig/tig-explorer.vim'
 " }}}}
 
 " Automation plugins {{{
+Plug 'michaeljsmith/vim-indent-object'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
