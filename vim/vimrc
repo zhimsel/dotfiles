@@ -59,6 +59,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-abolish', { 'on': 'Subvert' }
+Plug 'vim-scripts/vis'
 " }}}
 
 " Git plugins {{{
