@@ -2,11 +2,11 @@
 
 For usage on an OSX machine, there are two shell scripts to help with setting up some sane defaults:
 
-## osx.sh
+## `osx.sh`
 
 Sets some sensible system defaults that aren't accessible through the system menus. Read through the changes being made (everything is commented with what it does) before running and remove anything you don't want.
 
-## brew.sh
+## `brew.sh`
 
 Installs some useful packages and replaces some outdated built-in OSX packaes with up-to-date versions. Requires [homebrew](http://brew.sh/) before use. Read through the packages installed and remove any you don't want.
 
@@ -17,3 +17,6 @@ export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 ```
 
+## `ssh-add.plist`
+
+Add this file to `$HOME/Library/LaunchAgents/` to automatically run `ssh-add -A` when you log in.
