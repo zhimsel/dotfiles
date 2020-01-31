@@ -84,9 +84,11 @@ Plug 'godlygeek/tabular'
 Plug 'Raimondi/delimitMate'
 Plug 'PeterRincker/vim-argumentative'
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-  Plug 'Shougo/neocomplete.vim'
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
 endif
 " }}}
 
@@ -386,9 +388,8 @@ nmap <script> <silent> <leader>\ :call ToggleLocationList()<CR>
 let g:toggle_list_no_mappings = 1
 " }}}
 
-" deoplete/neocomplete settings {{{
+" deoplete settings {{{
 let g:deoplete#enable_at_startup = 1
-let g:neocomplete#enable_at_startup = 1
 set completeopt+=noinsert,noselect
 " use ctrl-j and ctrl-k to navigate auto-complete suggestion list
 inoremap <expr> <C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
