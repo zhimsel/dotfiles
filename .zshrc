@@ -309,6 +309,7 @@ ZSH_THEME=""
 ZSH_THEME_GIT_PROMPT_NOCACHE="1"
 ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
 function precmd {
+  local newline=$'\n'
 
   # build standard info line
   local user_name="%(!.%{$fg[red]%}.%{$fg[green]%})%n%{$reset_color%}"
@@ -325,7 +326,7 @@ function precmd {
   local aws_vault_profile=$(if [[ ! -z $AWS_VAULT ]]; then echo "(aws-vault:${AWS_VAULT}) "; fi)
   local env_metadata="${git_status}${py_venv}${vbox_active}${aws_profile}${aws_vault_profile}"
   if [[ ! -z $env_metadata ]]; then
-    newline=$'\n' env_info="${newline}${env_metadata}"
+     env_info="${newline}${env_metadata}"
   else
     env_info=""
   fi
@@ -334,10 +335,8 @@ function precmd {
   local command_prompt="%(1j.%(!.%B[%j]%b #.%B[%j]%b $).%(!.#.$))"
 
   # put it all together
-  PROMPT=$'\n'"${return_code}${current_time} ${user_name} at ${host_name} in ${current_dir} ${env_info}
-  ${command_prompt} "
+  PROMPT="${newline}${return_code}${current_time} ${user_name} at ${host_name} in ${current_dir}${env_info}${newline}${command_prompt} "
   RPROMPT=""
-
 }
 # }}}
 
