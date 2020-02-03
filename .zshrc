@@ -309,26 +309,35 @@ ZSH_THEME=""
 ZSH_THEME_GIT_PROMPT_NOCACHE="1"
 ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
 function precmd {
-local user_name="%(!.%{$fg[red]%}.%{$fg[green]%})%n%{$reset_color%}"
-local host_name="%{$fg[yellow]%}%m%{$reset_color%}"
-local current_dir="%{$fg[blue]%}%~%{$reset_color%}"
-local current_time="%{$fg[lightgrey]%}%*%{$reset_color%}"
-local return_code="%(?..%{$fg[red]%}↳ %? %{$reset_color%})"
-local command_prompt="%(1j.%(!.%B[%j]%b #.%B[%j]%b $).%(!.#.$))"
-local git_status=$(git rev-parse --is-inside-work-tree &> /dev/null && echo "$(git_super_status) ")
-local py_venv=$(if [[ ! -z $VIRTUAL_ENV ]]; then echo "(venv:$(basename $VIRTUAL_ENV)) "; fi)
-local vbox_active=$(if [[ ! -z $(ls -H $HOME/.vbox_vms_dir/ 2>/dev/null) ]]; then echo "(vbox) "; fi)
-local aws_profile=$(if [[ ! -z $AWS_PROFILE ]]; then echo "(aws:${AWS_PROFILE}) "; fi)
-local aws_vault_profile=$(if [[ ! -z $AWS_VAULT ]]; then echo "(aws-vault:${AWS_VAULT}) "; fi)
-local env_metadata="${git_status}${py_venv}${vbox_active}${aws_profile}${aws_vault_profile}"
-if [[ ! -z $env_metadata ]]; then
-  newline=$'\n' env_info="${newline}${env_metadata}"
-else
-  env_info=""
-fi
-PROMPT=$'\n'"${return_code}${current_time} ${user_name} at ${host_name} in ${current_dir} ${env_info}
-${command_prompt} "
-RPROMPT=""
+
+  # build standard info line
+  local user_name="%(!.%{$fg[red]%}.%{$fg[green]%})%n%{$reset_color%}"
+  local host_name="%{$fg[yellow]%}%m%{$reset_color%}"
+  local current_dir="%{$fg[blue]%}%~%{$reset_color%}"
+  local current_time="%{$fg[lightgrey]%}%*%{$reset_color%}"
+  local return_code="%(?..%{$fg[red]%}↳ %? %{$reset_color%})"
+
+  # build metadata line, if any exists
+  local git_status=$(git rev-parse --is-inside-work-tree &> /dev/null && echo "$(git_super_status) ")
+  local py_venv=$(if [[ ! -z $VIRTUAL_ENV ]]; then echo "(venv:$(basename $VIRTUAL_ENV)) "; fi)
+  local vbox_active=$(if [[ ! -z $(ls -H $HOME/.vbox_vms_dir/ 2>/dev/null) ]]; then echo "(vbox) "; fi)
+  local aws_profile=$(if [[ ! -z $AWS_PROFILE ]]; then echo "(aws:${AWS_PROFILE}) "; fi)
+  local aws_vault_profile=$(if [[ ! -z $AWS_VAULT ]]; then echo "(aws-vault:${AWS_VAULT}) "; fi)
+  local env_metadata="${git_status}${py_venv}${vbox_active}${aws_profile}${aws_vault_profile}"
+  if [[ ! -z $env_metadata ]]; then
+    newline=$'\n' env_info="${newline}${env_metadata}"
+  else
+    env_info=""
+  fi
+
+  # command prompt itself
+  local command_prompt="%(1j.%(!.%B[%j]%b #.%B[%j]%b $).%(!.#.$))"
+
+  # put it all together
+  PROMPT=$'\n'"${return_code}${current_time} ${user_name} at ${host_name} in ${current_dir} ${env_info}
+  ${command_prompt} "
+  RPROMPT=""
+
 }
 # }}}
 
