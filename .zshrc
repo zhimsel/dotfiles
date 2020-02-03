@@ -128,6 +128,12 @@ bindkey -s '^e' 'cd ..\n' #go up a directory with ctrl-e
 
 # Aliases {{{
 
+alias dot='GIT_DIR=$HOME/.dotfiles_git GIT_WORK_TREE=$HOME git'
+alias tod='GIT_DIR=$HOME/.dotfiles_git GIT_WORK_TREE=$HOME tig'
+alias toda='tod --all'
+alias tods='tod status'
+alias vidot='GIT_DIR=$HOME/.dotfiles_git GIT_WORK_TREE=$HOME vim'
+
 if [[ -x $(which nvim) ]]; then
   alias vvim=$(which vim)
   alias vim='nvim'

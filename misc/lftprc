@@ -1,8 +1,0 @@
-set mirror:use-pget-n 4
-set xfer:log 1
-set xfer:eta-period 5
-set xfer:rate-period 20
-set color:use-color 1
-set pget:default-n 4
-set pget:save-status 5
-

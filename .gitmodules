@@ -1,11 +1,6 @@
-[submodule "lib/scripts"]
-	path = lib/scripts
-	url = https://github.com/zhimsel/scripts.git
-	branch = master
-[submodule "lib/vim-plug"]
-	path = lib/vim-plug
-	url = https://github.com/junegunn/vim-plug.git
-	branch = master
-[submodule "lib/zplug"]
-	path = lib/zplug
+[submodule ".zsh/zplug"]
+	path = .zsh/zplug
 	url = https://github.com/zplug/zplug
+[submodule ".vim/vim-plug"]
+	path = .vim/vim-plug
+	url = https://github.com/junegunn/vim-plug.git
