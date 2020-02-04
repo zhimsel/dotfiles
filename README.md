@@ -6,7 +6,7 @@ If you think you have an improvement, feel free to submit an issue or pull reque
 
 ### Usage
 
-This repo is intended to be based directly in your home directory, with a `.git` dir named as something else (as to not cause all subdirectories to think their a git repo).
+This repo is intended to be based directly in your home directory, with a `.git` dir named as something else (as to not cause all subdirectories to think they're a git repo).
 To do an initial clone of this repo, follow the steps below:
 
 ```sh
