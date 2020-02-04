@@ -128,6 +128,8 @@ bindkey -s '^e' 'cd ..\n' #go up a directory with ctrl-e
 
 # Aliases {{{
 
+alias dotf='export GIT_DIR=$HOME/.dotfiles_git GIT_WORK_TREE=$HOME'
+alias nodotf='unset GIT_DIR GIT_WORK_TREE'
 alias dot='GIT_DIR=$HOME/.dotfiles_git GIT_WORK_TREE=$HOME git'
 alias tod='GIT_DIR=$HOME/.dotfiles_git GIT_WORK_TREE=$HOME tig'
 alias toda='tod --all'
