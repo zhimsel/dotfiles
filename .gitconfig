@@ -67,6 +67,7 @@
   whoops = reset --soft HEAD~1  # undo last commit, leaving changes staged
   back = reset --hard HEAD~1  # undo last commit, dropping changes
   sub = submodule
+  subinit = submodule update --init --recursive
   subf = submodule update --init --recursive --remote
   db = "!git diff $(git merge-base master HEAD) HEAD" # what's changed in our branch?
   dm = "!git diff $(git merge-base master HEAD) master" # what's changed in master since we branched?
