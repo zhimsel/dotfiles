@@ -155,6 +155,7 @@ alias wtp='git worktree prune -v'
 alias wtl='wtp && git worktree list'
 alias tiga='tig --all'
 alias tigs='tig status'
+alias tigr='tig $(git rev-parse --abbrev-ref --symbolic-full-name @{u})'
 
 # File/folder management
 alias vmv='vim -c Renamer'
