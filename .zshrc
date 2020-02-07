@@ -150,7 +150,7 @@ alias history='fc -il 1'
 alias h='history'
 
 # Git
-alias cdgr='$(git rev-parse --show-toplevel)'
+alias cg='$(git rev-parse --show-toplevel)'
 alias wtp='git worktree prune -v'
 alias wtl='wtp && git worktree list'
 alias tiga='tig --all'
