@@ -41,11 +41,6 @@
   linenumber = true
   patternType = extended
 
-[tig]
-  line-graphics = utf-8
-  mouse = true
-  main-view-id = true
-
 [pretty]
   log = format:%C(auto)%h %Creset%ai %Cblue%an %Creset%C(auto)%s%d
 

@@ -1,0 +1,4 @@
+# General UI settings
+set line-graphics = utf-8
+set mouse = true
+set main-view-id = true
