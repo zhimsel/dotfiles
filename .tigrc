@@ -2,3 +2,23 @@
 set line-graphics = utf-8
 set mouse = true
 set main-view-id = true
+set refresh-mode = auto
+
+########################################
+# More vim-like bindings
+########################################
+# General
+bind generic g none
+bind generic gp view-grep
+bind generic gg move-first-line
+bind generic G move-last-line
+
+# Main view
+bind main G move-last-line
+bind main F none
+bind main <C-J> :move-next-merge
+bind main <C-K> :move-prev-merge
+
+# Tree view
+bind tree l enter
+bind tree h back
