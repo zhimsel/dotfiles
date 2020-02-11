@@ -74,7 +74,7 @@
   wt = worktree
   wtp = worktree prune -v
   wtl = worktree list
-  st = "!git --no-pager stash"
+  st = stash
   pr = "!hub pull-request -o"
   bgo = "!hub browse -- compare/$(git symbolic-ref --short HEAD)"  # open branch on Github in browser
   bc = "!hub browse -u -- compare/$(git symbolic-ref --short HEAD) | pbcopy "  # copy branch URL to clipboard
