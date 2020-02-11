@@ -44,45 +44,55 @@
 [pretty]
   log = format:%C(auto)%h %Creset%ai %Cblue%an %Creset%C(auto)%s%d
 
+[fetch]
+  prune = true
+
 [alias]
-  alias = "!git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /"
-  unstage = reset HEAD --
-  last = log -1 HEAD
+  alias = "!git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ / | sort" # list alises
+  which = "!f(){ git config --get alias.$1; }; f" # show specific alias
+
+  # abbreviations
   s = status
-  f = fetch -p
+  f = fetch
   c = commit
   ca = commit --amend
-  amend = commit --amend --no-edit
   co = checkout
   a = add
   ap = add --patch
   br = branch
   rb = rebase
   rbi = rebase --interactive
-  whoops = reset --soft HEAD~1  # undo last commit, leaving changes staged
-  back = reset --hard HEAD~1  # undo last commit, dropping changes
-  sub = submodule
-  subinit = submodule update --init --recursive
-  subf = submodule update --init --recursive --remote
-  db = "!git diff $(git merge-base master HEAD) HEAD" # what's changed in our branch?
-  dm = "!git diff $(git merge-base master HEAD) master" # what's changed in master since we branched?
-  lr = log --graph --decorate --abbrev-commit --pretty=log HEAD~1..origin # unpulled commits on remote
-  ll = log --graph --decorate --pretty=medium --all #better longer log
-  l = log --graph --decorate --abbrev-commit --all --pretty=log # better log
+  st = stash
   d = diff
   dc = diff --cached
+  sub = submodule
   wt = worktree
+
+  # branch diffs
+  db = "!git diff $(git merge-base master HEAD) HEAD" # what's changed in our branch?
+  dm = "!git diff $(git merge-base master HEAD) master" # what's changed in master since we branched?
+
+  # staging/resetting
+  unstage = reset HEAD --
+  whoops = reset --soft HEAD~1  # undo last commit, leaving changes staged
+  back = reset --hard HEAD~1  # undo last commit, dropping changes
+
+  # submodules
+  subinit = submodule update --init --recursive
+  subf = submodule update --init --recursive --remote
+
+  # worktrees
   wtp = worktree prune -v
   wtl = worktree list
-  st = stash
+
+  # GitHub
   pr = "!hub pull-request -o"
   bgo = "!hub browse -- compare/$(git symbolic-ref --short HEAD)"  # open branch on Github in browser
   bc = "!hub browse -u -- compare/$(git symbolic-ref --short HEAD) | pbcopy "  # copy branch URL to clipboard
   cgo = "!hub browse -- commit/$(git rev-parse HEAD)"  # open commit on Github in browser
   cc = "!hub browse -u -- commit/$(git rev-parse HEAD) | pbcopy"  # copy Github commit link to clipboard
-  pbr = push -u origin HEAD
-  brm = "!f() { if [ -z $1 ]; then echo 'Please supply a branch name'; else git branch $1 && git reset --hard $(git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD)) && git checkout $1; fi }; f"
-  rbm = "!git rebase -i $(git merge-base --fork-point master)"
-  pmb = "!git branch --merged | grep -v '^\\*\\|master\\|dev' | xargs -n1 git branch -d"  # prune merged branches
-  psb = "!git checkout -q master && git for-each-ref refs/heads/ \"--format=%(refname:short)\" | while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == \"-\"* ]] && git branch -D $branch; done && git checkout -q -"  # prune squashed branches (from https://github.com/not-an-aardvark/git-delete-squashed)
-  bru = "!f() {( lbr=${1:-$(git symbolic-ref --short HEAD)}; rbr=$(git rev-parse --abbrev-ref --symbolic-full-name ${lbr}@{u}); git branch --force $lbr $rbr; )}; f" # force-update branch against its upstream remote
+
+  # branch management
+  pbr = "!f() { git push -u ${1:-origin} HEAD; }; f" # push branch and set upstream
+  rbb = "!f() { git rebase -i $(git merge-base HEAD ${1:-master}); }; f" # interactive rebase entire branch in-place (not just unpushed commits)
+  bru = "!f() {( lbr=${1:-$(git symbolic-ref --short HEAD)}; git branch --force $lbr $(git rev-parse --abbrev-ref --symbolic-full-name ${lbr}@{u}); )}; f" # force-update branch against its upstream remote

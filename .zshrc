@@ -151,8 +151,6 @@ alias h='history'
 
 # Git
 alias cg='$(git rev-parse --show-toplevel)'
-alias wtp='git worktree prune -v'
-alias wtl='wtp && git worktree list'
 alias tiga='tig --all'
 alias tigs='tig status'
 alias tigr='tig $(git rev-parse --abbrev-ref --symbolic-full-name @{u})'
