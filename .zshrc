@@ -390,11 +390,6 @@ fi
 
 # Load some stuff that needs to go last {{{
 
-# Set up fzf
-if [[ -f $HOME/.fzf.zsh ]]; then
-  source $HOME/.fzf.zsh
-fi
-
 # make $PATH contain only unique elements
 typeset -gU PATH path
 
