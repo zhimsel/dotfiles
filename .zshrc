@@ -217,8 +217,8 @@ mkvenv() { # {{{
   if [[ -n "$VIRTUAL_ENV" ]]; then echo "A virtualenv is active! Please run 'deactivate' first."; return 1; fi
   echo "Creating python${1} virtualenv for $(pwd) in $venv_dir"
   mkdir -p "$venv_dir" || return 1
-  [[ -e "$venv_dir" ]] && find -L "$venv_dir" -type l | xargs rm -v
-  virtualenv -p "python${1}" "$venv_dir" || return 1
+  [[ -e "$venv_dir" ]] && find -L "$venv_dir" -type l -delete -print
+  python${1} -m virtualenv -p "python${1}" "$venv_dir" || return 1
   source ${venv_dir}/bin/activate
   pip install --upgrade pip
   pip install --upgrade -r "$HOME/.pip_packages_base.txt"
