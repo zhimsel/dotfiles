@@ -88,9 +88,9 @@
   # GitHub
   pr = "!hub pull-request -o"
   bgo = "!hub browse -- compare/$(git symbolic-ref --short HEAD)"  # open branch on Github in browser
-  bc = "!hub browse -u -- compare/$(git symbolic-ref --short HEAD) | pbcopy "  # copy branch URL to clipboard
+  bc = "!hub browse -c -- compare/$(git symbolic-ref --short HEAD)"  # copy branch URL to clipboard
   cgo = "!hub browse -- commit/$(git rev-parse HEAD)"  # open commit on Github in browser
-  cc = "!hub browse -u -- commit/$(git rev-parse HEAD) | pbcopy"  # copy Github commit link to clipboard
+  cc = "!hub browse -c -- commit/$(git rev-parse HEAD)"  # copy Github commit link to clipboard
 
   # branch management
   pbr = "!f() { git push -u ${1:-origin} HEAD; }; f" # push branch and set upstream
