@@ -22,3 +22,8 @@ bind main <C-K> :move-prev-merge
 # Tree view
 bind tree l enter
 bind tree h back
+
+# Open things in GitHub
+bind generic gc @hub browse -- commit/%(commit)
+bind generic gb @hub browse -- compare/%(branch)
+bind generic gf @hub browse -- blob/%(commit)/%(file)
