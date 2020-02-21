@@ -155,7 +155,9 @@ nmap <leader>ss :SSave<cr>
 
 " Lazier versions of 'copy all' and 'delete all'
 nmap <leader>5y :%y<cr>
+nmap <leader>5Y :%y *<cr>
 nmap <leader>5d :%d<cr>
+nmap <leader>5D :%d *<cr>
 
 " Quickly toggle line numbers
 nmap <leader>n :set number!<cr>
@@ -164,8 +166,10 @@ nmap <leader>N :set relativenumber!<cr>
 " :WW sudo saves the file with root permissions
 command WW w !sudo tee % > /dev/null
 
-" Toggle paste mode on and off
-nmap <leader>p :set paste!<cr>
+" Clipboard (yank/put into system clipboard)
+nmap <leader>y "*y
+nmap <leader>p "*p
+nmap <leader>P "*P
 
 " Double-click a fold to open it
 nnoremap <expr> <2-LeftMouse> foldclosed(line('.')) == -1 ? "\<2-LeftMouse>" : 'zo'
@@ -552,9 +556,6 @@ set linebreak
 set nolist
 set textwidth=0
 set colorcolumn=+1,+21,+41
-
-" use system clipboard for main register (unless specified with '/")
-set clipboard^=unnamed
 
 " Define text expansions
 iab #ube #!/usr/bin/env
