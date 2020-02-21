@@ -25,8 +25,9 @@ else
   export EDITOR="vim"
 fi
 
-# $PATH
-export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH"
+# Add ~/bin to $PATH
+export PATH="$HOME/bin:$PATH"
+
 
 # Path settings
 setopt path_dirs
