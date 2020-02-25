@@ -17,8 +17,6 @@ if [ -f ~/.zshrc.prelocal ]; then
      source ~/.zshrc.prelocal
 fi
 
-umask 077 # set default umask
-
 if [[ -x $(which nvim) ]]; then # set text editor
   export EDITOR="nvim"
 else
