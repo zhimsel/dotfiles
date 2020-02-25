@@ -639,7 +639,7 @@ nmap <C-l> <C-w>l
 
 " remap Terminal exit binding for nvim
 if has('nvim')
-  tnoremap <Esc> <C-\><C-n>
+  tnoremap <leader><Esc> <C-\><C-n>
 endif
 
 " better split placements
