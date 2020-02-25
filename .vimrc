@@ -168,9 +168,9 @@ nmap <leader>N :set relativenumber!<cr>
 command WW w !sudo tee % > /dev/null
 
 " Clipboard (yank/put into system clipboard)
-nmap <leader>y "*y
-nmap <leader>p "*p
-nmap <leader>P "*P
+map <leader>y "*y
+map <leader>p "*p
+map <leader>P "*P
 
 " Double-click a fold to open it
 nnoremap <expr> <2-LeftMouse> foldclosed(line('.')) == -1 ? "\<2-LeftMouse>" : 'zo'
