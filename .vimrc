@@ -60,6 +60,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-abolish', { 'on': 'Subvert' }
 Plug 'vim-scripts/vis'
+Plug 'voldikss/vim-floaterm'
 " }}}
 
 " Git plugins {{{
@@ -475,6 +476,13 @@ let g:vim_markdown_preview_hotkey='<leader>gp'
 let g:vim_markdown_preview_github=1
 " }}}
 
+" vim-floaterm settings {{{
+let g:floaterm_open_in_root = 1
+let g:floaterm_keymap_toggle = '<Leader>t'
+let g:floaterm_position = 'center'
+hi NormalFloat guibg=reverse
+" }}}
+
 " }}}
 
 " User interface {{{
@@ -639,7 +647,7 @@ set splitbelow
 set splitright
 
 " tab shortcuts
-map <leader>t :tabnew<cr>
+map <leader>tn :tabnew<cr>
 map <leader>th :tabnext<cr>
 map <leader>tl :tabprevious<cr>
 map <leader>to :tabonly<cr>
