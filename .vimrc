@@ -72,6 +72,8 @@ Plug 'mattn/webapi-vim'  " required for gist-vim
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'iberianpig/tig-explorer.vim'
+Plug 'tyru/open-browser.vim'
+Plug 'tyru/open-browser-github.vim'
 " }}}}
 
 " Automation plugins {{{
@@ -481,6 +483,11 @@ let g:floaterm_open_in_root = 1
 let g:floaterm_keymap_toggle = '<Leader>t'
 let g:floaterm_position = 'center'
 hi NormalFloat guibg=reverse
+" }}}
+
+" open-browser-github settings {{{
+let g:openbrowser_github_url_exists_check = 0
+let g:openbrowser_github_always_use_commit_hash = 0
 " }}}
 
 " }}}
