@@ -115,6 +115,10 @@ endif
 set history=1000
 set iskeyword+=_,$,@,%,#,-
 
+" better commandline completion
+set wildmode=longest,list,full
+set wildmenu
+
 " Set color scheme
 set background=dark
 silent! colorscheme solarized
