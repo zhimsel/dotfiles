@@ -136,6 +136,11 @@ alias toda='tod --all'
 alias tods='tod status'
 alias vidot='GIT_DIR=$HOME/.dotfiles_git GIT_WORK_TREE=$HOME vim'
 
+# Create some global aliases with OS-specific targets
+[[ -x $(which xclip) ]] && alias clip='xclip'
+[[ -x $(which xdg-open) ]] && alias open='xdg-open'
+[[ -x $(which pbcopy) ]] && alias clip='pbcopy'
+
 if [[ -x $(which nvim) ]]; then
   alias vvim=$(which vim)
   alias vim='nvim'
