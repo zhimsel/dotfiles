@@ -23,9 +23,9 @@ else
   export EDITOR="vim"
 fi
 
-# Add ~/bin to $PATH
+# Add some things to $PATH
 export PATH="$HOME/bin:$PATH"
-
+export PATH="$PATH:$HOME/.zsh/capture-completion"
 
 # Path settings
 setopt path_dirs
@@ -403,5 +403,13 @@ fi
 
 # make $PATH contain only unique elements
 typeset -gU PATH path
+
+# set some FZF setings that need to be set after its loaded (in ~/.zshrc.local)
+export FZF_COMPLETION_TRIGGER=''  # turn off '**' completion
+bindkey '^I' $fzf_default_completion  # retain stock TAB behavior
+bindkey '^F' fzf-completion  # ctrl-F will be the equivalent of '**'
+
+# set up PMY for completing command arguments using zsh's built-in detection
+[[ -x $(which pmy) ]] && eval "$(pmy init)"
 
 # }}}

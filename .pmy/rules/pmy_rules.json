@@ -1,0 +1,28 @@
+[
+  {
+    "regexpLeft": "(?P<body>.*) -{1,2}(?P<query>[^\\s]*)$",
+    "cmdGroups": [
+      {
+        "tag": "",
+        "stmt": "capture.zsh '<body> -' | sed 's/\r//g'",
+        "after": "awk '{print $1}'"
+      }
+    ],
+    "fuzzyFinderCmd": "fzf -0 -1 --ansi -n 1 -q '<query>'",
+    "bufferLeft": "<body> ",
+    "bufferRight": "[]"
+  },
+  {
+    "regexpLeft": "(?P<body>.*) (?P<query>[^\\s]*)$",
+    "cmdGroups": [
+      {
+        "tag": "",
+        "stmt": "capture.zsh '<body> ' | sed 's/\r//g' | grep --color=always '<query>'",
+        "after": "awk '{print $1}'"
+      }
+    ],
+    "fuzzyFinderCmd": "fzf -0 -1 --ansi -n 1 -q '<query>'",
+    "bufferLeft": "<body> ",
+    "bufferRight": "[]"
+  }
+]
