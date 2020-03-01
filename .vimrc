@@ -162,9 +162,9 @@ nmap <leader>ss :SSave<cr>
 
 " Lazier versions of 'copy all' and 'delete all'
 nmap <leader>5y :%y<cr>
-nmap <leader>5Y :%y *<cr>
+nmap <leader>5Y :%y +<cr>
 nmap <leader>5d :%d<cr>
-nmap <leader>5D :%d *<cr>
+nmap <leader>5D :%d +<cr>
 
 " Quickly toggle line numbers
 nmap <leader>n :set number!<cr>
@@ -174,9 +174,9 @@ nmap <leader>N :set relativenumber!<cr>
 command WW w !sudo tee % > /dev/null
 
 " Clipboard (yank/put into system clipboard)
-map <leader>y "*y
-map <leader>p "*p
-map <leader>P "*P
+map <leader>y "+y
+map <leader>p "+p
+map <leader>P "+P
 
 " Double-click a fold to open it
 nnoremap <expr> <2-LeftMouse> foldclosed(line('.')) == -1 ? "\<2-LeftMouse>" : 'zo'
