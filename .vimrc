@@ -486,7 +486,7 @@ let g:vim_markdown_preview_github=1
 let g:floaterm_open_in_root = 1
 let g:floaterm_keymap_toggle = '<Leader>t'
 let g:floaterm_position = 'center'
-hi NormalFloat guibg=reverse
+hi NormalFloat guibg=white
 " }}}
 
 " open-browser-github settings {{{
