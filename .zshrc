@@ -23,6 +23,9 @@ else
   export EDITOR="vim"
 fi
 
+# Let less use the mouse
+export LESS='--mouse --wheel-lines=3'
+
 # Add some things to $PATH
 export PATH="$HOME/bin:$PATH"
 export PATH="$PATH:$HOME/.zsh/capture-completion"
