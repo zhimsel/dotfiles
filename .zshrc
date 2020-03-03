@@ -24,7 +24,7 @@ else
 fi
 
 # Let less use the mouse
-export LESS='--mouse --wheel-lines=3'
+export LESS="-R --mouse --wheel-lines=3 $LESS"
 
 # Add some things to $PATH
 export PATH="$HOME/bin:$PATH"

@@ -16,7 +16,7 @@
   excludesfile = ~/.gitignore_global
   commentchar = "%"
   compression = 9
-  pager = cat
+  pager = "less -F -R -X"
 
 [commit]
   verbose = 1
@@ -31,11 +31,6 @@
 
 [color]
   ui = auto
-
-[pager]
-  log = less
-  diff = less
-  show = less
 
 [grep]
   linenumber = true
