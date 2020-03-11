@@ -2,7 +2,6 @@
 # vim: foldmethod=marker
 
 # zsh configuration
-# written by Zach Himsel, 2014-2016
 # https://github.com/zhimsel/dotfiles
 
 # This file is written with vim foldmarkers to enable easier viewing
@@ -10,72 +9,65 @@
 # fold markers at the beginning and end, so you can easily close each
 # section to find what you're looking for
 
+# Source the machine-specific "pre-config" .zshrc (if it exists)
+[[ -f ~/.zshrc.prelocal ]] && source ~/.zshrc.prelocal
+
 # General Settings {{{
 
-# Source the machine-specific "pre-config" zshrc if it exists
-if [ -f ~/.zshrc.prelocal ]; then
-     source ~/.zshrc.prelocal
-fi
-
-if [[ -x $(which nvim) ]]; then # set text editor
+# Set [neo]vim as the default editor {{{
+alias vi='vim'
+if [[ -x $(which nvim) ]]; then
+  alias vvim=$(which vim)
+  alias vim='nvim'
   export EDITOR="nvim"
 else
   export EDITOR="vim"
 fi
+# }}}
 
-# Let less use the mouse
+
+# Set some default settings for `less`
 export LESS="-R --mouse --wheel-lines=3 $LESS"
 
-# Add some things to $PATH
-export PATH="$HOME/bin:$PATH"
-export PATH="$PATH:$HOME/.zsh/capture-completion"
+# $PATH settings
+typeset -gU PATH path  # make $PATH contain only unique elements
+path=("$HOME/bin" $path)
 
-# Path settings
-setopt path_dirs
-setopt extended_glob
-setopt list_packed
-setopt pushd_ignore_dups
-setopt pushd_minus
-setopt auto_cd
-setopt auto_pushd
-
-# History settings
-[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
+# History settings {{{
+[[ -z "$HISTFILE" ]] && HISTFILE="$HOME/.zsh_history"
 HISTSIZE=50000
 SAVEHIST=10000
 setopt extended_history
 setopt share_history
 setopt hist_expire_dups_first
 setopt hist_verify
+# }}}
 
-# Completion settings
-setopt correct
-unsetopt correct_all
-unsetopt flow_control
-setopt always_to_end
-setopt complete_in_word
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'  # case/hyphen insensitive completion
-zstyle ':completion:*' special-dirs true
-# colors
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
-# caching
+# Cache settings
 export ZSH_CACHE_DIR="$HOME/.zsh_cache"
-zstyle ':completion::complete:*' use-cache 1
-zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
 
-# FZF options
-export FZF_TMUX=0  # disable tmux panes
-export FZF_DEFAULT_OPTS='-m' # Enable multi-select mode by default
-export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"  # enable file preview
-export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"  # press ? to show truncated results
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"  # show folder preview
+# vim-like commandline editing {{{
+bindkey -v  # enable vi mode
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd 'v' edit-command-line  # type 'v' in normal mode to open commandline in vim
+export KETTIMEOUT=1  # set key-sequence timeout in ms
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey -a u undo
+bindkey -sM vicmd '^[' '^G'
+bindkey -rM viins '^X'
+bindkey -M viins '^X,' _history-complete-newer \
+                 '^X/' _history-complete-older \
+                 '^X`' _bash_complete-word
+# }}}
 
 # }}}
 
 # Plugins {{{
 
-export ZPLUG_HOME="$HOME/.zsh/zplug"
+ZPLUG_HOME="$HOME/.zsh/zplug"
 source $ZPLUG_HOME/init.zsh
 
 zplug "RobSis/zsh-completion-generator"
@@ -93,126 +85,94 @@ zplug load
 
 # Autocomplete {{{
 
-# base zsh autocompletion
+# Set general completion settings {{{
+setopt correct
+unsetopt correct_all
+unsetopt flow_control
+setopt always_to_end
+setopt complete_in_word
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'  # case/hyphen insensitive completion
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+zstyle ':completion::complete:*' use-cache 1
+zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
+# }}}
+
+# include custom completions
 fpath=(~/.zsh/custom-completions $fpath)
+
+# load zsh completions
 autoload -Uz compinit
 compinit -u
 
-# bash autocompletions
+# load bash completions
 autoload -Uz bashcompinit
 bashcompinit -i
-if [ -f ~/.bash_complete ]; then
-. ~/.bash_complete
-fi
+[[  -f ~/.bash_complete ]] && source ~/.bash_complete
 
-# aws autocompletions
-if [ -f "$(which aws_completer)" ]; then
-     complete -C $(which aws_completer) aws
-fi
+# shortcut for cd'ing into ~/dev with autocomplete
+dev() { cd "$HOME/dev/${1:-}" }
+compctl -W $HOME/dev -/ dev
 
 # }}}
 
-# Keybinding Settings {{{
+# File/folder management {{{
 
-# vi mode
-bindkey -v
-autoload -Uz edit-command-line
-zle -N edit-command-line
-bindkey -M vicmd 'v' edit-command-line
-export KETTIMEOUT=1
-bindkey '^?' backward-delete-char
-bindkey '^h' backward-delete-char
-bindkey '^w' backward-kill-word
-bindkey -a u undo
-bindkey -sM vicmd '^[' '^G'
-bindkey -rM viins '^X'
-bindkey -M viins '^X,' _history-complete-newer \
-                 '^X/' _history-complete-older \
-                 '^X`' _bash_complete-word
+# Settings {{{
+setopt path_dirs
+setopt extended_glob
+setopt list_packed
+setopt pushd_ignore_dups
+setopt pushd_minus
+setopt auto_cd
+setopt auto_pushd
+# }}}
 
-# misc keybindings
+# Aliases/keybinds {{{
 bindkey -s '^e' 'cd ..\n' #go up a directory with ctrl-e
+alias tree='tree -I .git'
+alias vmv='vim -c Renamer'  # requires vim-renamer to be installed
+alias ls='ls --color=auto'  # enable color (if possible) for `ls`
 
-# }}}
-
-# Aliases {{{
-
-# dotfile management {{{
-alias nodot='unset GIT_DIR GIT_WORK_TREE'
-alias dot='export GIT_DIR=$HOME/.dotfiles_git GIT_WORK_TREE=$HOME'
-alias ldot='export GIT_DIR=$HOME/.dotfiles_git_local GIT_WORK_TREE=$HOME'
-alias dot_update='cd; unset GIT_DIR; unset GIT_WORK_TREE; vim -c PlugUpdate; zplug update; dot; git subf'
-# }}}
-
-# Create some global aliases with OS-specific targets
-[[ -x $(which xclip) ]] && alias clip='xclip -selection clipboard'
-[[ -x $(which xdg-open) ]] && alias open='xdg-open'
-[[ -x $(which pbcopy) ]] && alias clip='pbcopy'
-
-if [[ -x $(which nvim) ]]; then
-  alias vvim=$(which vim)
-  alias vim='nvim'
-  alias vi='nvim'
-fi
-
-alias s='sudo -HE'
-alias se='sudoedit'
-alias please='s $(fc -ln -1)'
-alias history='fc -il 1'
-alias h='history'
-
-# Git
-alias cg='cd $(git rev-parse --show-toplevel)'
-alias tiga='tig --all'
-alias tigs='tig status'
-alias tigr='tig $(git rev-parse --abbrev-ref --symbolic-full-name @{u})'
-
-# File/folder management
-alias vmv='vim -c Renamer'
+# ls shortcuts
+alias l='ls'
 alias ll='ls -lh'
 alias la='ls -lah'
-alias ltr='ls -ltrh'
-alias tree='tree -I .git'
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
-alias -g ......='../../../../..'
-alias -g .......='../../../../../..'
-alias -g ........='../../../../../../..'
-
+alias ltr='ls -lhtr'
+alias latr='ls -lahtr'
 # }}}
 
-# Functions {{{
-
-# Provide list of recent directories to switch to
-cdir () { # {{{
+cd- () { # {{{
+  # Provide list of recent directories to switch to
   local target
-  target=$(dirs -v | fzf | awk '{ print $1}')
+  target=$(dirs -v | awk '{ print $2}' | \
+    fzf +m --height '40%' --reverse --preview 'tree -C {} | head -200')
   if [[ -n $target ]]; then cd ~$target; fi
 } # }}}
 
-# Make and open new directory
 mkcd() { # {{{
+  # Make and open new directory
   mkdir -p "$1" &&
   eval cd "\"\$$#\""
 } # }}}
 
-# Delete current directory
 rmwd() { # {{{
+  # Delete current directory
   local current_dir
   current_dir=$(pwd)
   cd .. || exit 1
-  rm -rf $current_dir
+  read -q "REPLY?Remove '$current_dir' and everything in it? [y/n] " && rm -rf $current_dir || cd $current_dir
 } # }}}
 
-# Create new blank executable file
 xtouch() { # {{{
+  # Create new blank executable file
   touch "$@" &&
   eval chmod +x "$@"
 } # }}}
 
-# Interactive renaming
 imv() { # {{{
+  # Interactively rename file(s)
   local src dst
   for src; do
     [[ -e $src ]] || { print -u2 "$src does not exist"; continue }
@@ -222,24 +182,45 @@ imv() { # {{{
   done
 } # }}}
 
-# Create new virtualenvs and fix existing ones
-mkvenv() { # {{{
-  if [[ -z $1 ]]; then "Please specify a python version and project name: mkvenv <2,3> [venv_name]"; return 1; fi
-  if [[ -n $2 ]]; then venv_dir="$HOME/.venv/$2"; else venv_dir="$HOME/.venv/$(basename $(pwd))"; fi
-  if [[ -n "$VIRTUAL_ENV" ]]; then echo "A virtualenv is active! Please run 'deactivate' first."; return 1; fi
-  echo "Creating python${1} virtualenv for $(pwd) in $venv_dir"
-  mkdir -p "$venv_dir" || return 1
-  [[ -e "$venv_dir" ]] && find -L "$venv_dir" -type l -delete -print
-  python${1} -m virtualenv -p "python${1}" "$venv_dir" || return 1
-  source ${venv_dir}/bin/activate
-  pip install --upgrade pip
-  pip install --upgrade -r "$HOME/.pip_packages_base.txt"
-  [[ -f .autoenv.zsh ]] || echo "source ${venv_dir}/bin/activate" > .autoenv.zsh
-  [[ -f .autoenv_leave.zsh ]] || echo "deactivate" > .autoenv_leave.zsh
-} # }}}
+# }}}
 
-# Manage git worktrees
+# All kinds of shortcuts {{{
+
+# General laziness aliases {{{
+alias s='sudo -HE'
+alias se='s -e'  # `sudoedit`
+alias please='s $(fc -ln -1)'  # re-run last command with `sudo`
+alias history='fc -il 1'
+alias h='history'
+alias htop='s htop'  # always use sudo so we can kill any process
+# }}}
+
+# dotfile management {{{
+alias nodot='unset GIT_DIR GIT_WORK_TREE'
+alias dot='export GIT_DIR=$HOME/.dotfiles_git GIT_WORK_TREE=$HOME'
+alias ldot='export GIT_DIR=$HOME/.dotfiles_git_local GIT_WORK_TREE=$HOME'
+alias dotu='cd; unset GIT_DIR; unset GIT_WORK_TREE; vim -c PlugUpdate; zplug update; dot; git subf'
+# }}}
+
+# OS-agnostic aliases {{{
+
+# Clipboard
+[[ -x $(which xclip) ]]     && alias clip='xclip -selection clipboard'
+[[ -x $(which pbcopy) ]]    && alias clip='pbcopy'
+
+# Open (MacOs has 'open` built-in)
+[[ -x $(which xdg-open) ]]  && alias open='xdg-open'
+
+# }}}
+
+# Git {{{
+alias cg='cd $(git rev-parse --show-toplevel)'  # cd to root of git repo
+alias tiga='tig --all'
+alias tigs='tig status'
+alias tigr='tig $(git rev-parse --abbrev-ref --symbolic-full-name @{u})'
+
 wt () { # {{{
+  # Create git worktrees
   if [[ -z $1 ]]; then
     echo "Please specify the branch to check out"
     return 1
@@ -275,6 +256,7 @@ wt () { # {{{
 } # }}}
 
 wtr () { # {{{
+  # Remove git worktrees
   working_dir="$(pwd)"
   while true; do
     if [[ -f .git ]]; then
@@ -300,6 +282,53 @@ wtr () { # {{{
   done
 } # }}}
 
+# }}}
+
+# systemd {{{
+if [[ -x $(which systemctl) ]]; then
+  alias sc='s systemctl'
+  alias scu='systemctl --user'
+  alias jc='s journalctl'
+fi # }}}
+
+# Terraform {{{
+if [[ -x $(which terraform) ]]; then
+  alias tf='terraform'
+  alias tfp='terraform plan -out .tfplan'
+  alias tfa='terraform apply .tfplan && rm -v .tfplan'
+fi # }}}
+
+# Arch Linux (uses `yay` AUR wrapper) {{{
+if [[ -x $(which pacman) ]]; then
+  alias pacman='s pacman'
+  alias pacdiff='s pacdiff'
+  alias pacs="yay -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -ro yay -S"  # fzf-based package search and install
+  alias pacman-rank-mirrors="s reflector --verbose --threads 20 --country 'United States' --country 'Canada' --protocol https --sort rate --age 24 --latest 100 --number 20 --save /etc/pacman.d/mirrorlist && yay -Syyu"
+  alias pacman-clean-orphans='echo "Found orphans:"; yay -Qqdt; echo; yay -Runs $(yay -Qqdt)'
+fi # }}}
+
+# Python {{{
+
+mkvenv() { # {{{
+  # Create new virtualenvs and fix existing ones
+  if [[ -z $1 ]]; then "Please specify a python version and project name: mkvenv <2,3> [venv_name]"; return 1; fi
+  if [[ -n $2 ]]; then venv_dir="$HOME/.venv/$2"; else venv_dir="$HOME/.venv/$(basename $(pwd))"; fi
+  if [[ -n "$VIRTUAL_ENV" ]]; then echo "A virtualenv is active! Please run 'deactivate' first."; return 1; fi
+  echo "Creating python${1} virtualenv for $(pwd) in $venv_dir"
+  mkdir -p "$venv_dir" || return 1
+  [[ -e "$venv_dir" ]] && find -L "$venv_dir" -type l -delete -print
+  python${1} -m virtualenv -p "python${1}" "$venv_dir" || return 1
+  source ${venv_dir}/bin/activate
+  pip install --upgrade pip
+  pip install --upgrade -r "$HOME/.pip_packages_base.txt"
+  [[ -f .autoenv.zsh ]] || echo "source ${venv_dir}/bin/activate" > .autoenv.zsh
+  [[ -f .autoenv_leave.zsh ]] || echo "deactivate" > .autoenv_leave.zsh
+} # }}}
+
+# }}}
+
+# AWS {{{
+
 # switch aws-vault profiles
 aws-vault-use () { # {{{
   local profile output
@@ -314,44 +343,53 @@ aws-vault-use () { # {{{
 
 # }}}
 
-# Visual/Theme Settings {{{
+# Docker {{{
+[[ -x $(which docker) ]] && alias docker='s docker'
+[[ -x $(which docker-compose) ]] && alias dc='s docker-compose'
+# }}}
 
-# set theme
-ZSH_THEME=""
+# }}}
+
+# Visual/appearance settings {{{
 
 # Prompt Settings {{{
+
+# git-super-status settings
 ZSH_THEME_GIT_PROMPT_NOCACHE="1"
 ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
-function precmd {
-  local newline=$'\n'
 
-  # build standard info line
+# Put prompt in precmd() so it refreshes every time it loads
+function precmd {
+  local newline=$'\n'  # convenience var
+
+  # build standard info line {{{
   local user_name="%(!.%{$fg[red]%}.%{$fg[green]%})%n%{$reset_color%}"
   local host_name="%{$fg[yellow]%}%m%{$reset_color%}"
   local current_dir="%{$fg[blue]%}%~%{$reset_color%}"
   local current_time="%{$fg[lightgrey]%}%*%{$reset_color%}"
   local return_code="%(?..%{$fg[red]%}↳ %? %{$reset_color%})"
+  # }}}
 
-  # build metadata line, if any exists
+  # build metadata line, if any exists {{{
   local git_status=$(git rev-parse --is-inside-work-tree &> /dev/null && echo "$(git_super_status) ")
   local py_venv=$(if [[ ! -z $VIRTUAL_ENV ]]; then echo "(venv:$(basename $VIRTUAL_ENV)) "; fi)
   local vbox_active=$(if [[ ! -z $(ls -H $HOME/.vbox_vms_dir/ 2>/dev/null) ]]; then echo "(vbox) "; fi)
   local aws_profile=$(if [[ ! -z $AWS_PROFILE ]]; then echo "(aws:${AWS_PROFILE}) "; fi)
   local aws_vault_profile=$(if [[ ! -z $AWS_VAULT ]]; then echo "(aws-vault:${AWS_VAULT}) "; fi)
   local env_metadata="${git_status}${py_venv}${vbox_active}${aws_profile}${aws_vault_profile}"
-  if [[ ! -z $env_metadata ]]; then
-     env_info="${newline}${env_metadata}"
-  else
-    env_info=""
-  fi
+  [[ ! -z $env_metadata ]] && env_info="${newline}${env_metadata}" || env_info=""
+  # }}}
 
-  # command prompt itself
+  # command prompt line {{{
   local command_prompt="%(1j.%(!.%B[%j]%b #.%B[%j]%b $).%(!.#.$))"
+  # }}}
 
-  # put it all together
+  # put it all together {{{
   PROMPT="${newline}${return_code}${current_time} ${user_name} at ${host_name} in ${current_dir}${env_info}${newline}${command_prompt} "
   RPROMPT=""
+  # }}}
 }
+
 # }}}
 
 # Show a different cursor for different vim modes {{{
@@ -389,28 +427,44 @@ zle -N zle-line-init
 zle -N zle-line-finish
 zle -N zle-keymap-select
 # }}}
+
+# Set colors for `ls` if the tool is available {{{
+[[ -x $(which dircolors) ]] && eval $(dircolors)
 # }}}
 
-# Local Settings {{{
+# }}}
 
-# load machine-specific options, should always be last to prevent clobbering
-if [ -f ~/.zshrc.local ]; then
-     source ~/.zshrc.local
+# Source the machine-specific .zshrc almost-last (to allow overriding anything in this file)
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# FZF settings {{{
+# Must be loaded after .zshrc.local since FZF completions and keybindings are sourced there
+
+# Only set these if fzf is actually loaded
+if which __fzfcmd >/dev/null; then
+
+  # Don't use tmux panes
+  export FZF_TMUX=0
+
+  # Set default options
+  export FZF_DEFAULT_OPTS='-m' # Enable multi-select mode by default
+  export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"  # enable file preview
+  export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"  # press ? to show truncated results
+  export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"  # show folder preview
+
+  # Use ctrl-f to use fzf for all arg completions
+  export FZF_COMPLETION_TRIGGER=''  # turn off '**' completion
+  bindkey '^I' $fzf_default_completion  # retain stock TAB behavior
+  bindkey '^F' fzf-completion  # ctrl-F will be the equivalent of '**'
+
 fi
 
-# }}}
-
-# Load some stuff that needs to go last {{{
-
-# make $PATH contain only unique elements
-typeset -gU PATH path
-
-# set some FZF setings that need to be set after its loaded (in ~/.zshrc.local)
-export FZF_COMPLETION_TRIGGER=''  # turn off '**' completion
-bindkey '^I' $fzf_default_completion  # retain stock TAB behavior
-bindkey '^F' fzf-completion  # ctrl-F will be the equivalent of '**'
-
 # set up PMY for completing command arguments using zsh's built-in detection
+# https://github.com/relastle/pmy
+path+="$HOME/.zsh/capture-completion" # add capture.zsh to $PATH for auto-generated arg completions
 [[ -x $(which pmy) ]] && eval "$(pmy init)"
 
 # }}}
+
+# Source the machine-specific "post-config" .zshrc actually-last (to allow overriding anything after .zshrc.local)
+[[ -f ~/.zshrc.postlocal ]] && source ~/.zshrc.postlocal
