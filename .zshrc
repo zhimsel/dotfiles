@@ -137,14 +137,12 @@ bindkey -s '^e' 'cd ..\n' #go up a directory with ctrl-e
 
 # Aliases {{{
 
-alias nodotf='unset GIT_DIR GIT_WORK_TREE'
-alias dotf='export GIT_DIR=$HOME/.dotfiles_git GIT_WORK_TREE=$HOME'
-alias dotfl='export GIT_DIR=$HOME/.dotfiles_git_local GIT_WORK_TREE=$HOME'
-alias dot='GIT_DIR=$HOME/.dotfiles_git GIT_WORK_TREE=$HOME git'
-alias tod='GIT_DIR=$HOME/.dotfiles_git GIT_WORK_TREE=$HOME tig'
-alias toda='tod --all'
-alias tods='tod status'
-alias vidot='GIT_DIR=$HOME/.dotfiles_git GIT_WORK_TREE=$HOME vim'
+# dotfile management {{{
+alias nodot='unset GIT_DIR GIT_WORK_TREE'
+alias dot='export GIT_DIR=$HOME/.dotfiles_git GIT_WORK_TREE=$HOME'
+alias ldot='export GIT_DIR=$HOME/.dotfiles_git_local GIT_WORK_TREE=$HOME'
+alias dot_update='cd; unset GIT_DIR; unset GIT_WORK_TREE; vim -c PlugUpdate; zplug update; dot; git subf'
+# }}}
 
 # Create some global aliases with OS-specific targets
 [[ -x $(which xclip) ]] && alias clip='xclip -selection clipboard'
