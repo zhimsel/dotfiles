@@ -10,7 +10,7 @@
 # section to find what you're looking for
 
 # Source the machine-specific "pre-config" .zshrc (if it exists)
-[[ -f ~/.zshrc.prelocal ]] && source ~/.zshrc.prelocal
+[[ -f ~/.zshrc.prelocal ]] && source ~/.zshrc.prelocal || true
 
 # General Settings {{{
 
@@ -435,7 +435,7 @@ zle -N zle-keymap-select
 # }}}
 
 # Source the machine-specific .zshrc almost-last (to allow overriding anything in this file)
-[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local || true
 
 # FZF settings {{{
 # Must be loaded after .zshrc.local since FZF completions and keybindings are sourced there
@@ -467,4 +467,4 @@ path+="$HOME/.zsh/capture-completion" # add capture.zsh to $PATH for auto-genera
 # }}}
 
 # Source the machine-specific "post-config" .zshrc actually-last (to allow overriding anything after .zshrc.local)
-[[ -f ~/.zshrc.postlocal ]] && source ~/.zshrc.postlocal
+[[ -f ~/.zshrc.postlocal ]] && source ~/.zshrc.postlocal || true
