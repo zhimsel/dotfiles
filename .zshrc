@@ -25,7 +25,6 @@ else
 fi
 # }}}
 
-
 # Set some default settings for `less`
 export LESS="-R --mouse --wheel-lines=3 $LESS"
 
@@ -117,6 +116,15 @@ compctl -W $HOME/dev -/ dev
 
 # }}}
 
+# Define a useful confirmation user prompt function
+confirm() { # {{{
+  if read -q "?${1} [y/n] "; then
+    echo ""; return 0
+  else
+    echo ""; return 1
+  fi
+} # }}}
+
 # File/folder management {{{
 
 # Settings {{{
@@ -162,7 +170,7 @@ rmwd() { # {{{
   local current_dir
   current_dir=$(pwd)
   cd .. || exit 1
-  read -q "REPLY?Remove '$current_dir' and everything in it? [y/n] " && rm -rf $current_dir || cd $current_dir
+  confirm "Remove '$current_dir' and everything in it?" && rm -rf $current_dir || cd $current_dir
 } # }}}
 
 xtouch() { # {{{
@@ -314,13 +322,17 @@ mkvenv() { # {{{
   if [[ -z $1 ]]; then "Please specify a python version and project name: mkvenv <2,3> [venv_name]"; return 1; fi
   if [[ -n $2 ]]; then venv_dir="$HOME/.venv/$2"; else venv_dir="$HOME/.venv/$(basename $(pwd))"; fi
   if [[ -n "$VIRTUAL_ENV" ]]; then echo "A virtualenv is active! Please run 'deactivate' first."; return 1; fi
-  echo "Creating python${1} virtualenv for $(pwd) in $venv_dir"
   mkdir -p "$venv_dir" || return 1
-  [[ -e "$venv_dir" ]] && find -L "$venv_dir" -type l -delete -print
+  if [[ -e "$venv_dir" ]]; then
+    confirm "Found existing virtualenv at $venv_dir; remove symlinks to old python?" && find "$venv_dir" -type l -delete -print || return 1
+  fi
+  echo "Creating python${1} virtualenv for $(pwd) in $venv_dir"
   python${1} -m virtualenv -p "python${1}" "$venv_dir" || return 1
   source ${venv_dir}/bin/activate
-  pip install --upgrade pip
-  pip install --upgrade -r "$HOME/.pip_packages_base.txt"
+  if confirm "Install/upgrade base pip packages?"; then
+    pip install --upgrade pip
+    pip install --upgrade -r "$HOME/.pip_packages_base.txt"
+  fi
   [[ -f .autoenv.zsh ]] || echo "source ${venv_dir}/bin/activate" > .autoenv.zsh
   [[ -f .autoenv_leave.zsh ]] || echo "deactivate" > .autoenv_leave.zsh
 } # }}}
