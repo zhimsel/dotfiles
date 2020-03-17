@@ -195,7 +195,7 @@ imv() { # {{{
 # All kinds of shortcuts {{{
 
 # General laziness aliases {{{
-alias s='sudo -HE'
+alias s='sudo -E'
 alias se='sudoedit'
 alias please='s $(fc -ln -1)'  # re-run last command with `sudo`
 alias history='fc -il 1'
