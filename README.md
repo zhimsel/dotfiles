@@ -13,15 +13,14 @@ To do an initial clone of this repo, follow the steps below:
 cd $HOME
 export GIT_DIR=$HOME/.dotfiles_git GIT_WORK_TREE=$HOME
 git init
-git config --local status.showUntrackedFiles no
-git config --local tig.status-show-untracked-files false
 git remote add origin git@github.com:zhimsel/dotfiles.git
 git fetch
 git checkout -t origin/master  # will report any conflict files; fix these and re-run
 git submodule update --init --recursive
 ```
 
-You can then use the included `dot` alias (in `$HOME/.zshrc`) to perform git commands against the dotfiles repo (from anywhere).
+You can then use the included `dot` alias (in `$HOME/.zshrc`) to perform git commands against the dotfiles repo.
+To track new dotfiles, you need to use `git add -f`, since everything is ignored by default.
 
 ### License
 
