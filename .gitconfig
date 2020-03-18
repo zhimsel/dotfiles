@@ -81,7 +81,9 @@
   wtl = worktree list
 
   # GitHub
-  pr = "!hub pull-request -o"
+  pr = "!gh pr create -w"  # create PR in browser
+  pco ="!gh pr checkout $(gh pr list 2>/dev/null | fzf +m | awk '{print $1}')"  # fuzzy search PRs to check out
+  pgo ="!gh pr view $(gh pr list 2>/dev/null | fzf +m | awk '{print $1}')"  # fuzzy search PRs to check out
   bgo = "!hub browse -- compare/$(git symbolic-ref --short HEAD)"  # open branch on Github in browser
   bc = "!hub browse -c -- compare/$(git symbolic-ref --short HEAD)"  # copy branch URL to clipboard
   cgo = "!hub browse -- commit/$(git rev-parse HEAD)"  # open commit on Github in browser
