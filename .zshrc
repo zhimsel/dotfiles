@@ -20,6 +20,7 @@ if [[ -x $(which nvim) ]]; then
   alias vvim=$(which vim)
   alias vim='nvim'
   export EDITOR="nvim"
+  alias vimdiff='nvim -d'
 else
   export EDITOR="vim"
 fi
