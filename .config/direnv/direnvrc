@@ -1,0 +1,28 @@
+# vim: ft=sh
+layout_python-virtualenv () {
+  unset PYTHONHOME
+  local python=${1:-python}
+
+  # determine venv path
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    VIRTUAL_ENV=$(realpath "${VIRTUAL_ENV}")
+  else
+    VIRTUAL_ENV=${2:-$HOME/.venv/$(basename "$(pwd)")}
+  fi
+
+  # create venv if it doesn't exist
+  if [[ ! -d "$VIRTUAL_ENV" ]]; then
+    log_error "no venv found; creating $VIRTUAL_ENV with $python"
+    mkdir -p "$VIRTUAL_ENV"
+    "$python" -m virtualenv --system-site-packages "$VIRTUAL_ENV"
+
+  # fix broken venv (e.g. from system python upgrade)
+  elif [[ ! -e "$VIRTUAL_ENV/bin/python" ]]; then
+    log_error "venv exists, but is broken; fixing..."
+    find "$VIRTUAL_ENV" -type l -delete -print
+    "$python" -m virtualenv --system-site-packages "$VIRTUAL_ENV"
+  fi
+
+  export VIRTUAL_ENV
+  PATH_add "$VIRTUAL_ENV/bin"
+}

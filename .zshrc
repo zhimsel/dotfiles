@@ -71,7 +71,6 @@ ZPLUG_HOME="$HOME/.zsh/zplug"
 source $ZPLUG_HOME/init.zsh
 
 zplug "RobSis/zsh-completion-generator"
-zplug "Tarrasch/zsh-autoenv"
 zplug "zhimsel/zsh-git-prompt"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
@@ -316,30 +315,6 @@ if [[ -x $(which pacman) ]]; then
   alias pacman-clean-orphans='echo "Found orphans:"; yay -Qqdt; echo; yay -Runs $(yay -Qqdt)'
 fi # }}}
 
-# Python {{{
-
-mkvenv() { # {{{
-  # Create new virtualenvs and fix existing ones
-  if [[ -z $1 ]]; then "Please specify a python version and project name: mkvenv <2,3> [venv_name]"; return 1; fi
-  if [[ -n $2 ]]; then venv_dir="$HOME/.venv/$2"; else venv_dir="$HOME/.venv/$(basename $(pwd))"; fi
-  if [[ -n "$VIRTUAL_ENV" ]]; then echo "A virtualenv is active! Please run 'deactivate' first."; return 1; fi
-  mkdir -p "$venv_dir" || return 1
-  if [[ -e "$venv_dir" ]]; then
-    confirm "Found existing virtualenv at $venv_dir; remove symlinks to old python?" && find "$venv_dir" -type l -delete -print || return 1
-  fi
-  echo "Creating python${1} virtualenv for $(pwd) in $venv_dir"
-  python${1} -m virtualenv -p "python${1}" "$venv_dir" || return 1
-  source ${venv_dir}/bin/activate
-  if confirm "Install/upgrade base pip packages?"; then
-    pip install --upgrade pip
-    pip install --upgrade -r "$HOME/.pip_packages_base.txt"
-  fi
-  [[ -f .autoenv.zsh ]] || echo "source ${venv_dir}/bin/activate" > .autoenv.zsh
-  [[ -f .autoenv_leave.zsh ]] || echo "deactivate" > .autoenv_leave.zsh
-} # }}}
-
-# }}}
-
 # AWS {{{
 
 # switch aws-vault profiles
@@ -478,6 +453,13 @@ path+="$HOME/.zsh/capture-completion" # add capture.zsh to $PATH for auto-genera
 export PMY_TRIGGER_KEY="^F"  # this should be the same as `fzf-completion`, which will be used if PMY doesn't have a rule
 [[ -x $(which pmy) ]] && eval "$(pmy init)"
 
+# }}}
+
+# set up direnv hook {{{
+if [[ -x $(which direnv) ]]; then
+  eval "$(direnv hook zsh)"
+  alias tmux='direnv exec / tmux'  # unload direnv before running tmux to avoid subshell complications
+fi
 # }}}
 
 # Source the machine-specific "post-config" .zshrc actually-last (to allow overriding anything after .zshrc.local)
