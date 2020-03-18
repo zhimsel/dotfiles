@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+# Return a list of git branches recently checked, in the order they were checked out
+# This will be picked up by git (if it's in $PATH), so you can use `git recent-branches`
+
+for i in {1..50}; do
+  git rev-parse --abbrev-ref=loose "@{-$i}"
+done 2>/dev/null |
+  grep -Ev -e '@{' -e '^$' |
+  sort -u

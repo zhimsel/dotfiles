@@ -93,3 +93,4 @@
   pbr = "!f() { git push -u ${1:-origin} HEAD; }; f" # push branch and set upstream
   rbb = "!f() { git rebase -i $(git merge-base HEAD ${1:-master}); }; f" # interactive rebase entire branch in-place (not just unpushed commits)
   bru = "!f() {( lbr=${1:-$(git symbolic-ref --short HEAD)}; git branch --force $lbr $(git rev-parse --abbrev-ref --symbolic-full-name ${lbr}@{u}); )}; f" # force-update branch against its upstream remote
+  cor = "!git checkout $(tr ' ' '\n' <<<$(git recent-branches) | fzf +m --preview 'git show {+1}')"
