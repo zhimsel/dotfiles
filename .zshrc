@@ -474,6 +474,7 @@ fi
 # set up PMY for completing command arguments using zsh's built-in detection
 # https://github.com/relastle/pmy
 path+="$HOME/.zsh/capture-completion" # add capture.zsh to $PATH for auto-generated arg completions
+export PMY_TRIGGER_KEY="^F"  # this should be the same as `fzf-completion`, which will be used if PMY doesn't have a rule
 [[ -x $(which pmy) ]] && eval "$(pmy init)"
 
 # }}}
