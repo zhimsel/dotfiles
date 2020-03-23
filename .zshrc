@@ -318,9 +318,10 @@ fi # }}}
 # AWS {{{
 
 # switch aws-vault profiles
-aws-vault-use () { # {{{
+av () { # {{{
   local profile output
   profile="$1"
+  [[ -z $AWS_VAULT ]] || unset AWS_VAULT
   output="$(aws-vault exec "$profile" -- env)"
   if [[ $? -ne 0 ]]; then
     echo "$output" >&2
