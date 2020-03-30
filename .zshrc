@@ -330,6 +330,12 @@ av () { # {{{
   eval "$(echo "$output" | awk '/^AWS/ { print "export " $1 }')"
 } # }}}
 
+# switch aws profiles
+ap () { # {{{
+  export AWS_PROFILE="$1"
+  export AWS_DEFAULT_PROFILE="$1"
+} # }}}
+
 # }}}
 
 # Docker {{{
