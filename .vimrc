@@ -587,54 +587,64 @@ nnoremap <leader>x :!%:p<cr>
 
 " Per-filetype settings {{{
 
-" Misc
-au BufRead,BufNewFile *.link                    setlocal ft=
-au BufRead,BufNewFile term://*                  setlocal nocursorline colorcolumn=0
-au FileType           make                      setlocal noexpandtab
-au FileType           java                      setlocal shiftwidth=4 tabstop=4
-au FileType           yaml                      setlocal fdl=1 fdm=indent
-au FileType           vim                       setlocal tw=0
-au FileType           dosini,cfg,conf           setlocal cms=#\ %s
+" Misc {{{
+au BufRead,BufNewFile *.link   setlocal ft=
+au BufRead,BufNewFile term://* setlocal nocursorline colorcolumn=0
+" }}}
 
-" Shell
+" Make {{{
+au FileType make setlocal noexpandtab
+" }}}
+
+" YAML {{{
+au FileType yaml setlocal fdl=1 fdm=indent
+" }}}
+
+" vim {{{
+au FileType vim setlocal tw=0
+" }}}
+
+" config files {{{
+au FileType dosini,cfg,conf setlocal cms=#\ %s
+" }}}
+
+" Shell {{{
 au FileType sh setlocal fdm=syntax sw=2 tw=0 colorcolumn=80,100,120
 au FileType sh let g:sh_fold_enabled=7
+" }}}
 
-" Terraform
-au FileType           terraform   setlocal tw=0 sw=2 fdm=syntax
-au BufRead,BufNewFile *.tpl       setlocal ft=
+" Terraform {{{
+au FileType           terraform setlocal tw=0 sw=2 fdm=syntax
+au BufRead,BufNewFile *.tpl     setlocal ft=
+" }}}
 
-" Markdown
+" Markdown {{{
 au FileType markdown setlocal textwidth=0 shiftwidth=4 spell
 au FileType markdown let b:delimitMate_expand_space = 0
+" }}}
 
-au FileType rst nnoremap <leader>gp :split \| resize 20 \| terminal restview %<cr>
-
-" Ruby
+" Ruby {{{
 au BufRead,BufNewFile {Berksfile,Vagrantfile,Gemfile} setlocal filetype=ruby
 au BufRead,BufNewFile *.pp                            setlocal filetype=ruby
+" }}}
 
-" Git
+" Git {{{
 au BufRead,BufNewFile COMMIT_EDITMSG  normal ggjO
 au BufEnter           COMMIT_EDITMSG  call setpos('.', [0, 1, 1, 0])
 au BufRead,BufNewFile PULLREQ_EDITMSG setlocal ft=markdown cms=\%%s tw=0 spell
 au BufRead,BufNewFile PULLREQ_EDITMSG nnoremap <leader>gp :call Vim_Markdown_Preview()<cr>
 au FileType           gitcommit       setlocal tw=72 cms=\%%s colorcolumn=+1,51 spell
+" }}}
 
-" CFEngine
-au BufRead,BufNewFile *.cf setlocal filetype=cf3 cms=#\ %s tw=0
-au FileType            cf3 AddTabularPattern! cf /\w\+\s=>/l1r1l1
-au FileType            cf3 nnoremap <leader>= :Tabularize cf<cr>
-au FileType            cf3 nnoremap <leader>c :s/comment\s=>\s"\(.*\)"[;,]/#\ \1<cr>
-au FileType            cf3 iab <buffer> = =>
+" Python {{{
+au FileType python setlocal sw=4 ts=4 tw=0 colorcolumn=80,100,120
+au FileType python imap <C-p> import pdb; pdb.set_trace()
+au FileType python imap <C-o> import IPython; IPython.embed()
+" }}}
 
-" Python
-au FileType python      setlocal sw=4 ts=4 tw=0 colorcolumn=80,100,120
-au FileType python      imap <C-p> import pdb; pdb.set_trace()
-au FileType python      imap <C-o> import IPython; IPython.embed()
-
-" JSON
-au FileType json    setlocal fdm=syntax
+" JSON {{{
+au FileType json setlocal fdm=syntax
+" }}}
 
 " }}}
 
