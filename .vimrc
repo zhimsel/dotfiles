@@ -526,7 +526,6 @@ endif
 set cursorline " Highlight current line
 set noshowmode " Disable --INSERT-- text in command line. Reproduced in airline
 set foldenable " Enable folding
-syntax enable " Enable syntax highlighting
 
 " }}}
 
@@ -594,9 +593,12 @@ au BufRead,BufNewFile term://*                  setlocal nocursorline colorcolum
 au FileType           make                      setlocal noexpandtab
 au FileType           java                      setlocal shiftwidth=4 tabstop=4
 au FileType           yaml                      setlocal fdl=1 fdm=indent
-au FileType           sh                        setlocal sw=2 tw=79
 au FileType           vim                       setlocal tw=0
 au FileType           dosini,cfg,conf           setlocal cms=#\ %s
+
+" Shell
+au FileType sh setlocal fdm=syntax sw=2 tw=0 colorcolumn=80,100,120
+au FileType sh let g:sh_fold_enabled=7
 
 " Terraform
 au FileType           terraform   setlocal tw=0 sw=2 fdm=syntax
@@ -821,7 +823,14 @@ endfun
 
 " }}}
 
-" Load local config (should always be last)
+" Load some stuff that needs to go last {{{
+
+" Load local config
 if filereadable(glob("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
+
+" Enable syntax highlighting (should always be last)
+syntax enable
+
+" }}}
