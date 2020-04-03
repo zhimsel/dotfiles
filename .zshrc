@@ -229,65 +229,30 @@ alias tigr='tig $(git rev-parse --abbrev-ref --symbolic-full-name @{u})'
 
 wt () { # {{{
   # Create git worktrees
-  if [[ -z $1 ]]; then
-    echo "Please specify the branch to check out"
-    return 1
-  else
-    working_dir="$(pwd)"
-    while true; do
-      if [[ -f .git ]]; then  # already in a worktree
-        cd "$(cat .git | cut -d' ' -f2)/../../.." || return 1
-      elif [[ -d .git ]]; then  # in main worktree
-        wt_path="../${0:A:h:t}.$1"
-        break
-      elif [[ "$(pwd)" == '/' ]]; then  # exhausted the whole dir tree
-        echo "We don't seem to be in a git worktree"
-        cd $working_dir
-        return 1
-      else  # walk up to the parent dir and try again
-        cd ..
-        continue
-      fi
-    done
-    git worktree prune
-    git branch "$1" &> /dev/null
-    wt_add="$(git worktree add "$wt_path" "$1" 2>&1)"
-    if [[ $wt_add =~ ^fatal.*already\ checked\ out.* ]]
-    then  # if it's already checked out, go there
-      cd "$(cut -d\' -f4  <<< "$wt_add")" || return 1
-    else  # otherwise, go to the one we just made
-      cd "$wt_path" || return 1
+  [[ -z "$1" ]] && return 1
+  local branch="$1"
+  local prefix="$(git rev-parse --show-prefix)"
+  local wt_path=$(git worktree list | awk -v branch="[$branch]" '$3==branch {print $1}')
+  if [[ ! -d "$wt_path" ]]; then
+    cd "$(git rev-parse --git-common-dir)/.." || return $?
+    local wt_path="${2:-$(git rev-parse --show-toplevel).$branch}"
+    if [[ ! -d "$wt_path" ]]; then
+      git worktree prune
+      git branch "$branch" &>/dev/null && echo "Created branch $branch"
+      git worktree add "$wt_path" "$branch" || return $?
     fi
-    unset working_dir wt_path wt_add
-    return 0
   fi
+  cd "$wt_path/$prefix" || cd "$wt_path" || return $?
 } # }}}
 
 wtr () { # {{{
   # Remove git worktrees
-  working_dir="$(pwd)"
-  while true; do
-    if [[ -f .git ]]; then
-      if [[ "$(git status)" == *clean* ]]; then
-        main_wt="$(cat .git | cut -d' ' -f2)/../../.."
-        current_wt="${0:A:h}"
-        cd "$main_wt" || return 1
-        rm -rf "$current_wt" || return 1
-        rm -rf "$main_wt/.git/worktrees/${current_wt:t}"
-        git worktree prune
-        return 0
-      else
-        echo "Your working directory is not clean! Stash or commit your changes before continuing."
-        return 1
-      fi
-    elif [[ "$(pwd)" == '/' ]]; then
-      echo "We don't seem to be in a git worktree"
-      cd $working_dir
-      return 1
-    else
-      cd ..
-    fi
-  done
+  local wt_path="$(pwd)"
+  local wt_parent="$(realpath ${wt_path}/..)"
+  cd "$(git rev-parse --git-common-dir)/.." || return $?
+  git worktree remove "$wt_path"
+  git worktree prune
+  rmdir --ignore-fail-on-non-empty --parents "$wt_parent"
 } # }}}
 
 # }}}
