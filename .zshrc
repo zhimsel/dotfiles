@@ -226,6 +226,7 @@ alias cg='cd $(git rev-parse --show-toplevel)'  # cd to root of git repo
 alias tiga='tig --all'
 alias tigs='tig status'
 alias tigr='tig $(git rev-parse --abbrev-ref --symbolic-full-name @{u})'
+alias wtl='git wtl'
 
 wt () { # {{{
   # Create git worktrees
