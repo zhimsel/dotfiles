@@ -175,6 +175,7 @@ command WW w !sudo tee % > /dev/null
 
 " Clipboard (yank/put into system clipboard)
 map <leader>y "+y
+map <leader>d "+d
 map <leader>p "+p
 map <leader>P "+P
 
