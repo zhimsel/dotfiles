@@ -51,7 +51,7 @@ bindkey -v  # enable vi mode
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd 'v' edit-command-line  # type 'v' in normal mode to open commandline in vim
-export KETTIMEOUT=1  # set key-sequence timeout in ms
+export KEYTIMEOUT=1  # set key-sequence timeout in ms
 bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
