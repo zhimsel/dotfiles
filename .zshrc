@@ -324,30 +324,30 @@ ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
 function precmd {
   local newline=$'\n'  # convenience var
 
-  # build standard info line {{{
-  local user_name="%(!.%{$fg[red]%}.%{$fg[green]%})%n%{$reset_color%}"
-  local host_name="%{$fg[yellow]%}%m%{$reset_color%}"
-  local current_dir="%{$fg[blue]%}%~%{$reset_color%}"
-  local current_time="%{$fg[lightgrey]%}%*%{$reset_color%}"
-  local return_code="%(?..%{$fg[red]%}↳ %? %{$reset_color%})"
+  # standard info line {{{
+  local -a prompt_info
+  prompt_info+=("%(!.%{$fg[red]%}.%{$fg[green]%})%n%{$reset_color%}")  # username (color-coded for root)
+  prompt_info+=("on %{$fg[yellow]%}%m%{$reset_color%}")  # hostname
+  prompt_info+=("at %{$fg[cyan]%}%*%{$reset_color%}")  # current time
+  prompt_info+=("in %{$fg[blue]%}%~%{$reset_color%}")  # current working directory
   # }}}
 
-  # build metadata line, if any exists {{{
-  local git_status=$(git rev-parse --is-inside-work-tree &> /dev/null && echo "$(git_super_status) ")
-  local py_venv=$(if [[ ! -z $VIRTUAL_ENV ]]; then echo "(venv:$(basename $VIRTUAL_ENV)) "; fi)
-  local vbox_active=$(if [[ ! -z $(ls -H $HOME/.vbox_vms_dir/ 2>/dev/null) ]]; then echo "(vbox) "; fi)
-  local aws_profile=$(if [[ ! -z $AWS_PROFILE ]]; then echo "(aws:${AWS_PROFILE}) "; fi)
-  local aws_vault_profile=$(if [[ ! -z $AWS_VAULT ]]; then echo "(aws-vault:${AWS_VAULT}) "; fi)
-  local env_metadata="${git_status}${py_venv}${vbox_active}${aws_profile}${aws_vault_profile}"
-  [[ ! -z $env_metadata ]] && env_info="${newline}${env_metadata}" || env_info=""
+  # metadata line, if any exists {{{
+  local -a prompt_metadata
+  git rev-parse --is-inside-work-tree &> /dev/null && prompt_metadata+=("$(git_super_status)")
+  [[ ! -z $VIRTUAL_ENV ]]                          && prompt_metadata+=("(venv:$(basename ${VIRTUAL_ENV}))")
+  [[ ! -z $AWS_PROFILE ]]                          && prompt_metadata+=("(aws:${AWS_PROFILE})")
+  [[ ! -z $AWS_VAULT ]]                            && prompt_metadata+=("(aws-vault:${AWS_VAULT})")
   # }}}
 
   # command prompt line {{{
-  local command_prompt="%(1j.%(!.%B[%j]%b #.%B[%j]%b $).%(!.#.$))"
+  local _return_code="%(?::%{$fg[red]%}↳ %? %{$reset_color%})"
+  local _jobs="%(1j:%B[%j]%b :)"
+  local prompt_command="${_return_code}${_jobs}%(!:#:$) "
   # }}}
 
   # put it all together {{{
-  PROMPT="${newline}${return_code}${current_time} ${user_name} at ${host_name} in ${current_dir}${env_info}${newline}${command_prompt} "
+  PROMPT="${newline}${prompt_info}${newline}${prompt_metadata}${prompt_metadata:+$newline}${prompt_command}"
   RPROMPT=""
   # }}}
 }
