@@ -53,7 +53,6 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-obsession'
 Plug 'wellle/targets.vim'
 Plug 'git@github.com:zhimsel/vim-stay.git', { 'dir': '~/dev/vim-stay', 'frozen': 'true' }
-Plug 'Konfekt/FastFold'
 Plug 'milkypostman/vim-togglelist'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ntpeters/vim-better-whitespace'
@@ -179,8 +178,14 @@ map <leader>d "+d
 map <leader>p "+p
 map <leader>P "+P
 
-" Double-click a fold to open it
-nnoremap <expr> <2-LeftMouse> foldclosed(line('.')) == -1 ? "\<2-LeftMouse>" : 'zo'
+" Folding
+" Double-click left mouse to open/close folds
+nnoremap <2-LeftMouse> za
+" Recursively open children of the current fold
+nmap zO zczA
+" Make parent fold moves more intuitive
+nnoremap zK [z
+nnoremap zJ ]z
 
 " bypass that pesky shift key
 command W write
