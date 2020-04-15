@@ -145,20 +145,6 @@ command! -nargs=1 Silent
 " Set leader key
 let g:mapleader = "\<space>"
 
-" Fast saving/opening/quitting
-nmap <leader>e :e<cr>
-nmap <leader>w :w<cr>
-nmap <leader>q :q<cr>
-nmap <leader>q1 :q!<cr>
-nmap <leader>wq :wq<cr>
-nmap <leader>wq1 :wq!<cr>
-nmap <leader>wa :wa<cr>
-nmap <leader>qa :qa<cr>
-nmap <leader>qa1 :qa!<cr>
-nmap <leader>wqa :wqa<cr>
-nmap <leader>wqa1 :wqa!<cr>
-nmap <leader>ss :SSave<cr>
-
 " Lazier versions of 'copy all' and 'delete all'
 nmap <leader>5y :%y<cr>
 nmap <leader>5Y :%y +<cr>
@@ -201,7 +187,6 @@ nnoremap q <Nop>
 noremap ' "
 " List registers
 noremap '' :registers<cr>
-
 
 " Disable highlight when <Esc><Esc> is pressed
 nmap <silent> <Esc><Esc> :noh<cr>
