@@ -22,71 +22,71 @@ Plug 'vim-airline/vim-airline-themes'
 " }}}
 
 " Syntax plugins {{{
-Plug 'benekastah/neomake'
-Plug 'svermeulen/vim-extended-ft'
 Plug 'avakhov/vim-yaml', { 'for': ['yaml', 'yml'] }
+Plug 'benekastah/neomake'
 Plug 'elzr/vim-json', { 'for': 'json' }
-Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
-Plug 'vim-scripts/SQLComplete.vim', { 'for': 'sql' }
-Plug 'rstacruz/sparkup', { 'for': 'html' }
-Plug 'vim-scripts/fountain.vim', { 'for': 'fountain' }
-Plug 'tpope/vim-git', { 'for': 'git' }
-Plug 'jtratner/vim-flavored-markdown', { 'for': ['markdown', 'gitcommit'] }
-Plug 'zhimsel/vim-markdown-preview', { 'for': ['markdown', 'gitcommit'], 'branch': 'default_browser_assumption' }
-Plug 'nelstrom/vim-markdown-folding', { 'for': ['markdown'] }
 Plug 'gu-fan/riv.vim', { 'for': ['rst'] }
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-Plug 'neilhwatson/vim_cf3', { 'for': 'cf3' }
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
+Plug 'jtratner/vim-flavored-markdown', { 'for': ['markdown', 'gitcommit'] }
+Plug 'neilhwatson/vim_cf3', { 'for': 'cf3' }
+Plug 'nelstrom/vim-markdown-folding', { 'for': ['markdown'] }
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
+Plug 'rstacruz/sparkup', { 'for': 'html' }
+Plug 'svermeulen/vim-extended-ft'
+Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
+Plug 'tpope/vim-git', { 'for': 'git' }
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'vim-scripts/SQLComplete.vim', { 'for': 'sql' }
+Plug 'vim-scripts/fountain.vim', { 'for': 'fountain' }
+Plug 'zhimsel/vim-markdown-preview', { 'for': ['markdown', 'gitcommit'], 'branch': 'default_browser_assumption' }
 " }}}
 
 " Interface plugins {{{
-Plug 'bling/vim-airline'
-Plug 'scrooloose/nerdtree'
 Plug 'Lokaltog/vim-easymotion'
+Plug 'bling/vim-airline'
+Plug 'git@github.com:zhimsel/vim-stay.git', { 'dir': '~/dev/vim-stay', 'frozen': 'true' }
+Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf'  " Don't run installer script, shell fzf is managed externally (via dotfiles submodules)
 Plug 'junegunn/fzf.vim'
-Plug 'wesQ3/vim-windowswap'
-Plug 'jlanzarotta/bufexplorer'
-Plug 'tpope/vim-obsession'
-Plug 'wellle/targets.vim'
-Plug 'git@github.com:zhimsel/vim-stay.git', { 'dir': '~/dev/vim-stay', 'frozen': 'true' }
+Plug 'mbbill/undotree'
 Plug 'milkypostman/vim-togglelist'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'mbbill/undotree'
+Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-abolish', { 'on': 'Subvert' }
+Plug 'tpope/vim-obsession'
 Plug 'vim-scripts/vis'
 Plug 'voldikss/vim-floaterm'
+Plug 'wellle/targets.vim'
+Plug 'wesQ3/vim-windowswap'
 " }}}
 
 " Git plugins {{{
-Plug 'tpope/vim-fugitive'
-Plug 'taq/vim-git-branch-info'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
+Plug 'iberianpig/tig-explorer.vim'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'  " required for gist-vim
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'rbgrouleff/bclose.vim'
-Plug 'iberianpig/tig-explorer.vim'
-Plug 'tyru/open-browser.vim'
+Plug 'taq/vim-git-branch-info'
+Plug 'tpope/vim-fugitive'
 Plug 'tyru/open-browser-github.vim'
+Plug 'tyru/open-browser.vim'
 " }}}}
 
 " Automation plugins {{{
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-eunuch'
-Plug 'qpkorr/vim-renamer', { 'on': 'Renamer' }
-Plug 'justinmk/vim-gtfo'
-Plug 'godlygeek/tabular'
-Plug 'Raimondi/delimitMate'
 Plug 'PeterRincker/vim-argumentative'
+Plug 'Raimondi/delimitMate'
+Plug 'godlygeek/tabular'
+Plug 'justinmk/vim-gtfo'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'qpkorr/vim-renamer', { 'on': 'Renamer' }
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
