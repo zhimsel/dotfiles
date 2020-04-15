@@ -44,6 +44,7 @@ Plug 'zhimsel/vim-markdown-preview', { 'for': ['markdown', 'gitcommit'], 'branch
 
 " Interface plugins {{{
 Plug 'Lokaltog/vim-easymotion'
+Plug 'Yggdroot/indentLine'
 Plug 'bling/vim-airline'
 Plug 'git@github.com:zhimsel/vim-stay.git', { 'dir': '~/dev/vim-stay', 'frozen': 'true' }
 Plug 'jlanzarotta/bufexplorer'
@@ -483,6 +484,10 @@ hi NormalFloat guibg=white
 " open-browser-github settings {{{
 let g:openbrowser_github_url_exists_check = 0
 let g:openbrowser_github_always_use_commit_hash = 0
+" }}}
+
+" indentLine settings {{{
+let g:indentLine_char = '│' " UTF-8 font required
 " }}}
 
 " }}}
