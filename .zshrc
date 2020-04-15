@@ -310,6 +310,13 @@ ap () { # {{{
 [[ -x $(which docker-compose) ]] && alias dc='s docker-compose'
 # }}}
 
+# Kubernetes (k8s) {{{
+if [[ -x $(which kubectl) ]]; then
+  alias k='kubectl'
+  alias kc='k config use-context $(k config get-contexts -o name | fzf +m)'
+fi
+# }}}
+
 # }}}
 
 # Visual/appearance settings {{{
