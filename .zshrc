@@ -225,7 +225,7 @@ alias dotu='cd; unset GIT_DIR; unset GIT_WORK_TREE; vim -c PlugUpdate; zplug upd
 alias cg='cd $(git rev-parse --show-toplevel)'  # cd to root of git repo
 alias tiga='tig --all'
 alias tigs='tig status'
-alias tigr='tig $(git rev-parse --abbrev-ref --symbolic-full-name @{u})'
+alias tigr='tig $(git rev-parse --abbrev-ref --symbolic-full-name @{u})...$(git rev-parse --abbrev-ref HEAD)'  # show new commits between local and remote branch
 alias wtl='git wtl'
 
 wt () { # {{{
