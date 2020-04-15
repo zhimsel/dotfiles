@@ -4,6 +4,3 @@
 [submodule ".vim/vim-plug"]
 	path = .vim/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
-[submodule ".zsh/capture-completion"]
-	path = .zsh/capture-completion
-	url = https://github.com/Valodim/zsh-capture-completion.git

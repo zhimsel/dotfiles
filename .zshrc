@@ -70,6 +70,7 @@ bindkey -M viins '^X,' _history-complete-newer \
 ZPLUG_HOME="$HOME/.zsh/zplug"
 source $ZPLUG_HOME/init.zsh
 
+zplug "Aloxaf/fzf-tab"
 zplug "RobSis/zsh-completion-generator"
 zplug "zhimsel/zsh-git-prompt"
 zplug "zsh-users/zsh-completions"
@@ -420,17 +421,14 @@ if which __fzfcmd >/dev/null; then
   export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"  # press ? to show truncated results
   export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"  # show folder preview
 
-  # Use ctrl-f to use fzf for all arg completions
+  # Use tab to use fzf for all arg completions
   export FZF_COMPLETION_TRIGGER=''  # turn off '**' completion
-  bindkey '^I' $fzf_default_completion  # retain stock TAB behavior
-  bindkey '^F' fzf-completion  # ctrl-F will be the equivalent of '**'
+  bindkey '^I' $fzf_default_completion  # use fzf-tab plugin for tab-completion
+  bindkey '^F' expand-or-complete  # stock tab completion
 
+  # Set fzf-tab options
+  zstyle ':completion:complete:*:options' sort false # disable sort when completing options of any command
 fi
-
-# set up PMY for completing command arguments using zsh's built-in detection
-# https://github.com/relastle/pmy
-path+="$HOME/.zsh/capture-completion" # add capture.zsh to $PATH for auto-generated arg completions
-[[ -x $(which pmy) ]] && eval "$(pmy init)"
 
 # }}}
 
