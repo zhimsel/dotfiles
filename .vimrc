@@ -495,7 +495,7 @@ let g:indentLine_char = '│' " UTF-8 font required
 " User interface {{{
 
 " Set some built-in settings
-set number " show line numbers and set color
+set relativenumber " show line numbers
 set showcmd " show (partial) command in status line
 set report=0 " tell us about changes
 set nostartofline " don't jump to start of line when scrolling
