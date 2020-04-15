@@ -522,6 +522,7 @@ endif
 set cursorline " Highlight current line
 set noshowmode " Disable --INSERT-- text in command line. Reproduced in airline
 set foldenable " Enable folding
+set foldmethod=syntax " Default to syntax folding
 
 " }}}
 
@@ -627,9 +628,9 @@ au BufRead,BufNewFile *.pp                            setlocal filetype=ruby
 " Git {{{
 au BufRead,BufNewFile COMMIT_EDITMSG  normal ggjO
 au BufEnter           COMMIT_EDITMSG  call setpos('.', [0, 1, 1, 0])
-au BufRead,BufNewFile PULLREQ_EDITMSG setlocal ft=markdown cms=\%%s tw=0 spell
+au BufRead,BufNewFile PULLREQ_EDITMSG setlocal ft=markdown cms=\%%s tw=0 spell fdl=99
 au BufRead,BufNewFile PULLREQ_EDITMSG nnoremap <leader>gp :call Vim_Markdown_Preview()<cr>
-au FileType           gitcommit       setlocal tw=72 cms=\%%s colorcolumn=+1,51 spell
+au FileType           gitcommit       setlocal tw=72 cms=\%%s colorcolumn=+1,51 spell fdl=99
 " }}}
 
 " Python {{{
