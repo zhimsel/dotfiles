@@ -427,6 +427,16 @@ if which __fzfcmd >/dev/null; then
   bindkey '^F' expand-or-complete  # stock tab completion
 
   # Set fzf-tab options
+  zstyle ':fzf-tab:*' command \
+    fzf --ansi -m --cycle \
+    '--expect=$continuous_trigger' \
+    '--nth=2,3' '--delimiter=\x00' \
+    '--color=dark,hl:33,hl+:33,fg+:254,bg+:235' \
+    '--color=info:136,prompt:136,spinner:136,pointer:234,marker:234' \
+    '--header-lines=$#headers' --no-bold \
+    '--layout=reverse' '--height=${FZF_TMUX_HEIGHT:=40%}' \
+    '--tiebreak=begin' '--query=$query' \
+    '--bind=tab:down,btab:up,change:top,ctrl-space:toggle'
   zstyle ':completion:complete:*:options' sort false # disable sort when completing options of any command
 fi
 
