@@ -436,7 +436,7 @@ if which __fzfcmd >/dev/null; then
     '--header-lines=$#headers' --no-bold \
     '--layout=reverse' '--height=${FZF_TMUX_HEIGHT:=40%}' \
     '--tiebreak=begin' '--query=$query' \
-    '--bind=tab:down,btab:up,change:top,ctrl-space:toggle'
+    '--bind=tab:accept,change:top,btab:toggle'
   zstyle ':completion:complete:*:options' sort false # disable sort when completing options of any command
 fi
 
