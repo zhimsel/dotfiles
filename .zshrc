@@ -113,7 +113,7 @@ bashcompinit -i
 
 # shortcut for cd'ing into ~/dev with autocomplete
 dev() { cd "$HOME/dev/${1:-}" }
-compctl -W $HOME/dev -/ dev
+compdef '_files -/ -W $HOME/dev' dev
 
 # }}}
 
