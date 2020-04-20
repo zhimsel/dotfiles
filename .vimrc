@@ -58,7 +58,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-abolish', { 'on': 'Subvert' }
 Plug 'tpope/vim-obsession'
 Plug 'vim-scripts/vis'
-Plug 'voldikss/vim-floaterm'
 Plug 'wellle/targets.vim'
 Plug 'wesQ3/vim-windowswap'
 " }}}
@@ -474,13 +473,6 @@ let g:vim_markdown_preview_hotkey='<leader>gp'
 let g:vim_markdown_preview_github=1
 " }}}
 
-" vim-floaterm settings {{{
-let g:floaterm_open_in_root = 1
-let g:floaterm_keymap_toggle = '<Leader>t'
-let g:floaterm_position = 'center'
-hi NormalFloat guibg=white
-" }}}
-
 " open-browser-github settings {{{
 let g:openbrowser_github_url_exists_check = 0
 let g:openbrowser_github_always_use_commit_hash = 0
@@ -667,7 +659,7 @@ set splitbelow
 set splitright
 
 " tab shortcuts
-map <leader>tn :tabnew<cr>
+map <leader>t  :tabnew<cr>
 map <leader>th :tabnext<cr>
 map <leader>tl :tabprevious<cr>
 map <leader>to :tabonly<cr>
