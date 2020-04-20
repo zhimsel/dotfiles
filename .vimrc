@@ -476,6 +476,7 @@ let g:vim_markdown_preview_github=1
 " open-browser-github settings {{{
 let g:openbrowser_github_url_exists_check = 0
 let g:openbrowser_github_always_use_commit_hash = 0
+nmap <leader>go :OpenGithub
 " }}}
 
 " indentLine settings {{{
