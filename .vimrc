@@ -22,7 +22,7 @@ Plug 'vim-airline/vim-airline-themes'
 " }}}
 
 " Syntax plugins {{{
-Plug 'avakhov/vim-yaml', { 'for': ['yaml', 'yml'] }
+Plug 'pedrohdz/vim-yaml-folds', { 'for': ['yaml', 'yml'] }
 Plug 'benekastah/neomake'
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'gu-fan/riv.vim', { 'for': ['rst'] }
@@ -583,10 +583,6 @@ au BufRead,BufNewFile term://* setlocal nocursorline colorcolumn=0
 
 " Make {{{
 au FileType make setlocal noexpandtab
-" }}}
-
-" YAML {{{
-au FileType yaml setlocal fdl=1 fdm=indent
 " }}}
 
 " vim {{{
