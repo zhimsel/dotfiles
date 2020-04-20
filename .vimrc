@@ -481,6 +481,7 @@ nmap <leader>go :OpenGithub
 
 " indentLine settings {{{
 let g:indentLine_char = '│' " UTF-8 font required
+let g:indentLine_concealcursor = 'nc'
 " }}}
 
 " }}}
