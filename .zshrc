@@ -323,6 +323,7 @@ fi
 # git-super-status settings
 GIT_PROMPT_EXECUTABLE="haskell"
 ZSH_THEME_GIT_PROMPT_NOCACHE="1"
+ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
 
 # Put prompt in precmd() so it refreshes every time it loads
 function precmd {
