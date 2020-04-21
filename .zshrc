@@ -67,7 +67,7 @@ bindkey -M viins '^X,' _history-complete-newer \
 
 # Plugins {{{
 
-ZPLUG_HOME="$HOME/.zsh/zplug"
+export ZPLUG_HOME="$HOME/.zsh/zplug"
 source $ZPLUG_HOME/init.zsh
 
 zplug "Aloxaf/fzf-tab"
