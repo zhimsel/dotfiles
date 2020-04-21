@@ -60,6 +60,7 @@ Plug 'tpope/vim-obsession'
 Plug 'vim-scripts/vis'
 Plug 'wellle/targets.vim'
 Plug 'wesQ3/vim-windowswap'
+Plug 'kassio/neoterm'
 " }}}
 
 " Git plugins {{{
