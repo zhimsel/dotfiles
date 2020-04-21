@@ -86,7 +86,6 @@ zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
 
 [[ -f ~/.zplug.local ]] && source $HOME/.zplug.local
-if ! zplug check; then confirm "Install missing zsh plugins?" && zplug install; fi
 zplug load
 
 # }}}
