@@ -12,6 +12,15 @@
 # Source the machine-specific "pre-config" .zshrc (if it exists)
 [[ -f ~/.zshrc.prelocal ]] && source ~/.zshrc.prelocal || true
 
+# Define a useful confirmation user prompt function
+confirm() { # {{{
+  if read -q "?${1} [y/n] "; then
+    echo ""; return 0
+  else
+    echo ""; return 1
+  fi
+} # }}}
+
 # General Settings {{{
 
 # Set [neo]vim as the default editor {{{
@@ -76,9 +85,8 @@ zplug "olivierverdier/zsh-git-prompt", use:"zshrc.sh", hook-build:"stack install
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
 
-if [ -f ~/.zplug.local ]; then
-  source $HOME/.zplug.local
-fi
+[[ -f ~/.zplug.local ]] && source $HOME/.zplug.local
+if ! zplug check; then confirm "Install missing zsh plugins?" && zplug install; fi
 zplug load
 
 # }}}
@@ -116,15 +124,6 @@ dev() { cd "$HOME/dev/${1:-}" }
 compdef '_files -/ -W $HOME/dev' dev
 
 # }}}
-
-# Define a useful confirmation user prompt function
-confirm() { # {{{
-  if read -q "?${1} [y/n] "; then
-    echo ""; return 0
-  else
-    echo ""; return 1
-  fi
-} # }}}
 
 # File/folder management {{{
 
