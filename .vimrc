@@ -630,8 +630,12 @@ au FileType python imap <C-p> import pdb; pdb.set_trace()
 au FileType python imap <C-o> import IPython; IPython.embed()
 " }}}
 
+" YAML {{{
+au FileType yaml setlocal fdl=99
+" }}}
+
 " JSON {{{
-au FileType json setlocal fdm=syntax
+au FileType json setlocal fdl=99
 " }}}
 
 " }}}
