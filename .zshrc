@@ -72,7 +72,7 @@ source $ZPLUG_HOME/init.zsh
 
 zplug "Aloxaf/fzf-tab"
 zplug "RobSis/zsh-completion-generator"
-zplug "zhimsel/zsh-git-prompt"
+zplug "olivierverdier/zsh-git-prompt", use:"zshrc.sh", hook-build:"stack install"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
 
@@ -323,8 +323,8 @@ fi
 # Prompt Settings {{{
 
 # git-super-status settings
+GIT_PROMPT_EXECUTABLE="haskell"
 ZSH_THEME_GIT_PROMPT_NOCACHE="1"
-ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
 
 # Put prompt in precmd() so it refreshes every time it loads
 function precmd {
