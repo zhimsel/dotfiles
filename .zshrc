@@ -321,7 +321,7 @@ fi
 # Prompt Settings {{{
 
 # git-super-status settings
-GIT_PROMPT_EXECUTABLE="haskell"
+[[ -x $(which stack) ]] && GIT_PROMPT_EXECUTABLE="haskell"
 ZSH_THEME_GIT_PROMPT_NOCACHE="1"
 ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
 
