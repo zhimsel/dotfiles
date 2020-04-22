@@ -60,7 +60,7 @@ bindkey -v  # enable vi mode
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd 'v' edit-command-line  # type 'v' in normal mode to open commandline in vim
-export KEYTIMEOUT=1  # set key-sequence timeout in ms
+export KEYTIMEOUT=20  # set key-sequence timeout in ms
 bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
@@ -422,8 +422,8 @@ if which __fzfcmd >/dev/null; then
 
   # Use tab to use fzf for all arg completions
   export FZF_COMPLETION_TRIGGER=''  # turn off '**' completion
-  bindkey '^I' $fzf_default_completion  # use fzf-tab plugin for tab-completion
-  bindkey '^F' expand-or-complete  # stock tab completion
+  bindkey '^I' expand-or-complete
+  bindkey '^I^I' fzf-tab-complete
 
   # Set fzf-tab options
   zstyle ':fzf-tab:*' command \
