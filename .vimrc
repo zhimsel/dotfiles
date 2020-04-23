@@ -684,8 +684,8 @@ nmap <Leader>s :sp<cr>
 nmap <Leader>v :vsp<cr>
 
 " Maximize window
-nnoremap <C-w>- <C-w>\|
-nnoremap <C-w> <C-w>\|
+nnoremap <C-w>- <C-w>_
+nnoremap <C-w>\ <C-w>\|
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
