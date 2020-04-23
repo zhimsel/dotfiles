@@ -113,7 +113,7 @@ if !has('nvim')
   set viminfo='1000,f1,:100,@100,/20
 endif
 set history=1000
-set iskeyword+=_,$,@,%,#,-
+set iskeyword+=-
 
 " better commandline completion
 set wildmode=longest,list,full
@@ -568,7 +568,7 @@ set textwidth=0
 set colorcolumn=+1,+21,+41
 
 " Define text expansions
-iab #ube #!/usr/bin/env
+iabbrev ube# #!/usr/bin/env
 inoremap ds""  """<CR>"""O
 inoremap ds`` ```<CR>```O
 
