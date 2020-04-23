@@ -87,6 +87,7 @@ zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
 
 [[ -f ~/.zplug.local ]] && source $HOME/.zplug.local
+zplug check --verbose
 zplug load
 
 # }}}
