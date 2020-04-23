@@ -78,7 +78,6 @@ Plug 'tyru/open-browser.vim'
 
 " Automation plugins {{{
 Plug 'PeterRincker/vim-argumentative'
-Plug 'Raimondi/delimitMate'
 Plug 'godlygeek/tabular'
 Plug 'justinmk/vim-gtfo'
 Plug 'michaeljsmith/vim-indent-object'
@@ -445,11 +444,6 @@ let g:EnableCFE3KeywordAbbreviations=0
 " vim-gist settings {{{
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
-" }}}
-
-" delimitMate settings {{{
-let g:delimitMate_expand_space = 1
-let g:delimitMate_jump_expansion = 1
 " }}}
 
 " vim-stay settings {{{
