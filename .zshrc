@@ -38,9 +38,10 @@ fi
 # Set some default settings for `less`
 export LESS="-R --mouse --wheel-lines=3 $LESS"
 
-# $PATH settings
-typeset -gU PATH path  # make $PATH contain only unique elements
-path=("$HOME/bin" $path)
+# Set special envar types and remove duplicate entries
+typeset -gxU path
+typeset -gxU manpath
+typeset -gxU fpath
 
 # History settings {{{
 HISTFILE="${HISTFILE:-$HOME/.zsh_history}"
@@ -106,8 +107,8 @@ zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
 # }}}
 
-# include custom completions
-fpath=(~/.zsh/custom-completions $fpath)
+# include non-system completions
+fpath=("${HOME}/.zsh/custom-completions" $fpath)
 
 # load zsh completions
 autoload -Uz compinit
@@ -447,6 +448,9 @@ if [[ -x $(which direnv) ]]; then
   alias tmux='direnv exec / tmux'  # unload direnv before running tmux to avoid subshell complications
 fi
 # }}}
+
+# Add ~/bin [mostly] last to allow overriding any system-installed executables
+path=("$HOME/bin" $path)
 
 # Source the machine-specific "post-config" .zshrc actually-last (to allow overriding anything after .zshrc.local)
 [[ -f ~/.zshrc.postlocal ]] && source ~/.zshrc.postlocal || true
