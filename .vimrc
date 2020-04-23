@@ -613,6 +613,7 @@ au FileType markdown let b:delimitMate_expand_space = 0
 
 " Ruby {{{
 au BufRead,BufNewFile {Berksfile,Vagrantfile,Gemfile} setlocal filetype=ruby
+au BufRead,BufNewFile {.Brewfile,Brewfile}            setlocal filetype=ruby
 au BufRead,BufNewFile *.pp                            setlocal filetype=ruby
 " }}}
 

@@ -4,7 +4,7 @@ These are my config files. I use them live, in 'production'. You're welcome to u
 
 If you think you have an improvement, feel free to submit an issue or pull request.
 
-### Usage
+### Install
 
 This repo is intended to be based directly in your home directory, with a `.git` dir named as something else (as to not cause all subdirectories to think they're a git repo).
 To do an initial clone of this repo, follow the steps below:
@@ -17,10 +17,36 @@ git remote add origin git@github.com:zhimsel/dotfiles.git
 git fetch
 git checkout -t origin/master  # will report any conflict files; fix these and re-run
 git submodule update --init --recursive
+
+# open a new shell to pick up the new configs
+zplug install
+nvim -c PlugInstall
+vvim -c PlugInstall
 ```
 
 You can then use the included `dot` alias (in `$HOME/.zshrc`) to perform git commands against the dotfiles repo.
 To track new dotfiles, you need to use `git add -f`, since everything is ignored by default.
+Use the `nodot` alias to stop working on the dotfiles repo.
+
+To update all the required zsh and vim plugins, use the included `dotu` command (in `.zshrc`).
+
+### OS-specific setup
+
+#### MacOS/OSX
+
+Install [Homebrew](https://docs.brew.sh/Installation) and run:
+
+```
+brew bundle --global install
+```
+
+#### Arch Linux
+
+Install your choice of AUR-helper (I recommend [`yay`](https://aur.archlinux.org/packages/yay/)) and do:
+
+```
+yay -Syu --needed - < .arch-packages.list
+```
 
 ### License
 
