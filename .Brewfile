@@ -33,6 +33,7 @@ brew "vim"
 brew "zsh"
 
 # Useful tools
+brew "asdf"
 brew "direnv"
 brew "fzf"
 brew "htop"
