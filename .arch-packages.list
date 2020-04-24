@@ -1,1 +1,15 @@
 asdf-vm
+direnv
+fzf
+ghc
+github-cli-bin
+hub
+neovim
+python-grip
+python-pip
+shellcheck
+stack
+tig
+tmux
+vim-spell-en
+zsh
