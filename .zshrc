@@ -341,11 +341,11 @@ function precmd {
 
   # metadata line, if any exists {{{
   local -a prompt_metadata
-  git rev-parse --is-inside-work-tree &> /dev/null && prompt_metadata+=($(git_super_status))
-  prompt_metadata+=(${VIRTUAL_ENV:+"(venv:$(basename ${VIRTUAL_ENV}))"})
-  prompt_metadata+=(${AWS_PROFILE:+"(aws:${AWS_PROFILE})"})
-  prompt_metadata+=(${AWS_VAULT:+"(aws-vault:${AWS_VAULT})"})
-  local k8s_context=$(kubectl config current-context 2>/dev/null); prompt_metadata+=(${k8s_context:+"(k8s:${k8s_context})"})
+  git rev-parse --is-inside-work-tree &> /dev/null && prompt_metadata+=("git:$(git_super_status)")
+  prompt_metadata+=(${VIRTUAL_ENV:+"venv:($(basename ${VIRTUAL_ENV}))"})
+  prompt_metadata+=(${AWS_PROFILE:+"aws:(${AWS_PROFILE})"})
+  prompt_metadata+=(${AWS_VAULT:+"aws-vault:(${AWS_VAULT})"})
+  local k8s_context=$(kubectl config current-context 2>/dev/null); prompt_metadata+=(${k8s_context:+"k8s:(${k8s_context})"})
   # }}}
 
   # command prompt line {{{
