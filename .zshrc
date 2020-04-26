@@ -209,17 +209,6 @@ alias ldot='export GIT_DIR=$HOME/.dotfiles_git_local GIT_WORK_TREE=$HOME'
 alias dotu='cd; unset GIT_DIR; unset GIT_WORK_TREE; vim -c PlugUpdate; zplug update; dot; git subf'
 # }}}
 
-# OS-agnostic aliases {{{
-
-# Clipboard
-[[ -x $(which xclip) ]]     && alias clip='xclip -selection clipboard'
-[[ -x $(which pbcopy) ]]    && alias clip='pbcopy'
-
-# Open (MacOs has 'open` built-in)
-[[ -x $(which xdg-open) ]]  && alias open='xdg-open'
-
-# }}}
-
 # Git {{{
 alias cg='cd $(git rev-parse --show-toplevel)'  # cd to root of git repo
 alias tiga='tig --all'

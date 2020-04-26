@@ -16,12 +16,18 @@ bind generic G move-last-line
 # Main view
 bind main G move-last-line
 bind main F none
-bind main <C-J> :move-next-merge
-bind main <C-K> :move-prev-merge
+bind main <C-J> move-next-merge
+bind main <C-K> move-prev-merge
 
 # Tree view
 bind tree l enter
 bind tree h back
+
+# Copy useful things to clipboard
+bind generic S view-stage
+bind generic c none
+bind generic cc @sh -c "~/bin/clip <<< %(commit)"
+bind generic cb @sh -c "~/bin/clip <<< %(branch)"
 
 # Open things in GitHub
 bind generic gc @hub browse -- commit/%(commit)

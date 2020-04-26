@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+# Send stdin to system clipboard, regardless of OS
+
+# X11
+if [ -x $(which xclip) ]; then
+  xclip -selection clipboard <&0
+
+# MacOS
+elif [ -x $(which pbcopy) ]; then
+  pbcopy <&0
+
+fi
