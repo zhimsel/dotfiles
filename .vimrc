@@ -677,12 +677,11 @@ map <leader>8 8gt
 map <leader>9 9gt
 
 " Open new splits
-nmap <Leader>s :sp<cr>
-nmap <Leader>v :vsp<cr>
+nnoremap <C-w>- :sp<cr>
+nnoremap <C-w>\ :vsp<cr>
 
-" Maximize window
-nnoremap <C-w>- <C-w>_
-nnoremap <C-w>\ <C-w>\|
+" Zoom window
+nnoremap <C-w>+ <C-w>\|<C-w>_
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
