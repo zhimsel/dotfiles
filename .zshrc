@@ -1,16 +1,13 @@
 #!/usr/bin/env zsh
 # vim: foldmethod=marker
 
-# zsh configuration
-# https://github.com/zhimsel/dotfiles
-
 # This file is written with vim foldmarkers to enable easier viewing
 # It's designed to be viewed/edited from within vim. Each section has
 # fold markers at the beginning and end, so you can easily close each
 # section to find what you're looking for
 
 # Source the machine-specific "pre-config" .zshrc (if it exists)
-[[ -f ~/.zshrc.prelocal ]] && source ~/.zshrc.prelocal || true
+[[ -f "$HOME/.zshrc.prelocal" ]] && source "$HOME/.zshrc.prelocal" || true
 
 # Define a useful confirmation user prompt function
 confirm() { # {{{
@@ -28,20 +25,9 @@ alias vi='vim'
 if [[ -x $(which nvim) ]]; then
   alias vvim=$(which vim)
   alias vim='nvim'
-  export EDITOR="nvim"
   alias vimdiff='nvim -d'
-else
-  export EDITOR="vim"
 fi
 # }}}
-
-# Set some default settings for `less`
-export LESS="-R --mouse --wheel-lines=3 $LESS"
-
-# Set special envar types and remove duplicate entries
-typeset -gxU path
-typeset -gxU manpath
-typeset -gxU fpath
 
 # History settings {{{
 HISTFILE="${HISTFILE:-$HOME/.zsh_history}"
@@ -86,7 +72,7 @@ zplug "olivierverdier/zsh-git-prompt", use:"zshrc.sh", hook-build:"stack install
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
 
-[[ -f ~/.zplug.local ]] && source $HOME/.zplug.local
+[[ -f "$HOME/.zplug.local" ]] && source "$HOME/.zplug.local" || true
 zplug check --verbose
 zplug load
 
@@ -118,7 +104,7 @@ compinit -u
 # load bash completions
 autoload -Uz bashcompinit
 bashcompinit -i
-[[  -f ~/.bash_complete ]] && source ~/.bash_complete
+[[  -f "$HOME/.bash_complete" ]] && source "$HOME/.bash_complete" || true
 
 # shortcut for cd'ing into ~/dev with autocomplete
 dev() { cd "$HOME/dev/${1:-}" }
@@ -394,7 +380,7 @@ zle -N zle-keymap-select
 # }}}
 
 # Source the machine-specific .zshrc almost-last (to allow overriding anything in this file)
-[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local || true
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local" || true
 
 # FZF settings {{{
 # Must be loaded after .zshrc.local since FZF completions and keybindings are sourced there
@@ -439,8 +425,5 @@ if [[ -x $(which direnv) ]]; then
 fi
 # }}}
 
-# Add ~/bin [mostly] last to allow overriding any system-installed executables
-path=("$HOME/bin" $path)
-
 # Source the machine-specific "post-config" .zshrc actually-last (to allow overriding anything after .zshrc.local)
-[[ -f ~/.zshrc.postlocal ]] && source ~/.zshrc.postlocal || true
+[[ -f "$HOME/.zshrc.postlocal" ]] && source "$HOME/.zshrc.postlocal" || true
