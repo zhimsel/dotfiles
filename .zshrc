@@ -192,7 +192,14 @@ alias htop='s htop'  # always use sudo so we can kill any process
 alias nodot='unset GIT_DIR GIT_WORK_TREE'
 alias dot='export GIT_DIR=$HOME/.dotfiles_git GIT_WORK_TREE=$HOME'
 alias ldot='export GIT_DIR=$HOME/.dotfiles_git_local GIT_WORK_TREE=$HOME'
-alias dotu='cd; unset GIT_DIR; unset GIT_WORK_TREE; vim -c PlugUpdate; zplug update; dot; git subf'
+dotu () { # {{{
+  cd "$HOME" && dot || return 1
+  echo "Updating submodules..."; git subf
+  nodot || return 1
+  echo "Updating vim plugins..."; vim -c PlugUpdate
+  echo "Updating zsh plugins..."; zsh -ic "zplug update"  # run in new shell to pick up any zplug updates
+  dot
+} # }}}
 # }}}
 
 # Git {{{
