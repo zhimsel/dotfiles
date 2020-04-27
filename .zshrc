@@ -309,6 +309,15 @@ fi
 ZSH_THEME_GIT_PROMPT_NOCACHE="1"
 ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
 
+# Color-code anything with "prod" red
+function _color_prod_red () {
+  if [[ "$1" =~ "prod" ]]; then
+    echo "%{$fg[red]%}$1%{$reset_color%}"
+  else
+    echo "$1"
+  fi
+}
+
 # Put prompt in precmd() so it refreshes every time it loads
 function precmd {
   local newline=$'\n'  # convenience var
@@ -325,9 +334,9 @@ function precmd {
   local -a prompt_metadata
   git rev-parse --is-inside-work-tree &> /dev/null && prompt_metadata+=("git:$(git_super_status)")
   prompt_metadata+=(${VIRTUAL_ENV:+"venv:($(basename ${VIRTUAL_ENV}))"})
-  prompt_metadata+=(${AWS_PROFILE:+"aws:(${AWS_PROFILE})"})
-  prompt_metadata+=(${AWS_VAULT:+"aws-vault:(${AWS_VAULT})"})
-  local k8s_context=$(kubectl config current-context 2>/dev/null); prompt_metadata+=(${k8s_context:+"k8s:(${k8s_context})"})
+  prompt_metadata+=(${AWS_PROFILE:+"aws:($(_color_prod_red ${AWS_PROFILE}))"})
+  prompt_metadata+=(${AWS_VAULT:+"aws-vault:($(_color_prod_red ${AWS_VAULT}))"})
+  local k8s_context=$(kubectl config current-context 2>/dev/null); prompt_metadata+=(${k8s_context:+"k8s:($(_color_prod_red ${k8s_context}))"})
   # }}}
 
   # command prompt line {{{
