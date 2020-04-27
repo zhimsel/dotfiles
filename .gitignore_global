@@ -12,6 +12,9 @@ Thumbs.db
 *.swp
 *.bak
 
+# direnv Files #
+################
+.envrc
 
 # Vim Files #
 #############
