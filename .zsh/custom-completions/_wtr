@@ -1,0 +1,13 @@
+#compdef wtr
+
+_wtr() {
+  local state
+
+  _arguments '1: :->worktree'
+
+  case $state in
+    (worktree) _arguments "1:worktrees:($(git worktree list | awk '{print $1}'))" ;;
+  esac
+}
+
+_wtr "$@"

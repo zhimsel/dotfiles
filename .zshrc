@@ -227,10 +227,11 @@ wt () { # {{{
 
 wtr () { # {{{
   # Remove git worktrees
-  local prefix="$(git rev-parse --show-prefix)"
-  local wt_path="$(git rev-parse --show-toplevel)"
+  local wt_path="${1:-$(git rev-parse --show-toplevel)}"
   local wt_parent="$(realpath ${wt_path}/..)"
-  cd "$(git rev-parse --git-common-dir)/../${prefix}" || cd "$(git rev-parse --git-common-dir)/.." || return $?
+  [[ -z $1 ]] && { cd "$(git rev-parse --git-common-dir)/../$(git rev-parse --show-prefix)" \
+    || cd "$(git rev-parse --git-common-dir)/.." \
+    || return $? }
   git worktree remove "$wt_path"
   git worktree prune
   rmdir --ignore-fail-on-non-empty --parents "$wt_parent"
