@@ -403,8 +403,9 @@ zle -N zle-keymap-select
 # Only set these if fzf is actually loaded
 if which __fzfcmd >/dev/null; then
 
-  # Don't use tmux panes
-  export FZF_TMUX=0
+  # Use tmux panes
+  export FZF_TMUX=1
+  export FZF_TMUX_HEIGHT='60%'
 
   # Set default options
   export FZF_DEFAULT_OPTS='-m --height=40% --reverse -0 -1 --ansi'
