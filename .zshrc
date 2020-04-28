@@ -93,7 +93,7 @@ autoload -Uz +X bashcompinit && bashcompinit
 export ZPLUG_HOME="$HOME/.zsh/zplug"
 source $ZPLUG_HOME/init.zsh
 
-zplug "Aloxaf/fzf-tab"
+zplug "lincheney/fzf-tab-completion", use:"zsh/fzf-zsh-completion.sh"
 zplug "RobSis/zsh-completion-generator"
 zplug "olivierverdier/zsh-git-prompt", use:"zshrc.sh", hook-build:"stack install"
 zplug "zsh-users/zsh-completions"
@@ -416,19 +416,10 @@ if which __fzfcmd >/dev/null; then
   # Use tab to use fzf for all arg completions
   export FZF_COMPLETION_TRIGGER=''  # turn off '**' completion
   bindkey '^I' expand-or-complete
-  bindkey '^I^I' fzf-tab-complete
+  bindkey '^I^I' fzf_completion
 
-  # Set fzf-tab options
-  zstyle ':fzf-tab:*' command \
-    fzf --ansi -m --cycle \
-    '--expect=$continuous_trigger' \
-    '--nth=2,3' '--delimiter=\x00' \
-    '--color=dark,hl:33,hl+:33,fg+:254,bg+:235' \
-    '--color=info:136,prompt:136,spinner:136,pointer:234,marker:234' \
-    '--header-lines=$#headers' --no-bold \
-    '--layout=reverse' '--height=${FZF_TMUX_HEIGHT:=40%}' \
-    '--tiebreak=begin' '--query=$query' \
-    '--bind=tab:accept,change:top,btab:toggle'
+  # Set fzf-tab-completion options
+  zstyle ':completion:*' fzf-search-display true  # search display-strings by default
   zstyle ':completion:complete:*:options' sort false # disable sort when completing options of any command
 fi
 
