@@ -61,23 +61,6 @@ bindkey -M viins '^X,' _history-complete-newer \
 
 # }}}
 
-# Plugins {{{
-
-export ZPLUG_HOME="$HOME/.zsh/zplug"
-source $ZPLUG_HOME/init.zsh
-
-zplug "Aloxaf/fzf-tab"
-zplug "RobSis/zsh-completion-generator"
-zplug "olivierverdier/zsh-git-prompt", use:"zshrc.sh", hook-build:"stack install"
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-syntax-highlighting", defer:3
-
-[[ -f "$HOME/.zplug.local" ]] && source "$HOME/.zplug.local" || true
-zplug check --verbose
-zplug load
-
-# }}}
-
 # Autocomplete {{{
 
 # Set general completion settings {{{
@@ -94,21 +77,31 @@ zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
 # }}}
 
-# include non-system completions
+# include custom completions
 fpath=("${HOME}/.zsh/custom-completions" $fpath)
 
 # load zsh completions
-autoload -Uz compinit
-compinit -u
+autoload -Uz +X compinit && compinit
 
 # load bash completions
-autoload -Uz bashcompinit
-bashcompinit -i
-[[  -f "$HOME/.bash_complete" ]] && source "$HOME/.bash_complete" || true
+autoload -Uz +X bashcompinit && bashcompinit
 
-# shortcut for cd'ing into ~/dev with autocomplete
-dev() { cd "$HOME/dev/${1:-}" }
-compdef '_files -/ -W $HOME/dev' dev
+# }}}
+
+# Plugins {{{
+
+export ZPLUG_HOME="$HOME/.zsh/zplug"
+source $ZPLUG_HOME/init.zsh
+
+zplug "Aloxaf/fzf-tab"
+zplug "RobSis/zsh-completion-generator"
+zplug "olivierverdier/zsh-git-prompt", use:"zshrc.sh", hook-build:"stack install"
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-syntax-highlighting", defer:3
+
+[[ -f "$HOME/.zplug.local" ]] && source "$HOME/.zplug.local" || true
+zplug check --verbose
+zplug load
 
 # }}}
 
@@ -179,13 +172,18 @@ imv() { # {{{
 
 # All kinds of shortcuts {{{
 
-# General laziness aliases {{{
+# General laziness {{{
 alias s='sudo -E'
 alias se='sudo -e'
 alias please='s $(fc -ln -1)'  # re-run last command with `sudo`
 alias history='fc -il 1'
 alias h='history'
 alias htop='s htop'  # always use sudo so we can kill any process
+
+# shortcut for cd'ing into ~/dev with autocomplete
+dev() { cd "$HOME/dev/${1:-}" }
+compdef '_files -/ -W $HOME/dev' dev
+
 # }}}
 
 # dotfile management {{{
