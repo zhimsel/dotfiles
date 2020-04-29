@@ -266,20 +266,26 @@ au VimEnter * let g:airline_section_x = airline#section#create(['windowswap','%3
 au VimEnter * let g:airline_section_y = airline#section#create(['hunks'])
 au VimEnter * let g:airline_section_z = airline#section#create(['branch'])
 let g:airline#extensions#default#section_truncate_width = {}
-let g:airline_mode_map = {
-    \ '__' : '-',
-    \ 'n'  : 'N',
-    \ 'i'  : 'I',
-    \ 'R'  : 'R',
-    \ 'v'  : 'V',
-    \ 'V'  : 'VL',
-    \ 'c'  : 'C',
-    \ '' : 'VB',
-    \ 's'  : 'S',
-    \ 'S'  : 'SL',
-    \ '' : 'SB',
-    \ 't'  : 'T',
-    \ }
+  let g:airline_mode_map = {
+      \ '__'     : '-',
+      \ 'c'      : 'C',
+      \ 'i'      : 'I',
+      \ 'ic'     : 'I',
+      \ 'ix'     : 'I',
+      \ 'n'      : 'N',
+      \ 'multi'  : 'M',
+      \ 'ni'     : 'N',
+      \ 'no'     : 'N',
+      \ 'R'      : 'R',
+      \ 'Rv'     : 'R',
+      \ 's'      : 'S',
+      \ 'S'      : 'SL',
+      \ ''     : 'SB',
+      \ 't'      : 'T',
+      \ 'v'      : 'V',
+      \ 'V'      : 'VL',
+      \ ''     : 'VB',
+      \ }
 let g:airline_filetype_overrides = {
       \ 'defx':  ['defx', '%{b:defx.paths[0]}'],
       \ 'gundo': [ 'Gundo', '' ],
