@@ -223,12 +223,14 @@ endif
 " Plugin settings {{{
 
 " UndoTree settings {{{
-nnoremap <leader>u :UndotreeToggle<CR>
+nnoremap <leader>u :UndotreeShow<CR>:UndotreeFocus<CR>
+au FileType undotree nnoremap <buffer> <leader>u :UndotreeHide<CR>
 " }}}
 
 " NERDtree settings {{{
 " main maps
 nnoremap <Tab> :NERDTreeFocus<CR>
+au FileType nerdtree nnoremap <buffer> <Tab> :NERDTreeClose<CR>
 nnoremap <C-o> :NERDTreeFind<CR>
 " internal maps
 let g:NERDTreeMapOpenSplit='s'
