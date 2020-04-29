@@ -261,13 +261,15 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#show_tab_nr = 1 " show tab numbers
 let g:airline#extensions#tabline#tab_nr_type = 1 " show only tab number
+let g:airline#extensions#tabline#formatter = "unique_tail_improved"
 let g:airline#extensions#whitespace#enabled = 0 " disable whitespace checking
 let g:airline_inactive_collapse = 0
 let g:airline#extensions#branch#format = 2 " truncate git branch paths
+let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#wordcount#enabled = 0
-au VimEnter * let g:airline_section_b = airline#section#create(['%<', '%f%m', 'readonly'])
+au VimEnter * let g:airline_section_b = airline#section#create(['windowswap', '%<', '%f%m', 'readonly'])
 au VimEnter * let g:airline_section_c = airline#section#create(['filetype'])
-au VimEnter * let g:airline_section_x = airline#section#create(['windowswap','%3p%%'])
+au VimEnter * let g:airline_section_x = airline#section#create(['%3p%%'])
 au VimEnter * let g:airline_section_y = airline#section#create(['hunks'])
 au VimEnter * let g:airline_section_z = airline#section#create(['branch'])
 let g:airline#extensions#default#section_truncate_width = {}
@@ -311,6 +313,8 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.dirty=''
+let g:airline_symbols.notexists=''
+let g:airline_symbols.readonly = ' '
 au VimEnter * AirlineRefresh
 " }}}
 
