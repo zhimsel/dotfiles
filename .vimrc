@@ -771,6 +771,13 @@ function! ThreeFingerClaw()
   exe "normal! otry() { \"$@\" || die \"cannot $*\"; }"
 endfunction
 
+" show highlight group for what's under the cursor
+function! ShowHiCursor()
+  echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+        \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+        \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
+endfunction
+
 function! VisualSelection(direction, extra_filter) range "{{{
     let l:saved_reg = @"
     execute "normal! vgvy"
