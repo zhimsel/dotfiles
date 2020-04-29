@@ -61,6 +61,8 @@ Plug 'vim-scripts/vis'
 Plug 'wellle/targets.vim'
 Plug 'wesQ3/vim-windowswap'
 Plug 'kassio/neoterm'
+Plug 'kana/vim-textobj-fold'
+Plug 'kana/vim-textobj-user'  " required by vim-textobj-fold
 " }}}
 
 " Git plugins {{{
