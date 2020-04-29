@@ -1,6 +1,7 @@
 # General UI settings
 set line-graphics = utf-8
 set mouse = true
+set start-on-head = true
 set main-view-id = true
 set refresh-mode = auto
 
