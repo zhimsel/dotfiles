@@ -233,10 +233,11 @@ nnoremap <Tab> :NERDTreeFocus<CR>
 au FileType nerdtree nnoremap <buffer> <Tab> :NERDTreeClose<CR>
 nnoremap <C-o> :NERDTreeFind<CR>
 " internal maps
+let g:NERDTreeMapPreview='O'
 let g:NERDTreeMapOpenSplit='s'
-let g:NERDTreeMapPreviewSplit='gs'
+let g:NERDTreeMapPreviewSplit='S'
 let g:NERDTreeMapOpenVSplit='v'
-let g:NERDTreeMapPreviewVSplit='gv'
+let g:NERDTreeMapPreviewVSplit='V'
 " options
 let g:NERDTreeHighlightCursorline = 1
 let g:NERDTreeMouseMode = 1
