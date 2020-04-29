@@ -2,11 +2,11 @@
 # Send stdin to system clipboard, regardless of OS
 
 # X11
-if [ -x $(which xclip) ]; then
+if [ -x "$(which xclip 2>/dev/null)" ]; then
   xclip -selection clipboard <&0
 
 # MacOS
-elif [ -x $(which pbcopy) ]; then
+elif [ -x "$(which pbcopy 2>/dev/null)" ]; then
   pbcopy <&0
 
 fi
