@@ -17,20 +17,31 @@ bind generic gp view-grep
 bind generic gg move-first-line
 bind generic G move-last-line
 
-# Rebasing
+# Branch/commit actions
 bind generic r none
-bind generic rr view-refs
-bind main rb !git rebase -i %(commit)
-bind diff rb !git rebase -i %(commit)
+bind generic rr refresh
+bind generic R view-refs
+bind generic rb ?git rebase -i %(commit)^
+bind generic co ?git checkout %(commit)
+bind refs co ?git checkout %(branch)
+bind generic cp ?git cherry-pick %(commit)
+bind generic ! ?git reset --hard %(commit)
 
 # Main view
 bind main F none
 bind main <C-J> move-next-merge
 bind main <C-K> move-prev-merge
+bind main C none
 
 # Tree view
 bind tree l enter
 bind tree h back
+
+# Moving around diffs
+bind diff <C-j> :/^@@
+bind stage <C-j> :/^@@
+bind diff <C-k> :?^@@
+bind stage <C-k> :?^@@
 
 # Stage view
 bind stage C !git commit
