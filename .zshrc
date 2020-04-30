@@ -249,8 +249,8 @@ fi # }}}
 # Terraform {{{
 if [[ -x $(which terraform) ]]; then
   alias tf='terraform'
-  alias tfp='terraform plan -out .tfplan'
-  alias tfa='terraform apply .tfplan && rm -v .tfplan'
+  alias tfp='tf plan -out .tfplan'
+  alias tfa='tf apply .tfplan && rm -v .tfplan'
 fi # }}}
 
 # Arch Linux (uses `yay` AUR wrapper) {{{
