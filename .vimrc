@@ -25,20 +25,14 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'pedrohdz/vim-yaml-folds', { 'for': ['yaml', 'yml'] }
 Plug 'benekastah/neomake'
 Plug 'elzr/vim-json', { 'for': 'json' }
-Plug 'gu-fan/riv.vim', { 'for': ['rst'] }
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 Plug 'jtratner/vim-flavored-markdown', { 'for': 'ghmarkdown' }
-Plug 'neilhwatson/vim_cf3', { 'for': 'cf3' }
 Plug 'nelstrom/vim-markdown-folding', { 'for': ['markdown', 'ghmarkdown'] }
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
-Plug 'rstacruz/sparkup', { 'for': 'html' }
 Plug 'svermeulen/vim-extended-ft'
 Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
 Plug 'tpope/vim-git'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-Plug 'vim-scripts/SQLComplete.vim', { 'for': 'sql' }
-Plug 'vim-scripts/fountain.vim', { 'for': 'fountain' }
 Plug 'zhimsel/vim-markdown-preview', { 'for': ['markdown', 'ghmarkdown'], 'branch': 'default_browser_assumption' }
 " }}}
 
@@ -48,11 +42,9 @@ Plug 'Yggdroot/indentLine'
 Plug 'bling/vim-airline'
 Plug 'git@github.com:zhimsel/vim-stay.git', { 'dir': '~/dev/vim-stay', 'frozen': 'true' }
 Plug 'jlanzarotta/bufexplorer'
-Plug 'junegunn/fzf'  " Don't run installer script, shell fzf is managed externally (via dotfiles submodules)
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf'  " required by fzf.vim
 Plug 'mbbill/undotree'
-Plug 'milkypostman/vim-togglelist'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-abolish', { 'on': 'Subvert' }
@@ -71,8 +63,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'iberianpig/tig-explorer.vim'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'  " required for gist-vim
-Plug 'rbgrouleff/bclose.vim'
-Plug 'taq/vim-git-branch-info'
 Plug 'tpope/vim-fugitive'
 Plug 'tyru/open-browser-github.vim'
 Plug 'tyru/open-browser.vim'
@@ -83,7 +73,6 @@ Plug 'salcode/vim-interactive-rebase-reverse'
 " Automation plugins {{{
 Plug 'PeterRincker/vim-argumentative'
 Plug 'godlygeek/tabular'
-Plug 'justinmk/vim-gtfo'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'qpkorr/vim-renamer', { 'on': 'Renamer' }
 Plug 'tpope/vim-commentary'
@@ -363,17 +352,6 @@ let g:neomake_ruby_enabled_makers = ['rubocop']
 let g:neomake_python_enabled_makers = ['flake8']
 let g:neomake_chef_enabled_makers = ['foodcritic']
 
-if executable('git')
-  let g:promises_path = systemlist('echo $(git rev-parse --show-toplevel)/promises.cf')[0]
-  let g:neomake_cf3_cfpromises_maker = {
-        \ 'exe': 'cf-promises',
-        \ 'args': ['-cf', promises_path],
-        \ 'append_file': 0,
-        \ 'errorformat':
-        \   '%E%f:%l:%c: error: %m',
-        \ }
-endif
-
 " Move to prev/next location in LocationList window (used below)
 function! <SID>LocationPrevious()
   try
@@ -398,12 +376,7 @@ nnoremap <silent> <Plug>LocationPrevious    :<C-u>exe 'call <SID>LocationPreviou
 nnoremap <silent> <Plug>LocationNext        :<C-u>exe 'call <SID>LocationNext()'<CR>
 nmap <silent> <leader>[    <Plug>LocationPrevious
 nmap <silent> <leader>]    <Plug>LocationNext
-nmap <script> <silent> <leader>\ :call ToggleLocationList()<CR>
 
-" }}}
-
-" togglelist settings {{{
-let g:toggle_list_no_mappings = 1
 " }}}
 
 " deoplete settings {{{
@@ -450,10 +423,6 @@ let g:fzf_action = {
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
 autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
-" }}}
-
-" CFEngine plugin settings {{{
-let g:EnableCFE3KeywordAbbreviations=0
 " }}}
 
 " vim-gist settings {{{
@@ -643,7 +612,6 @@ au BufRead,BufNewFile *.tpl     setlocal ft=
 
 " Markdown {{{
 au FileType markdown setlocal textwidth=0 shiftwidth=4 spell
-au FileType markdown let b:delimitMate_expand_space = 0
 " }}}
 
 " Ruby {{{
@@ -829,43 +797,6 @@ function! VisualSelection(direction, extra_filter) range "{{{
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction " }}}
-
-" Don't close window, when deleting a buffer " {{{
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
-   let l:currentBufNum = bufnr("%")
-   let l:alternateBufNum = bufnr("#")
-
-   if buflisted(l:alternateBufNum)
-     buffer #
-   else
-     bnext
-   endif
-
-   if bufnr("%") == l:currentBufNum
-     new
-   endif
-
-   if buflisted(l:currentBufNum)
-     execute("bdelete! ".l:currentBufNum)
-   endif
-endfunction
-" }}}
-
-" Eatchar and Getchar functions for CFEngine {{{
-function! Getchar()
-  let c = getchar()
-  if c != 0
-    let c = nr2char(c)
-  endif
-  return c
-endfun
-
-function! Eatchar(pat)
-   let c = Getchar()
-   return (c =~ a:pat) ? '' : c
-endfun
-" }}}
 
 " }}}
 
