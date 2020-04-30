@@ -5,6 +5,9 @@ set start-on-head = true
 set main-view-id = true
 set refresh-mode = auto
 
+# Colors
+color cursor default default reverse
+
 ########################################
 # More vim-like bindings
 ########################################

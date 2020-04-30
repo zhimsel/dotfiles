@@ -17,7 +17,7 @@ source ~/.vim/vim-plug/plug.vim  " managed externally (via dotfiles submodules)
 call plug#begin('~/.vim/plugins')
 
 " Colors {{{
-Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline-themes'
 " }}}
 
@@ -124,13 +124,18 @@ set wildmenu
 
 " Set color scheme
 set background=dark
-silent! colorscheme solarized
+colorscheme base16-eighties
+let g:airline_theme = "base16_eighties"
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
 
 " Set extra options when running in GUI mode
 if has("gui_running")
   set guioptions-=T
   set guioptions-=e
-  set t_Co=256
   set guitablabel=%M\ %t
 endif
 
@@ -252,7 +257,6 @@ let g:NERDTreeShowHidden = 1
 " vim-json settings {{{
 set conceallevel=0 " Disable character concealing
 let g:vim_json_syntax_conceal = 0 " Force no concealing for json files
-highlight Error term=reverse cterm=bold ctermfg=7 ctermbg=1 guifg=White guibg=Red
 " }}}
 
 " vim-airline settings {{{
@@ -324,8 +328,6 @@ au VimEnter * AirlineRefresh
 set updatetime=100  " 100ms refresh time
 set signcolumn=yes
 let g:gitgutter_max_signs = 10000
-highlight clear LineNr
-highlight clear SignColumn
 set numberwidth=1 " reduce extra spaces between signs and line numbers
 " }}}
 
@@ -340,10 +342,6 @@ nnoremap <Leader>gs :TigStatus<CR>
 " }}}
 
 " vim-easymotion settings {{{
-hi link EasyMotionTarget DiffChange
-hi link EasyMotionTarget2First DiffChange
-hi link EasyMotionTarget2Second DiffAdd
-hi link EasyMotionShade Comment
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 map <leader><leader>l <Plug>(easymotion-lineforward)
 map <leader><leader>j <Plug>(easymotion-j)
@@ -750,16 +748,6 @@ endif
 " }}}
 
 " Status line {{{
-" Always show the status line
-set laststatus=2	" always display the status line
-set showtabline=1
-
-hi VertSplit ctermfg=black ctermbg=yellow
-
-hi User1 ctermfg=yellow cterm=underline
-hi User2 ctermfg=yellow cterm=bold,underline
-hi User3 ctermfg=red cterm=bold,underline
-
 " Returns true if paste mode is enabled
 function! HasPaste()
     if &paste

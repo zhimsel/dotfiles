@@ -32,12 +32,13 @@ brew "tree"
 brew "vim"
 brew "zsh"
 
-# Useful tools
+# Terminal environment
 brew "asdf"
 brew "direnv"
 brew "fzf"
 brew "htop"
 brew "hub"
+cask "iterm2"
 brew "neovim"
 brew "pinentry-mac"
 brew "shellcheck"
