@@ -797,6 +797,18 @@ function! ShowHiCursor()
         \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
 endfunction
 
+function! Dot()
+  let $GIT_DIR = $HOME . "/.dotfiles_git"
+  let $GIT_WORK_TREE = $HOME
+endfunction
+command Dot call Dot()
+
+function! Ldot()
+  let $GIT_DIR = $HOME . "/.dotfiles_git_local"
+  let $GIT_WORK_TREE = $HOME
+endfunction
+command Ldot call Ldot()
+
 function! VisualSelection(direction, extra_filter) range "{{{
     let l:saved_reg = @"
     execute "normal! vgvy"
