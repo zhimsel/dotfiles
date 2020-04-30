@@ -633,6 +633,7 @@ au FileType python imap <C-o> import IPython; IPython.embed()
 " }}}
 
 " YAML {{{
+au BufRead,BufNewFile {*.yml.tpl,*.yaml.tpl} setlocal filetype=yaml
 au FileType yaml setlocal fdl=99
 " }}}
 
