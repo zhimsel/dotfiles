@@ -32,6 +32,9 @@ bind main <C-K> move-prev-merge
 bind tree l enter
 bind tree h back
 
+# Stage view
+bind stage C !git commit
+
 # Copy useful things to clipboard
 bind generic S view-stage
 bind generic c none
