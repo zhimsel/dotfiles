@@ -165,8 +165,6 @@ map <leader>P "+P
 " Folding
 " Double-click left mouse to open/close folds
 nnoremap <2-LeftMouse> za
-" Recursively open children of the current fold
-nmap zO zczA
 " Make parent fold moves more intuitive
 nnoremap zK [z
 nnoremap zJ ]z
