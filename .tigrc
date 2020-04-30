@@ -14,8 +14,13 @@ bind generic gp view-grep
 bind generic gg move-first-line
 bind generic G move-last-line
 
+# Rebasing
+bind generic r none
+bind generic rr view-refs
+bind main rb !git rebase -i %(commit)
+bind diff rb !git rebase -i %(commit)
+
 # Main view
-bind main G move-last-line
 bind main F none
 bind main <C-J> move-next-merge
 bind main <C-K> move-prev-merge

@@ -14,7 +14,7 @@
   autocrlf = input
   safecrlf = false
   excludesfile = ~/.gitignore_global
-  commentchar = "%"
+  commentchar = "#"
   compression = 9
   pager = "less -F -R -X"
 
@@ -25,6 +25,11 @@
 [merge]
   tool = vimdiff
   conflictstyle = diff3
+
+[rebase]
+  stat = true
+  autosquash = true
+  autostash = true
 
 [push]
   default = upstream

@@ -35,7 +35,7 @@ Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
 Plug 'rstacruz/sparkup', { 'for': 'html' }
 Plug 'svermeulen/vim-extended-ft'
 Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
-Plug 'tpope/vim-git', { 'for': 'git' }
+Plug 'tpope/vim-git'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'vim-scripts/SQLComplete.vim', { 'for': 'sql' }
 Plug 'vim-scripts/fountain.vim', { 'for': 'fountain' }
@@ -76,6 +76,8 @@ Plug 'taq/vim-git-branch-info'
 Plug 'tpope/vim-fugitive'
 Plug 'tyru/open-browser-github.vim'
 Plug 'tyru/open-browser.vim'
+Plug 'hotwatermorning/auto-git-diff'
+Plug 'salcode/vim-interactive-rebase-reverse'
 " }}}}
 
 " Automation plugins {{{
@@ -497,6 +499,29 @@ let g:indentLine_bufTypeExclude = ['terminal']
 let g:indentLine_bufNameExclude = ['NERD_tree.*']
 " }}}
 
+" git rebase settings {{{
+let g:auto_git_diff_show_window_at_right = 1
+function! s:setup_git_rebase_maps() abort
+
+  " movement
+  nnoremap <buffer> J j
+  nmap <buffer> <C-e> <Plug>(auto_git_diff_scroll_down_1)
+  nmap <buffer> <C-d> <Plug>(auto_git_diff_scroll_down_half)
+  nnoremap <buffer> K k
+  nmap <buffer> <C-y> <Plug>(auto_git_diff_scroll_up_1)
+  nmap <buffer> <C-u> <Plug>(auto_git_diff_scroll_up_half)
+
+  " commit actions
+  map <buffer> <leader>p :Pick<CR>
+  map <buffer> <leader>r :Reword<CR>
+  map <buffer> <leader>e :Edit<CR>
+  map <buffer> <leader>s :Squash<CR>
+  map <buffer> <leader>f :Fixup<CR>
+  map <buffer> <leader>d :Drop<CR>
+
+endfunction
+autocmd FileType gitrebase call <SID>setup_git_rebase_maps()
+" }}}
 " }}}
 
 " User interface {{{
