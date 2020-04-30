@@ -67,7 +67,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tyru/open-browser-github.vim'
 Plug 'tyru/open-browser.vim'
 Plug 'hotwatermorning/auto-git-diff'
-Plug 'salcode/vim-interactive-rebase-reverse'
 " }}}}
 
 " Automation plugins {{{
