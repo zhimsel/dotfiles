@@ -27,9 +27,9 @@ Plug 'benekastah/neomake'
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'gu-fan/riv.vim', { 'for': ['rst'] }
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
-Plug 'jtratner/vim-flavored-markdown', { 'for': ['markdown', 'gitcommit'] }
+Plug 'jtratner/vim-flavored-markdown', { 'for': 'ghmarkdown' }
 Plug 'neilhwatson/vim_cf3', { 'for': 'cf3' }
-Plug 'nelstrom/vim-markdown-folding', { 'for': ['markdown'] }
+Plug 'nelstrom/vim-markdown-folding', { 'for': ['markdown', 'ghmarkdown'] }
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
 Plug 'rstacruz/sparkup', { 'for': 'html' }
@@ -39,7 +39,7 @@ Plug 'tpope/vim-git'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'vim-scripts/SQLComplete.vim', { 'for': 'sql' }
 Plug 'vim-scripts/fountain.vim', { 'for': 'fountain' }
-Plug 'zhimsel/vim-markdown-preview', { 'for': ['markdown', 'gitcommit'], 'branch': 'default_browser_assumption' }
+Plug 'zhimsel/vim-markdown-preview', { 'for': ['markdown', 'ghmarkdown'], 'branch': 'default_browser_assumption' }
 " }}}
 
 " Interface plugins {{{
@@ -655,7 +655,7 @@ au BufRead,BufNewFile *.pp                            setlocal filetype=ruby
 " Git {{{
 au BufRead,BufNewFile COMMIT_EDITMSG  normal ggjO
 au BufEnter           COMMIT_EDITMSG  call setpos('.', [0, 1, 1, 0])
-au BufRead,BufNewFile PULLREQ_EDITMSG setlocal ft=markdown cms=\%%s tw=0 spell fdl=99
+au BufRead,BufNewFile PULLREQ_EDITMSG setlocal ft=ghmarkdown cms=\%%s tw=0 spell fdl=99
 au BufRead,BufNewFile PULLREQ_EDITMSG nnoremap <leader>gp :call Vim_Markdown_Preview()<cr>
 au FileType           gitcommit       setlocal tw=72 cms=\%%s colorcolumn=+1,51 spell fdl=99
 " }}}
