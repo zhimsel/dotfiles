@@ -6,11 +6,12 @@
 # fold markers at the beginning and end, so you can easily close each
 # section to find what you're looking for
 
-# Source the machine-specific "pre-config" .zshrc (if it exists)
-[[ -f "$HOME/.zshrc.prelocal" ]] && source "$HOME/.zshrc.prelocal" || true
+# Source machine-specific "pre-config" .zshrc {{{
+source "$HOME/.zshrc.prelocal" &>/dev/null || true
+# }}}
 
-# Define a useful confirmation user prompt function
-confirm() { # {{{
+# Define a useful confirmation user prompt function {{{
+confirm() {
   if read -q "?${1} [y/n] "; then
     echo ""; return 0
   else
@@ -19,15 +20,6 @@ confirm() { # {{{
 } # }}}
 
 # General Settings {{{
-
-# Set [neo]vim as the default editor {{{
-alias vi='vim'
-if [[ -x $(which nvim) ]]; then
-  alias vvim=$(which vim)
-  alias vim='nvim'
-  alias vimdiff='nvim -d'
-fi
-# }}}
 
 # History settings {{{
 HISTFILE="${HISTFILE:-$HOME/.zsh_history}"
@@ -39,15 +31,16 @@ setopt hist_expire_dups_first
 setopt hist_verify
 # }}}
 
-# Cache settings
-export ZSH_CACHE_DIR="$HOME/.zsh_cache"
+# Cache settings {{{
+ZSH_CACHE_DIR="$HOME/.zsh_cache"
+# }}}
 
 # vim-like commandline editing {{{
 bindkey -v  # enable vi mode
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd 'v' edit-command-line  # type 'v' in normal mode to open commandline in vim
-export KEYTIMEOUT=20  # set key-sequence timeout in ms
+KEYTIMEOUT=20  # set key-sequence timeout in ms
 bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
@@ -80,12 +73,6 @@ zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
 # include custom completions
 fpath=("${HOME}/.zsh/custom-completions" $fpath)
 
-# load zsh completions
-autoload -Uz +X compinit && compinit
-
-# load bash completions
-autoload -Uz +X bashcompinit && bashcompinit
-
 # }}}
 
 # Plugins {{{
@@ -98,9 +85,8 @@ zplug "RobSis/zsh-completion-generator"
 zplug "olivierverdier/zsh-git-prompt", use:"zshrc.sh", hook-build:"stack install"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
+source "$HOME/.zplug.local" &>/dev/null || true
 
-[[ -f "$HOME/.zplug.local" ]] && source "$HOME/.zplug.local" || true
-zplug check --verbose
 zplug load
 
 # }}}
@@ -128,7 +114,7 @@ bindkey '^e' cd-up-widget
 
 # Aliases/keybinds {{{
 alias tree='tree -I .git'
-alias vmv='vim -c Renamer'  # requires vim-renamer to be installed
+alias vmv='vim -c Renamer'
 alias ls='ls --color=auto'  # enable color (if possible) for `ls`
 
 # ls shortcuts
@@ -198,6 +184,7 @@ compdef '_files -/ -W $HOME/dev' dev
 alias nodot='unset GIT_DIR GIT_WORK_TREE'
 alias dot='export GIT_DIR=$HOME/.dotfiles_git GIT_WORK_TREE=$HOME'
 alias ldot='export GIT_DIR=$HOME/.dotfiles_git_local GIT_WORK_TREE=$HOME'
+
 dotu () { # {{{
   cd "$HOME" && dot || return 1
   echo "Updating submodules..."; git subf
@@ -206,6 +193,7 @@ dotu () { # {{{
   echo "Updating zsh plugins..."; zsh -ic "zplug update"  # run in new shell to pick up any zplug updates
   dot
 } # }}}
+
 # }}}
 
 # Git {{{
@@ -214,6 +202,7 @@ alias tiga='tig --all'
 alias tigs='tig status'
 alias tigr='tig $(git rev-parse --abbrev-ref --symbolic-full-name @{u})'  # open tig at remote tracking branch
 alias wtl='git wtl'
+alias wtp='git wtp'
 
 wt () { # {{{
   # Create git worktrees
@@ -248,27 +237,24 @@ wtr () { # {{{
 # }}}
 
 # systemd {{{
-if [[ -x $(which systemctl) ]]; then
-  alias sc='s systemctl'
-  alias scu='systemctl --user'
-  alias jc='s journalctl'
-fi # }}}
+alias sc='s systemctl'
+alias scu='systemctl --user'
+alias jc='s journalctl'
+# }}}
 
 # Terraform {{{
-if [[ -x $(which terraform) ]]; then
-  alias tf='terraform'
-  alias tfp='tf plan -out .tfplan'
-  alias tfa='tf apply .tfplan && rm -v .tfplan'
-fi # }}}
+alias tf='terraform'
+alias tfp='tf plan -out .tfplan'
+alias tfa='tf apply .tfplan && rm -v .tfplan'
+# }}}
 
 # Arch Linux (uses `yay` AUR wrapper) {{{
-if [[ -x $(which pacman) ]]; then
-  alias pacman='s pacman'
-  alias pacdiff='s pacdiff'
-  alias pacs="yay -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -ro yay -S"  # fzf-based package search and install
-  alias pacman-rank-mirrors="s reflector --verbose --threads 20 --country 'United States' --country 'Canada' --protocol https --sort rate --age 24 --latest 100 --number 20 --save /etc/pacman.d/mirrorlist && yay -Syyu"
-  alias pacman-clean-orphans='echo "Found orphans:"; yay -Qqdt; echo; yay -Runs $(yay -Qqdt)'
-fi # }}}
+alias pacman='s pacman'
+alias pacdiff='s pacdiff'
+alias pacs="yay -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -ro yay -S"  # fzf-based package search and install
+alias pacman-rank-mirrors="s reflector --verbose --threads 20 --country 'United States' --country 'Canada' --protocol https --sort rate --age 24 --latest 100 --number 20 --save /etc/pacman.d/mirrorlist && yay -Syyu"
+alias pacman-clean-orphans='echo "Found orphans:"; yay -Qqdt; echo; yay -Runs $(yay -Qqdt)'
+# }}}
 
 # AWS {{{
 
@@ -294,15 +280,13 @@ ap () { # {{{
 # }}}
 
 # Docker {{{
-[[ -x $(which docker) ]] && alias docker='s docker'
-[[ -x $(which docker-compose) ]] && alias dc='s docker-compose'
+alias docker='s docker'
+alias dc='s docker-compose'
 # }}}
 
 # Kubernetes (k8s) {{{
-if [[ -x $(which kubectl) ]]; then
-  alias k='kubectl'
-  alias kc='k config use-context $(k config get-contexts -o name | fzf +m)'
-fi
+alias k='kubectl'
+alias kc='k config use-context $(k config get-contexts -o name | fzf +m)'
 # }}}
 
 # }}}
@@ -402,8 +386,9 @@ zle -N zle-keymap-select
 
 # }}}
 
-# Source the machine-specific .zshrc almost-last (to allow overriding anything in this file)
-[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local" || true
+# Source machine-specific .zshrc almost-last (to allow overriding anything in this file) {{{
+source "$HOME/.zshrc.local" &>/dev/null || true
+# }}}
 
 # FZF settings {{{
 # Must be loaded after .zshrc.local since FZF completions and keybindings are sourced there
@@ -450,5 +435,11 @@ if [[ -x $(which direnv) ]]; then
 fi
 # }}}
 
-# Source the machine-specific "post-config" .zshrc actually-last (to allow overriding anything after .zshrc.local)
-[[ -f "$HOME/.zshrc.postlocal" ]] && source "$HOME/.zshrc.postlocal" || true
+# Init completion system {{{
+autoload -Uz +X compinit && compinit
+autoload -Uz +X bashcompinit && bashcompinit
+# }}}
+
+# Source machine-specific "post-config" .zshrc actually-last (to allow overriding anything after .zshrc.local) {{{
+source "$HOME/.zshrc.postlocal" &>/dev/null || true
+# }}}
