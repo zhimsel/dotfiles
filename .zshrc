@@ -413,6 +413,16 @@ if which __fzfcmd >/dev/null; then
   export FZF_CTRL_R_OPTS="--sort --preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"  # press ? to show truncated results
   export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"  # show folder preview
 
+  # Create "git-files" widget and binding
+  fzf-git-files-widget() {
+    if git rev-parse --is-inside-work-tree &>/dev/null; then
+      LBUFFER="$(git ls-files | eval fzf $FZF_CTRL_T_OPTS)"
+    fi
+    zle redisplay
+  }
+  zle -N fzf-git-files-widget
+  bindkey '^G' fzf-git-files-widget
+
   # Use tab to use fzf for all arg completions
   export FZF_COMPLETION_TRIGGER=''  # turn off '**' completion
   bindkey '^I' expand-or-complete
