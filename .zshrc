@@ -117,8 +117,16 @@ setopt auto_cd
 setopt auto_pushd
 # }}}
 
+# Go up a directory with ctrl-e {{{
+cd-up-widget() {
+  cd ..
+  zle reset-prompt
+}
+zle -N cd-up-widget
+bindkey '^e' cd-up-widget
+# }}}
+
 # Aliases/keybinds {{{
-bindkey -s '^e' 'cd ..\n' #go up a directory with ctrl-e
 alias tree='tree -I .git'
 alias vmv='vim -c Renamer'  # requires vim-renamer to be installed
 alias ls='ls --color=auto'  # enable color (if possible) for `ls`
