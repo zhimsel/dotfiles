@@ -12,5 +12,4 @@ shellcheck
 stack
 tig
 tmux
-vim-spell-en
 zsh

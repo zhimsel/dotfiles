@@ -13,8 +13,8 @@
 " Loading plugins must come first
 
 let g:plug_window = 'enew'
-source ~/.vim/vim-plug/plug.vim  " managed externally (via dotfiles submodules)
-call plug#begin('~/.vim/plugins')
+runtime vim-plug/plug.vim  " managed externally (via dotfiles submodules)
+call plug#begin(stdpath('data') . '/vim-plug')
 
 " Colors {{{
 Plug 'chriskempson/base16-vim'
@@ -79,19 +79,11 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " }}}
 
 " Add locally-defined plugins
-if filereadable(glob("~/.vim-plug.local"))
-  source ~/.vim-plug.local
-endif
+runtime local/vim-plug.vim
 
 call plug#end()
 
@@ -100,9 +92,6 @@ call plug#end()
 " General settings {{{
 
 set nocompatible
-if !has('nvim')
-  set viminfo='1000,f1,:100,@100,/20
-endif
 set history=1000
 set iskeyword+=-
 
@@ -209,9 +198,7 @@ nmap <leader>hp <Plug>(GitGutterPrevHunk)
 nmap <leader>gc :Git commit<cr>
 
 " redraw screen (for nvim window-resize bug)
-if has('nvim')
-  nnoremap <leader>r :redraw!<cr>
-endif
+nnoremap <leader>r :redraw!<cr>
 
 " }}}
 
@@ -512,36 +499,11 @@ set magic " For regular expressions turn magic on
 set showmatch " Show matching brackets when text indicator is over them
 set matchtime=2 " How many tenths of a second to blink when matching brackets
 set mouse=a " Enable mouse interaction
-if !has('nvim')
-  set ttymouse=sgr " Set mouse mode to xterm2 (works best for most modern terminals)
-endif
 set cursorline " Highlight current line
 set noshowmode " Disable --INSERT-- text in command line. Reproduced in airline
 set foldenable " Enable folding
 set foldmethod=syntax " Default to syntax folding
-
-" }}}
-
-" Vim files, backups and undo {{{
-
-
-if isdirectory($HOME . '/.vim/backup') == 0
-  :silent !mkdir -p ~/.vim/backup >/dev/null 2>&1
-endif
-set backupdir=~/.vim/backup//
-set backup
-
-if !has('nvim')
-  set viminfo+=n~/.vim/viminfo
-endif
-
-if exists("+undofile")
-  if isdirectory($HOME . '/.vim/undo') == 0
-    :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
-  endif
-  set undodir=~/.vim/undo//
-  set undofile
-endif
+set undofile " Save per-file undo history between sessions
 
 " }}}
 
@@ -655,9 +617,7 @@ nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
 " remap Terminal exit binding for nvim
-if has('nvim')
-  tnoremap <leader><Esc> <C-\><C-n>
-endif
+tnoremap <leader><Esc> <C-\><C-n>
 
 " better split placements
 set splitbelow
@@ -706,10 +666,6 @@ autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
      \   exe "normal! g`\"" |
      \ endif
-" Remember info about open buffers on close
-if !has('nvim')
-  set viminfo^=%
-endif
 
 " }}}
 
@@ -798,14 +754,8 @@ endfunction " }}}
 
 " }}}
 
-" Load some stuff that needs to go last {{{
-
-" Load local config
-if filereadable(glob("~/.vimrc.local"))
-  source ~/.vimrc.local
-endif
+" Load local config (if it exists)
+runtime local/init.vim
 
 " Enable syntax highlighting (should always be last)
 syntax enable
-
-" }}}

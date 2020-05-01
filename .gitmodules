@@ -1,6 +1,6 @@
-[submodule ".zsh/zplug"]
+[submodule "zplug"]
 	path = .zsh/zplug
 	url = https://github.com/zplug/zplug
-[submodule ".vim/vim-plug"]
-	path = .vim/vim-plug
+[submodule "vim-plug"]
+	path = .config/nvim/vim-plug
 	url = https://github.com/junegunn/vim-plug.git

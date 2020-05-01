@@ -29,7 +29,6 @@ brew "rename"
 brew "ruby"
 brew "screen"
 brew "tree"
-brew "vim"
 brew "zsh"
 
 # Terminal environment

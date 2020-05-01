@@ -21,7 +21,6 @@ git submodule update --init --recursive
 # open a new shell to pick up the new configs
 zplug install
 nvim -c PlugInstall
-vvim -c PlugInstall
 ```
 
 You can then use the included `dot` alias (in `$HOME/.zshrc`) to perform git commands against the dotfiles repo.
