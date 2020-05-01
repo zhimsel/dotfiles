@@ -142,7 +142,7 @@ alias latr='ls -lahtr'
 cd- () { # {{{
   # Provide list of recent directories to switch to
   local target=$(dirs -v | awk '{ print $2}' |  fzf +m --preview 'tree -C {} | head -200')
-  if [[ -n $target ]]; then cd ~$target; fi
+  if [[ -n $target ]]; then cd $target; fi
 } # }}}
 
 mkcd() { # {{{
