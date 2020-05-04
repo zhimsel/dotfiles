@@ -279,13 +279,16 @@ nnoremap <Leader>gs :TigStatus<CR>
 " }}}
 
 " vim-easymotion settings {{{
+
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 map <leader><leader>l <Plug>(easymotion-lineforward)
 map <leader><leader>j <Plug>(easymotion-j)
 map <leader><leader>k <Plug>(easymotion-k)
 map <leader><leader>h <Plug>(easymotion-linebackward)
-map  <C-/> <Plug>(easymotion-sn)
-omap <C-/> <Plug>(easymotion-tn)
+
+" <C-_> maps to Ctrl-/ (for some reason)
+map  <C-_> <Plug>(easymotion-sn)
+omap <C-_> <Plug>(easymotion-tn)
 
 " }}}
 
