@@ -10,73 +10,74 @@
 
 
 " Plugins {{{
-" Loading plugins must come first
 
 let g:plug_window = 'enew'
 runtime vim-plug/plug.vim  " managed externally (via dotfiles submodules)
 call plug#begin(stdpath('data') . '/vim-plug')
 
-" Colors {{{
-Plug 'chriskempson/base16-vim'
-Plug 'vim-airline/vim-airline-themes'
+" Visual plugins {{{
+Plug 'airblade/vim-gitgutter'  " git diff symbols in sign column
+Plug 'chriskempson/base16-vim'  " better themes
+Plug 'ntpeters/vim-better-whitespace'  " highlight trailing whitespaces
+Plug 'vim-airline/vim-airline'  " better statusbar
+Plug 'vim-airline/vim-airline-themes'  " themese for Airline
+Plug 'Xuyuanp/nerdtree-git-plugin'  " show git status symbols in NERDTree
+Plug 'Yggdroot/indentLine'  " visual marker for indent level
 " }}}
 
-" Syntax plugins {{{
-Plug 'pedrohdz/vim-yaml-folds', { 'for': ['yaml', 'yml'] }
-Plug 'benekastah/neomake'
-Plug 'elzr/vim-json', { 'for': 'json' }
-Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
-Plug 'jtratner/vim-flavored-markdown', { 'for': 'ghmarkdown' }
-Plug 'nelstrom/vim-markdown-folding', { 'for': ['markdown', 'ghmarkdown'] }
-Plug 'svermeulen/vim-extended-ft'
-Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
-Plug 'tpope/vim-git'
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-Plug 'zhimsel/vim-markdown-preview', { 'for': ['markdown', 'ghmarkdown'], 'branch': 'default_browser_assumption' }
+" Extending/improving the base interface {{{
+Plug 'git@github.com:zhimsel/vim-stay.git', { 'dir': '~/dev/vim-stay', 'frozen': 'true' }  " save and restore view when closing file buffers
+Plug 'godlygeek/tabular'  " column-align text
+Plug 'iberianpig/tig-explorer.vim'  " use tig for many git operations (log, status, blame, etc)
+Plug 'jlanzarotta/bufexplorer'  " interactive buffer management
+Plug 'junegunn/fzf.vim'  " fuzzy-finding all sorts of things (files, buffers, lines, etc)
+Plug 'kana/vim-textobj-fold'  " use folds as text objects
+Plug 'kassio/neoterm'  " open terminal easily
+Plug 'Lokaltog/vim-easymotion'  " improved motions with skipping objects
+Plug 'mattn/gist-vim'  " save current buffer/selection as a Github gist
+Plug 'mbbill/undotree'  " visual selection of entire undo tree for a file
+Plug 'preservim/nerdtree'  " file/directory explorer
+Plug 'tpope/vim-abolish'  " improved search/replace with case-specific behavior
+Plug 'tpope/vim-fugitive'  " lots of git commands/shortcuts
+Plug 'tyru/open-browser-github.vim'  " open commits/files/etc in Github
+Plug 'wellle/targets.vim'  " additional text objects
+Plug 'wesQ3/vim-windowswap'  " swap two panes easily
 " }}}
 
-" Interface plugins {{{
-Plug 'Lokaltog/vim-easymotion'
-Plug 'Yggdroot/indentLine'
-Plug 'bling/vim-airline'
-Plug 'git@github.com:zhimsel/vim-stay.git', { 'dir': '~/dev/vim-stay', 'frozen': 'true' }
-Plug 'jlanzarotta/bufexplorer'
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf'  " required by fzf.vim
-Plug 'mbbill/undotree'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-abolish'
-Plug 'wellle/targets.vim'
-Plug 'wesQ3/vim-windowswap'
-Plug 'kassio/neoterm'
-Plug 'kana/vim-textobj-fold'
-Plug 'kana/vim-textobj-user'  " required by vim-textobj-fold
+" Automating repetitive tasks  {{{
+Plug 'michaeljsmith/vim-indent-object'  " use indent levels as text objects
+Plug 'PeterRincker/vim-argumentative' " manipulate function arguments
+Plug 'qpkorr/vim-renamer', { 'on': 'Renamer' }  " batch-rename files in vim
+Plug 'tpope/vim-commentary'  " comment/uncomment lines automatically
+Plug 'tpope/vim-endwise'  " automatic if/for/etc block closing
+Plug 'tpope/vim-eunuch'  " useful shell commands
+Plug 'tpope/vim-repeat'  " improved repeats
+Plug 'tpope/vim-surround'  " add/remove/modify surrounding brackets/quotes/etc
 " }}}
 
-" Git plugins {{{
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'airblade/vim-gitgutter'
-Plug 'iberianpig/tig-explorer.vim'
-Plug 'mattn/gist-vim'
-Plug 'mattn/webapi-vim'  " required for gist-vim
-Plug 'tpope/vim-fugitive'
-Plug 'tyru/open-browser-github.vim'
-Plug 'tyru/open-browser.vim'
-Plug 'hotwatermorning/auto-git-diff'
-" }}}}
+" Autocompletion/linting {{{
+Plug 'benekastah/neomake'  " automated linting
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " word completion
+" }}}
 
-" Automation plugins {{{
-Plug 'PeterRincker/vim-argumentative'
-Plug 'godlygeek/tabular'
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'qpkorr/vim-renamer', { 'on': 'Renamer' }
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Filetype-specific plugins {{{
+Plug 'elzr/vim-json'  " JSON syntax/etc
+Plug 'hashivim/vim-terraform'  " Terraform syntax/etc
+Plug 'hotwatermorning/auto-git-diff'  " show commit diff for interactive rebases
+Plug 'jtratner/vim-flavored-markdown'  " Github-flavored markdown (used for git commits, PRs, etc)
+Plug 'masukomi/vim-markdown-folding'  " Better folding for Markdown
+Plug 'pedrohdz/vim-yaml-folds'  " Better folding for YAML
+Plug 'tmhedberg/SimpylFold'  " Better folding for Python
+Plug 'tpope/vim-git'  " Syntax/etc for git files (commit messages, etc)
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }  " Syntax/etc for Ruby
+Plug 'zhimsel/vim-markdown-preview', { 'for': ['markdown', 'ghmarkdown'], 'branch': 'default_browser_assumption' }  " Open a Github-flavored rendered preview of a Markdown file in the browser
+" }}}
+
+" Dependencies {{{
+Plug 'junegunn/fzf'  " required by: junegunn/fzf.vim
+Plug 'kana/vim-textobj-user'  " required by: kana/vim-textobj-fold
+Plug 'mattn/webapi-vim'  " required by: mattn/gist-vim
+Plug 'tyru/open-browser.vim'  " open URLs in browser; required by: tyru/open-browser-github.vim
 " }}}
 
 " Add locally-defined plugins
