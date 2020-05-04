@@ -28,7 +28,6 @@ Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 Plug 'jtratner/vim-flavored-markdown', { 'for': 'ghmarkdown' }
 Plug 'nelstrom/vim-markdown-folding', { 'for': ['markdown', 'ghmarkdown'] }
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'svermeulen/vim-extended-ft'
 Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
 Plug 'tpope/vim-git'
@@ -47,9 +46,7 @@ Plug 'junegunn/fzf'  " required by fzf.vim
 Plug 'mbbill/undotree'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-abolish', { 'on': 'Subvert' }
-Plug 'tpope/vim-obsession'
-Plug 'vim-scripts/vis'
+Plug 'tpope/vim-abolish'
 Plug 'wellle/targets.vim'
 Plug 'wesQ3/vim-windowswap'
 Plug 'kassio/neoterm'
@@ -109,16 +106,6 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
-" Set extra options when running in GUI mode
-if has("gui_running")
-  set guioptions-=T
-  set guioptions-=e
-  set guitablabel=%M\ %t
-endif
-
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
-
 " Use 'Silent' for supressing 'Hit Enter to continue' prompt
 command! -nargs=1 Silent
       \ | execute ':silent !'.<q-args>
@@ -131,24 +118,8 @@ command! -nargs=1 Silent
 " Set leader key
 let g:mapleader = "\<space>"
 
-" Lazier versions of 'copy all' and 'delete all'
-nmap <leader>5y :%y<cr>
-nmap <leader>5Y :%y +<cr>
-nmap <leader>5d :%d<cr>
-nmap <leader>5D :%d +<cr>
-
-" Quickly toggle line numbers
-nmap <leader>n :set number!<cr>
-nmap <leader>N :set relativenumber!<cr>
-
 " :WW sudo saves the file with root permissions
 command WW w !sudo tee % > /dev/null
-
-" Clipboard (yank/put into system clipboard)
-map <leader>y "+y
-map <leader>d "+d
-map <leader>p "+p
-map <leader>P "+P
 
 " Folding
 " Double-click left mouse to open/close folds
@@ -156,12 +127,6 @@ nnoremap <2-LeftMouse> za
 " Make parent fold moves more intuitive
 nnoremap zK [z
 nnoremap zJ ]z
-
-" bypass that pesky shift key
-command W write
-command Q quit
-command Wq wq
-command WQ wq
 
 " Remaps the macro record key 'q' to 'Q' instead
 nnoremap Q q
@@ -225,11 +190,6 @@ let g:NERDTreeHighlightCursorline = 1
 let g:NERDTreeMouseMode = 1
 let g:NERDTreeWinSize = 41
 let g:NERDTreeShowHidden = 1
-" }}}
-
-" vim-json settings {{{
-set conceallevel=0 " Disable character concealing
-let g:vim_json_syntax_conceal = 0 " Force no concealing for json files
 " }}}
 
 " vim-airline settings {{{
@@ -320,8 +280,8 @@ map <leader><leader>l <Plug>(easymotion-lineforward)
 map <leader><leader>j <Plug>(easymotion-j)
 map <leader><leader>k <Plug>(easymotion-k)
 map <leader><leader>h <Plug>(easymotion-linebackward)
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
+map  <C-/> <Plug>(easymotion-sn)
+omap <C-/> <Plug>(easymotion-tn)
 
 " }}}
 
@@ -377,14 +337,6 @@ function! s:is_whitespace()
 endfunction
 " }}}
 
-" python-mode settings {{{
-let g:pymode_lint = 0
-let g:pymode_rope = 0
-let g:pymode_doc = 1
-let g:pymode_run = 0
-let g:pymode_trim_whitespaces = 0
-" }}}
-
 " simpylFold settings {{{
 let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_import = 0
@@ -419,7 +371,7 @@ set viewoptions=cursor,folds,slash,unix
 " }}}
 
 " vim-better-whitespace settings {{{
-command CurrentLineWhitespaceOff soft
+let g:current_line_whitespace_soft = 1
 " }}}
 
 " vim-terraform settings {{{
@@ -535,17 +487,9 @@ iabbrev ube# #!/usr/bin/env
 inoremap ds""  """<CR>"""O
 inoremap ds`` ```<CR>```O
 
-" executes current file (if executable)
-nnoremap <leader>x :!%:p<cr>
-
 " }}}
 
 " Per-filetype settings {{{
-
-" Misc {{{
-au BufRead,BufNewFile *.link   setlocal ft=
-au BufRead,BufNewFile term://* setlocal nocursorline colorcolumn=0
-" }}}
 
 " Make {{{
 au FileType make setlocal noexpandtab
@@ -560,12 +504,13 @@ au FileType dosini,cfg,conf setlocal cms=#\ %s
 " }}}
 
 " Shell {{{
-au FileType sh setlocal fdm=syntax sw=2 tw=0 colorcolumn=80,100,120
+au FileType sh setlocal sw=2 tw=0 colorcolumn=80,100,120
 au FileType sh let g:sh_fold_enabled=7
 " }}}
 
 " Terraform {{{
-au FileType           terraform setlocal tw=0 sw=2 fdm=syntax
+au FileType           terraform setlocal tw=0 sw=2
+" Terraform templates
 au BufRead,BufNewFile *.tpl     setlocal ft=
 " }}}
 
@@ -606,10 +551,6 @@ au FileType json setlocal fdl=99
 
 " Moving around, tabs, windows and buffers {{{
 
-" Treat long lines as break lines (useful when moving around in them)
-"map j gj
-"map k gk
-
 " remap pane-movement keys
 nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
@@ -625,20 +566,16 @@ set splitright
 
 " tab shortcuts
 map <leader>t  :tabnew<cr>
-map <leader>th :tabnext<cr>
-map <leader>tl :tabprevious<cr>
-map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-map <leader>1 1gt
-map <leader>2 2gt
-map <leader>3 3gt
-map <leader>4 4gt
-map <leader>5 5gt
-map <leader>6 6gt
-map <leader>7 7gt
-map <leader>8 8gt
-map <leader>9 9gt
+map <C-1> 1gt
+map <C-2> 2gt
+map <C-3> 3gt
+map <C-4> 4gt
+map <C-5> 5gt
+map <C-6> 6gt
+map <C-7> 7gt
+map <C-8> 8gt
+map <C-9> 9gt
 
 " Open new splits
 nnoremap <C-w>- :sp<cr>
@@ -647,59 +584,8 @@ nnoremap <C-w>\ :vsp<cr>
 " Zoom window
 nnoremap <C-w>+ <C-w>\|<C-w>_
 
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
-
 " Switch CWD to the directory of the open buffer
 nnoremap <leader>cd :lcd %:p:h<cr>:pwd<cr>
-
-" Specify the behavior when switching between buffers
-try
-  set switchbuf=useopen,usetab,newtab
-  set stal=2
-catch
-endtry
-
-" Return to last edit position when opening files (You want this!)
-autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
-
-" }}}
-
-" Status line {{{
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE'
-    en
-        return ''
-endfunction
-
-" Git status line settings
-let g:git_branch_status_head_current=1
-let g:git_branch_status_text='git'
-let g:git_branch_status_nogit=''
-let g:git_branch_status_ignore_remotes=1
-let g:git_branch_status_check_write=1
-
-" Statusline to be used when Airline is not loaded
-set statusline=
-set statusline +=%1*\ %n\ %*            "buffer number
-set statusline +=%2*\ %<%F%*            "full path
-set statusline +=%3*%m%*                "modified flag
-set statusline +=%1*\ \ \ %{&ff}%*        "file format
-set statusline +=%1*%y%*                "file type
-set statusline +=%1*\ \ \ %{GitBranchInfoString()}   "git branch
-set statusline +=%1*\ \ \ %{HasPaste()}   "paste mode
-set statusline +=%1*%=                 "whitespace
-set statusline +=%2*%5l%*             "current line
-set statusline +=%1*/%L%*               "total lines
-set statusline +=%2*%4v\ \ %*           "virtual column number
-set statusline +=%1*0x%04B\ %*          "character under cursor
-
 
 " }}}
 
