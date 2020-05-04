@@ -119,7 +119,8 @@ command! -nargs=1 Silent
 let g:mapleader = "\<space>"
 
 " :WW sudo saves the file with root permissions
-command WW w !sudo tee % > /dev/null
+command WW SudoWrite
+command EE SudoEdit
 
 " Folding
 " Double-click left mouse to open/close folds
