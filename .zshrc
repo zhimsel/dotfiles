@@ -409,9 +409,9 @@ if which __fzfcmd >/dev/null; then
   # Create "git-files" widget and binding
   fzf-git-files-widget() {
     if git rev-parse --is-inside-work-tree &>/dev/null; then
-      LBUFFER="$(git ls-files | eval fzf $FZF_CTRL_T_OPTS)"
+      LBUFFER="${LBUFFER}$(git ls-files | eval fzf $FZF_CTRL_T_OPTS)"
+      zle redisplay
     fi
-    zle redisplay
   }
   zle -N fzf-git-files-widget
   bindkey '^G' fzf-git-files-widget
