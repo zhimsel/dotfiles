@@ -195,7 +195,6 @@ let g:NERDTreeShowHidden = 1
 " }}}
 
 " vim-airline settings {{{
-set timeoutlen=500 " Set timeout for statusline redraw on escape
 au BufWritePost * AirlineRefresh
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -260,10 +259,7 @@ au VimEnter * AirlineRefresh
 " }}}
 
 " vim-gitgutter settings {{{
-set updatetime=100  " 100ms refresh time
-set signcolumn=yes
 let g:gitgutter_max_signs = 10000
-set numberwidth=1 " reduce extra spaces between signs and line numbers
 " }}}
 
 " tig-explorer settings {{{
@@ -327,7 +323,6 @@ nmap <silent> <leader>]    <Plug>LocationNext
 
 " deoplete settings {{{
 let g:deoplete#enable_at_startup = 1
-set completeopt+=noinsert,noselect
 " use ctrl-j and ctrl-k to navigate auto-complete suggestion list
 inoremap <expr> <C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
@@ -366,10 +361,6 @@ autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
 " vim-gist settings {{{
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
-" }}}
-
-" vim-stay settings {{{
-set viewoptions=cursor,folds,slash,unix
 " }}}
 
 " vim-better-whitespace settings {{{
@@ -429,9 +420,9 @@ autocmd FileType gitrebase call <SID>setup_git_rebase_maps()
 " }}}
 " }}}
 
-" User interface {{{
+" User interface settings {{{
 
-" Set some built-in settings
+" TODO: organize this better
 set number " show line numbers
 set showcmd " show (partial) command in status line
 set report=0 " tell us about changes
@@ -458,17 +449,18 @@ set noshowmode " Disable --INSERT-- text in command line. Reproduced in airline
 set foldenable " Enable folding
 set foldmethod=syntax " Default to syntax folding
 set undofile " Save per-file undo history between sessions
-
-" }}}
-
-" Text, tab and indent related {{{
+set timeoutlen=500 " Set timeout for completing keymaps
+set updatetime=100  " how quickly to write the swapfile after typing stops
+set signcolumn=yes  " show sign column left of line numbers (for gitgutter, linting, etc)
+set numberwidth=1 " reduce extra spaces between signs and line numbers
+set completeopt+=noinsert,noselect  " set completion rules
+set viewoptions=cursor,folds,slash,unix  " what to save in session files (and for vim-stay)
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
 " Enable filetype plugins
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 
 " Set sensible defaults for tab width
 set expandtab
@@ -484,7 +476,7 @@ set nolist
 set textwidth=0
 set colorcolumn=+1,+21,+41
 
-" Define text expansions
+" Define some text expansions
 iabbrev ube# #!/usr/bin/env
 inoremap ds""  """<CR>"""O
 inoremap ds`` ```<CR>```O
