@@ -195,7 +195,6 @@ let g:NERDTreeShowHidden = 1
 " }}}
 
 " vim-airline settings {{{
-au BufWritePost * AirlineRefresh
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
@@ -207,13 +206,9 @@ let g:airline_inactive_collapse = 0
 let g:airline#extensions#branch#format = 2 " truncate git branch paths
 let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#wordcount#enabled = 0
-au VimEnter * let g:airline_section_b = airline#section#create(['windowswap', '%<', '%f%m', 'readonly'])
-au VimEnter * let g:airline_section_c = airline#section#create(['filetype'])
-au VimEnter * let g:airline_section_x = airline#section#create(['%3p%%'])
-au VimEnter * let g:airline_section_y = airline#section#create(['hunks'])
-au VimEnter * let g:airline_section_z = airline#section#create(['branch'])
 let g:airline#extensions#default#section_truncate_width = {}
-  let g:airline_mode_map = {
+
+let g:airline_mode_map = {
       \ '__'     : '-',
       \ 'c'      : 'C',
       \ 'i'      : 'I',
@@ -233,6 +228,7 @@ let g:airline#extensions#default#section_truncate_width = {}
       \ 'V'      : 'VL',
       \ ''     : 'VB',
       \ }
+
 let g:airline_filetype_overrides = {
       \ 'defx':  ['defx', '%{b:defx.paths[0]}'],
       \ 'gundo': [ 'Gundo', '' ],
@@ -244,6 +240,7 @@ let g:airline_filetype_overrides = {
       \ 'vimfiler': [ 'vimfiler', '%{vimfiler#get_status_string()}' ],
       \ 'vimshell': ['vimshell','%{vimshell#get_status_string()}'],
       \ }
+
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
@@ -255,7 +252,16 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.dirty=''
 let g:airline_symbols.notexists=''
 let g:airline_symbols.readonly = ' '
-au VimEnter * AirlineRefresh
+
+function! AirlineSectionInit()
+  let g:airline_section_b = airline#section#create(['windowswap', '%<', '%f%m', 'readonly'])
+  let g:airline_section_c = airline#section#create(['filetype'])
+  let g:airline_section_x = airline#section#create(['%3p%%'])
+  let g:airline_section_y = airline#section#create(['hunks'])
+  let g:airline_section_z = airline#section#create(['branch'])
+endfunction
+
+au User AirlineAfterInit call AirlineSectionInit()
 " }}}
 
 " vim-gitgutter settings {{{
