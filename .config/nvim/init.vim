@@ -18,7 +18,6 @@ call plug#begin(stdpath('data') . '/vim-plug')
 " Visual plugins {{{
 Plug 'airblade/vim-gitgutter'  " git diff symbols in sign column
 Plug 'chriskempson/base16-vim'  " better themes
-Plug 'ntpeters/vim-better-whitespace'  " highlight trailing whitespaces
 Plug 'vim-airline/vim-airline'  " better statusbar
 Plug 'vim-airline/vim-airline-themes'  " themese for Airline
 Plug 'Xuyuanp/nerdtree-git-plugin'  " show git status symbols in NERDTree
@@ -201,7 +200,7 @@ let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#show_tab_nr = 1 " show tab numbers
 let g:airline#extensions#tabline#tab_nr_type = 1 " show only tab number
 let g:airline#extensions#tabline#formatter = "unique_tail_improved"
-let g:airline#extensions#whitespace#enabled = 0 " disable whitespace checking
+let g:airline#extensions#whitespace#enabled = 1
 let g:airline_inactive_collapse = 0
 let g:airline#extensions#branch#format = 2 " truncate git branch paths
 let g:airline#extensions#hunks#non_zero_only = 1
@@ -493,6 +492,15 @@ set colorcolumn=+1,+21,+41
 iabbrev ube# #!/usr/bin/env
 inoremap ds""  """<CR>"""O
 inoremap ds`` ```<CR>```O
+
+" Highlight trailing whitespace (while not typing at the end of a line)
+au ColorScheme * highlight ExtraWhitespace guibg=red
+function! ExtraWhitespaceMatch()
+  if &ft !~ '^git'
+    match ExtraWhitespace /\s\+\%#\@<!$/
+  endif
+endfunction
+au CursorMoved,BufEnter,BufWinEnter,BufRead * call ExtraWhitespaceMatch()
 
 " }}}
 
