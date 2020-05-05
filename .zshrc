@@ -410,8 +410,8 @@ source "$HOME/.zshrc.local" &>/dev/null || true
 # Only set these if fzf is actually loaded
 if which __fzfcmd >/dev/null; then
 
-  # Use tmux panes
-  export FZF_TMUX=1
+  # Don't use tmux panes (performance issues)
+  export FZF_TMUX=0
   export FZF_TMUX_HEIGHT='60%'
 
   # Set default options
