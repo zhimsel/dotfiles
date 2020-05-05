@@ -73,21 +73,36 @@ zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
 # include custom completions
 fpath=("${HOME}/.zsh/custom-completions" $fpath)
 
+# Init completion system {{{
+autoload -Uz +X compinit && compinit
+autoload -Uz +X bashcompinit && bashcompinit
+# }}}
+
 # }}}
 
 # Plugins {{{
 
-export ZPLUG_HOME="$HOME/.zsh/zplug"
-source $ZPLUG_HOME/init.zsh
+declare -A ZINIT
+ZINIT[HOME_DIR]="$HOME/.zinit"
+ZINIT[BIN_DIR]="${ZINIT[HOME_DIR]}/bin"
 
-zplug "lincheney/fzf-tab-completion", use:"zsh/fzf-zsh-completion.sh"
-zplug "RobSis/zsh-completion-generator"
-zplug "olivierverdier/zsh-git-prompt", use:"zshrc.sh", hook-build:"stack install"
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-syntax-highlighting", defer:3
-source "$HOME/.zplug.local" &>/dev/null || true
+source "${ZINIT[BIN_DIR]}/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
-zplug load
+zinit ice pick'zsh/fzf-zsh-completion.sh'
+zinit load "lincheney/fzf-tab-completion"
+
+zinit ice wait'!0'
+zinit load "RobSis/zsh-completion-generator"
+
+zinit ice atpull'%atclone' atclone'stack install' pick'zshrc.sh'
+zinit load "olivierverdier/zsh-git-prompt"
+
+zinit ice wait'!0'
+zinit load "zsh-users/zsh-completions"
+
+source "$HOME/.zinit.local" &>/dev/null || true
 
 # }}}
 
@@ -177,7 +192,6 @@ alias htop='s htop'  # always use sudo so we can kill any process
 # shortcut for cd'ing into ~/dev with autocomplete
 dev() { cd "$HOME/dev/${1:-}" }
 compdef '_files -/ -W $HOME/dev' dev
-
 # }}}
 
 # dotfile management {{{
@@ -189,8 +203,8 @@ dotu () { # {{{
   cd "$HOME" && dot || return 1
   echo "Updating submodules..."; git subf
   nodot || return 1
-  echo "Updating vim plugins..."; vim -c PlugUpdate
-  echo "Updating zsh plugins..."; zsh -ic "zplug update"  # run in new shell to pick up any zplug updates
+  vim -c PlugUpdate
+  zsh -ic "zinit update"  # run in new shell to pick up any plugin updates
   dot
 } # }}}
 
@@ -435,10 +449,7 @@ if [[ -x $(which direnv) ]]; then
 fi
 # }}}
 
-# Init completion system {{{
-autoload -Uz +X compinit && compinit
-autoload -Uz +X bashcompinit && bashcompinit
-# }}}
+zinit load "zsh-users/zsh-syntax-highlighting"
 
 # Source machine-specific "post-config" .zshrc actually-last (to allow overriding anything after .zshrc.local) {{{
 source "$HOME/.zshrc.postlocal" &>/dev/null || true
