@@ -496,7 +496,7 @@ inoremap ds`` ```<CR>```O
 " Highlight trailing whitespace (while not typing at the end of a line)
 au ColorScheme * highlight ExtraWhitespace guibg=red
 function! ExtraWhitespaceMatch()
-  if &ft !~ '^git'
+  if &ft !~ '^git\|vim-plug'
     match ExtraWhitespace /\s\+\%#\@<!$/
   endif
 endfunction
