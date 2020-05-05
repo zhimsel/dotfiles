@@ -3,10 +3,13 @@
 _wt() {
   local state
 
-  _arguments '1: :->branch'
+  _arguments \
+    '1: :->branch' \
+    '2: :->wt_path'
 
   case $state in
-    (branch) _arguments '1:branches:($(git branch --no-color | sed "s/^[\*|\ |+]\ //"))' ;;
+    (branch) _arguments '1:branch:($(git branch --no-color | sed "s/^[\*|\ |+]\ //"))' ;;
+    (wt_path) _files -/ ;;
   esac
 }
 

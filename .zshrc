@@ -286,7 +286,7 @@ alias dc='s docker-compose'
 
 # Kubernetes (k8s) {{{
 alias k='kubectl'
-alias kc='k config use-context $(k config get-contexts -o name | fzf +m)'
+kc() { k config use-context "$1" }
 # }}}
 
 # }}}

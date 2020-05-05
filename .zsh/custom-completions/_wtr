@@ -3,10 +3,10 @@
 _wtr() {
   local state
 
-  _arguments '1: :->worktree'
+  _arguments '1: :->wt_path'
 
   case $state in
-    (worktree) _arguments "1:worktrees:($(git worktree list | awk '{print $1}'))" ;;
+    (wt_path) _arguments "1:wt_path:($(git worktree list | awk '{print $1}'))" ;;
   esac
 }
 
