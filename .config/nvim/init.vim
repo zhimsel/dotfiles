@@ -377,7 +377,7 @@ let g:current_line_whitespace_soft = 1
 
 " vim-terraform settings {{{
 let g:terraform_align = 1
-let g:terraform_fmt_on_save = 0
+let g:terraform_fmt_on_save = 1
 " }}}
 
 " vim-markdown-folding settings {{{
