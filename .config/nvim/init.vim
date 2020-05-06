@@ -467,8 +467,8 @@ set foldmethod=syntax " Default to syntax folding
 set undofile " Save per-file undo history between sessions
 set timeoutlen=500 " Set timeout for completing keymaps
 set updatetime=100  " how quickly to write the swapfile after typing stops
-set signcolumn=yes  " show sign column left of line numbers (for gitgutter, linting, etc)
-set numberwidth=1 " reduce extra spaces between signs and line numbers
+set signcolumn=auto:4  " show sign column left of line numbers (for gitgutter, linting, etc)
+set numberwidth=4  " minimum width of the number column
 set completeopt+=noinsert,noselect  " set completion rules
 set viewoptions=cursor,folds,slash,unix  " what to save in session files (and for vim-stay)
 
