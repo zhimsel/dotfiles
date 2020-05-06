@@ -76,6 +76,7 @@ Plug 'zhimsel/vim-markdown-preview', { 'for': ['markdown', 'ghmarkdown'], 'branc
 Plug 'junegunn/fzf'  " required by: junegunn/fzf.vim
 Plug 'kana/vim-textobj-user'  " required by: kana/vim-textobj-fold
 Plug 'mattn/webapi-vim'  " required by: mattn/gist-vim
+Plug 'rbgrouleff/bclose.vim'  " required by: iberianpig/tig-explorer.vim
 Plug 'tyru/open-browser.vim'  " open URLs in browser; required by: tyru/open-browser-github.vim
 " }}}
 
