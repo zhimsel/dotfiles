@@ -253,7 +253,7 @@ let g:airline_symbols.notexists=''
 let g:airline_symbols.readonly = ' '
 
 function! AirlineSectionInit()
-  let g:airline_section_b = airline#section#create(['windowswap', '%<', '%f%m', 'readonly'])
+  let g:airline_section_b = airline#section#create(['windowswap', 'file', 'readonly'])
   let g:airline_section_c = airline#section#create(['filetype'])
   let g:airline_section_x = airline#section#create(['%3p%%'])
   let g:airline_section_y = airline#section#create(['hunks'])
