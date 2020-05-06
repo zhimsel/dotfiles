@@ -12,10 +12,12 @@ source "$HOME/.zshenv.local" &>/dev/null || true
 # }}}
 
 # Set neovim as the default editor {{{
-export EDITOR="nvim"
-alias      vi='nvim'
-alias     vim='nvim'
-alias vimdiff='nvim -d'
+export EDITOR='nvim'
+alias      vi=$EDITOR
+alias     vim=$EDITOR
+
+export DIFFPROG='nvim -d'
+alias   vimdiff=$DIFFPROG
 # }}}
 
 # Set default settings for shell utilities {{{
