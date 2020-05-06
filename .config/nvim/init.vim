@@ -329,6 +329,7 @@ nnoremap <silent> <Plug>LocationPrevious    :<C-u>exe 'call <SID>LocationPreviou
 nnoremap <silent> <Plug>LocationNext        :<C-u>exe 'call <SID>LocationNext()'<CR>
 nmap <silent> <leader>[    <Plug>LocationPrevious
 nmap <silent> <leader>]    <Plug>LocationNext
+nmap <silent> <leader>\    lopen
 
 " }}}
 
