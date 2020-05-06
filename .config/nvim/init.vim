@@ -191,6 +191,8 @@ let g:NERDTreeHighlightCursorline = 1
 let g:NERDTreeMouseMode = 1
 let g:NERDTreeWinSize = 41
 let g:NERDTreeShowHidden = 1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeQuitOnOpen = 3
 " }}}
 
 " vim-airline settings {{{
