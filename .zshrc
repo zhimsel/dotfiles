@@ -79,6 +79,9 @@ autoload -Uz +X compinit && compinit
 autoload -Uz +X bashcompinit && bashcompinit
 # }}}
 
+# Use "upstream" completions for some wrapper programs
+compdef tssh='ssh'
+
 # }}}
 
 # Plugins {{{

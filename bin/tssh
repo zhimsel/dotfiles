@@ -1,0 +1,27 @@
+#!/usr/bin/env zsh
+
+# Connect to a host via SSH, run nested tmux, and "disable" parent tmux session until disconncted
+
+yell() { echo "$*" >&2; }
+die() { yell "$*"; exit 111; }
+try() { "$@" || die "cannot $*"; }
+
+# Process args
+[[ -z "$1" ]] && die "Usage: ${0##*/} <host> [args]"
+rhost="$1"; shift
+args="$@"
+
+# Hide/"disable" parent tmux session
+try tmux set-option prefix None
+try tmux set-option key-table off
+tmux set-option status off
+tmux set-option set-titles-string "[$rhost] (remote)"
+
+# Connect to remote machine
+ssh "$rhost" -t "zsh -lc tmux $@"
+
+# Restore parent tmux session
+tmux set-option -u prefix
+tmux set-option -u key-table
+tmux set-option -u status
+tmux set-option -u set-titles-string
