@@ -17,6 +17,7 @@ call plug#begin(stdpath('data') . '/vim-plug')
 
 " Visual plugins {{{
 Plug 'airblade/vim-gitgutter'  " git diff symbols in sign column
+Plug 'chrisbra/Colorizer'  " highlight color codes with their color
 Plug 'chriskempson/base16-vim'  " better themes
 Plug 'vim-airline/vim-airline'  " better statusbar
 Plug 'vim-airline/vim-airline-themes'  " themese for Airline
