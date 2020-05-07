@@ -415,7 +415,7 @@ source "$HOME/.zshrc.local" &>/dev/null || true
 if which __fzfcmd >/dev/null; then
 
   # Don't use tmux panes (performance issues)
-  export FZF_TMUX=0
+  export FZF_TMUX=1
   export FZF_TMUX_HEIGHT='60%'
 
   # Set default options
@@ -425,14 +425,13 @@ if which __fzfcmd >/dev/null; then
   export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"  # show folder preview
 
   # Create "git-files" widget and binding
-  fzf-git-files-widget() {
+  fzf-git-file-widget() {
     if git rev-parse --is-inside-work-tree &>/dev/null; then
-      LBUFFER="${LBUFFER}$(git ls-files | eval fzf $FZF_CTRL_T_OPTS)"
-      zle redisplay
+      FZF_CTRL_T_COMMAND='git ls-files' fzf-file-widget
     fi
   }
-  zle -N fzf-git-files-widget
-  bindkey '^G' fzf-git-files-widget
+  zle -N fzf-git-file-widget
+  bindkey '^G' fzf-git-file-widget
 
   # Use tab to use fzf for all arg completions
   export FZF_COMPLETION_TRIGGER=''  # turn off '**' completion
