@@ -97,13 +97,14 @@ autoload -Uz _zinit
 zinit ice pick'zsh/fzf-zsh-completion.sh'
 zinit load "lincheney/fzf-tab-completion"
 
-zinit ice wait'!0'
+zinit ice wait'!0'  # lazy-load until after prompt
 zinit load "RobSis/zsh-completion-generator"
 
+# `stack install` will fail if stack is not installed, will fall back to python implementation
 zinit ice atpull'%atclone' atclone'stack install' pick'zshrc.sh'
 zinit load "olivierverdier/zsh-git-prompt"
 
-zinit ice wait'!0'
+zinit ice wait'!0'  # lazy-load until after prompt
 zinit load "zsh-users/zsh-completions"
 
 source "$HOME/.zinit.local" &>/dev/null || true
@@ -433,10 +434,10 @@ if which __fzfcmd >/dev/null; then
   zle -N fzf-git-file-widget
   bindkey '^G' fzf-git-file-widget
 
-  # Use tab to use fzf for all arg completions
+  # Use tab-tab to use fzf for all arg completions
   export FZF_COMPLETION_TRIGGER=''  # turn off '**' completion
-  bindkey '^I' expand-or-complete
-  bindkey '^I^I' fzf_completion
+  bindkey '^I' expand-or-complete  # default zsh completion
+  bindkey '^I^I' fzf_completion  # completion piped through fzf
 
   # Set fzf-tab-completion options
   zstyle ':completion:*' fzf-search-display true  # search display-strings by default
