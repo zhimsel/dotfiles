@@ -94,8 +94,8 @@ source "${ZINIT[BIN_DIR]}/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-zinit ice pick'zsh/fzf-zsh-completion.sh'
-zinit load "lincheney/fzf-tab-completion"
+zinit ice pick'zsh/fzf-zsh-completion.sh' ver'tmux-support'
+zinit load "zhimsel/fzf-tab-completion"
 
 zinit ice wait'!0'  # lazy-load until after prompt
 zinit load "RobSis/zsh-completion-generator"
