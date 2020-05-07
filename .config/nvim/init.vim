@@ -100,7 +100,7 @@ set wildmenu
 " Set color scheme
 set background=dark
 colorscheme base16-eighties
-let g:airline_theme = "base16_eighties"
+let g:airline_theme = "base16_eighties_custom"
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
