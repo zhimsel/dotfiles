@@ -8,7 +8,7 @@ _wt() {
     '2: :->wt_path'
 
   case $state in
-    (branch) _arguments '1:branch:($(git branch --no-color | sed "s/^[\*|\ |+]\ //"))' ;;
+    (branch) _arguments '1:branch:($(git branch --list --no-color --format "%(refname:short)"))' ;;
     (wt_path) _files -/ ;;
   esac
 }
