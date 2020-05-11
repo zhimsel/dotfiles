@@ -56,7 +56,6 @@ bindkey -M viins '^X,' _history-complete-newer \
 
 # Autocomplete {{{
 
-# Set general completion settings {{{
 setopt correct
 unsetopt correct_all
 unsetopt flow_control
@@ -69,18 +68,9 @@ zstyle ':completion:*' list-colors ''
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
-# }}}
 
 # include custom completions
 fpath=("${HOME}/.zsh/custom-completions" $fpath)
-
-# Init completion system {{{
-autoload -Uz +X compinit && compinit
-autoload -Uz +X bashcompinit && bashcompinit
-# }}}
-
-# Use "upstream" completions for some wrapper programs
-compdef tssh='ssh'
 
 # }}}
 
@@ -196,7 +186,6 @@ alias htop='s htop'  # always use sudo so we can kill any process
 
 # shortcut for cd'ing into ~/dev with autocomplete
 dev() { cd "$HOME/dev/${1:-}" }
-compdef '_files -/ -W $HOME/dev' dev
 # }}}
 
 # dotfile management {{{
@@ -449,6 +438,14 @@ if [[ -x $(which direnv) ]]; then
   alias tmux='direnv exec / tmux'  # unload direnv before running tmux to avoid subshell complications
 fi
 # }}}
+
+# Init completion system {{{
+autoload -Uz +X compinit && compinit
+autoload -Uz +X bashcompinit && bashcompinit
+
+# Set some custom compdefs
+compdef tssh='ssh'
+compdef '_files -/ -W $HOME/dev' dev
 
 zinit load "zsh-users/zsh-syntax-highlighting"
 
