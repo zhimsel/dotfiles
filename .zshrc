@@ -119,7 +119,9 @@ cd-up-widget() {
   zle reset-prompt
 }
 zle -N cd-up-widget
-bindkey '^e' cd-up-widget
+bindkey -v '^e' cd-up-widget
+bindkey -a '^e' cd-up-widget
+
 # }}}
 
 # Aliases/keybinds {{{
