@@ -12,7 +12,6 @@
 " Plugins {{{
 
 let g:plug_window = 'enew'
-runtime vim-plug/plug.vim  " managed externally (via dotfiles submodules)
 call plug#begin(stdpath('data') . '/vim-plug')
 
 " Visual plugins {{{

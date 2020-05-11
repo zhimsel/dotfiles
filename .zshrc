@@ -205,12 +205,9 @@ alias dot='export GIT_DIR=$HOME/.dotfiles_git GIT_WORK_TREE=$HOME'
 alias ldot='export GIT_DIR=$HOME/.dotfiles_git_local GIT_WORK_TREE=$HOME'
 
 dotu () { # {{{
-  cd "$HOME" && dot || return 1
-  echo "Updating submodules..."; git subf
   nodot || return 1
-  vim -c PlugUpdate
-  zsh -ic "zinit update"  # run in new shell to pick up any plugin updates
-  dot
+  vim -c 'PlugUpgrade | PlugUpdate'
+  zsh -ic "zinit update --all"  # run in new shell to pick up any plugin updates
 } # }}}
 
 # }}}

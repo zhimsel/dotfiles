@@ -1,6 +1,0 @@
-[submodule "zinit"]
-	path = .zinit/bin
-	url = https://github.com/zdharma/zinit.git
-[submodule "vim-plug"]
-	path = .config/nvim/vim-plug
-	url = https://github.com/junegunn/vim-plug.git
