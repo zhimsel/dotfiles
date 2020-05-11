@@ -18,10 +18,13 @@ alias     vim=$EDITOR
 
 export DIFFPROG='nvim -d'
 alias   vimdiff=$DIFFPROG
+
 # }}}
 
 # Set default settings for shell utilities {{{
 export LESS="-R --mouse --wheel-lines=3 $LESS"
+export MANWIDTH='999'
+export MANPAGER='nvim -c "Man!"'
 # }}}
 
 # Add ~/bin [mostly] last to allow overriding any system-installed executables
