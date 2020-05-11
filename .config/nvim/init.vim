@@ -192,6 +192,7 @@ let g:NERDTreeMouseMode = 1
 let g:NERDTreeWinSize = 41
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeMinimalUI = 1
+let g:NERDTreeMinimalMenu = 1
 let g:NERDTreeQuitOnOpen = 3
 " }}}
 
