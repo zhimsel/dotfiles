@@ -159,9 +159,8 @@ vnoremap <Left> xhhp`[v`]
 " git keybindings (both vim-fugitive and vim-gitgutter)
 nmap <leader>ga :w<cr>:silent Git add %<cr>
 nmap <leader>ha <Plug>(GitGutterStageHunk)
+nmap <leader>hp <Plug>(GitGutterPreviewHunk)
 nmap <leader>hr <Plug>(GitGutterUndoHunk)
-nmap <leader>hn <Plug>(GitGutterNextHunk)
-nmap <leader>hp <Plug>(GitGutterPrevHunk)
 nmap <leader>gc :Git commit<cr>
 
 " redraw screen (for nvim window-resize bug)
