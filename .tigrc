@@ -49,8 +49,8 @@ bind stage C !git commit
 # Copy useful things to clipboard
 bind generic S view-stage
 bind generic c none
-bind generic cc @sh -c "~/bin/clip <<< %(commit)"
-bind generic cb @sh -c "~/bin/clip <<< %(branch)"
+bind generic cc @sh -c "~/bin/yank <<< %(commit)"
+bind generic cb @sh -c "~/bin/yank <<< %(branch)"
 
 # Open things in GitHub
 bind generic gc @hub browse -- commit/%(commit)

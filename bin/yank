@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+# Send stdin to system clipboard, regardless of OS
+
+# X11
+if [ -x "$(which xsel 2>/dev/null)" ]; then
+  xsel -i -b <&0
+elif [ -x "$(which xclip 2>/dev/null)" ]; then
+  xclip -i -selection clipboard <&0
+
+# MacOS
+elif [ -x "$(which pbcopy 2>/dev/null)" ]; then
+  pbcopy <&0
+
+else
+  echo "ERROR: could not find clipboard utility!" >&2
+
+fi
