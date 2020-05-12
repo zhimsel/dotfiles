@@ -61,7 +61,6 @@ unsetopt correct_all
 unsetopt flow_control
 setopt always_to_end
 setopt complete_in_word
-setopt complete_aliases
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'  # case/hyphen insensitive completion
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' list-colors ''
