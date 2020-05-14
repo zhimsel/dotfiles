@@ -471,6 +471,7 @@ set signcolumn=auto:4  " show sign column left of line numbers (for gitgutter, l
 set numberwidth=4  " minimum width of the number column
 set completeopt+=noinsert,noselect  " set completion rules
 set viewoptions=cursor,folds,slash,unix  " what to save in session files (and for vim-stay)
+set guicursor=  " disable changing cursor shape
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
