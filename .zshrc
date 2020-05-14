@@ -194,6 +194,9 @@ dotu () { # {{{
   zsh -ic "zinit update --all"  # run in new shell to pick up any plugin updates
 } # }}}
 
+alias vimrc='pushd $HOME && dot && nvim .config/nvim/{init.vim,local/init.vim}'
+alias zshrc='pushd $HOME && dot && nvim .zsh{rc,env}*'
+
 # }}}
 
 # Git {{{
