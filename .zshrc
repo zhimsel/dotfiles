@@ -87,9 +87,8 @@ zinit light "zhimsel/fzf-tab-completion"
 
 zinit light "RobSis/zsh-completion-generator"
 
-# `stack install` will fail if stack is not installed, will fall back to python implementation
-zinit ice atpull'%atclone' atclone'stack install' pick'zshrc.sh'
-zinit light "olivierverdier/zsh-git-prompt"
+zinit ice pick'spaceship.zsh'
+zinit light "denysdovhan/spaceship-prompt"
 
 zinit light "zsh-users/zsh-completions"
 
@@ -296,34 +295,54 @@ kc() { k config use-context "$1" }
 
 # Prompt Settings {{{
 
-# git-super-status settings
-[[ -x $(which stack) ]] && GIT_PROMPT_EXECUTABLE="haskell"
-ZSH_THEME_GIT_PROMPT_NOCACHE="1"
-ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
+SPACESHIP_USER_COLOR="green"
 
-# Put prompt in precmd() so it refreshes every time it loads
-function precmd {
-  local newline=$'\n'  # convenience var
+SPACESHIP_HOST_COLOR="yellow"
+SPACESHIP_HOST_COLOR_SSH="yellow"
 
-  # standard info line {{{
-  local -a prompt_info
-  prompt_info+=("%(!.%{$fg[red]%}.%{$fg[green]%})%n%{$reset_color%}")  # username (color-coded for root)
-  prompt_info+=("on %{$fg[yellow]%}%m%{$reset_color%}")  # hostname
-  prompt_info+=("at %{$fg[cyan]%}%*%{$reset_color%}")  # current time
-  prompt_info+=("in %{$fg[blue]%}%~%{$reset_color%}")  # current working directory
-  git rev-parse --is-inside-work-tree &> /dev/null && prompt_metadata+=("git:$(git_super_status)")
-  # }}}
+SPACESHIP_DIR_COLOR="blue"
+SPACESHIP_DIR_TRUNC_PREFIX="…/"
 
-  # command prompt line {{{
-  local _return_code="%(?::%{$fg[red]%}↳ %? %{$reset_color%})"
-  local _jobs="%(1j:%B[%j]%b :)"
-  local prompt_command="${_return_code}${_jobs}%(!:#:$) "
-  # }}}
+SPACESHIP_GIT_BRANCH_PREFIX=""
+SPACESHIP_GIT_STATUS_DIVERGED="⇡⇣"
 
-  # put it all together {{{
-  PROMPT="${newline}${prompt_info}${newline}${prompt_command}"
-  RPROMPT=""
-  # }}}
+SPACESHIP_EXEC_TIME_PREFIX="took "
+
+SPACESHIP_EXIT_CODE_SHOW=true
+SPACESHIP_EXIT_CODE_SYMBOL="↳ "
+
+SPACESHIP_JOBS_SYMBOL=""
+SPACESHIP_JOBS_COLOR="yellow"
+SPACESHIP_JOBS_AMOUNT_PREFIX="["
+SPACESHIP_JOBS_AMOUNT_SUFFIX="]"
+SPACESHIP_JOBS_AMOUNT_THRESHOLD=0
+
+SPACESHIP_VI_MODE_INSERT="❯"
+SPACESHIP_VI_MODE_NORMAL="❮"
+SPACESHIP_VI_MODE_COLOR="green"
+spaceship_vi_mode_enable
+
+# SPACESHIP_USER_SHOW=always
+# SPACESHIP_HOST_SHOW=always
+
+SPACESHIP_PROMPT_ORDER=(
+  user
+  host
+  dir
+  git
+  exec_time
+
+  line_sep
+
+  exit_code
+  jobs
+  vi_mode
+)
+
+# Remove bold from prompt
+() {
+  local z=$'\0'
+  PROMPT='${${${$(spaceship_prompt)//\%\%/'$z'}//\%B}//'$z'/%%}'
 }
 
 # }}}

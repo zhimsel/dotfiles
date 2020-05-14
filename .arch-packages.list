@@ -1,7 +1,6 @@
 asdf-vm
 direnv
 fzf
-ghc
 github-cli-bin
 hub
 konsole
@@ -9,7 +8,6 @@ neovim
 python-grip
 python-pip
 shellcheck
-stack
 tig
 tmux
 zsh

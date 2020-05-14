@@ -56,4 +56,3 @@ brew "ruby-completion"
 # Dependencies for programs installed outside of Homebrew
 brew "cmake"
 brew "go"
-brew "haskell-stack"
