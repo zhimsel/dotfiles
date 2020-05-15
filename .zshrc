@@ -351,7 +351,7 @@ SPACESHIP_PROMPT_ORDER=(
 
 # Create and bind ZLE widget
 prompt-metadata-widget() {
-  zle -M "${(@eonij: :)PROMPT_METADATA}"
+  zle -M "${(j: :)${(@eoni)PROMPT_METADATA}}"
 }
 zle -N prompt-metadata-widget
 bindkey -M viins '^[e' prompt-metadata-widget
