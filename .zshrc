@@ -189,6 +189,7 @@ dotu () { # {{{
   nodot || return 1
   vim -c 'PlugUpgrade | PlugUpdate'
   zsh -ic "zinit update --all"  # run in new shell to pick up any plugin updates
+  dot && git subf
 } # }}}
 
 alias vimrc='pushd $HOME && dot && nvim .config/nvim/{init.vim,local/init.vim}'
