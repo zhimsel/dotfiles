@@ -303,15 +303,6 @@ kc() { k config use-context "$1" }
 ZSH_THEME_GIT_PROMPT_NOCACHE="1"
 ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
 
-# Color-code anything with "prod" red
-function _color_prod_red () {
-  if [[ "$1" =~ "prod" ]]; then
-    echo "%{$fg[red]%}$1%{$reset_color%}"
-  else
-    echo "$1"
-  fi
-}
-
 # Put prompt in precmd() so it refreshes every time it loads
 function precmd {
   local newline=$'\n'  # convenience var
@@ -322,15 +313,7 @@ function precmd {
   prompt_info+=("on %{$fg[yellow]%}%m%{$reset_color%}")  # hostname
   prompt_info+=("at %{$fg[cyan]%}%*%{$reset_color%}")  # current time
   prompt_info+=("in %{$fg[blue]%}%~%{$reset_color%}")  # current working directory
-  # }}}
-
-  # metadata line, if any exists {{{
-  local -a prompt_metadata
   git rev-parse --is-inside-work-tree &> /dev/null && prompt_metadata+=("git:$(git_super_status)")
-  prompt_metadata+=(${VIRTUAL_ENV:+"venv:($(basename ${VIRTUAL_ENV}))"})
-  prompt_metadata+=(${AWS_PROFILE:+"aws:($(_color_prod_red ${AWS_PROFILE}))"})
-  prompt_metadata+=(${AWS_VAULT:+"aws-vault:($(_color_prod_red ${AWS_VAULT}))"})
-  local k8s_context=$(kubectl config current-context 2>/dev/null); prompt_metadata+=(${k8s_context:+"k8s:($(_color_prod_red ${k8s_context}))"})
   # }}}
 
   # command prompt line {{{
@@ -340,10 +323,30 @@ function precmd {
   # }}}
 
   # put it all together {{{
-  PROMPT="${newline}${prompt_info}${newline}${prompt_metadata}${prompt_metadata:+$newline}${prompt_command}"
+  PROMPT="${newline}${prompt_info}${newline}${prompt_command}"
   RPROMPT=""
   # }}}
 }
+
+# }}}
+
+# Press alt-e to display useful env metadata {{{
+
+# Create and bind ZLE widget
+prompt-metadata-widget() {
+  zle -M "${(@eonij: :)PROMPT_METADATA}"
+}
+zle -N prompt-metadata-widget
+bindkey -M viins '^[e' prompt-metadata-widget
+bindkey -M vicmd '^[e' prompt-metadata-widget
+
+# To add things to the metadata output, just append a string to the array.
+# Single-quote to expand parameters at runtime; double-quote to expand at shell creation.
+typeset -agxU PROMPT_METADATA
+PROMPT_METADATA+=('aws:(${AWS_PROFILE})')
+PROMPT_METADATA+=('k8s:($(kubectl config current-context 2>/dev/null))')
+PROMPT_METADATA+=('aws-vault:(${AWS_VAULT})')
+PROMPT_METADATA+=('venv:(${VIRTUAL_ENV})')
 
 # }}}
 
