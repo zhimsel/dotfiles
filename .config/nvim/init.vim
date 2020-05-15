@@ -567,6 +567,11 @@ au FileType yaml setlocal fdl=99
 au FileType json setlocal fdl=99
 " }}}
 
+" Man {{{
+au FileType man nnoremap <buffer><nowait> d <C-d>
+au FileType man nnoremap <buffer><nowait> u <C-u>
+" }}}
+
 " }}}
 
 " Moving around, tabs, windows and buffers {{{
