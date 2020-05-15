@@ -36,20 +36,19 @@ ZSH_CACHE_DIR="$HOME/.zsh_cache"
 # }}}
 
 # vim-like commandline editing {{{
+KEYTIMEOUT=20  # set key-sequence timeout in ms
 bindkey -v  # enable vi mode
+bindkey -M vicmd 'u' undo
+
+# Make backspace/ctrl-w work like vim, not vi
+bindkey '^?' backward-delete-char
+bindkey '^H' backward-delete-char
+bindkey '^W' backward-kill-word
+
+# type 'v' in command mode to edit commandline in vim
 autoload -Uz edit-command-line
 zle -N edit-command-line
-bindkey -M vicmd 'v' edit-command-line  # type 'v' in normal mode to open commandline in vim
-KEYTIMEOUT=20  # set key-sequence timeout in ms
-bindkey '^?' backward-delete-char
-bindkey '^h' backward-delete-char
-bindkey '^w' backward-kill-word
-bindkey -a u undo
-bindkey -sM vicmd '^[' '^G'
-bindkey -rM viins '^X'
-bindkey -M viins '^X,' _history-complete-newer \
-                 '^X/' _history-complete-older \
-                 '^X`' _bash_complete-word
+bindkey -M vicmd 'v' edit-command-line
 # }}}
 
 # }}}
@@ -118,8 +117,8 @@ cd-up-widget() {
   zle reset-prompt
 }
 zle -N cd-up-widget
-bindkey -v '^e' cd-up-widget
-bindkey -a '^e' cd-up-widget
+bindkey -M viins '^e' cd-up-widget
+bindkey -M vicmd '^e' cd-up-widget
 
 # }}}
 
