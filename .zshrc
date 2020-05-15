@@ -83,17 +83,15 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 zinit ice pick'zsh/fzf-zsh-completion.sh' ver'tmux-support'
-zinit load "zhimsel/fzf-tab-completion"
+zinit light "zhimsel/fzf-tab-completion"
 
-zinit ice wait'!0'  # lazy-load until after prompt
-zinit load "RobSis/zsh-completion-generator"
+zinit light "RobSis/zsh-completion-generator"
 
 # `stack install` will fail if stack is not installed, will fall back to python implementation
 zinit ice atpull'%atclone' atclone'stack install' pick'zshrc.sh'
-zinit load "olivierverdier/zsh-git-prompt"
+zinit light "olivierverdier/zsh-git-prompt"
 
-zinit ice wait'!0'  # lazy-load until after prompt
-zinit load "zsh-users/zsh-completions"
+zinit light "zsh-users/zsh-completions"
 
 source "$HOME/.zinit.local" &>/dev/null || true
 
@@ -411,7 +409,7 @@ autoload -Uz +X bashcompinit && bashcompinit
 compdef tssh='ssh'
 compdef '_files -/ -W $HOME/dev' dev
 
-zinit load "zsh-users/zsh-syntax-highlighting"
+zinit light "zsh-users/zsh-syntax-highlighting"
 
 # Source machine-specific "post-config" .zshrc actually-last (to allow overriding anything after .zshrc.local) {{{
 source "$HOME/.zshrc.postlocal" &>/dev/null || true
