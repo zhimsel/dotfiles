@@ -367,6 +367,15 @@ PROMPT_METADATA+=('venv:(${VIRTUAL_ENV})')
 
 # }}}
 
+# Press alt-w to display current working dir {{{
+prompt-pwd-widget() {
+  zle -M "$(pwd)"
+}
+zle -N prompt-pwd-widget
+bindkey -M viins '^[w' prompt-pwd-widget
+bindkey -M vicmd '^[w' prompt-pwd-widget
+# }}}
+
 # Set colors for `ls` if the tool is available {{{
 [[ -x $(which dircolors) ]] && eval $(dircolors)
 # }}}
