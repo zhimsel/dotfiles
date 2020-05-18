@@ -376,6 +376,15 @@ bindkey -M viins '^[w' prompt-pwd-widget
 bindkey -M vicmd '^[w' prompt-pwd-widget
 # }}}
 
+# Press alt-g to display current git status {{{
+git-status-widget() {
+  zle -M "$(git status | sed 's/\t/        /')"
+}
+zle -N git-status-widget
+bindkey -M viins '^[g' git-status-widget
+bindkey -M vicmd '^[g' git-status-widget
+# }}}
+
 # Set colors for `ls` if the tool is available {{{
 [[ -x $(which dircolors) ]] && eval $(dircolors)
 # }}}
