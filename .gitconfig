@@ -52,21 +52,21 @@
   which = "!f(){ git config --get alias.$1; }; f" # show specific alias
 
   # abbreviations
-  s = status
-  f = fetch
-  c = commit
-  ca = commit --amend
-  co = checkout
-  a = add
-  ap = add --patch
-  br = branch
-  rb = rebase
+  s   = status
+  f   = fetch
+  c   = commit
+  ca  = commit --amend
+  co  = checkout
+  a   = add
+  ap  = add --patch
+  br  = branch
+  rb  = rebase
   rbi = rebase --interactive
-  st = stash
-  d = diff
-  dc = diff --cached
+  st  = stash
+  d   = diff
+  dc  = diff --cached
   sub = submodule
-  wt = worktree
+  wt  = worktree
 
   # branch diffs
   db = "!git diff $(git merge-base master HEAD) HEAD" # what's changed in our branch?
@@ -74,25 +74,25 @@
 
   # staging/resetting
   unstage = reset HEAD --
-  whoops = reset --soft HEAD~1  # undo last commit, leaving changes staged
-  back = reset --hard HEAD~1  # undo last commit, dropping changes
+  whoops  = reset --soft HEAD~1  # undo last commit, leaving changes staged
+  back    = reset --hard HEAD~1  # undo last commit, dropping changes
 
   # submodules
   subinit = submodule update --init --recursive
-  subf = submodule update --init --recursive --remote
+  subf    = submodule update --init --recursive --remote
 
   # worktrees
   wtp = worktree prune -v
   wtl = worktree list
 
   # GitHub
-  pr = "!hub pull-request -o"  # create PR in browser
-  pco ="!gh pr checkout $(gh pr list 2>/dev/null | fzf +m | awk '{print $1}')"  # fuzzy search PRs to check out
-  pgo ="!gh pr view $(gh pr list 2>/dev/null | fzf +m | awk '{print $1}')"  # fuzzy search PRs to check out
+  pr  = "!hub pull-request -o"  # create PR in browser
+  pco = "!gh pr checkout $(gh pr list 2>/dev/null | fzf +m | awk '{print $1}')"  # fuzzy search PRs to check out
+  pgo = "!gh pr view $(gh pr list 2>/dev/null | fzf +m | awk '{print $1}')"  # fuzzy search PRs to check out
   bgo = "!hub browse -- compare/$(git symbolic-ref --short HEAD)"  # open branch on Github in browser
-  bc = "!hub browse -c -- compare/$(git symbolic-ref --short HEAD)"  # copy branch URL to clipboard
+  bc  = "!hub browse -c -- compare/$(git symbolic-ref --short HEAD)"  # copy branch URL to clipboard
   cgo = "!hub browse -- commit/$(git rev-parse HEAD)"  # open commit on Github in browser
-  cc = "!hub browse -c -- commit/$(git rev-parse HEAD)"  # copy Github commit link to clipboard
+  cc  = "!hub browse -c -- commit/$(git rev-parse HEAD)"  # copy Github commit link to clipboard
 
   # branch management
   pbr = "!f() { git push -u ${1:-origin} HEAD; }; f" # push branch and set upstream
