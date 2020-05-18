@@ -9,7 +9,7 @@ try() { "$@" || die "cannot $*"; }
 # Process args
 [[ -z "$1" ]] && die "Usage: ${0##*/} <host> [args]"
 rhost="$1"; shift
-args="$@"
+args=$@
 
 # Hide/"disable" parent tmux session
 try tmux set-option prefix None
@@ -18,7 +18,7 @@ tmux set-option status off
 tmux set-option set-titles-string "[$rhost] (remote)"
 
 # Connect to remote machine
-ssh "$rhost" -t "zsh -lc tmux $@"
+ssh "$rhost" -t "zsh -lc 'tmux $args'"
 
 # Restore parent tmux session
 tmux set-option -u prefix
