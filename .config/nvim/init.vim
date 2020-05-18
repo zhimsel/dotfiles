@@ -464,6 +464,7 @@ set cursorline " Highlight current line
 set noshowmode " Disable --INSERT-- text in command line. Reproduced in airline
 set foldenable " Enable folding
 set foldmethod=syntax " Default to syntax folding
+set foldlevelstart=999 " Start with folds open
 set undofile " Save per-file undo history between sessions
 set timeoutlen=500 " Set timeout for completing keymaps
 set updatetime=100  " how quickly to write the swapfile after typing stops
