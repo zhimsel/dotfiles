@@ -181,8 +181,8 @@ dev() { cd "$HOME/dev/${1:-}" }
 
 # dotfile management {{{
 alias nodot='unset GIT_DIR GIT_WORK_TREE'
-alias dot='export GIT_DIR=$HOME/.dotfiles_git GIT_WORK_TREE=$HOME'
-alias ldot='export GIT_DIR=$HOME/.dotfiles_git_local GIT_WORK_TREE=$HOME'
+alias dot='export GIT_DIR=$HOME/.git_dotfiles GIT_WORK_TREE=$HOME'
+alias ldot='export GIT_DIR=$HOME/.git_dotfiles_local GIT_WORK_TREE=$HOME'
 
 dotu () { # {{{
   nodot || return 1

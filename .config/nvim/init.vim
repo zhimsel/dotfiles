@@ -632,13 +632,13 @@ function! ShowHiCursor()
 endfunction
 
 function! Dot()
-  let $GIT_DIR = $HOME . "/.dotfiles_git"
+  let $GIT_DIR = $HOME . "/.git_dotfiles"
   let $GIT_WORK_TREE = $HOME
 endfunction
 command Dot call Dot()
 
 function! Ldot()
-  let $GIT_DIR = $HOME . "/.dotfiles_git_local"
+  let $GIT_DIR = $HOME . "/.git_dotfiles_local"
   let $GIT_WORK_TREE = $HOME
 endfunction
 command Ldot call Ldot()

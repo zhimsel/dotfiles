@@ -13,16 +13,17 @@ To do an initial clone of this repo, follow the steps below:
 cd $HOME
 
 # set up git repo and install tracked files
-export GIT_DIR=$HOME/.dotfiles_git GIT_WORK_TREE=$HOME
+export GIT_DIR=$HOME/.git_dotfiles GIT_WORK_TREE=$HOME
 git init
 git remote add origin git@github.com:zhimsel/dotfiles.git
 git fetch
 git checkout -t origin/master  # will report any conflict files; fix these and re-run
+git submodule update --init --recursive  # fetch submodules
 
 # install zsh plugins
 mkdir -p ~/.zinit
 git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
-zsh -ic 'zinit self-update'
+zsh -ic 'zinit update --all'
 
 # install vim plugins
 curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
