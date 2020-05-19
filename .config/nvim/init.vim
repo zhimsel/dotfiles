@@ -496,8 +496,24 @@ set colorcolumn=+1,+21,+41
 
 " Define some text expansions
 iabbrev ube# #!/usr/bin/env
-inoremap ds""  """<CR>"""O
-inoremap ds`` ```<CR>```O
+
+" Automatically close brackets and quotes
+inoremap ""  ""<Left>
+inoremap ''  ''<Left>
+inoremap {}} {}<Left>
+inoremap {}  {}
+inoremap []] []<Left>
+inoremap []  []
+inoremap ()) ()<Left>
+inoremap ()  ()
+inoremap <>> <><Left>
+inoremap <>  <>
+" And with newlines
+inoremap ```<CR>  ```<CR>```<Esc>O
+inoremap """<CR>  """<CR>"""<Esc>O
+inoremap {}}<CR>   {<CR>}<Esc>O
+inoremap []]<CR>   [<CR>]<Esc>O
+inoremap ())<CR>   (<CR>)<Esc>O
 
 " Highlight trailing whitespace (while not typing at the end of a line)
 au ColorScheme * highlight ExtraWhitespace guibg=red
