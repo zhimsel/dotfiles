@@ -290,7 +290,9 @@ alias dc='s docker-compose'
 
 # Kubernetes (k8s) {{{
 alias k='kubectl'
-kc() { k config use-context "$1" }
+alias kc='k config use-context'
+alias koj='k -o json'
+alias koy='k -o yaml'
 # }}}
 
 # }}}
