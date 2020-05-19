@@ -5,6 +5,7 @@
 tap "homebrew/core"
 tap "homebrew/cask"
 tap "homebrew/bundle"
+tap "homebrew/cask-fonts"
 
 # GNU core utilities
 # Don't forget to add the "gnubin" directories to the beginning of your $PATH (check the "caveats" sections for the paths)
@@ -34,6 +35,7 @@ brew "zsh"
 # Terminal environment
 brew "asdf"
 brew "direnv"
+cask "font-roboto-mono-for-powerline"
 brew "fzf"
 brew "htop"
 brew "hub"

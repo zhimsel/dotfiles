@@ -5,6 +5,7 @@ github-cli-bin
 hub
 konsole
 neovim
+powerline-fonts-git
 python-grip
 python-pip
 shellcheck
