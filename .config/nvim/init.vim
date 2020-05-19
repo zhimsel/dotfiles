@@ -365,7 +365,7 @@ nnoremap ``` :Marks<cr>
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
+  \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
 autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
 " }}}
