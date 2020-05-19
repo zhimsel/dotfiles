@@ -107,6 +107,15 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
+" Fix MatchParens highlighting in comments with base16 colorschemes
+function! s:base16_customize() abort
+  call Base16hi("MatchParen", g:base16_gui05, g:base16_gui03, g:base16_cterm05, g:base16_cterm03, "bold,italic", "")
+endfunction
+augroup on_change_colorschema
+  autocmd!
+  autocmd ColorScheme * call s:base16_customize()
+augroup END
+
 " Use 'Silent' for supressing 'Hit Enter to continue' prompt
 command! -nargs=1 Silent
       \ | execute ':silent !'.<q-args>
