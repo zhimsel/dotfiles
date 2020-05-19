@@ -177,6 +177,10 @@ alias htop='s htop'  # always use sudo so we can kill any process
 
 # shortcut for cd'ing into ~/dev with autocomplete
 dev() { cd "$HOME/dev/${1:-}" }
+
+# pipe output to a disposable vim buffer
+v() { vim -c "setlocal buftype=nofile noswapfile ${1:+filetype=$1}" - }
+
 # }}}
 
 # dotfile management {{{
