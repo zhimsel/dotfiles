@@ -36,6 +36,7 @@ Plug 'Lokaltog/vim-easymotion'  " improved motions with skipping objects
 Plug 'mattn/gist-vim'  " save current buffer/selection as a Github gist
 Plug 'mbbill/undotree'  " visual selection of entire undo tree for a file
 Plug 'preservim/nerdtree'  " file/directory explorer
+Plug 'rhysd/vim-textobj-ruby'  " use ruby blocks as text objects
 Plug 'tpope/vim-abolish'  " improved search/replace with case-specific behavior
 Plug 'tpope/vim-fugitive'  " lots of git commands/shortcuts
 Plug 'tyru/open-browser-github.vim'  " open commits/files/etc in Github
@@ -74,7 +75,7 @@ Plug 'zhimsel/vim-markdown-preview', { 'for': ['markdown', 'ghmarkdown'], 'branc
 
 " Dependencies {{{
 Plug 'junegunn/fzf'  " required by: junegunn/fzf.vim
-Plug 'kana/vim-textobj-user'  " required by: kana/vim-textobj-fold
+Plug 'kana/vim-textobj-user'  " required by any vim-textobj-* plugins
 Plug 'mattn/webapi-vim'  " required by: mattn/gist-vim
 Plug 'rbgrouleff/bclose.vim'  " required by: iberianpig/tig-explorer.vim
 Plug 'tyru/open-browser.vim'  " open URLs in browser; required by: tyru/open-browser-github.vim
@@ -448,6 +449,10 @@ function! s:setup_git_rebase_maps() abort
 
 endfunction
 autocmd FileType gitrebase call <SID>setup_git_rebase_maps()
+" }}}
+
+" vim-textobj-ruby settings {{{
+let g:textobj_ruby_more_mappings=1
 " }}}
 " }}}
 
