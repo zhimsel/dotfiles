@@ -16,16 +16,18 @@ bind generic g none
 bind generic gp view-grep
 bind generic gg move-first-line
 bind generic G move-last-line
+bind main G move-last-line
 
 # Branch/commit actions
 bind generic r none
 bind generic rr refresh
 bind generic R view-refs
 bind generic rb ?git rebase -i %(commit)^
-bind generic co ?git checkout %(commit)
+bind main co ?git checkout %(commit)
 bind refs co ?git checkout %(branch)
 bind generic cp ?git cherry-pick %(commit)
 bind generic ! ?git reset --hard %(commit)
+bind generic B ?git branch "%(prompt Create branch with name: )" %(commit)
 
 # Main view
 bind main F none
