@@ -156,14 +156,16 @@ nnoremap K <Nop>
 vnoremap K <Nop>
 
 " Move lines up/down
-nnoremap <Down> :m+<CR>==
-nnoremap <Up> :m-2<CR>==
-vnoremap <Down> :m '>+1<CR>gv=gv
-vnoremap <Up> :m '<-2<CR>gv=gv
+nnoremap <silent> <Down> :m+<CR>==
+nnoremap <silent> <Up> :m-2<CR>==
+vnoremap <silent> <Down> :m '>+1<CR>gv=gv
+vnoremap <silent> <Up> :m '<-2<CR>gv=gv
 
 " Move selected text left/right
-vnoremap <Right> xp`[v`]
-vnoremap <Left> xhhp`[v`]
+nnoremap <silent> <Right> xp`[v`]
+nnoremap <silent> <Left> xhhp`[v`]
+vnoremap <silent> <Right> xp`[v`]
+vnoremap <silent> <Left> xhhp`[v`]
 
 " git keybindings (both vim-fugitive and vim-gitgutter)
 nmap <leader>ga :w<cr>:silent Git add %<cr>
