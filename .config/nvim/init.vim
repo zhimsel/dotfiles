@@ -175,6 +175,10 @@ nmap <leader>gc :Git commit<cr>
 " redraw screen (for nvim window-resize bug)
 nnoremap <leader>r :redraw!<cr>
 
+" in visual mode, move to first/last line of paragraph (useful for visual block)
+vnoremap <silent> [ :<C-U>call cursor(line("'{")-1,col("'>"))<CR>`<1v``
+vnoremap <silent> ] :<C-U>call cursor(line("'}")-1,col("'>"))<CR>`<1v``
+
 " }}}
 
 " Plugin settings {{{
