@@ -373,13 +373,13 @@ PROMPT_METADATA+=('venv:(${VIRTUAL_ENV})')
 
 # }}}
 
-# Press alt-w to display current working dir {{{
+# Press alt-d to display current working dir {{{
 prompt-pwd-widget() {
   zle -M "$(pwd)"
 }
 zle -N prompt-pwd-widget
-bindkey -M viins '^[w' prompt-pwd-widget
-bindkey -M vicmd '^[w' prompt-pwd-widget
+bindkey -M viins '^[d' prompt-pwd-widget
+bindkey -M vicmd '^[d' prompt-pwd-widget
 # }}}
 
 # Press alt-g to display current git status {{{
