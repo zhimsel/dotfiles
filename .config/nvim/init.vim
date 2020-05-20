@@ -26,6 +26,7 @@ Plug 'Yggdroot/indentLine'  " visual marker for indent level
 
 " Extending/improving the base interface {{{
 Plug 'git@github.com:zhimsel/vim-stay.git', { 'dir': '~/dev/vim-stay', 'frozen': 'true' }  " save and restore view when closing file buffers
+Plug 'glts/vim-textobj-comment'  " use comments as text objects
 Plug 'godlygeek/tabular'  " column-align text
 Plug 'iberianpig/tig-explorer.vim'  " use tig for many git operations (log, status, blame, etc)
 Plug 'jlanzarotta/bufexplorer'  " interactive buffer management
