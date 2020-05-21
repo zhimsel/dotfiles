@@ -185,19 +185,19 @@ v() { vim -c "setlocal buftype=nofile noswapfile ${1:+filetype=$1}" - }
 # }}}
 
 # dotfile management {{{
-alias nodot='unset GIT_DIR GIT_WORK_TREE'
-alias dot='export GIT_DIR=$HOME/.git_dotfiles GIT_WORK_TREE=$HOME'
-alias ldot='export GIT_DIR=$HOME/.git_dotfiles_local GIT_WORK_TREE=$HOME'
+alias nodot='unset  GIT_DIR                           GIT_WORK_TREE'
+alias   dot='export GIT_DIR=$HOME/.git_dotfiles       GIT_WORK_TREE=$HOME'
+alias  ldot='export GIT_DIR=$HOME/.git_dotfiles_local GIT_WORK_TREE=$HOME'
 
 dotu () { # {{{
-  nodot || return 1
-  vim -c 'PlugUpgrade | PlugUpdate'
-  zsh -ic "zinit update --all"  # run in new shell to pick up any plugin updates
-  dot && git subf
+  local targets="${@:-vim zsh sub}"
+  [[ $targets =~ "vim" ]] && (nodot && nvim -u "${XDG_CONFIG_HOME}/nvim/init.vim" -i NONE -c 'PlugUpgrade' -c 'PlugUpdate')
+  [[ $targets =~ "zsh" ]] && (nodot && zsh -ic "zinit update --all")
+  [[ $targets =~ "sub" ]] && (dot && echo "Updating submodules..." && git subf)
 } # }}}
 
-alias vimrc='pushd $HOME && dot && nvim .config/nvim/{init.vim,local/init.vim}'
-alias zshrc='pushd $HOME && dot && nvim .zsh{rc,env}*'
+alias vimrc='nvim -c "cd $HOME" -c Dot -c "edit ${XDG_CONFIG_HOME}/nvim/init.vim"'
+alias zshrc='nvim -c "cd $HOME" -c Dot -c "edit ${HOME}/.zshrc"'
 
 # }}}
 
