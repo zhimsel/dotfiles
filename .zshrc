@@ -111,6 +111,7 @@ setopt auto_pushd
 # Go up a directory with ctrl-e {{{
 cd-up-widget() {
   cd ..
+  vcs_info
   zle reset-prompt
 }
 zle -N cd-up-widget
