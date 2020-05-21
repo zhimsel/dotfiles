@@ -27,5 +27,11 @@ export MANWIDTH='999'
 export MANPAGER='nvim -c "Man!"'
 # }}}
 
+# Set XDG variables, if not already set {{{
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+# }}}
+
 # Add ~/bin [mostly] last to allow overriding any system-installed executables
 path=("$HOME/bin" $path)
