@@ -18,6 +18,7 @@ call plug#begin(stdpath('data') . '/vim-plug')
 Plug 'airblade/vim-gitgutter'  " git diff symbols in sign column
 Plug 'chrisbra/Colorizer'  " highlight color codes with their color
 Plug 'chriskempson/base16-vim'  " better themes
+Plug 'ntpeters/vim-better-whitespace'  " highlight unwanted whitespaces
 Plug 'vim-airline/vim-airline'  " better statusbar
 Plug 'vim-airline/vim-airline-themes'  " themese for Airline
 Plug 'Xuyuanp/nerdtree-git-plugin'  " show git status symbols in NERDTree
@@ -355,11 +356,6 @@ let g:deoplete#enable_at_startup = 1
 inoremap <expr> <C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
 imap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>\<Plug>DiscretionaryEnd" : "\<CR>\<Plug>DiscretionaryEnd")
-" highlight trailing whitespaces
-function! s:is_whitespace()
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~? '\s'
-endfunction
 " }}}
 
 " simpylFold settings {{{
@@ -535,15 +531,6 @@ inoremap """<CR>  """<CR>"""<Esc>O
 inoremap {}}<CR>   {<CR>}<Esc>O
 inoremap []]<CR>   [<CR>]<Esc>O
 inoremap ())<CR>   (<CR>)<Esc>O
-
-" Highlight trailing whitespace (while not typing at the end of a line)
-au ColorScheme * highlight ExtraWhitespace guibg=red
-function! ExtraWhitespaceMatch()
-  if &ft !~ '^git\|vim-plug'
-    match ExtraWhitespace /\s\+\%#\@<!$/
-  endif
-endfunction
-au CursorMoved,BufEnter,BufWinEnter,BufRead * call ExtraWhitespaceMatch()
 
 " }}}
 
