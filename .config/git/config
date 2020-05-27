@@ -13,7 +13,6 @@
   eol = lf
   autocrlf = input
   safecrlf = false
-  excludesfile = ~/.gitignore_global
   commentchar = "#"
   compression = 9
   pager = "less -F -R -X"

@@ -31,6 +31,10 @@ export MANPAGER='nvim -c "Man!"'
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+
+# manually override some program's paths to use XDG paths (that don't support them natively)
+export ASDF_CONFIG_FILE="${XDG_CONFIG_HOME}/asdf/config"
+export ASDF_DATA_DIR="${XDG_DATA_HOME}/asdf"
 # }}}
 
 # Add ~/bin [mostly] last to allow overriding any system-installed executables
