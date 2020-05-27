@@ -196,8 +196,7 @@ dotu () { # {{{
   [[ $targets =~ "sub" ]] && (dot && echo "Updating submodules..." && git subf)
 } # }}}
 
-alias vimrc='nvim -c "cd $HOME" -c Dot -c "edit ${XDG_CONFIG_HOME}/nvim/init.vim"'
-alias zshrc='nvim -c "cd $HOME" -c Dot -c "edit ${HOME}/.zshrc"'
+alias dote='nvim -c "cd $HOME" -c Dot -c GitFiles'
 
 # }}}
 
