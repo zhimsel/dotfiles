@@ -208,8 +208,12 @@ alias tigr='tig $(git rev-parse --abbrev-ref --symbolic-full-name @{u})'  # open
 alias wtl='git wtl'
 alias wtp='git wtp'
 
-wt () { # {{{
-  # Create git worktrees
+clone () { # Clone git repo and cd into it {{{
+  [[ -z "$1" ]] && exit 1
+  hub clone "$1" && cd "$(awk -F '/' '{print $NF}' <<< $1)"
+} # }}}
+
+wt () { # Create git worktrees {{{
   [[ -z "$1" ]] && return 1
   local branch="$1"
   local prefix="$(git rev-parse --show-prefix)"
@@ -226,8 +230,7 @@ wt () { # {{{
   cd "$wt_path/$prefix" || cd "$wt_path" || return $?
 } # }}}
 
-wtr () { # {{{
-  # Remove git worktrees
+wtr () { # Remove git worktrees {{{
   local wt_path="${1:-$(git rev-parse --show-toplevel)}"
   local wt_parent="$(realpath ${wt_path}/..)"
   [[ -z $1 ]] && { cd "$(git rev-parse --git-common-dir)/../$(git rev-parse --show-prefix)" \
