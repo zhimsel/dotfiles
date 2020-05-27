@@ -135,8 +135,8 @@ command WW SudoWrite
 command EE SudoEdit
 
 " Folding
-" Double-click left mouse to open/close folds
-nnoremap <2-LeftMouse> za
+" Middle-click mouse to open/close folds
+nmap <silent> <MiddleMouse> <LeftMouse>za
 " Make parent fold moves more intuitive
 nnoremap zK [z
 nnoremap zJ ]z
