@@ -28,10 +28,10 @@ Plug 'Yggdroot/indentLine'  " visual marker for indent level
 " Extending/improving the base interface {{{
 Plug 'git@github.com:zhimsel/vim-stay.git', { 'dir': '~/dev/vim-stay', 'frozen': 'true' }  " save and restore view when closing file buffers
 Plug 'glts/vim-textobj-comment'  " use comments as text objects
-Plug 'godlygeek/tabular'  " column-align text
 Plug 'iberianpig/tig-explorer.vim'  " use tig for many git operations (log, status, blame, etc)
 Plug 'jlanzarotta/bufexplorer'  " interactive buffer management
 Plug 'junegunn/fzf.vim'  " fuzzy-finding all sorts of things (files, buffers, lines, etc)
+Plug 'junegunn/vim-easy-align'  " easily align text into columns
 Plug 'kana/vim-textobj-fold'  " use folds as text objects
 Plug 'kassio/neoterm'  " open terminal easily
 Plug 'Lokaltog/vim-easymotion'  " improved motions with skipping objects
@@ -450,6 +450,12 @@ autocmd FileType gitrebase call <SID>setup_git_rebase_maps()
 " vim-textobj-ruby settings {{{
 let g:textobj_ruby_more_mappings=1
 " }}}
+
+" vim-easy-align settings {{{
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+" }}}
+
 " }}}
 
 " User interface settings {{{
