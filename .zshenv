@@ -27,6 +27,10 @@ export MANWIDTH='999'
 export MANPAGER='nvim -c "Man!"'
 # }}}
 
+# Set some AWS CLI settings {{{
+export AWS_PAGER="" # disable pager for output
+# }}}
+
 # Set XDG variables, if not already set {{{
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
