@@ -150,6 +150,9 @@ noremap ' "
 " List registers
 noremap '' :registers<cr>
 
+" Make using the system clipboard a bit easier
+nnoremap <leader>y :let @+=@"<CR>
+
 " Disable highlight when <Esc><Esc> is pressed
 nmap <silent> <Esc><Esc> :noh<cr>
 
