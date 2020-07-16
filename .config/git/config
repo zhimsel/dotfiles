@@ -30,6 +30,9 @@
   autosquash = true
   autostash = true
 
+[pull]
+  ff = only
+
 [push]
   default = upstream
 
