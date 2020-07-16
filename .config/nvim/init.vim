@@ -66,12 +66,11 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " word completion
 Plug 'elzr/vim-json'  " JSON syntax/etc
 Plug 'hashivim/vim-terraform'  " Terraform syntax/etc
 Plug 'hotwatermorning/auto-git-diff'  " show commit diff for interactive rebases
-Plug 'jtratner/vim-flavored-markdown'  " Github-flavored markdown (used for git commits, PRs, etc)
 Plug 'masukomi/vim-markdown-folding'  " Better folding for Markdown
 Plug 'pedrohdz/vim-yaml-folds'  " Better folding for YAML
 Plug 'tmhedberg/SimpylFold'  " Better folding for Python
 Plug 'tpope/vim-git'  " Syntax/etc for git files (commit messages, etc)
-Plug 'zhimsel/vim-markdown-preview', { 'for': ['markdown', 'ghmarkdown'], 'branch': 'default_browser_assumption' }  " Open a Github-flavored rendered preview of a Markdown file in the browser
+Plug 'zhimsel/vim-markdown-preview', { 'for': ['markdown'], 'branch': 'default_browser_assumption' }  " Open a Github-flavored rendered preview of a Markdown file in the browser
 " }}}
 
 " Dependencies {{{
@@ -569,7 +568,7 @@ au BufRead,BufNewFile *.tpl     setlocal ft=
 " }}}
 
 " Markdown {{{
-au FileType markdown,ghmarkdown setlocal textwidth=0 shiftwidth=4 spell
+au FileType markdown setlocal textwidth=0 shiftwidth=2 spell
 " }}}
 
 " Ruby {{{
@@ -581,7 +580,7 @@ au BufRead,BufNewFile *.pp                            setlocal filetype=ruby
 " Git {{{
 au BufRead,BufNewFile COMMIT_EDITMSG  normal ggjO
 au BufEnter           COMMIT_EDITMSG  call setpos('.', [0, 1, 1, 0])
-au BufRead,BufNewFile PULLREQ_EDITMSG setlocal ft=ghmarkdown cms=\%%s spell fdl=99
+au BufRead,BufNewFile PULLREQ_EDITMSG setlocal ft=markdown cms=\%%s spell fdl=99
 au BufRead,BufNewFile PULLREQ_EDITMSG nnoremap <leader>gp :call Vim_Markdown_Preview()<cr>
 au FileType           gitcommit       setlocal tw=72 cms=\%%s colorcolumn=+1,51 spell fdl=99
 " }}}
