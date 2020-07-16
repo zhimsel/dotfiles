@@ -568,7 +568,7 @@ au BufRead,BufNewFile *.tpl     setlocal ft=
 " }}}
 
 " Markdown {{{
-au FileType markdown setlocal textwidth=0 shiftwidth=2 spell
+au FileType markdown setlocal textwidth=0 shiftwidth=2 spell colorcolumn=80,100,120
 " }}}
 
 " Ruby {{{
