@@ -130,8 +130,8 @@ command! -nargs=1 Silent
 let g:mapleader = "\<space>"
 
 " :WW sudo saves the file with root permissions
-command WW SudoWrite
-command EE SudoEdit
+command! WW SudoWrite
+command! EE SudoEdit
 
 " Folding
 " Middle-click mouse to open/close folds
@@ -692,13 +692,13 @@ function! Dot()
   let $GIT_DIR = $HOME . "/.git_dotfiles"
   let $GIT_WORK_TREE = $HOME
 endfunction
-command Dot call Dot()
+command! Dot call Dot()
 
 function! Ldot()
   let $GIT_DIR = $HOME . "/.git_dotfiles_local"
   let $GIT_WORK_TREE = $HOME
 endfunction
-command Ldot call Ldot()
+command! Ldot call Ldot()
 
 function! VisualSelection(direction, extra_filter) range "{{{
     let l:saved_reg = @"
