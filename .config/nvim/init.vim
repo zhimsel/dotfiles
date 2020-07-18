@@ -191,14 +191,20 @@ vnoremap <silent> ] :<C-U>call cursor(line("'}")-1,col("'>"))<CR>`<1v``
 
 " UndoTree settings {{{
 nnoremap <leader>u :UndotreeShow<CR>:UndotreeFocus<CR>
-au FileType undotree nnoremap <buffer> <leader>u :UndotreeHide<CR>
+augroup undotree " {{{
+  autocmd!
+  autocmd FileType undotree nnoremap <buffer> <leader>u :UndotreeHide<CR>
+augroup END " }}}
 " }}}
 
 " NERDtree settings {{{
 " main maps
 nnoremap <Tab> :NERDTreeFocus<CR>
-au FileType nerdtree nnoremap <buffer> <Tab> :NERDTreeClose<CR>
 nnoremap <C-o> :NERDTreeFind<CR>
+augroup nerdtree " {{{
+  autocmd!
+  autocmd FileType nerdtree nnoremap <buffer> <Tab> :NERDTreeClose<CR>
+augroup END " }}}
 " internal maps
 let g:NERDTreeMapPreview='O'
 let g:NERDTreeMapOpenSplit='s'
@@ -314,7 +320,10 @@ omap <C-_> <Plug>(easymotion-tn)
 " }}}
 
 " neomake settings {{{
-autocmd! BufWritePost * Neomake
+augroup neomake " {{{
+  autocmd!
+  autocmd BufWritePost * Neomake
+augroup END " }}}
 
 let g:neomake_open_list = 0
 let g:neomake_verbose = 0
@@ -381,7 +390,10 @@ let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
-autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
+augroup fzf " {{{
+  autocmd!
+  autocmd FileType fzf tnoremap <buffer> <esc> <c-c>
+augroup END " }}}
 " }}}
 
 " vim-gist settings {{{
@@ -446,7 +458,10 @@ function! s:setup_git_rebase_maps() abort
   map <buffer> <leader>d :Drop<CR>
 
 endfunction
-autocmd FileType gitrebase call <SID>setup_git_rebase_maps()
+augroup git_rebase " {{{
+  autocmd!
+  autocmd FileType gitrebase call <SID>setup_git_rebase_maps()
+augroup END " }}}
 " }}}
 
 " vim-textobj-ruby settings {{{
@@ -544,66 +559,76 @@ inoremap ())<CR>   (<CR>)<Esc>O
 
 " Per-filetype settings {{{
 
-" Make {{{
-au FileType make setlocal noexpandtab
-" }}}
+augroup filetype_config " {{{
+  autocmd!
+  autocmd FileType dosini,cfg,conf setlocal commentstring#\ %s
+augroup END " }}}
 
-" vim {{{
-au FileType vim setlocal tw=0
-" }}}
+augroup filetype_git " {{{
+  autocmd!
+  autocmd FileType           gitcommit       setlocal textwidth=72 commentstring=\%%s colorcolumn=+1,51 spell foldlevel=99
 
-" config files {{{
-au FileType dosini,cfg,conf setlocal cms=#\ %s
-" }}}
+  " reset cursor to top of file
+  autocmd BufRead,BufNewFile COMMIT_EDITMSG  normal ggjO
+  autocmd BufEnter           COMMIT_EDITMSG  call setpos('.', [0, 1, 1, 0])
 
-" Shell {{{
-au FileType sh setlocal sw=2 tw=0 colorcolumn=80,100,120
-au FileType sh let g:sh_fold_enabled=7
-" }}}
+  " Use markdown for PR messages
+  autocmd BufRead,BufNewFile PULLREQ_EDITMSG setlocal filetype=markdown commentstring=\%%s spell foldlevel=99
+  autocmd BufRead,BufNewFile PULLREQ_EDITMSG nnoremap <leader>gp :call Vim_Markdown_Preview()<cr>
+augroup END " }}}
 
-" Terraform {{{
-au FileType           terraform setlocal tw=0 sw=2
-" Terraform templates
-au BufRead,BufNewFile *.tpl     setlocal ft=
-" }}}
+augroup filetype_json " {{{
+  autocmd!
+  autocmd FileType json setlocal foldlevel=99
+augroup END " }}}
 
-" Markdown {{{
-au FileType markdown setlocal textwidth=0 shiftwidth=2 spell colorcolumn=80,100,120
-" }}}
+augroup filetype_make " {{{
+  autocmd!
+  autocmd FileType make setlocal noexpandtab
+augroup END " }}}
 
-" Ruby {{{
-au BufRead,BufNewFile {Berksfile,Vagrantfile,Gemfile} setlocal filetype=ruby
-au BufRead,BufNewFile {.Brewfile,Brewfile}            setlocal filetype=ruby
-au BufRead,BufNewFile *.pp                            setlocal filetype=ruby
-" }}}
+augroup filetype_man " {{{
+  autocmd!
+  autocmd FileType man nnoremap <buffer><nowait> d <C-d>
+  autocmd FileType man nnoremap <buffer><nowait> u <C-u>
+augroup END " }}}
 
-" Git {{{
-au BufRead,BufNewFile COMMIT_EDITMSG  normal ggjO
-au BufEnter           COMMIT_EDITMSG  call setpos('.', [0, 1, 1, 0])
-au BufRead,BufNewFile PULLREQ_EDITMSG setlocal ft=markdown cms=\%%s spell fdl=99
-au BufRead,BufNewFile PULLREQ_EDITMSG nnoremap <leader>gp :call Vim_Markdown_Preview()<cr>
-au FileType           gitcommit       setlocal tw=72 cms=\%%s colorcolumn=+1,51 spell fdl=99
-" }}}
+augroup filetype_markdown " {{{
+  autocmd!
+  autocmd FileType markdown setlocal spell textwidth=0 shiftwidth=2 colorcolumn=80,100,120
+augroup END " }}}
 
-" Python {{{
-au FileType python setlocal sw=4 ts=4 tw=0 colorcolumn=80,100,120
-au FileType python imap <C-p> import pdb; pdb.set_trace()
-au FileType python imap <C-o> import IPython; IPython.embed()
-" }}}
+augroup filetype_python " {{{
+  autocmd!
+  autocmd FileType python setlocal shiftwidth=4 tabstop=4 textwidth=0 colorcolumn=80,100,120
+  autocmd FileType python imap <C-p> import pdb; pdb.set_trace()
+  autocmd FileType python imap <C-o> import IPython; IPython.embed()
+augroup END " }}}
 
-" YAML {{{
-au BufRead,BufNewFile {*.yml.tpl,*.yaml.tpl} setlocal filetype=yaml
-au FileType yaml setlocal fdl=99
-" }}}
+augroup filetype_ruby " {{{
+  autocmd!
+  autocmd BufRead,BufNewFile {Berksfile,Vagrantfile,Gemfile} setlocal filetype=ruby
+  autocmd BufRead,BufNewFile {.Brewfile,Brewfile}            setlocal filetype=ruby
+  autocmd BufRead,BufNewFile *.pp                            setlocal filetype=ruby
+augroup END " }}}
 
-" JSON {{{
-au FileType json setlocal fdl=99
-" }}}
+augroup filetype_shell " {{{
+  autocmd!
+  autocmd FileType sh setlocal shiftwidth=2 textwidth=0 colorcolumn=80,100,120
+  autocmd FileType sh let g:sh_fold_enabled=7
+augroup END " }}}
 
-" Man {{{
-au FileType man nnoremap <buffer><nowait> d <C-d>
-au FileType man nnoremap <buffer><nowait> u <C-u>
-" }}}
+augroup filetype_terraform " {{{
+  autocmd!
+  autocmd FileType           terraform setlocal textwidth=0 shiftwidth=2
+  autocmd BufRead,BufNewFile *.tpl     setlocal filetype=
+augroup END " }}}
+
+augroup filetype_yaml " {{{
+  autocmd!
+  autocmd BufRead,BufNewFile {*.yml.tpl,*.yaml.tpl} setlocal filetype=yaml
+  autocmd FileType           yaml                   setlocal foldlevel=99
+augroup END " }}}
 
 " }}}
 
