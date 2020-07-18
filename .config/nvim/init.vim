@@ -555,6 +555,12 @@ inoremap {}}<CR>   {<CR>}<Esc>O
 inoremap []]<CR>   [<CR>]<Esc>O
 inoremap ())<CR>   (<CR>)<Esc>O
 
+" Highlight yanked text (requires neovim 0.5+)
+augroup highlight_yank
+  autocmd!
+  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
+augroup END
+
 " }}}
 
 " Per-filetype settings {{{
