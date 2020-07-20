@@ -121,10 +121,10 @@ nnoremap <leader>ggr :TigGrepResume<CR>
 nnoremap <leader>gL  :TigOpenCurrentFile<CR>
 nnoremap <leader>gl  :TigOpenProjectRootDir<CR>
 nnoremap <leader>gs  :TigStatus<CR>
-nnoremap <leader>ha  <Plug>(GitGutterStageHunk)
-nnoremap <leader>hp  <Plug>(GitGutterPreviewHunk)
-nnoremap <leader>hr  <Plug>(GitGutterUndoHunk)
-vnoremap <leader>gg  y:TigGrep<Space><C-R>"<CR>
+    nmap <leader>ha  <Plug>(GitGutterStageHunk)
+    nmap <leader>hp  <Plug>(GitGutterPreviewHunk)
+    nmap <leader>hr  <Plug>(GitGutterUndoHunk)
+vnoremap <leader>gg  :TigGrep<Space><C-R>"<CR>
 
 " }}}
 
@@ -149,12 +149,11 @@ function! <SID>LocationNext() " {{{
   catch /^Vim\%((\a\+)\)\=:E776/
   endtry
 endfunction " }}}
+nmap <silent> <Plug>LocationPrevious :<C-u>exe 'call <SID>LocationPrevious()'<CR>
+nmap <silent> <Plug>LocationNext     :<C-u>exe 'call <SID>LocationNext()'<CR>
 
-nnoremap <silent> <Plug>LocationPrevious :<C-u>exe 'call <SID>LocationPrevious()'<CR>
-nnoremap <silent> <Plug>LocationNext     :<C-u>exe 'call <SID>LocationNext()'<CR>
-
-nnoremap <silent> <leader>[ <Plug>LocationPrevious
-nnoremap <silent> <leader>] <Plug>LocationNext
+    nmap <silent> <leader>[ <Plug>LocationPrevious
+    nmap <silent> <leader>] <Plug>LocationNext
 nnoremap <silent> <leader>\ :lopen<CR>
 
 " }}}
