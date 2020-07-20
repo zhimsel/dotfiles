@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+# Ask the user to confirm a question
+# Argument is the question to ask
+if read -q "?${1} [y/n] "; then
+  echo ""; return 0
+else
+  echo ""; return 1
+fi

@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+# Remove git worktrees
+# Given a worktree path, delete the worktree and any empty parent directories
+
+# First optional argument is the worktree path; default is current worktree
+local wt_path="${1:-$(git rev-parse --show-toplevel)}"
+local wt_parent="$(realpath ${wt_path}/..)"
+
+# Save our place if removing the current worktree
+[[ -z $1 ]] && { cd "$(git rev-parse --git-common-dir)/../$(git rev-parse --show-prefix)" \
+  || cd "$(git rev-parse --git-common-dir)/.." \
+  || return $? }
+
+# Remove it! (and prune)
+git worktree remove "$wt_path"
+git worktree prune
+
+# Remove empty parent dirs
+rmdir --ignore-fail-on-non-empty --parents "$wt_parent"

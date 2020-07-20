@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+# Update dotfiles plugins
+local targets="${@:-vim zsh sub}"
+
+[[ $targets =~ "vim" ]] \
+  && (nodot && nvim -u "${XDG_CONFIG_HOME}/nvim/init.vim" -i NONE -c 'PlugUpgrade' -c 'PlugUpdate')
+
+[[ $targets =~ "zsh" ]] \
+  && (nodot && zsh -ic "zinit update --all")
+
+[[ $targets =~ "sub" ]] \
+  && (dot && echo "Updating submodules..." && git subf)

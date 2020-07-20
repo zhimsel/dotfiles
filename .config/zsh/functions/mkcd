@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+# Make and open new directory
+mkdir -p "$1" && eval cd "\"\$$#\""

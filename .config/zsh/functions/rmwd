@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+# Delete current directory
+local current_dir
+current_dir=$(pwd)
+cd .. || exit 1
+confirm "Remove '$current_dir' and everything in it?" \
+  && rm -rf $current_dir \
+  || cd $current_dir

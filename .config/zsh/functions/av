@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+# Switch aws-vault profiles
+local profile output
+profile="$1"
+
+[[ -z $AWS_VAULT ]] || unset AWS_VAULT
+
+output="$(aws-vault exec "$profile" -- env)"
+if [[ $? -ne 0 ]]; then
+  echo "$output" >&2
+  return 1
+fi
+
+eval "$(echo "$output" | awk '/^AWS/ { print "export " $1 }')"

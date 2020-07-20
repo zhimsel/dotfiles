@@ -1,0 +1,35 @@
+#!/usr/bin/env zsh
+# Create git worktrees
+# Given a branch name create and/or cd into a worktree
+
+# Do nothing if no branch was provided
+[[ -z "$1" ]] && return 1
+
+# First argument is the branch name
+local branch="$1"
+
+# Save where we are in the work tree, so we can stay in that directory when we
+# switch work trees
+local prefix="$(git rev-parse --show-prefix)"
+
+# Create the worktree if it doesn't already exist
+local wt_path=$(git worktree list | awk -v branch="[$branch]" '$3==branch {print $1}')
+if [[ ! -d "$wt_path" ]]; then
+
+  # Move up to the repo root
+  cd "$(git rev-parse --git-common-dir)/.." || return $?
+
+  # Optional second argument is the path where the worktree should be created.
+  # Defaults to 'reponame.branchname'
+  local wt_path="${2:-$(git rev-parse --show-toplevel).$branch}"
+
+  # Create the worktree if it doesn't already exist (now that we know the path)
+  if [[ ! -d "$wt_path" ]]; then
+    git worktree prune
+    git branch "$branch" &>/dev/null && echo "Created branch $branch"
+    git worktree add "$wt_path" "$branch" || return $?
+  fi
+fi
+
+# Try to cd into the same dir we started in; otherwise, cd into the repo root
+cd "$wt_path/$prefix" || cd "$wt_path" || return $?

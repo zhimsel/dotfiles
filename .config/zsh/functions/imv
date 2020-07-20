@@ -1,0 +1,21 @@
+#!/usr/bin/env zsh
+# Interactively rename file(s)
+# Given a list of filenames, let the user edit the name on the commandline
+# and rename the file(s) accordingly
+
+local src dst
+for src; do
+
+  # Does the provided file exist?
+  [[ -e $src ]] || { print -u2 "$src does not exist"; continue }
+
+  # Edit the filename on the commandline, starting with the existing name
+  dst=$src
+  vared dst
+
+  # Rename the file
+  [[ $src != $dst ]] \
+    && mkdir -p $dst:h \
+    && mv -n $src $dst
+
+done

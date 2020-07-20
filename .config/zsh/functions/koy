@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+# Run a kubectl command and pipe output to vim
+# `k` is aliased to `kubectl`
+k -o yaml $@ | v yaml

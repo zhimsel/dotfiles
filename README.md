@@ -21,8 +21,8 @@ git checkout -t origin/master  # will report any conflict files; fix these and r
 git submodule update --init --recursive  # fetch submodules
 
 # install zsh plugins
-mkdir -p ~/.zinit
-git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
+mkdir -p "$HOME/.zsh/zinit"
+git clone https://github.com/zdharma/zinit.git "${XDG_DATA_HOME:-$HOME/.local/share}/zsh/zinit/bin"
 zsh -ic 'zinit update --all'
 
 # install vim plugins
