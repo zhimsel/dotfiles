@@ -4,8 +4,8 @@
 # Only set these if fzf is actually loaded
 if which __fzfcmd >/dev/null; then
 
-  # Use tmux panes {{{
-  export FZF_TMUX=1
+  # Use tmux panes, if not already explicitly disabled {{{
+  export FZF_TMUX="${FZF_TMUX:-1}"
   export FZF_TMUX_HEIGHT='60%'
   # }}}
 
