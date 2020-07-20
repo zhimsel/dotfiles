@@ -1,10 +1,11 @@
 " key maps
-nnoremap <Tab> :NERDTreeFocus<CR>
+" <C-i> is <Tab>
+nnoremap <C-i> :NERDTreeFocus<CR>
 nnoremap <C-o> :NERDTreeFind<CR>
 
 augroup nerdtree
   autocmd!
-  autocmd FileType nerdtree nnoremap <buffer> <Tab> :NERDTreeClose<CR>
+  autocmd FileType nerdtree nnoremap <buffer> <C-i> :NERDTreeClose<CR>
 augroup END
 
 " internal maps

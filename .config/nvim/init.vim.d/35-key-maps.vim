@@ -103,6 +103,14 @@ vnoremap <silent> ] :<C-U>call cursor(line("'}")-1,col("'>"))<CR>`<1v``
 
 " }}}
 
+" Jumping {{{
+
+" Remap Ctrl-i/o jump maps (Used for NERDtree)
+nnoremap <leader>j[ <C-o>
+nnoremap <leader>j] <C-i>
+
+" }}}
+
 " Git {{{
 
 nnoremap <leader>ga  :w<cr>:silent Git add -f %<cr>
