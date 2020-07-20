@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+# List and get AWS SSM parameter values
+
+case "$1" in
+
+  list)
+    aws ssm get-parameters-by-path --path / --recursive | jq -r '.Parameters[].Name'
+    ;;
+
+  get)
+    shift
+    aws ssm get-parameters --with-decryption --names $@ | jq -er '.Parameters[] | "\(.Name): \(.Value)"'
+    ;;
+
+  *)
+    echo "Usage: ssm <list|get parameter...>"
+    exit 1
+    ;;
+
+esac

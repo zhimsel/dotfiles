@@ -1,0 +1,30 @@
+#compdef ssm
+
+_ssm() {
+  local state
+
+  typeset -a commands
+  commands=(
+    list:'list available SSM params'
+    get:'get the value of SSM param(s)'
+    )
+
+  _arguments \
+    '1: :->command' \
+    '*: :->params' && ret=0
+
+  case $state in
+
+    command)
+      _describe -t commands "commands" commands && ret=0
+      ;;
+
+    params)
+      _arguments '*:params:($(ssm list))' && ret=0
+      ;;
+
+  esac
+
+}
+
+_ssm "$@"
