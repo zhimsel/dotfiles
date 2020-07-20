@@ -1,6 +1,6 @@
 # History {{{
 
-HISTFILE="${HISTFILE:-${ZSH_DATA_DIR}/history}"
+HISTFILE="${HISTFILE:-${ZSH_CACHE_DIR}/history}"
 HISTSIZE=50000
 SAVEHIST=50000
 
@@ -8,12 +8,6 @@ setopt extended_history
 setopt share_history
 setopt hist_expire_dups_first
 setopt hist_verify
-
-# }}}
-
-# Cache {{{
-
-ZSH_CACHE_DIR="${ZSH_DATA_DIR}/cache"
 
 # }}}
 
