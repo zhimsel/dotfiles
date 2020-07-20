@@ -1,0 +1,26 @@
+#compdef dotu
+
+_dotu() {
+  local state
+
+  typeset -a targets
+  targets=(
+    vim
+    zsh
+    sub:'git submodules'
+    )
+
+  _arguments \
+    '*: :->targets' && ret=0
+
+  case $state in
+
+    targets)
+      _describe -t targets "targets" targets && ret=0
+      ;;
+
+  esac
+
+}
+
+_dotu "$@"
