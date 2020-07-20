@@ -6,8 +6,12 @@ let g:mapleader = "\<space>"
 " Disable highlight when <Esc><Esc> is pressed
 nnoremap <silent> <Esc><Esc> :noh<cr>
 
-" redraw screen (for nvim window-resize bug)
+" Redraw screen (for nvim window-resize bug)
 nnoremap <leader>r :redraw!<cr>
+
+" Reload nvim config
+command! Reload source $MYVIMRC
+nnoremap <leader>R :Reload<cr>
 
 " }}}
 
