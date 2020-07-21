@@ -33,8 +33,6 @@ if which __fzfcmd >/dev/null; then
 
   # Set fzf-tab-completion options {{{
   zstyle ':completion:*' fzf-search-display true  # search display-strings by default
-  zstyle ':completion:*' show-completer true # show load status
-  zstyle ':completion:complete:*:options' sort false # disable sort when completing options of any command
   # }}}
 
 fi
