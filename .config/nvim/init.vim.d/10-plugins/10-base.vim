@@ -30,6 +30,7 @@ Plug 'michaeljsmith/vim-indent-object'  " use indent levels as text objects
 Plug 'preservim/nerdtree'  " file/directory explorer
 Plug 'rhysd/vim-textobj-ruby'  " use ruby blocks as text objects
 Plug 'tpope/vim-abolish'  " improved search/replace with case-specific behavior
+Plug 'tpope/vim-dispatch'  " asynchronous tasks
 Plug 'tpope/vim-fugitive'  " lots of git commands/shortcuts
 Plug 'tyru/open-browser-github.vim'  " open commits/files/etc in Github
 Plug 'wellle/targets.vim'  " additional text objects
