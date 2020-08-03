@@ -77,6 +77,9 @@ noremap '' :registers<cr>
 " Send most-recently-yanked register to system clipboard
 nnoremap <leader>y :let @+=@"<CR>
 
+" Toggle 'paste'
+nnoremap <silent> <leader>p :set paste!<CR>
+
 " }}}
 
 " Manipulating text {{{
