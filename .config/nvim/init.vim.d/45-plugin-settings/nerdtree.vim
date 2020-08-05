@@ -17,6 +17,7 @@ let g:NERDTreeMapPreviewVSplit='V'
 
 " options
 let g:NERDTreeHighlightCursorline = 1
+let g:NERDTreeHijackNetrw=1
 let g:NERDTreeMinimalMenu = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeMouseMode = 1
