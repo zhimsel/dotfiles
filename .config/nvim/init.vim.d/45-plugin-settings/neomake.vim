@@ -1,7 +1,4 @@
-augroup neomake
-  autocmd!
-  autocmd BufWritePost * Neomake
-augroup END
+call neomake#configure#automake('rw')
 
 let g:neomake_open_list = 0
 let g:neomake_verbose = 0
