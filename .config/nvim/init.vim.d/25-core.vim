@@ -62,6 +62,7 @@ set nolist
 set textwidth=0
 set whichwrap+=<,>,h,l " Wrap lines on movement for 'h/l' keys
 set wrap
+set nojoinspaces
 " }}}
 
 " Completion {{{
