@@ -36,6 +36,9 @@
   autosquash = true
   autostash = true
 
+[rerere]
+	enabled = true
+
 [pull]
   ff = only
 
