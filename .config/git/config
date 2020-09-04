@@ -71,6 +71,7 @@
   a   = add
   ap  = add --patch
   br  = branch
+  rs  = reset --hard
   rb  = rebase
   rbi = rebase --interactive
   st  = stash
@@ -84,9 +85,9 @@
   dm = "!git diff $(git merge-base master HEAD) master" # what's changed in master since we branched?
 
   # staging/resetting
-  unstage = reset HEAD --
-  whoops  = reset --soft HEAD~1  # undo last commit, leaving changes staged
-  back    = reset --hard HEAD~1  # undo last commit, dropping changes
+  unstage  = reset HEAD --
+  uncommit = reset --soft HEAD~1  # undo last commit, staging its changes
+  back     = reset --hard HEAD~1  # drop last commit entirely
 
   # submodules
   subinit = submodule update --init --recursive
