@@ -81,8 +81,9 @@
   wt  = worktree
 
   # branch diffs
-  db = "!git diff $(git merge-base master HEAD) HEAD" # what's changed in our branch?
+  db = "!git diff $(git merge-base master HEAD) HEAD" # what's changed in our branch since we branched?
   dm = "!git diff $(git merge-base master HEAD) master" # what's changed in master since we branched?
+  dr = "!git diff $(git rev-parse --abbrev-ref --symbolic-full-name ${lbr}@{u})" # compare with upstream
 
   # staging/resetting
   unstage  = reset HEAD --
