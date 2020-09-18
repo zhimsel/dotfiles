@@ -69,10 +69,7 @@ nnoremap zJ ]z
 " Registers {{{
 
 " Use ' as " (which is duplicated in ` anyway)
-noremap ' "
-
-" List registers
-noremap '' :registers<cr>
+map ' "
 
 " Send most-recently-yanked register to system clipboard
 nnoremap <leader>y :let @+=@"<CR>

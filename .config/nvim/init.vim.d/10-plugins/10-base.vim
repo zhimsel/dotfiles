@@ -21,6 +21,7 @@ Plug 'iberianpig/tig-explorer.vim'  " use tig for many git operations (log, stat
 Plug 'jlanzarotta/bufexplorer'  " interactive buffer management
 Plug 'junegunn/fzf.vim'  " fuzzy-finding all sorts of things (files, buffers, lines, etc)
 Plug 'junegunn/vim-easy-align'  " easily align text into columns
+Plug 'junegunn/vim-peekaboo'  " preview registers before using them
 Plug 'kana/vim-textobj-fold'  " use folds as text objects
 Plug 'kassio/neoterm'  " open terminal easily
 Plug 'Lokaltog/vim-easymotion'  " improved motions with skipping objects
