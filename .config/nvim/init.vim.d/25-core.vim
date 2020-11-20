@@ -7,6 +7,7 @@ set guicursor= " disable changing cursor shape
 set hidden " A buffer becomes hidden when it is abandoned
 set history=1000 " Store a longer command history
 set lazyredraw " Don't redraw while executing macros (good performance config)
+set redrawtime=10000 " Longer for large files' syntax highlighting
 set mouse=a " Enable mouse interaction
 set timeoutlen=500 " Set timeout for completing keymaps
 set undofile " Save per-file undo history between sessions
