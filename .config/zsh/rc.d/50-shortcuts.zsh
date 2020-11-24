@@ -72,6 +72,7 @@ alias jc='s journalctl'
 
 alias tf='terraform'
 alias tfp='tf plan -out .tfplan'
+alias tfpnr='tfp -refresh=false'
 alias tfa='tf apply .tfplan && rm -v .tfplan'
 
 # }}}
