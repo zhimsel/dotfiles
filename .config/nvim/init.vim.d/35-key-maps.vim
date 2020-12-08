@@ -73,6 +73,7 @@ map ' "
 
 " Send most-recently-yanked register to system clipboard
 nnoremap <leader>y :let @+=@"<CR>
+nnoremap <leader>Y :%y+<CR>
 
 " Toggle 'paste'
 nnoremap <silent> <leader>p :set paste!<CR>
