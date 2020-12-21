@@ -1,6 +1,9 @@
 #!/usr/bin/env zsh
 # Update dotfiles plugins
-local targets="${@:-vim zsh sub}"
+local targets="${@:-dot vim zsh sub}"
+
+[[ $targets =~ "dot" ]] \
+  && (dot && git fetch && git merge)
 
 [[ $targets =~ "vim" ]] \
   && (nodot && nvim -u "${XDG_CONFIG_HOME}/nvim/init.vim" -i NONE -c 'PlugUpgrade' -c 'PlugUpdate')
