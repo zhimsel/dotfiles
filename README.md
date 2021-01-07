@@ -4,7 +4,7 @@ These are my config files. I use them live, in 'production'. You're welcome to u
 
 If you think you have an improvement, feel free to submit an issue or pull request.
 
-### Install
+## Install
 
 This repo is intended to be based directly in your home directory, with a `.git` dir named as something else (as to not cause all subdirectories to think they're a git repo).
 To do an initial clone of this repo, follow the steps below:
@@ -54,6 +54,18 @@ Install your choice of AUR-helper (I recommend [`yay`](https://aur.archlinux.org
 yay -Syu --needed - < .arch-packages.list
 ```
 
-### License
+## Keyboard configuration
+
+### ZSA Moonlander
+
+I primarily use a ergonomic split keyboard from ZSA called the Moonlander.
+My current configuration and key maps can be found
+[here](https://configure.ergodox-ez.com/moonlander/layouts/XE4RP/latest/0).
+
+I don't currently care to commit the config source here since my layout
+changes frequently and I'm not currently making any modifications to the
+firmware that Oryx can't do. Maybe I'll change that in the future.
+
+## License
 
 These files are licensed under the [MIT license](/LICENSE) and are freely available for any use.
