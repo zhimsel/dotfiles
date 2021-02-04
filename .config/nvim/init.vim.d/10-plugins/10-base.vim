@@ -35,6 +35,7 @@ Plug 'tpope/vim-abolish'  " improved search/replace with case-specific behavior
 Plug 'tpope/vim-dispatch'  " asynchronous tasks
 Plug 'tpope/vim-fugitive'  " lots of git commands/shortcuts
 Plug 'tyru/open-browser-github.vim'  " open commits/files/etc in Github
+Plug 'unblevable/quick-scope'  " highlight t/T/f/F targets
 Plug 'wellle/targets.vim'  " additional text objects
 Plug 'wesQ3/vim-windowswap'  " swap two panes easily
 " }}}
