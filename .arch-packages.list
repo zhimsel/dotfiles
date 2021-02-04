@@ -8,6 +8,7 @@ neovim
 powerline-fonts-git
 python-grip
 python-pip
+ripgrep
 shellcheck
 tig
 tmux

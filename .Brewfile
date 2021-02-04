@@ -43,6 +43,7 @@ cask "iterm2"
 brew "neovim"
 brew "pinentry-mac"
 brew "shellcheck"
+brew "ripgrep"
 brew "tig"
 brew "tmux"
 
