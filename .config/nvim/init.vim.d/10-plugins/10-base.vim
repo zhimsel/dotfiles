@@ -28,6 +28,7 @@ Plug 'Lokaltog/vim-easymotion'  " improved motions with skipping objects
 Plug 'mattn/gist-vim'  " save current buffer/selection as a Github gist
 Plug 'mbbill/undotree'  " visual selection of entire undo tree for a file
 Plug 'michaeljsmith/vim-indent-object'  " use indent levels as text objects
+Plug 'pianohacker/vim-textobj-indented-paragraph'  " use paragraph-at-indent as textobjects
 Plug 'preservim/nerdtree'  " file/directory explorer
 Plug 'rhysd/vim-textobj-ruby'  " use ruby blocks as text objects
 Plug 'tpope/vim-abolish'  " improved search/replace with case-specific behavior
