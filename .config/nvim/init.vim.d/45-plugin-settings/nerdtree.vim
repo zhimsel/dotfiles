@@ -6,6 +6,7 @@ nnoremap <C-o> :NERDTreeFind<CR>
 augroup nerdtree
   autocmd!
   autocmd FileType nerdtree nnoremap <buffer> <C-i> :NERDTreeClose<CR>
+  autocmd BufWinEnter * silent NERDTreeMirror
 augroup END
 
 " internal maps
@@ -24,3 +25,6 @@ let g:NERDTreeMouseMode = 1
 let g:NERDTreeQuitOnOpen = 3
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeWinSize = 41
+
+" Always open files in current window; don't switch to it if it's already open
+let g:NERDTreeCustomOpenArgs = {'file': {'where': 'p', 'reuse': ''}, 'dir': {}}
