@@ -16,20 +16,16 @@ Plug 'Yggdroot/indentLine'  " visual marker for indent level
 
 " Extending/improving the base interface {{{
 Plug 'git@github.com:zhimsel/vim-stay.git', { 'dir': '~/dev/vim-stay', 'frozen': 'true' }  " save and restore view when closing file buffers
-Plug 'glts/vim-textobj-comment'  " use comments as text objects
 Plug 'jlanzarotta/bufexplorer'  " interactive buffer management
 Plug 'junegunn/fzf.vim'  " fuzzy-finding all sorts of things (files, buffers, lines, etc)
 Plug 'junegunn/vim-easy-align'  " easily align text into columns
 Plug 'junegunn/vim-peekaboo'  " preview registers before using them
-Plug 'kana/vim-textobj-fold'  " use folds as text objects
 Plug 'kassio/neoterm'  " open terminal easily
 Plug 'Lokaltog/vim-easymotion'  " improved motions with skipping objects
 Plug 'mattn/gist-vim'  " save current buffer/selection as a Github gist
 Plug 'mbbill/undotree'  " visual selection of entire undo tree for a file
 Plug 'michaeljsmith/vim-indent-object'  " use indent levels as text objects
-Plug 'pianohacker/vim-textobj-indented-paragraph'  " use paragraph-at-indent as textobjects
 Plug 'preservim/nerdtree'  " file/directory explorer
-Plug 'rhysd/vim-textobj-ruby'  " use ruby blocks as text objects
 Plug 'tpope/vim-abolish'  " improved search/replace with case-specific behavior
 Plug 'tpope/vim-dispatch'  " asynchronous tasks
 Plug 'tpope/vim-fugitive'  " lots of git commands/shortcuts
@@ -37,6 +33,15 @@ Plug 'tpope/vim-rhubarb'  " interface for Github
 Plug 'unblevable/quick-scope'  " highlight t/T/f/F targets
 Plug 'wellle/targets.vim'  " additional text objects
 Plug 'wesQ3/vim-windowswap'  " swap two panes easily
+" }}}
+
+" Custom text objects {{{
+Plug 'kana/vim-textobj-user'  " required by any vim-textobj-* plugins
+
+Plug 'glts/vim-textobj-comment'  " use comments as text objects
+Plug 'kana/vim-textobj-fold'  " use folds as text objects
+Plug 'pianohacker/vim-textobj-indented-paragraph'  " use paragraph-at-indent as textobjects
+Plug 'rhysd/vim-textobj-ruby'  " use ruby blocks as text objects
 " }}}
 
 " Automating repetitive tasks  {{{
@@ -47,6 +52,7 @@ Plug 'tpope/vim-endwise'  " automatic if/for/etc block closing
 Plug 'tpope/vim-eunuch'  " useful shell commands
 Plug 'tpope/vim-repeat'  " improved repeats
 Plug 'tpope/vim-surround'  " add/remove/modify surrounding brackets/quotes/etc
+Plug 'tyru/open-browser.vim'  " open URLs in browser
 " }}}
 
 " Autocompletion/linting {{{
@@ -67,8 +73,5 @@ Plug 'zhimsel/vim-markdown-preview', { 'for': ['markdown'], 'branch': 'default_b
 
 " Dependencies {{{
 Plug 'junegunn/fzf'  " required by: junegunn/fzf.vim
-Plug 'kana/vim-textobj-user'  " required by any vim-textobj-* plugins
 Plug 'mattn/webapi-vim'  " required by: mattn/gist-vim
-Plug 'rbgrouleff/bclose.vim'  " required by: iberianpig/tig-explorer.vim
-Plug 'tyru/open-browser.vim'  " open URLs in browser; required by: tyru/open-browser-github.vim
 " }}}
