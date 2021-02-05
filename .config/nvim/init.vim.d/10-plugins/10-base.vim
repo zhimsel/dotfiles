@@ -17,7 +17,6 @@ Plug 'Yggdroot/indentLine'  " visual marker for indent level
 " Extending/improving the base interface {{{
 Plug 'git@github.com:zhimsel/vim-stay.git', { 'dir': '~/dev/vim-stay', 'frozen': 'true' }  " save and restore view when closing file buffers
 Plug 'glts/vim-textobj-comment'  " use comments as text objects
-Plug 'iberianpig/tig-explorer.vim'  " use tig for many git operations (log, status, blame, etc)
 Plug 'jlanzarotta/bufexplorer'  " interactive buffer management
 Plug 'junegunn/fzf.vim'  " fuzzy-finding all sorts of things (files, buffers, lines, etc)
 Plug 'junegunn/vim-easy-align'  " easily align text into columns
@@ -34,7 +33,7 @@ Plug 'rhysd/vim-textobj-ruby'  " use ruby blocks as text objects
 Plug 'tpope/vim-abolish'  " improved search/replace with case-specific behavior
 Plug 'tpope/vim-dispatch'  " asynchronous tasks
 Plug 'tpope/vim-fugitive'  " lots of git commands/shortcuts
-Plug 'tyru/open-browser-github.vim'  " open commits/files/etc in Github
+Plug 'tpope/vim-rhubarb'  " interface for Github
 Plug 'unblevable/quick-scope'  " highlight t/T/f/F targets
 Plug 'wellle/targets.vim'  " additional text objects
 Plug 'wesQ3/vim-windowswap'  " swap two panes easily

@@ -114,18 +114,13 @@ nnoremap <leader>j] <C-i>
 
 " Git {{{
 
-nnoremap <leader>ga  :w<cr>:silent Git add -f %<cr>
-nnoremap <leader>gb  :TigBlame<CR>
-nnoremap <leader>gc  :Git commit<cr>
-nnoremap <leader>gg  :TigGrep<CR>
-nnoremap <leader>ggr :TigGrepResume<CR>
-nnoremap <leader>gL  :TigOpenCurrentFile<CR>
-nnoremap <leader>gl  :TigOpenProjectRootDir<CR>
-nnoremap <leader>gs  :TigStatus<CR>
+nnoremap <leader>ga  :Gwrite!<CR>
+nnoremap <leader>gg  :Rg<Space>
+vnoremap <leader>gg  :Rg<Space><C-R>"<CR>
+nnoremap <leader>gl  :Git log %<CR>
     nmap <leader>ha  <Plug>(GitGutterStageHunk)
     nmap <leader>hp  <Plug>(GitGutterPreviewHunk)
     nmap <leader>hr  <Plug>(GitGutterUndoHunk)
-vnoremap <leader>gg  :TigGrep<Space><C-R>"<CR>
 
 " }}}
 
