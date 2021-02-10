@@ -74,6 +74,7 @@
   br  = branch
   rs  = reset --hard
   rb  = rebase
+  rbc = rebase --continue
   rbi = rebase --interactive
   st  = stash
   d   = diff
