@@ -1,0 +1,31 @@
+#!/usr/bin/env zsh
+usage_and_exit () {
+cat <<EOF
+git g <grep_pattern> [command]
+
+Run a given command ([command]) against any git files that match a
+git-grep pattern (<grep_pattern>).
+
+The first argument (separated by whitespace, so use single quotes!) will be
+used as the pattern for git-grep.
+
+Any remaining arguments (if present) are passed directly to 'xargs -0',
+iterating over any files that match the git-grep.
+
+If no [command] is given, a simple git-grep will be run. This is useful for
+testing your grep pattern
+EOF
+exit 1
+}
+
+[[ $1 == "-h" || -z $1 ]] && usage_and_exit
+
+grep_pattern=$1
+shift
+
+if [[ -z $1 ]]; then
+  git grep $grep_pattern
+else
+  git grep -z --no-color --name-only $grep_pattern |
+    xargs -0 $*
+fi
