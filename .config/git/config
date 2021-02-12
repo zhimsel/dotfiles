@@ -7,7 +7,7 @@
   user = zhimsel
 
 [hub]
-	protocol = ssh
+  protocol = ssh
 
 [core]
   eol = lf
@@ -26,11 +26,11 @@
   conflictstyle = diff3
 
 [mergetool]
-	keepBackup = false
+  keepBackup = false
   prompt = true
 
 [mergetool "vimdiff"]
-	cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 
 [rebase]
   stat = true
@@ -38,7 +38,7 @@
   autostash = true
 
 [rerere]
-	enabled = true
+  enabled = true
 
 [pull]
   ff = only
