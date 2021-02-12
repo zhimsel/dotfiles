@@ -8,13 +8,18 @@
 # First argument is the branch name
 local branch="$1"
 
+# Start with a clean understanding of the current worktrees
+git worktree prune
+
 # Save where we are in the work tree, so we can stay in that directory when we
 # switch work trees
 local prefix="$(git rev-parse --show-prefix)"
 
-# Create the worktree if it doesn't already exist
+# Grab the path of the target branch's worktree
 local wt_path=$(git worktree list | awk -v branch="[$branch]" '$3==branch {print $1}')
-if [[ ! -d "$wt_path" ]]; then
+
+# Create the worktree if it doesn't already exist
+if [[ -z "$wt_path" ]]; then
 
   # Move up to the repo root
   cd "$(git rev-parse --git-common-dir)/.." || return $?
@@ -23,12 +28,11 @@ if [[ ! -d "$wt_path" ]]; then
   # Defaults to 'reponame.branchname'
   local wt_path="${2:-$(git rev-parse --show-toplevel).$branch}"
 
-  # Create the worktree if it doesn't already exist (now that we know the path)
-  if [[ ! -d "$wt_path" ]]; then
-    git worktree prune
-    git branch "$branch" &>/dev/null && echo "Created branch $branch"
-    git worktree add "$wt_path" "$branch" || return $?
+  # If the target branch doesn't exist, create it
+  if [[ -z "$(git branch --list '$branch')" ]]; then
+    confirm "Branch '$branch' doesn't exist. Create it?" && branch="-b$branch"
   fi
+  git worktree add "$wt_path" "$branch" || return $?
 fi
 
 # Try to cd into the same dir we started in; otherwise, cd into the repo root
