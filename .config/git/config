@@ -69,6 +69,7 @@
   c   = commit
   ca  = commit --amend
   co  = checkout
+  cl  = clean -fdx
   a   = add
   ap  = add --patch
   br  = branch
