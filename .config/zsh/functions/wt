@@ -29,7 +29,7 @@ if [[ -z "$wt_path" ]]; then
   local wt_path="${2:-$(git rev-parse --show-toplevel).$branch}"
 
   # If the target branch doesn't exist, create it
-  if [[ -z "$(git branch --list '$branch')" ]]; then
+  if [[ -z "$(git branch --list $branch)" ]]; then
     confirm "Branch '$branch' doesn't exist. Create it?" && branch="-b$branch"
   fi
   git worktree add "$wt_path" "$branch" || return $?
