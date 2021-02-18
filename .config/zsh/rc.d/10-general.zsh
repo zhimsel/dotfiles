@@ -15,6 +15,7 @@ setopt hist_verify
 
 setopt auto_cd
 setopt auto_pushd
+setopt pushdsilent
 setopt extended_glob
 setopt list_packed
 setopt path_dirs
