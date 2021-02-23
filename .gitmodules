@@ -1,6 +1,3 @@
-[submodule "base16-iterm2"]
-	path = .base16/iterm2
-	url = https://github.com/martinlindhe/base16-iterm2.git
-[submodule "base16-konsole"]
-	path = .base16/konsole
-	url = https://github.com/cskeeters/base16-konsole.git
+[submodule "base16-alacritty"]
+	path = .base16/alacritty
+	url = git@github.com:aaron-williamson/base16-alacritty.git

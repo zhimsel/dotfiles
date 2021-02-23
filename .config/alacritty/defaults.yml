@@ -1,0 +1,53 @@
+# Settings for all machines.
+# The "load on startup" config, 'alacritty.yml', is created for each machine
+# that imports this config, then sets its own local settings, overriding
+# anything here.
+
+import:
+  - ~/.base16/alacritty/colors/base16-solarflare-256.yml
+
+scrolling:
+  history: 100000
+  multiplier: 1
+
+font:
+  normal:
+    family: Roboto Mono for Powerline
+    style: Regular
+  bold:
+    sytle: Bold
+  italic:
+    style: Italic
+  bold_italic:
+    style: Bold Italic
+  size: 10.0
+
+draw_bold_text_with_bright_colors: true
+
+mouse:
+  hide_when_typing: true
+  url:
+    modifiers: Control|Shift
+
+key_bindings:
+
+  # For MacOS:
+  # Map "Command-*" to "Alt-*"
+  - { chars: "\x1b0", key: Key0, mods: Command }
+  - { chars: "\x1b1", key: Key1, mods: Command }
+  - { chars: "\x1b2", key: Key2, mods: Command }
+  - { chars: "\x1b3", key: Key3, mods: Command }
+  - { chars: "\x1b4", key: Key4, mods: Command }
+  - { chars: "\x1b5", key: Key5, mods: Command }
+  - { chars: "\x1b6", key: Key6, mods: Command }
+  - { chars: "\x1b7", key: Key7, mods: Command }
+  - { chars: "\x1b8", key: Key8, mods: Command }
+  - { chars: "\x1b9", key: Key9, mods: Command }
+  - { chars: "\x1bc", key: C,    mods: Command }
+  - { chars: "\x1bd", key: D,    mods: Command }
+  - { chars: "\x1be", key: E,    mods: Command }
+  - { chars: "\x1bg", key: G,    mods: Command }
+  - { chars: "\x1bh", key: H,    mods: Command }
+  - { chars: "\x1bj", key: J,    mods: Command }
+  - { chars: "\x1bk", key: K,    mods: Command }
+  - { chars: "\x1bl", key: L,    mods: Command }

@@ -1,5 +1,0 @@
-#!/usr/bin/env zsh
-# Load up nvim in "edit anywhere" mode
-# Intended to be called from a keyboard shortcut in a terminal profile that launches this script directly.
-# Your $PATH should be set up correctly for non-interactive zsh sessions or you may run into issues.
-nvim "/tmp/vim-anywhere_$(date -Iseconds).txt"
