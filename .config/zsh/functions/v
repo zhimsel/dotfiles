@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
 # Pipe output to a disposable vim buffer
 # Optional argument is the filetype
-vim -c "setlocal buftype=nofile noswapfile ${1:+filetype=$1}" -
+[[ -t 0 ]] || local stdin="-"
+vim -c "setlocal buftype=nowrite noswapfile ${1:+filetype=$1}" $stdin
