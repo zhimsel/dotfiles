@@ -114,7 +114,8 @@ nnoremap ]j <C-i>
 
 " Git {{{
 
-nnoremap <leader>ga  :Gwrite!<CR>
+nnoremap <leader>ga  :G add %<CR>
+nnoremap <leader>gc  :G commit<CR>
 nnoremap <leader>gg  :Rg<Space>
 vnoremap <leader>gg  :Rg<Space><C-R>"<CR>
 nnoremap <leader>gl  :Git log %<CR>
