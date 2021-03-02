@@ -66,9 +66,13 @@
   # abbreviations
   s   = status
   f   = fetch
+  p   = push
+  pf  = push --force
+  m   = merge
   c   = commit
-  ca  = commit --amend
-  caa = commit --all --amend
+  ca  = commit --all
+  cm  = commit --amend
+  cma = commit --amend --all
   co  = checkout
   cl  = clean -fdx
   a   = add
