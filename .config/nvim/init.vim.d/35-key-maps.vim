@@ -18,10 +18,10 @@ nnoremap <leader>R :Reload<cr>
 " Buffers, windows, and tabs {{{
 
 " Switch windows more easily
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nnoremap <silent> <M-h> :TmuxNavigateLeft<CR>
+nnoremap <silent> <M-j> :TmuxNavigateDown<CR>
+nnoremap <silent> <M-k> :TmuxNavigateUp<CR>
+nnoremap <silent> <M-l> :TmuxNavigateRight<CR>
 
 " Open new windows
 nnoremap <C-w>- :sp<cr>

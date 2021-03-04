@@ -15,6 +15,7 @@ Plug 'Yggdroot/indentLine'  " visual marker for indent level
 " }}}
 
 " Extending/improving the base interface {{{
+Plug 'christoomey/vim-tmux-navigator'  " switch between tmux/vim panes seamlessly
 Plug 'git@github.com:zhimsel/vim-stay.git', { 'dir': '~/dev/vim-stay', 'frozen': 'true' }  " save and restore view when closing file buffers
 Plug 'jlanzarotta/bufexplorer'  " interactive buffer management
 Plug 'junegunn/fzf.vim'  " fuzzy-finding all sorts of things (files, buffers, lines, etc)
