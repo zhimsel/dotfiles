@@ -33,6 +33,7 @@ Plug 'tpope/vim-fugitive'  " lots of git commands/shortcuts
 Plug 'tpope/vim-rhubarb'  " interface for Github
 Plug 'unblevable/quick-scope'  " highlight t/T/f/F targets
 Plug 'wellle/targets.vim'  " additional text objects
+Plug 'yaronkh/vim-winmanip'  " move windows around more easily
 Plug 'wesQ3/vim-windowswap'  " swap two panes easily
 " }}}
 
