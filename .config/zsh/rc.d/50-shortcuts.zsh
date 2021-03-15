@@ -97,7 +97,6 @@ alias dc='s docker-compose'
 
 # Kubernetes {{{
 
-alias k='kubectl ${=KUBE_CONTEXT:+--context ${KUBE_CONTEXT}} ${=KUBE_NAMESPACE:+-n ${KUBE_NAMESPACE}}'
 alias kg='k config use-context' # "kube global"
 kc() {
   [[ -n "$1" ]] && export KUBE_CONTEXT="$1" || unset KUBE_CONTEXT
@@ -105,4 +104,6 @@ kc() {
 }
 kn() { [[ -n "$1" ]] && export KUBE_NAMESPACE="$1" || unset KUBE_NAMESPACE }
 
+alias k='kubectl ${=KUBE_CONTEXT:+--context ${KUBE_CONTEXT}} ${=KUBE_NAMESPACE:+-n ${KUBE_NAMESPACE}}'
+alias helm='helm ${=KUBE_CONTEXT:+--kube-context ${KUBE_CONTEXT}} ${=KUBE_NAMESPACE:+-n ${KUBE_NAMESPACE}}'
 # }}}
