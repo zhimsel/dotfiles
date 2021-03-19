@@ -70,6 +70,7 @@ Plug 'masukomi/vim-markdown-folding'  " Better folding for Markdown
 Plug 'pedrohdz/vim-yaml-folds'  " Better folding for YAML
 Plug 'tmhedberg/SimpylFold'  " Better folding for Python
 Plug 'tpope/vim-git'  " Syntax/etc for git files (commit messages, etc)
+Plug 'tpope/vim-markdown'  " Syntax/etc for Markdown files (until neovim is updated)
 Plug 'zhimsel/vim-markdown-preview', { 'for': ['markdown'], 'branch': 'default_browser_assumption' }  " Open a Github-flavored rendered preview of a Markdown file in the browser
 " }}}
 
