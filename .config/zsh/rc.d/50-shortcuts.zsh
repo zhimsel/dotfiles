@@ -107,3 +107,8 @@ kn() { [[ -n "$1" ]] && export KUBE_NAMESPACE="$1" || unset KUBE_NAMESPACE }
 alias k='kubectl ${=KUBE_CONTEXT:+--context ${KUBE_CONTEXT}} ${=KUBE_NAMESPACE:+-n ${KUBE_NAMESPACE}}'
 alias helm='helm ${=KUBE_CONTEXT:+--kube-context ${KUBE_CONTEXT}} ${=KUBE_NAMESPACE:+-n ${KUBE_NAMESPACE}}'
 # }}}
+
+# MacOS {{{
+alias dns-clear-cache='dscacheutil -q dns'
+alias dns-list-resolvers='scutil --dns'
+# }}}
