@@ -4,3 +4,5 @@ augroup filetype_markdown autocmd!
         \ spell
 
 augroup END
+
+let g:markdown_syntax_conceal = 0
