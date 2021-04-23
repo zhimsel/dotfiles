@@ -45,8 +45,14 @@ bind stage <C-j> :/^@@
 bind diff <C-k> :?^@@
 bind stage <C-k> :?^@@
 
-# Stage view
+# Stage/status view
 bind stage C !git commit
+bind stage CM !git commit --amend
+bind status CM !git commit --amend
+bind stage p ?git push
+bind status p ?git push
+bind stage P ?git push --force
+bind status P ?git push --force
 
 # Copy useful things to clipboard
 bind generic S view-stage
