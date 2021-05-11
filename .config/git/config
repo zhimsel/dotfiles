@@ -73,6 +73,7 @@
   cm  = commit --amend
   cma = commit --amend --all
   co  = checkout
+  cp  = cherry-pick
   d   = diff
   dc  = diff --cached
   f   = fetch
