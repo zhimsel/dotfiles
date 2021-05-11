@@ -64,27 +64,27 @@
   which = "!f(){ git config --get alias.$1; }; f" # show specific alias
 
   # abbreviations
-  s   = status
-  f   = fetch
-  p   = push
-  pf  = push --force
-  m   = merge
-  c   = commit
-  ca  = commit --all
-  cm  = commit --amend
-  cma = commit --amend --all
-  co  = checkout
-  cl  = clean -fdx
   a   = add
   ap  = add --patch
   br  = branch
-  rs  = reset --hard
+  c   = commit
+  ca  = commit --all
+  cl  = clean -fdx
+  cm  = commit --amend
+  cma = commit --amend --all
+  co  = checkout
+  d   = diff
+  dc  = diff --cached
+  f   = fetch
+  m   = merge
+  p   = push
+  pf  = push --force
   rb  = rebase
   rbc = rebase --continue
   rbi = rebase --interactive
+  rs  = reset --hard
+  s   = status
   st  = stash
-  d   = diff
-  dc  = diff --cached
   sub = submodule
   wt  = worktree
 
