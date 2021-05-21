@@ -1,5 +1,10 @@
 #!/usr/bin/env zsh
 # Switch AWS profiles
 # Set both env vars since not all programs use $AWS_PROFILE
-export AWS_PROFILE="$1"
-export AWS_DEFAULT_PROFILE="$1"
+if [[ -n "$1" ]]; then
+  export AWS_PROFILE="$1"
+  export AWS_DEFAULT_PROFILE="$1"
+else
+  unset AWS_PROFILE
+  unset AWS_DEFAULT_PROFILE
+fi
