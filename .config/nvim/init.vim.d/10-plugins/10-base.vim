@@ -1,3 +1,5 @@
+" vim: set foldmethod=marker
+
 " Load base plugin set
 " Additional plugins can be added in any file before 99-end.vim
 let g:plug_window = 'enew'

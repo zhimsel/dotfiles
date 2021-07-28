@@ -1,3 +1,5 @@
+" vim: set foldmethod=marker
+
 " Set leader key
 let g:mapleader = "\<space>"
 

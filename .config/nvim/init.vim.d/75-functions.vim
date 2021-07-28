@@ -1,3 +1,5 @@
+" vim: set foldmethod=marker
+
 " Insert useful 'ThreeFingerClaw' shell functions
 function! ThreeFingerClaw() " {{{
   exe "normal! oyell() { echo \"$0: $*\" >&2; }"

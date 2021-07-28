@@ -1,3 +1,5 @@
+" vim: set foldmethod=marker
+
 " Core settings {{{
 
 " Backend 'system' settings {{{
