@@ -104,6 +104,9 @@ vnoremap <silent> <Left>  xhhp`[v`]
 vnoremap <silent> [ :<C-U>call cursor(line("'{")-1,col("'>"))<CR>`<1v``
 vnoremap <silent> ] :<C-U>call cursor(line("'}")-1,col("'>"))<CR>`<1v``
 
+" Select recently-pasted text
+nnoremap gp `[v`]
+
 " }}}
 
 " Jumping {{{
