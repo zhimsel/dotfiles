@@ -17,7 +17,7 @@ export GIT_DIR=$HOME/.git_dotfiles GIT_WORK_TREE=$HOME
 git init
 git remote add origin git@github.com:zhimsel/dotfiles.git
 git fetch
-git checkout -t origin/master  # will report any conflict files; fix these and re-run
+git checkout -t origin/main  # will report any conflict files; fix these and re-run
 git submodule update --init --recursive  # fetch submodules
 
 # install zsh plugins
