@@ -14,7 +14,7 @@ case "$1" in
 
   *)
     echo "Usage: ssm <list|get parameter...>"
-    exit 1
+    return 1
     ;;
 
 esac
