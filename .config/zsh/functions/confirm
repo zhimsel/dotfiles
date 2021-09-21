@@ -1,8 +1,11 @@
 #!/usr/bin/env zsh
 # Ask the user to confirm a question
 # Argument is the question to ask
-if read -q "?${1} [y/n] "; then
-  echo ""; return 0
-else
-  echo ""; return 1
-fi
+local response
+
+while true; do
+  vared -e -p "$* [y/n] " -c response || return 2
+  [[ $response =~ [yY] ]] && return 0
+  [[ $response =~ [nN] ]] && return 1
+  unset response
+done
