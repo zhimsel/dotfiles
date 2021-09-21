@@ -12,7 +12,14 @@ local wt_parent="$(realpath ${wt_path}/..)"
   || return $? }
 
 # Remove it! (and prune)
-git worktree remove "$wt_path"
+if ! git worktree remove "$wt_path"; then
+  if confirm "Forcibly remove it?"; then
+    git worktree remove --force "$wt_path" || return $?
+  else
+    cd - >/dev/null
+    return 1
+  fi
+fi
 git worktree prune
 
 # Remove empty parent dirs
