@@ -28,6 +28,8 @@ bind main co ?git checkout %(commit)
 bind refs co ?git checkout %(branch)
 bind generic cp ?git cherry-pick %(commit)
 bind generic ! ?git reset --hard %(commit)
+bind main Cf ?git commit --fixup %(commit)
+bind main Cs ?git commit --squash %(commit)
 bind generic B ?git branch "%(prompt Create branch with name: )" %(commit)
 
 # Main view
