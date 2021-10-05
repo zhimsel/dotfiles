@@ -12,15 +12,23 @@ color cursor default default reverse
 ########################################
 # More vim-like bindings
 ########################################
-# General
+# Unbind "leading" keys used in multi-char binds
+bind generic C none
+bind reflog C none
+bind refs C none
+bind status C none
+bind main C none
+bind generic c none
 bind generic g none
+bind generic r none
+
+# General
 bind generic gp view-grep
 bind generic gg move-first-line
 bind generic G move-last-line
 bind main G move-last-line
 
 # Branch/commit actions
-bind generic r none
 bind generic rr refresh
 bind generic R view-refs
 bind generic rb ?git rebase -i %(commit)^
@@ -28,15 +36,12 @@ bind main co ?git checkout %(commit)
 bind refs co ?git checkout %(branch)
 bind generic cp ?git cherry-pick %(commit)
 bind generic ! ?git reset --hard %(commit)
-bind main Cf ?git commit --fixup %(commit)
-bind main Cs ?git commit --squash %(commit)
 bind generic B ?git branch "%(prompt Create branch with name: )" %(commit)
 
 # Main view
 bind main F none
 bind main <C-J> move-next-merge
 bind main <C-K> move-prev-merge
-bind main C none
 
 # Tree view
 bind tree l enter
@@ -48,18 +53,16 @@ bind stage <C-j> :/^@@
 bind diff <C-k> :?^@@
 bind stage <C-k> :?^@@
 
-# Stage/status view
-bind stage C !git commit
-bind stage CM !git commit --amend
-bind status CM !git commit --amend
-bind stage p ?git push
-bind status p ?git push
-bind stage P ?git push --force
-bind status P ?git push --force
+# Committing/Pushing
+bind generic CC !git commit
+bind generic CM !git commit --amend
+bind generic CF ?git commit --fixup %(commit)
+bind generic CS ?git commit --squash %(commit)
+bind generic PP ?git push
+bind generic PF ?git push --force
 
 # Copy useful things to clipboard
 bind generic S view-stage
-bind generic c none
 bind generic cc @sh -c "~/bin/yank <<< %(commit)"
 bind generic cb @sh -c "~/bin/yank <<< %(branch)"
 
