@@ -6,7 +6,5 @@ map <leader><leader>k <Plug>(easymotion-k)
 map <leader><leader>h <Plug>(easymotion-linebackward)
 
 " <C-_> maps to Ctrl-/
-noremap  <C-_> /
-onoremap <C-_> /
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
+map  <C-_> <Plug>(easymotion-sn)
+omap <C-_> <Plug>(easymotion-tn)
