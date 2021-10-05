@@ -60,6 +60,7 @@ bind generic CF ?git commit --fixup %(commit)
 bind generic CS ?git commit --squash %(commit)
 bind generic PP ?git push
 bind generic PF ?git push --force
+bind generic Y  !git stash push -p
 
 # Copy useful things to clipboard
 bind generic S view-stage
