@@ -67,30 +67,32 @@
   which = "!f(){ git config --get alias.$1; }; f" # show specific alias
 
   # abbreviations
-  a   = add
-  ap  = add --patch
-  br  = branch
-  c   = commit
-  ca  = commit --all
-  cl  = clean -fdx
-  cm  = commit --amend
-  cma = commit --amend --all
-  co  = checkout
-  cp  = cherry-pick
-  d   = diff
-  dc  = diff --cached
-  f   = fetch
-  m   = merge
-  p   = push
-  pf  = push --force
-  rb  = rebase
-  rbc = rebase --continue
-  rbi = rebase --interactive
-  rs  = reset --hard
-  s   = status
-  st  = stash
-  sub = submodule
-  wt  = worktree
+  a    = add
+  ap   = add --patch
+  br   = branch
+  c    = commit
+  ca   = commit --all
+  cl   = clean -fdx
+  cm   = commit --amend
+  cma  = commit --amend --all
+  co   = checkout
+  cp   = cherry-pick
+  d    = diff
+  dc   = diff --cached
+  f    = fetch
+  m    = merge
+  p    = push
+  pnv  = push --no-verify
+  pf   = push --force
+  pfnv = push --force --no-verify
+  rb   = rebase
+  rbc  = rebase --continue
+  rbi  = rebase --interactive
+  rs   = reset --hard
+  s    = status
+  st   = stash
+  sub  = submodule
+  wt   = worktree
 
   # branch diffs
   db = "!git diff $(git merge-base main HEAD) HEAD" # what's changed in our branch since we branched?
@@ -120,8 +122,9 @@
   cc  = "!hub browse -c -- commit/$(git rev-parse HEAD)"  # copy Github commit link to clipboard
 
   # branch management
-  pbr = "!f() { git push -u ${1:-origin} HEAD; }; f" # push branch and set upstream
-  rbo = "!f() { git rebase -i $(git symbolic-ref --short refs/remotes/${1:-origin}/HEAD); }; f" # rebase against upstream HEAD
-  rbb = "!f() { git rebase -i $(git merge-base HEAD ${1:-main}); }; f" # interactive rebase entire branch in-place (not just unpushed commits)
-  bru = "!f() {( lbr=${1:-$(git symbolic-ref --short HEAD)}; rbr=$(git rev-parse --abbrev-ref --symbolic-full-name ${lbr}@{u}); git branch --force $lbr $rbr || git reset --hard $rbr; )}; f" # force-update branch against its upstream remote
-  cor = "!git checkout $(tr ' ' '\\n' <<<$(git recent-branches) | fzf +m --preview 'git show {+1}')"
+  pbr   = "!f() { git push -u ${1:-origin} HEAD; }; f" # push branch and set upstream
+  pbrnv = "!f() { git push --no-verify -u ${1:-origin} HEAD; }; f" # push branch and set upstream
+  rbo   = "!f() { git rebase -i $(git symbolic-ref --short refs/remotes/${1:-origin}/HEAD); }; f" # rebase against upstream HEAD
+  rbb   = "!f() { git rebase -i $(git merge-base HEAD ${1:-main}); }; f" # interactive rebase entire branch in-place (not just unpushed commits)
+  bru   = "!f() {( lbr=${1:-$(git symbolic-ref --short HEAD)}; rbr=$(git rev-parse --abbrev-ref --symbolic-full-name ${lbr}@{u}); git branch --force $lbr $rbr || git reset --hard $rbr; )}; f" # force-update branch against its upstream remote
+  cor   = "!git checkout $(tr ' ' '\\n' <<<$(git recent-branches) | fzf +m --preview 'git show {+1}')"
