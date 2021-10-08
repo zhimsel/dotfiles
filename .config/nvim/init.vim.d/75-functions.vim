@@ -27,3 +27,18 @@ function! Ldot() " {{{
   let $GIT_WORK_TREE = $HOME
 endfunction " }}}
 command! Ldot call Ldot()
+
+function! Tig() " {{{
+  split term://tig
+endfunction " }}}
+command! Tig call Tig()
+
+function! Tigs() " {{{
+  split term://tig status
+endfunction " }}}
+command! Tigs call Tigs()
+
+function! Tiga() " {{{
+  split term://tig --all
+endfunction " }}}
+command! Tiga call Tiga()

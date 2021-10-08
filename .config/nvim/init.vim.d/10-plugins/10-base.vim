@@ -23,7 +23,6 @@ Plug 'jlanzarotta/bufexplorer'  " interactive buffer management
 Plug 'junegunn/fzf.vim'  " fuzzy-finding all sorts of things (files, buffers, lines, etc)
 Plug 'junegunn/vim-easy-align'  " easily align text into columns
 Plug 'junegunn/vim-peekaboo'  " preview registers before using them
-Plug 'kassio/neoterm'  " open terminal easily
 Plug 'Lokaltog/vim-easymotion'  " improved motions with skipping objects
 Plug 'mattn/gist-vim'  " save current buffer/selection as a Github gist
 Plug 'mbbill/undotree'  " visual selection of entire undo tree for a file
