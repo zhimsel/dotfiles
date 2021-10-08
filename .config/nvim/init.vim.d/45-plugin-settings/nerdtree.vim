@@ -1,13 +1,13 @@
 " key maps
-" <C-i> is <Tab>
-nnoremap <C-i> :NERDTreeMirror<CR>:NERDTreeFocus<CR>
-nnoremap <C-o> :NERDTreeFind<CR>
+nnoremap <Tab>   :NERDTreeMirror<CR>:NERDTreeFocus<CR>
+nnoremap <S-Tab> :NERDTreeToggle<CR>
+nnoremap <C-o>   :NERDTreeFind<CR>
 
 augroup nerdtree
   autocmd!
 
   " <Tab> will close NERDTree when it's the active window
-  autocmd FileType nerdtree nnoremap <buffer> <C-i> :NERDTreeClose<CR>
+  autocmd FileType nerdtree nnoremap <buffer> <Tab> :NERDTreeClose<CR>
 
 augroup END
 

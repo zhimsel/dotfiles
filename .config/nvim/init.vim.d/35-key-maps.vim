@@ -34,16 +34,8 @@ nnoremap <C-w>+ <C-w>\|<C-w>_
 
 " Create and switch to tabs more easily
 nnoremap <C-w>t  :tabnew<cr>
+nnoremap <C-w>T  :tab split<cr>
 nnoremap <C-w>tc :tabclose<cr>
-nnoremap <C-w>1 1gt
-nnoremap <C-w>2 2gt
-nnoremap <C-w>3 3gt
-nnoremap <C-w>4 4gt
-nnoremap <C-w>5 5gt
-nnoremap <C-w>6 6gt
-nnoremap <C-w>7 7gt
-nnoremap <C-w>8 8gt
-nnoremap <C-w>9 9gt
 
 " Switch the CWD to the directory of the open buffer
 nnoremap <leader>cd :lcd %:p:h<cr>:pwd<cr>
@@ -70,12 +62,9 @@ nnoremap zJ ]z
 
 " Registers {{{
 
-" Use ' as " (which is duplicated in ` anyway)
-map ' "
-
 " Send most-recently-yanked register to system clipboard
 nnoremap <leader>y :let @+=@"<CR>
-nnoremap <leader>Y :%y+<CR>
+nnoremap <leader>Y :%y +<CR>
 
 " Toggle 'paste'
 nnoremap <silent> <leader>p :set paste!<CR>
@@ -119,14 +108,9 @@ nnoremap ]j <C-i>
 
 " Git {{{
 
-nnoremap <leader>ga  :G add %<CR>
-nnoremap <leader>gc  :G commit<CR>
-nnoremap <leader>gg  :Rg<Space>
-vnoremap <leader>gg  :Rg<Space><C-R>"<CR>
-nnoremap <leader>gl  :Git log %<CR>
-    nmap <leader>ha  <Plug>(GitGutterStageHunk)
-    nmap <leader>hp  <Plug>(GitGutterPreviewHunk)
-    nmap <leader>hr  <Plug>(GitGutterUndoHunk)
+nmap <leader>ha  <Plug>(GitGutterStageHunk)
+nmap <leader>hp  <Plug>(GitGutterPreviewHunk)
+nmap <leader>hr  <Plug>(GitGutterUndoHunk)
 
 " }}}
 
@@ -154,8 +138,8 @@ endfunction " }}}
 nmap <silent> <Plug>LocationPrevious :<C-u>exe 'call <SID>LocationPrevious()'<CR>
 nmap <silent> <Plug>LocationNext     :<C-u>exe 'call <SID>LocationNext()'<CR>
 
-    nmap <silent> <leader>[ <Plug>LocationPrevious
-    nmap <silent> <leader>] <Plug>LocationNext
-nnoremap <silent> <leader>\ :lopen<CR>
+    nmap <silent> [l <Plug>LocationPrevious
+    nmap <silent> ]l <Plug>LocationNext
+nnoremap <silent> <leader>l :lopen<CR>
 
 " }}}
