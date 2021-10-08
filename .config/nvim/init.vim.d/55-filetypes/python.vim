@@ -2,6 +2,7 @@ augroup filetype_python autocmd!
 
   autocmd FileType python setlocal
         \ tabstop=4
+        \ textwidth=79
 
   " Insert pdb breaks
   autocmd FileType python inoremap <C-p> import pdb; pdb.set_trace()

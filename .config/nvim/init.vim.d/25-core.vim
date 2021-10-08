@@ -59,10 +59,10 @@ set tabstop=2
 " Auto-indenting/breaking {{{
 filetype indent on " Enable filetype-specific indenting
 set autoindent
-set colorcolumn=81,101,121
+set colorcolumn=+1,+21
 set linebreak
 set nolist
-set textwidth=0
+set textwidth=99
 set whichwrap+=<,>,h,l " Wrap lines on movement for 'h/l' keys
 set wrap
 set nojoinspaces
