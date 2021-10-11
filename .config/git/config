@@ -30,7 +30,7 @@
 
 [mergetool]
   keepBackup = false
-  prompt = true
+  prompt = false
 
 [mergetool "vimdiff"]
   cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
