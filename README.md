@@ -22,7 +22,7 @@ git submodule update --init --recursive  # fetch submodules
 
 # install zsh plugins
 mkdir -p "${XDG_DATA_HOME:-$HOME/.local/share}/zsh/zinit"
-git clone https://github.com/zdharma/zinit.git "${XDG_DATA_HOME:-$HOME/.local/share}/zsh/zinit/bin"
+git clone https://github.com/zdharma-continuum/zinit.git "${XDG_DATA_HOME:-$HOME/.local/share}/zsh/zinit/bin"
 zsh -ic 'zinit update --all'
 
 # install vim plugins
