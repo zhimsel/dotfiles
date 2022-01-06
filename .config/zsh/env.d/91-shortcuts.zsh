@@ -22,20 +22,6 @@ alias   la='ls -lha'
 alias  ltr='ls -lhtr'
 alias latr='ls -lahtr'
 
-# Go up a directory with ctrl-e {{{
-
-cd-up-widget() {
-  cd ..
-  vcs_info
-  zle reset-prompt
-}
-zle -N cd-up-widget
-
-bindkey -M viins '^e' cd-up-widget
-bindkey -M vicmd '^e' cd-up-widget
-
-# }}}
-
 # }}}
 
 # Dotfile management {{{

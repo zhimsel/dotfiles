@@ -49,6 +49,20 @@ SPACESHIP_PROMPT_ORDER=(
 
 # }}}
 
+# Go up a directory with ctrl-e {{{
+
+cd-up-widget() {
+  cd ..
+  vcs_info
+  zle reset-prompt
+}
+zle -N cd-up-widget
+
+bindkey -M viins '^e' cd-up-widget
+bindkey -M vicmd '^e' cd-up-widget
+
+# }}}
+
 # Type alt-e to display useful env metadata {{{
 
 prompt-metadata-widget() {
