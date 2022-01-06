@@ -41,6 +41,7 @@ Plug 'wesQ3/vim-windowswap'  " swap two panes easily
 " Custom text objects {{{
 Plug 'kana/vim-textobj-user'  " required by any vim-textobj-* plugins
 
+Plug 'coachshea/vim-textobj-markdown'  " markdown objects
 Plug 'glts/vim-textobj-comment'  " use comments as text objects
 Plug 'kana/vim-textobj-fold'  " use folds as text objects
 Plug 'pianohacker/vim-textobj-indented-paragraph'  " use paragraph-at-indent as textobjects
