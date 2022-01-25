@@ -19,6 +19,7 @@ git remote add origin git@github.com:zhimsel/dotfiles.git
 git fetch
 git checkout -t origin/main  # will report any conflict files; fix these and re-run
 git submodule update --init --recursive  # fetch submodules
+unset GIT_DIR GIT_WORK_TREE
 
 # install zsh plugins
 mkdir -p "${XDG_DATA_HOME:-$HOME/.local/share}/zsh/zinit"
