@@ -6,6 +6,9 @@ set main-view-id = true
 set refresh-mode = auto
 set diff-options = -m
 
+# Grep view
+set grep-view-file-name-display = auto
+
 # Colors
 color cursor default default reverse
 
