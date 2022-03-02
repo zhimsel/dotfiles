@@ -1,10 +1,10 @@
 # General UI settings
 set line-graphics = utf-8
-set mouse = true
+set mouse         = true
 set start-on-head = true
-set main-view-id = true
-set refresh-mode = auto
-set diff-options = -m
+set main-view-id  = true
+set refresh-mode  = auto
+set diff-options  = -m
 
 # Grep view
 set grep-view-file-name-display = auto
@@ -17,10 +17,10 @@ color cursor default default reverse
 ########################################
 # Unbind "leading" keys used in multi-char binds
 bind generic C none
-bind reflog C none
-bind refs C none
-bind status C none
-bind main C none
+bind reflog  C none
+bind refs    C none
+bind status  C none
+bind main    C none
 bind generic c none
 bind generic g none
 bind generic r none
@@ -28,21 +28,21 @@ bind generic r none
 # General
 bind generic gp view-grep
 bind generic gg move-first-line
-bind generic G move-last-line
-bind main G move-last-line
+bind generic G  move-last-line
+bind main    G  move-last-line
 
 # Branch/commit actions
 bind generic rr refresh
-bind generic R view-refs
+bind generic R  view-refs
 bind generic rb ?git rebase -i %(commit)
-bind main co ?git checkout %(commit)
-bind refs co ?git checkout %(branch)
+bind main    co ?git checkout %(commit)
+bind refs    co ?git checkout %(branch)
 bind generic cp ?git cherry-pick %(commit)
-bind generic ! ?git reset --hard %(commit)
-bind generic B ?git branch "%(prompt Create branch with name: )" %(commit)
+bind generic !  ?git reset --hard %(commit)
+bind generic B  ?git branch "%(prompt Create branch with name: )" %(commit)
 
 # Main view
-bind main F none
+bind main F     none
 bind main <C-J> move-next-merge
 bind main <C-K> move-prev-merge
 
@@ -51,9 +51,9 @@ bind tree l enter
 bind tree h back
 
 # Moving around diffs
-bind diff <C-j> :/^@@
+bind diff  <C-j> :/^@@
 bind stage <C-j> :/^@@
-bind diff <C-k> :?^@@
+bind diff  <C-k> :?^@@
 bind stage <C-k> :?^@@
 
 # Committing/Pushing
@@ -66,7 +66,7 @@ bind generic PF ?git push --force
 bind generic Y  !git stash push -p
 
 # Copy useful things to clipboard
-bind generic S view-stage
+bind generic S  view-stage
 bind generic cc @sh -c "~/bin/yank <<< %(commit)"
 bind generic cb @sh -c "~/bin/yank <<< %(branch)"
 
