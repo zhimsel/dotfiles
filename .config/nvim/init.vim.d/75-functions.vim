@@ -33,6 +33,11 @@ function! Tig() " {{{
 endfunction " }}}
 command! Tig call Tig()
 
+function! Tigf() " {{{
+  split term://tig %
+endfunction " }}}
+command! Tigf call Tigf()
+
 function! Tigs() " {{{
   split term://tig status
 endfunction " }}}
