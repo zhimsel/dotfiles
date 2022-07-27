@@ -60,6 +60,7 @@ bind stage <C-k> :?^@@
 bind generic CC !git commit
 bind generic CM !git commit --amend
 bind generic CF ?git commit --fixup %(commit)
+bind generic CA ?git commit --fixup amend:%(commit)
 bind generic CS ?git commit --squash %(commit)
 bind generic PP ?git push
 bind generic PF ?git push --force
