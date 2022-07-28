@@ -43,6 +43,14 @@ nnoremap <leader>cd :lcd %:p:h<cr>:pwd<cr>
 " Remap terminal exit
 tnoremap <leader><Esc> <C-\><C-n>
 
+" Open split terminal in current directory
+command! -nargs=* Term split | terminal <args>
+nnoremap <silent> <leader>t :Term<CR>
+
+" Open split terminal in current file's directory
+command! -nargs=* TermHere split | lcd %:p:h | terminal <args>
+nnoremap <silent> <leader>T :TermHere<CR>
+
 " Read/write buffer with root permissions
 command! WW SudoWrite
 command! EE SudoEdit
