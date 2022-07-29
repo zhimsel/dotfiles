@@ -20,6 +20,7 @@ Plug 'Yggdroot/indentLine'  " visual marker for indent level
 Plug 'christoomey/vim-tmux-navigator'  " switch between tmux/vim panes seamlessly
 Plug 'git@github.com:zhimsel/vim-stay.git', { 'dir': '~/dev/vim-stay', 'frozen': 'true' }  " save and restore view when closing file buffers
 Plug 'jlanzarotta/bufexplorer'  " interactive buffer management
+Plug 'zhimsel/vim-checkbox', { 'branch': 'master' }  " toggle checkboxes in lists (my fork, until https://github.com/jkramer/vim-checkbox/pull/9 is merged)
 Plug 'junegunn/fzf.vim'  " fuzzy-finding all sorts of things (files, buffers, lines, etc)
 Plug 'junegunn/vim-easy-align'  " easily align text into columns
 Plug 'junegunn/vim-peekaboo'  " preview registers before using them
@@ -40,7 +41,6 @@ Plug 'wesQ3/vim-windowswap'  " swap two panes easily
 
 " Custom text objects {{{
 Plug 'kana/vim-textobj-user'  " required by any vim-textobj-* plugins
-
 Plug 'coachshea/vim-textobj-markdown'  " markdown objects
 Plug 'glts/vim-textobj-comment'  " use comments as text objects
 Plug 'kana/vim-textobj-fold'  " use folds as text objects
