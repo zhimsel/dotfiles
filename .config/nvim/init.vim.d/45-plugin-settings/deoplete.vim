@@ -5,4 +5,4 @@ inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 " noremap is intentionally not used here
-imap <expr> <CR>  (pumvisible() ? "\<c-y>\<cr>\<Plug>DiscretionaryEnd" : "\<CR>\<Plug>DiscretionaryEnd")
+imap <expr> <CR>  (pumvisible() ? "\<C-y>\<CR>" : "\<CR>")
