@@ -15,7 +15,8 @@ zinit light "zhimsel/fzf-tab-completion"
 
 zinit light "RobSis/zsh-completion-generator"
 
-zinit ice pick'spaceship.zsh'
-zinit light "denysdovhan/spaceship-prompt"
+zinit ice pick'spaceship.zsh' ver'v3.16.7'
+zinit light "spaceship-prompt/spaceship-prompt"
+# zinit light "spaceship-prompt/spaceship-vi-mode"
 
 zinit light "zsh-users/zsh-completions"
