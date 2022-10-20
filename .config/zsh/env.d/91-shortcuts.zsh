@@ -95,6 +95,7 @@ alias helm='helm ${=KUBE_CONTEXT:+--kube-context ${KUBE_CONTEXT}} ${=KUBE_NAMESP
 
 # Lazy
 alias k='kubectl'
+alias kx='kubectx'
 # }}}
 
 # MacOS {{{
