@@ -37,6 +37,7 @@ alias ldote='ldot && nvim -c "cd $HOME" -c Ldot -c GitFiles'
 # Git {{{
 
 alias cg='cd $(git rev-parse --show-toplevel)'  # cd to root of git repo
+alias pwdg='git rev-parse --show-toplevel'  # pwd the root of git repo
 alias tiga='tig --all'
 alias tigs='tig status'
 alias tigr='tig $(git rev-parse --abbrev-ref --symbolic-full-name @{u})'  # open tig at remote tracking branch
