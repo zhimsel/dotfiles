@@ -7,4 +7,7 @@ augroup filetype_ruby autocmd!
   " Insert pry binding
   autocmd FileType ruby inoremap <C-b> require 'pry'; binding.pry
 
+  " https://github.com/vim-ruby/vim-ruby/issues/249
+  autocmd FileType ruby let g:ruby_indent_assignment_style = 'variable'
+
 augroup END
