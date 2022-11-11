@@ -3,4 +3,5 @@
 	url = https://github.com/cskeeters/base16-konsole.git
 [submodule "base16-iterm2"]
 	path = .base16/iterm2
-	url = https://github.com/base16-project/base16-iterm2.git
+	url = https://github.com/tinted-theming/base16-iterm2.git
+	branch = main
