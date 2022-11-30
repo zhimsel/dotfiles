@@ -72,7 +72,7 @@
   br   = branch
   c    = commit
   ca   = commit --all
-  cl   = clean -fdx
+  cl   = clean -ffdx
   cm   = commit --amend
   cma  = commit --amend --all
   co   = checkout
