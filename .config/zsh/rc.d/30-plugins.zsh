@@ -10,8 +10,8 @@ autoload -Uz _zinit
 
 # Load plugins
 
-zinit ice pick'zsh/fzf-zsh-completion.sh' ver'tmux-support'
-zinit light "zhimsel/fzf-tab-completion"
+zinit ice pick'zsh/fzf-zsh-completion.sh'
+zinit light "lincheney/fzf-tab-completion"
 
 zinit light "RobSis/zsh-completion-generator"
 
