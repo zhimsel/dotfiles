@@ -41,11 +41,12 @@ SPACESHIP_PROMPT_ORDER=(
   vi_mode
 )
 
-# Remove bold from prompt
-() {
-  local z=$'\0'
-  PROMPT='${${${$(spaceship_prompt)//\%\%/'$z'}//\%B}//'$z'/%%}'
-}
+# Remove bold from prompt (this no longer works in v4+)
+# https://github.com/spaceship-prompt/spaceship-prompt/issues/426
+# () {
+#   local z=$'\0'
+#   PROMPT='${${${$(spaceship::prompt)//\%\%/'$z'}//\%B}//'$z'/%%}'
+# }
 
 # }}}
 
