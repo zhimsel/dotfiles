@@ -15,6 +15,7 @@ augroup filetype_git autocmd!
   autocmd BufRead,BufNewFile PULLREQ_EDITMSG setlocal
         \ commentstring=\%%s
         \ filetype=markdown
+        \ textwidth=0
         \ spell
 
 augroup END
