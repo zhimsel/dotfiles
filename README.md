@@ -59,13 +59,8 @@ yay -Syu --needed - < .arch-packages.list
 
 ### ZSA Moonlander
 
-I primarily use a ergonomic split keyboard from ZSA called the Moonlander.
-My current configuration and key maps can be found
-[here](https://configure.ergodox-ez.com/moonlander/layouts/XE4RP/latest/0).
-
-I don't currently care to commit the config source here since my layout
-changes frequently and I'm not currently making any modifications to the
-firmware that Oryx can't do. Maybe I'll change that in the future.
+I primarily use a [ergonomic split keyboard from ZSA called the _Moonlander_](https://www.zsa.io/moonlander/).
+My current configuration and key maps can be found [on ZSA's online _Oryx_ configurator tool](https://configure.zsa.io/moonlander/layouts/XE4RP). I also maintain a mirror of the firmware source code in [this Github repo](https://github.com/zhimsel/moonlander-config).
 
 ## License
 
