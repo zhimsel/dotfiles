@@ -9,4 +9,7 @@ augroup filetype_go autocmd!
   " Disable vim-better-whitespace for Go buffers
   autocmd FileType go DisableWhitespace
 
+  autocmd FileType go iabbrev
+        \ iferr if err != nil }
+
 augroup END
