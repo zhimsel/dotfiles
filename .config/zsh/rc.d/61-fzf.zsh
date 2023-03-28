@@ -1,4 +1,4 @@
-# Must be loaded after FZF completions and keybindings are sourced
+# Must be loaded after FZF completions and keybindings are sourced (e.g. in a local 60-fzf.zsh)
 
 # Only set these if fzf is actually loaded
 if which __fzfcmd >/dev/null; then
