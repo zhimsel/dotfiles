@@ -128,3 +128,6 @@
   rbb   = "!f() { git rebase -i $(git merge-base HEAD ${1:-main}); }; f" # interactive rebase entire branch in-place (not just unpushed commits)
   bru   = "!f() {( lbr=${1:-$(git symbolic-ref --short HEAD)}; rbr=$(git rev-parse --abbrev-ref --symbolic-full-name ${lbr}@{u}); git branch --force $lbr $rbr || git reset --hard $rbr; )}; f" # force-update branch against its upstream remote
   cor   = "!git checkout $(tr ' ' '\\n' <<<$(git recent-branches) | fzf +m --preview 'git show {+1}')"
+
+[include]
+  path = config-local
