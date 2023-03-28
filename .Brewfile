@@ -37,6 +37,7 @@ brew "asdf"
 brew "direnv"
 cask "font-roboto-mono-for-powerline"
 brew "fzf"
+brew "gh"
 brew "htop"
 brew "hub"
 cask "iterm2"
@@ -46,10 +47,6 @@ brew "shellcheck"
 brew "ripgrep"
 brew "tig"
 brew "tmux"
-
-# New Github CLI
-tap "github/gh"
-brew "github/gh/gh"
 
 # Shell completions
 brew "bash-completion"
