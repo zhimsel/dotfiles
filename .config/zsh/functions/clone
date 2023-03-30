@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
-# Clone git repo and cd into it
+# Clone Github repo and cd into it
 
 # Do nothing if no args were provided
-[[ -z "$1" ]] && exit 1
+[[ -z "$1" ]] && return 1
 
-hub clone "$1" \
+git clone "git@github.com:${1}" \
   && cd "$(awk -F '/' '{print $NF}' <<< $1)"
