@@ -93,6 +93,9 @@ vnoremap <silent> <Right> xp`[v`]
 nnoremap <silent> <Left>  xhhp`[v`]
 vnoremap <silent> <Left>  xhhp`[v`]
 
+" Keep cursor position when joining lines
+nnoremap J m`J``
+
 " }}}
 
 " Motion {{{
