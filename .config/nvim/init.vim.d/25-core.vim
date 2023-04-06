@@ -86,6 +86,11 @@ set splitbelow
 set splitright
 " }}}
 
+" Set default commentstring {{{
+" `#` is way more common that the default
+set commentstring=#\ %s
+" }}}
+
 " }}}
 
 " Visual/theme {{{
