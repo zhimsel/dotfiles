@@ -62,7 +62,7 @@ set autoindent
 set colorcolumn=+1,+21
 set linebreak
 set nolist
-set textwidth=99
+set textwidth=0
 set whichwrap+=<,>,h,l " Wrap lines on movement for 'h/l' keys
 set wrap
 set nojoinspaces
