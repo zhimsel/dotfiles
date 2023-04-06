@@ -1,4 +1,5 @@
 require('zhimsel.options')
+require('zhimsel.key-maps')
 
 -- LEGACY: Load init files from init.vim.d directories
 vim.cmd('runtime! init.vim.d/**/*.vim')
