@@ -1,49 +1,47 @@
-" vim: set foldmethod=marker
-
 " Insert useful 'ThreeFingerClaw' shell functions
-function! ThreeFingerClaw() " {{{
+function! ThreeFingerClaw()
   exe "normal! oyell() { echo \"$0: $*\" >&2; }"
   exe "normal! odie() { yell \"$*\"; exit 111; }"
   exe "normal! otry() { \"$@\" || die \"cannot $*\"; }"
-endfunction " }}}
+endfunction
 command! ThreeFingerClaw call ThreeFingerClaw()
 
 " Show highlight group for what's under the cursor
-function! ShowHiCursor() " {{{
+function! ShowHiCursor()
   echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
         \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
         \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
-endfunction " }}}
+endfunction
 command! ShowHiCursor call ShowHiCursor()
 
-function! Dot() " {{{
+function! Dot()
   let $GIT_DIR = $HOME . "/.git_dotfiles"
   let $GIT_WORK_TREE = $HOME
-endfunction " }}}
+endfunction
 command! Dot call Dot()
 
-function! Ldot() " {{{
+function! Ldot()
   let $GIT_DIR = $HOME . "/.git_dotfiles_local"
   let $GIT_WORK_TREE = $HOME
-endfunction " }}}
+endfunction
 command! Ldot call Ldot()
 
-function! Tig() " {{{
+function! Tig()
   split term://tig
-endfunction " }}}
+endfunction
 command! Tig call Tig()
 
-function! Tigf() " {{{
+function! Tigf()
   split term://tig %
-endfunction " }}}
+endfunction
 command! Tigf call Tigf()
 
-function! Tigs() " {{{
+function! Tigs()
   split term://tig status
-endfunction " }}}
+endfunction
 command! Tigs call Tigs()
 
-function! Tiga() " {{{
+function! Tiga()
   split term://tig --all
-endfunction " }}}
+endfunction
 command! Tiga call Tiga()
