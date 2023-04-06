@@ -3,3 +3,6 @@ let g:strip_whitespace_on_save=0
 
 " Disable whitespace highlighting on the current line
 let g:current_line_whitespace_disabled_soft = 1
+
+" Disable whitespace highlighting for certain filetypes
+let g:better_whitespace_filetypes_blacklist += ['go']

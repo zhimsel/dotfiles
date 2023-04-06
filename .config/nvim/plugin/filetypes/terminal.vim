@@ -6,4 +6,7 @@ augroup filetype_terminal autocmd!
   " automatically close terminal buffer when it exits 0
   autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif
 
+  " disable whitespace highlighting (from vim-better-whitespace)
+  autocmd TermOpen * DisableWhitespace
+
 augroup END
