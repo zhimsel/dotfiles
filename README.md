@@ -21,14 +21,9 @@ git checkout -t origin/main  # will report any conflict files; fix these and re-
 git submodule update --init --recursive  # fetch submodules
 unset GIT_DIR GIT_WORK_TREE
 
-# install zsh plugins
+# install zinit (zsh plugin manager)
 mkdir -p "${XDG_DATA_HOME:-$HOME/.local/share}/zsh/zinit"
 git clone https://github.com/zdharma-continuum/zinit.git "${XDG_DATA_HOME:-$HOME/.local/share}/zsh/zinit/bin"
-zsh -ic 'zinit update --all'
-
-# install vim plugins
-curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-nvim -c PlugInstall
 ```
 
 You can then use the included `dot` alias (in `$HOME/.zshrc`) to perform git commands against the dotfiles repo.
