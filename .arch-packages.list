@@ -5,11 +5,11 @@ github-cli-bin
 hub
 konsole
 neovim
+powerline-fonts-git
 python-grip
 python-pip
 ripgrep
 shellcheck
 tig
 tmux
-ttf-fira-code
 zsh

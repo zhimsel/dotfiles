@@ -35,7 +35,7 @@ brew "zsh"
 # Terminal environment
 brew "asdf"
 brew "direnv"
-cask "font-fira-code"
+cask "font-roboto-mono-for-powerline"
 brew "fzf"
 brew "gh"
 brew "htop"
