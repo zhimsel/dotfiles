@@ -7,14 +7,12 @@ return {
   {
     -- https://github.com/benekastah/neomake
     'benekastah/neomake',
-    action = "VeryLazy",
   },
 
   -- word completion
   {
     -- https://github.com/Shougo/deoplete.nvim
     'Shougo/deoplete.nvim',
-    action = "VeryLazy",
     build = ':UpdateRemotePlugins',
   },
 
@@ -87,7 +85,7 @@ return {
   {
     -- https://github.com/tmhedberg/SimpylFold
     'tmhedberg/SimpylFold',
-    action = "VeryLazy",
+    event = "VeryLazy",
     ft = 'python',
     init = function()
       vim.g.SimpylFold_docstring_preview = 1

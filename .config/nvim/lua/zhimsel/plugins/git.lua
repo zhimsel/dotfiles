@@ -14,7 +14,7 @@ return {
   {
     -- https://github.com/tpope/vim-fugitive
     'tpope/vim-fugitive',
-    action = "VeryLazy",
+    event = "VeryLazy",
   },
 
   -- interface for Github

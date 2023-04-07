@@ -7,7 +7,7 @@ return {
   {
     -- https://github.com/junegunn/vim-easy-align
     'junegunn/vim-easy-align',
-    action = "VeryLazy",
+    event = "VeryLazy",
     init = function()
       map('x', 'ga', '<Plug>(EasyAlign)', { noremap = false })
       map('n', 'ga', '<Plug>(EasyAlign)', { noremap = false })
@@ -18,7 +18,7 @@ return {
   {
     -- https://github.com/Lokaltog/vim-easymotion
     'Lokaltog/vim-easymotion',
-    action = "VeryLazy",
+    event = "VeryLazy",
     init = function()
       -- keep cursor colum when JK motion
       vim.g.EasyMotion_startofline = 0
@@ -38,14 +38,14 @@ return {
   {
     -- https://github.com/tpope/vim-abolish
     'tpope/vim-abolish',
-    action = "VeryLazy",
+    event = "VeryLazy",
   },
 
   -- highlight t/T/f/F targets
   {
     -- https://github.com/unblevable/quick-scope
     'unblevable/quick-scope',
-    action = "VeryLazy",
+    event = "VeryLazy",
     init = function()
       vim.g.qs_highlight_on_keys = { 'f', 'F', 't', 'T' }
     end
@@ -55,42 +55,42 @@ return {
   {
     -- https://github.com/PeterRincker/vim-argumentative
     'PeterRincker/vim-argumentative',
-    action = "VeryLazy",
+    event = "VeryLazy",
   },
 
   -- comment/uncomment lines automatically
   {
     -- https://github.com/tpope/vim-commentary
     'tpope/vim-commentary',
-    action = "VeryLazy",
+    event = "VeryLazy",
   },
 
   -- automatic if/for/etc block closing
   {
     -- https://github.com/tpope/vim-endwise
     'tpope/vim-endwise',
-    action = "VeryLazy",
+    event = "VeryLazy",
   },
 
   -- improved repeats
   {
     -- https://github.com/tpope/vim-repeat
     'tpope/vim-repeat',
-    action = "VeryLazy",
+    event = "VeryLazy",
   },
 
   -- add/remove/modify surrounding brackets/quotes/etc
   {
     -- https://github.com/tpope/vim-surround
     'tpope/vim-surround',
-    action = "VeryLazy",
+    event = "VeryLazy",
   },
 
   -- sort using text objects
   {
     -- https://github.com/christoomey/vim-sort-motion
     'christoomey/vim-sort-motion',
-    action = "VeryLazy",
+    event = "VeryLazy",
   }
 
 }

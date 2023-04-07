@@ -66,7 +66,7 @@ return {
   {
     -- https://github.com/junegunn/fzf.vim
     'junegunn/fzf.vim',
-    action = "VeryLazy",
+    event = "VeryLazy",
     dependencies = {
       { 'junegunn/fzf' }
     },
@@ -107,7 +107,7 @@ return {
   -- https://github.com/junegunn/vim-peekaboo
   {
     'junegunn/vim-peekaboo',
-    action = "VeryLazy",
+    event = "VeryLazy",
     init = function()
       vim.g.peekaboo_window = 'bel new'
       vim.g.peekaboo_delay = 300 -- (in milliseconds)
