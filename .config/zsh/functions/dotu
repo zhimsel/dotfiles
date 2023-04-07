@@ -6,7 +6,7 @@ local targets="${@:-dot vim zsh sub}"
   && (dot && git fetch && git merge)
 
 [[ $targets =~ "vim" ]] \
-  && (nodot && nvim -u "${XDG_CONFIG_HOME}/nvim/init.vim" -i NONE -c 'PlugUpgrade' -c 'PlugUpdate' -c ':qa')
+  && (nodot && nvim -u "${XDG_CONFIG_HOME}/nvim/init.lua" -i NONE -c 'Lazy sync')
 
 [[ $targets =~ "zsh" ]] \
   && (nodot && zsh -ic "zinit update --all")
