@@ -66,6 +66,7 @@ bind generic CM !git commit --amend
 bind generic CF ?git commit --fixup %(commit)
 bind generic CA ?git commit --fixup amend:%(commit)
 bind generic CS ?git commit --squash %(commit)
+bind generic CR ?git revert %(commit)
 bind generic PP ?git push
 bind generic PF ?git push --force
 bind generic Y  !git stash push -p
