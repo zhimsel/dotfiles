@@ -86,4 +86,11 @@ return {
     action = "VeryLazy",
   },
 
+  -- sort using text objects
+  {
+    -- https://github.com/christoomey/vim-sort-motion
+    'christoomey/vim-sort-motion',
+    action = "VeryLazy",
+  }
+
 }
