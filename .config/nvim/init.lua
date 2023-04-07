@@ -1,13 +1,30 @@
 require('zhimsel.options')
 require('zhimsel.key-maps')
+require('zhimsel.visual')
+
+local ok, _ = pcall(require, 'zhimsel_local')
+
+-- Bootstrap package manager if it's not already installed
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- Start up package manager
+-- Load spec from lua/zhimsel/plugins/* and config from lua/zhimsel/lazy.lua
+require("lazy").setup("zhimsel.plugins", require("zhimsel.lazy"))
 
 -- LEGACY: Load init files from init.vim.d directories
 vim.cmd('runtime! init.vim.d/**/*.vim')
 vim.cmd('runtime! init.vim.d/**/*.lua')
 
--- For now, this must come after the above legacy files
--- (specifically, it must come after the colorscheme is loaded (by vim-plug/packer)
-require('zhimsel.visual')
-
 -- Enable syntax highlighting, in case it was disabled (should always be last)
-vim.cmd('syntax enable')
+vim.cmd.syntax('enable')

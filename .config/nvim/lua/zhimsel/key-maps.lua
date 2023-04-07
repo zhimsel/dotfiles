@@ -37,10 +37,6 @@ map('t', [[<C-w><Esc>]], [[<C-\><C-n>]])
 map('n', [[<leader>t]], [[:split | terminal<CR>]])
 map('n', [[<leader>T]], [[:split | lcd %:p:h | terminal<CR>]])
 
--- Read/write buffer with root permissions
-vim.cmd([[command! WW SudoWrite]])
-vim.cmd([[command! EE SudoEdit]])
-
 
 -------- Folding --------
 

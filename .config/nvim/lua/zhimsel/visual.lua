@@ -1,8 +1,3 @@
--- Set color scheme
-vim.opt.background = 'dark'
-vim.cmd('colorscheme base16-eighties')
-vim.g.airline_theme = "base16_eighties_custom"
-
 -- Terminal colors hackery
 vim.cmd([[
 if exists('+termguicolors')
