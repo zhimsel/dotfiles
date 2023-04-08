@@ -22,9 +22,5 @@ vim.opt.rtp:prepend(lazypath)
 -- Load spec from lua/zhimsel/plugins/* and config from lua/zhimsel/lazy.lua
 require("lazy").setup("zhimsel.plugins", require("zhimsel.lazy"))
 
--- LEGACY: Load init files from init.vim.d directories
-vim.cmd('runtime! init.vim.d/**/*.vim')
-vim.cmd('runtime! init.vim.d/**/*.lua')
-
 -- Enable syntax highlighting, in case it was disabled (should always be last)
 vim.cmd.syntax('enable')
