@@ -2,8 +2,8 @@ return {
 
   -- better themes
   {
-    -- https://github.com/chriskempson/base16-vim
-    'chriskempson/base16-vim',
+    -- https://github.com/RRethy/nvim-base16
+    'RRethy/nvim-base16',
     lazy = false, -- this should be loaded at startup
     priority = 999, -- and it should be loaded FIRST
     config = function()
