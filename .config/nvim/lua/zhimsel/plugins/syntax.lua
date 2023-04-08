@@ -7,13 +7,36 @@ return {
   {
     -- https://github.com/benekastah/neomake
     'benekastah/neomake',
+    event = "VeryLazy",
+    init = function()
+      vim.g.neomake_open_list = 0
+      vim.g.neomake_verbose   = 0
+
+      vim.g.neomake_python_enabled_makers = { 'flake8' }
+      vim.g.neomake_ruby_enabled_makers   = { 'rubocop' }
+      vim.g.neomake_sh_enabled_makers     = { 'shellcheck' }
+    end,
+    config = function()
+      vim.cmd([[call neomake#configure#automake('rw')]])
+    end
   },
 
   -- word completion
   {
     -- https://github.com/Shougo/deoplete.nvim
     'Shougo/deoplete.nvim',
+    event = "VeryLazy",
     build = ':UpdateRemotePlugins',
+    config = function()
+      vim.g['deoplete#enable_at_startup'] = 1
+
+      -- use ctrl-j and ctrl-k to navigate auto-complete suggestion list
+      vim.cmd([[inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"]])
+      vim.cmd([[inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"]])
+
+      -- noremap is intentionally not used here
+      vim.cmd([[imap <expr> <CR>  (pumvisible() ? "\<C-y>\<CR>" : "\<CR>")]])
+    end,
   },
 
   -- JSON syntax/etc
