@@ -9,11 +9,6 @@ return {
     'preservim/nerdtree',
     event = "VeryLazy",
     init = function()
-      -- key maps
-      map('n', '<Tab>',   ':NERDTreeMirror<CR>:NERDTreeFocus<CR>')
-      map('n', '<S-Tab>', ':NERDTreeToggle<CR>')
-      map('n', '<C-o>',   ':NERDTreeFind<CR>')
-
       -- internal maps
       vim.g.NERDTreeMapPreview       = 'O'
       vim.g.NERDTreeMapOpenSplit     = 's'
@@ -37,6 +32,11 @@ return {
         dir = {},
         file = { keepopen = 1, reuse = "", where = "p" }
       }
+    end,
+    config = function()
+      map('n', '<Tab>',   ':NERDTreeMirror<CR>:NERDTreeFocus<CR>')
+      map('n', '<S-Tab>', ':NERDTreeToggle<CR>')
+      map('n', '<C-o>',   ':NERDTreeFind<CR>')
     end,
   },
 
@@ -66,7 +66,6 @@ return {
   {
     -- https://github.com/junegunn/fzf.vim
     'junegunn/fzf.vim',
-    event = "VeryLazy",
     dependencies = {
       { 'junegunn/fzf' }
     },
@@ -82,7 +81,8 @@ return {
         ['ctrl-s'] = 'split',
         ['ctrl-v'] = 'vsplit',
       }
-
+    end,
+    config = function()
       map('n', '<c-t>', ':Files<CR>')
       map('n', '<c-f>', ':BLines<CR>')
       map('n', '<c-g>', ':GitFiles<CR>')

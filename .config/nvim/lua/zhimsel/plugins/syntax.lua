@@ -67,7 +67,8 @@ return {
     ft = { 'gitrebase' },
     init = function()
       vim.g.auto_git_diff_show_window_at_right = 1
-
+    end,
+    init = function()
       -- movement
       map('n', 'J',     'j',                                      { buffer = true })
       map('n', 'K',     'k',                                      { buffer = true })

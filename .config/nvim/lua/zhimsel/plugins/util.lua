@@ -55,7 +55,7 @@ return {
   -- https://github.com/tpope/vim-eunuch
   {
     'tpope/vim-eunuch',
-    init = function()
+    config = function()
       -- Read/write buffer with root permissions
       vim.api.nvim_create_user_command('WW', 'SudoWrite', { bang = true })
       vim.api.nvim_create_user_command('EE', 'SudoEdit',  { bang = true })

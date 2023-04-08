@@ -8,7 +8,7 @@ return {
     -- https://github.com/junegunn/vim-easy-align
     'junegunn/vim-easy-align',
     event = "VeryLazy",
-    init = function()
+    config = function()
       map('x', 'ga', '<Plug>(EasyAlign)', { noremap = false })
       map('n', 'ga', '<Plug>(EasyAlign)', { noremap = false })
     end,
@@ -22,7 +22,8 @@ return {
     init = function()
       -- keep cursor colum when JK motion
       vim.g.EasyMotion_startofline = 0
-
+    end,
+    config = function()
       map('', '<leader><leader>l', '<Plug>(easymotion-lineforward)')
       map('', '<leader><leader>j', '<Plug>(easymotion-j)')
       map('', '<leader><leader>k', '<Plug>(easymotion-k)')
