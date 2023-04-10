@@ -11,7 +11,7 @@ map('n', [[<Esc><Esc>]], [[:noh<CR>]])
 
 -------- Buffers, windows, and tabs --------
 
--- Switch windows more easily
+-- Switch windows more easily (using vim-tmux-navigator)
 map('n', [[<M-h>]], [[:TmuxNavigateLeft<CR>]])
 map('n', [[<M-j>]], [[:TmuxNavigateDown<CR>]])
 map('n', [[<M-k>]], [[:TmuxNavigateUp<CR>]])
@@ -90,7 +90,8 @@ map('n', 'gp', '`[v`]')
 
 -------- Jumping --------
 
--- Remap Ctrl-i/o jump maps (Used for NERDtree)
+-- Remap Ctrl-i/o jump maps
+-- (they are used for NERDtree; plus I find the remaps more intuitive)
 map('n', '[j', [[<C-o>]])
 map('n', ']j', [[<C-i>]])
 
@@ -98,10 +99,3 @@ map('n', ']j', [[<C-i>]])
 map('n', '[l',          [[<Plug>LocationPrevious]], { noremap = false })
 map('n', ']l',          [[<Plug>LocationNext]],     { noremap = false })
 map('n', [[<leader>l]], [[:lopen<CR>]])
-
-
--------- Git --------
-
-map('n', '<leader>ha', [[<Plug>(GitGutterStageHunk)]],   { noremap = false })
-map('n', '<leader>hp', [[<Plug>(GitGutterPreviewHunk)]], { noremap = false })
-map('n', '<leader>hr', [[<Plug>(GitGutterUndoHunk)]],    { noremap = false })

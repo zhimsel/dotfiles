@@ -1,3 +1,5 @@
+local map = require('zhimsel.util').map
+
 -- Git-related plugins
 return {
 
@@ -7,6 +9,11 @@ return {
     'airblade/vim-gitgutter',
     init = function()
       vim.g.gitgutter_max_signs = 10000
+    end,
+    config = function()
+      map('n', '<leader>ha', [[<Plug>(GitGutterStageHunk)]],   { noremap = false })
+      map('n', '<leader>hp', [[<Plug>(GitGutterPreviewHunk)]], { noremap = false })
+      map('n', '<leader>hr', [[<Plug>(GitGutterUndoHunk)]],    { noremap = false })
     end
   },
 
@@ -15,6 +22,9 @@ return {
     -- https://github.com/tpope/vim-fugitive
     'tpope/vim-fugitive',
     event = "VeryLazy",
+    config = function()
+      map('n', '<leader>ga', '<cmd>Git add -f %<CR>', { silent = false })
+    end
   },
 
   -- interface for Github
