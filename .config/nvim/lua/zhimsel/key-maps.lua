@@ -53,7 +53,7 @@ map('n', 'zJ', ']z')
 -------- Registers --------
 
 -- Send most-recently-yanked register to system clipboard
-map('n', [[<leader>y]], [[:let @+=@"<CR>]])
+map('n', [[<leader>y]], [[:let @+=@"<CR>]], { silent = false })
 map('n', [[<leader>Y]], [[:%y +<CR>]])
 
 
