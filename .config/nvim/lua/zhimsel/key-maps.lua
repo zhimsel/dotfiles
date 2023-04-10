@@ -1,7 +1,9 @@
 local map = require('zhimsel.util').map
 
--- Set leader key to space
-vim.g.mapleader = ' '
+-- Set leader key to <space>
+vim.keymap.set("n", " ", "<Nop>", { silent = true, remap = false })
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Disable search highlight when <Esc><Esc> is pressed
 map('n', [[<Esc><Esc>]], [[:noh<CR>]])
