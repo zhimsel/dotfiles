@@ -54,12 +54,16 @@ return {
   {
     'jlanzarotta/bufexplorer',
     init = function()
-      vim.g.bufExplorerFindActive = 0
+      vim.g.bufExplorerDisableDefaultKeyMapping = 1
+      vim.g.bufExplorerFindActive               = 0
+      map('n', '<leader>b', '<cmd>ToggleBufExplorer<CR>')
     end,
-    keys = {
-      '<leader>b', ':ToggleBufExplorer<CR>',
-      mode = 'n', noremap = true, silent = true,
-    },
+    cmd = {
+      "BufExplorer",
+      "ToggleBufExplorer",
+      "BufExplorerHorizontalSplit",
+      "BufExplorerVerticalSplit",
+    }
   },
 
   -- fuzzy-finding all sorts of things (files, buffers, lines, etc)
