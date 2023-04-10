@@ -27,9 +27,10 @@ return {
     'Shougo/deoplete.nvim',
     event = "VeryLazy",
     build = ':UpdateRemotePlugins',
-    config = function()
+    init = function()
       vim.g['deoplete#enable_at_startup'] = 1
-
+    end,
+    config = function()
       -- use ctrl-j and ctrl-k to navigate auto-complete suggestion list
       vim.cmd([[inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"]])
       vim.cmd([[inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"]])
