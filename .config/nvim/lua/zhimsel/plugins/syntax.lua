@@ -69,24 +69,6 @@ return {
     init = function()
       vim.g.auto_git_diff_show_window_at_right = 1
     end,
-    init = function()
-      -- movement
-      map('n', 'J',     'j',                                      { buffer = true })
-      map('n', 'K',     'k',                                      { buffer = true })
-      map('n', '<C-e>', '<Plug>(auto_git_diff_scroll_down_1)',    { buffer = true, noremap = false })
-      map('n', '<C-d>', '<Plug>(auto_git_diff_scroll_down_half)', { buffer = true, noremap = false })
-      map('n', '<C-y>', '<Plug>(auto_git_diff_scroll_up_1)',      { buffer = true, noremap = false })
-      map('n', '<C-u>', '<Plug>(auto_git_diff_scroll_up_half)',   { buffer = true, noremap = false })
-
-      -- commit actions
-      map('n', '<leader>p', ':Pick<CR>',   { buffer = true })
-      map('n', '<leader>r', ':Reword<CR>', { buffer = true })
-      map('n', '<leader>e', ':Edit<CR>',   { buffer = true })
-      map('n', '<leader>s', ':Squash<CR>', { buffer = true })
-      map('n', '<leader>f', ':Fixup<CR>',  { buffer = true })
-      map('n', '<leader>d', ':Drop<CR>',   { buffer = true })
-    end,
-
   },
 
   -- Better folding for Markdown
