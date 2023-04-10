@@ -106,16 +106,12 @@ return {
   { 'chrisbra/Colorizer' },
 
   -- visual marker for indent level
-  -- https://github.com/Yggdroot/indentLine
+  -- https://github.com/lukas-reineke/indent-blankline.nvim
   {
-    'Yggdroot/indentLine',
-    init = function()
-      vim.g.indentLine_char            = '│' -- UTF-8 font required
-      vim.g.indentLine_concealcursor   = ''
-      vim.g.indentLine_fileTypeExclude = { 'Help', 'man' }
-      vim.g.indentLine_bufTypeExclude  = { 'terminal' }
-      vim.g.indentLine_bufNameExclude  = { 'NERD_tree.*' }
-    end
+    'lukas-reineke/indent-blankline.nvim',
+    opts = {
+      show_current_context = true,
+    }
   },
 
   -- highlight unwanted whitespaces

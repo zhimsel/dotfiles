@@ -22,5 +22,8 @@ vim.opt.rtp:prepend(lazypath)
 -- Load spec from lua/zhimsel/plugins/* and config from lua/zhimsel/lazy.lua
 require("lazy").setup("zhimsel.plugins", require("zhimsel.lazy"))
 
+-- Set up LSP, autocompletion, highlighting, etc.
+require('zhimsel.syntax')
+
 -- Enable syntax highlighting, in case it was disabled (should always be last)
 vim.cmd.syntax('enable')

@@ -3,54 +3,78 @@ local map = require('zhimsel.util').map
 
 return {
 
-  -- automated linting
+  -- LSP
   {
-    -- https://github.com/benekastah/neomake
-    'benekastah/neomake',
-    event = "VeryLazy",
-    init = function()
-      vim.g.neomake_open_list = 0
-      vim.g.neomake_verbose   = 0
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v2.x',
 
-      vim.g.neomake_python_enabled_makers = { 'flake8' }
-      vim.g.neomake_ruby_enabled_makers   = { 'rubocop' }
-      vim.g.neomake_sh_enabled_makers     = { 'shellcheck' }
+    dependencies = {
+      { 'neovim/nvim-lspconfig' },
+      {
+        'williamboman/mason.nvim',
+        build = function()
+          pcall(vim.cmd, 'MasonUpdate')
+        end,
+      },
+      { 'williamboman/mason-lspconfig.nvim' },
+
+      -- Autocompletion
+      { 'hrsh7th/nvim-cmp' },
+      { 'hrsh7th/cmp-buffer' },
+      { 'FelipeLema/cmp-async-path' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-nvim-lua' },
+      { 'hrsh7th/cmp-emoji' },
+      { 'saadparwaiz1/cmp_luasnip' },
+      { 'L3MON4D3/LuaSnip' },
+    },
+
+  },
+
+  -- Highlighting, folding, indenting
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = function()
+      pcall(vim.cmd, ':TSUpdate')
     end,
     config = function()
-      vim.cmd([[call neomake#configure#automake('rw')]])
+      require 'nvim-treesitter.configs'.setup {
+        sync_install = false,
+        auto_install = true,
+
+        ensure_installed = {
+          'comment',
+          'diff',
+          'query',
+          'vim', 'vimdoc',
+        },
+        ignore_install = {},
+
+        highlight = {
+          enable = true,
+          disable = {},
+        },
+
+        indent = {
+          enable = true,
+        },
+
+      }
+
+      vim.opt.foldmethod = 'expr'
+      vim.opt.foldexpr   = 'nvim_treesitter#foldexpr()'
     end
   },
 
-  -- word completion
   {
-    -- https://github.com/Shougo/deoplete.nvim
-    'Shougo/deoplete.nvim',
+    'nvim-treesitter/playground',
     event = "VeryLazy",
-    build = ':UpdateRemotePlugins',
-    init = function()
-      vim.g['deoplete#enable_at_startup'] = 1
-    end,
-    config = function()
-      -- use ctrl-j and ctrl-k to navigate auto-complete suggestion list
-      vim.cmd([[inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"]])
-      vim.cmd([[inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"]])
-
-      -- noremap is intentionally not used here
-      vim.cmd([[imap <expr> <CR>  (pumvisible() ? "\<C-y>\<CR>" : "\<CR>")]])
-    end,
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter'
+    },
   },
 
-  -- JSON syntax/etc
-  {
-    -- https://github.com/elzr/vim-json
-    'elzr/vim-json',
-    ft = 'json',
-    init = function()
-      vim.g.vim_json_syntax_conceal = 0
-    end,
-  },
-
-  -- Terraform syntax/etc
+  -- Terraform: format on save, etc
   {
     -- https://github.com/hashivim/vim-terraform
     'hashivim/vim-terraform',
@@ -59,53 +83,6 @@ return {
       vim.g.terraform_align = 1
       vim.g.terraform_fmt_on_save = 1
     end,
-  },
-
-  -- show commit diff for interactive rebases
-  {
-    -- https://github.com/hotwatermorning/auto-git-diff
-    'hotwatermorning/auto-git-diff',
-    ft = { 'gitrebase' },
-    init = function()
-      vim.g.auto_git_diff_show_window_at_right = 1
-    end,
-  },
-
-  -- Better folding for Markdown
-  {
-    -- https://github.com/masukomi/vim-markdown-folding
-    'masukomi/vim-markdown-folding',
-    ft = 'markdown',
-    init = function()
-      vim.g.markdown_fold_style = 'nested'
-    end,
-  },
-
-  -- Better folding for YAML
-  {
-    -- https://github.com/pedrohdz/vim-yaml-folds
-    'pedrohdz/vim-yaml-folds',
-    ft = 'yaml',
-  },
-
-  -- Better folding for Python
-  {
-    -- https://github.com/tmhedberg/SimpylFold
-    'tmhedberg/SimpylFold',
-    event = "VeryLazy",
-    ft = 'python',
-    init = function()
-      vim.g.SimpylFold_docstring_preview = 1
-      vim.g.SimpylFold_fold_import = 0
-    end,
-  },
-
-  -- Syntax/tools for Golang
-  {
-    -- https://github.com/fatih/vim-go
-    'fatih/vim-go',
-    ft = 'go',
-    build = ':GoUpdateBinaries',
   },
 
 }

@@ -65,4 +65,14 @@ return {
     end,
   },
 
+  -- show commit diff for interactive rebases
+  {
+    -- https://github.com/hotwatermorning/auto-git-diff
+    'hotwatermorning/auto-git-diff',
+    ft = { 'gitrebase' },
+    init = function()
+      vim.g.auto_git_diff_show_window_at_right = 1
+    end,
+  },
+
 }

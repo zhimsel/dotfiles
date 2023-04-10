@@ -46,7 +46,16 @@ return {
     'Xuyuanp/nerdtree-git-plugin',
     dependencies = {
       'preservim/nerdtree',
-    }
+    },
+  },
+
+  -- show the context of your current text using treesitter
+  -- https://github.com/nvim-treesitter/nvim-treesitter-context,
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter'
+    },
   },
 
   -- interactive buffer management

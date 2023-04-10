@@ -43,7 +43,6 @@ vim.opt.smartcase = true -- When searching try to be smart about cases
 -- Folding
 vim.opt.foldenable = true
 vim.opt.foldlevelstart = 999 -- Start with all folds open
-vim.opt.foldmethod = "syntax" -- Default to syntax folding
 
 -- Defaults for tab width
 vim.opt.expandtab = true
