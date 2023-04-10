@@ -10,6 +10,10 @@ return {
     fallback = true,
   },
 
+  change_detection = {
+    notify = false
+  },
+
   -- Use Unicode symbols, not the default Nerd Font icons (which I don't use)
   ui = {
     icons = {
