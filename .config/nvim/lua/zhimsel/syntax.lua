@@ -23,6 +23,13 @@ lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({buffer = bufnr})
 end)
 
+-- Disable signcolumn labels for LSP hints
+lsp.set_sign_icons({
+  error = '',
+  warn  = '',
+  hint  = '',
+  info  = ''
+})
 
 require('mason-lspconfig').setup({
   automatic_installation = true

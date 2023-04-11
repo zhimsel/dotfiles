@@ -28,7 +28,7 @@ vim.opt.showcmd = true -- show (partial) command in status line
 vim.opt.cursorline = true -- Highlight current line
 vim.opt.number = true -- show line numbers
 vim.opt.numberwidth = 4  -- minimum width of the number column
-vim.opt.signcolumn = "auto:4"  -- show sign column left of line numbers (for gitgutter, linting, etc)
+vim.opt.signcolumn = "auto:1-4"  -- show sign column left of line numbers (for gitgutter, linting, etc)
 
 -- Searching
 vim.opt.hlsearch = true -- Highlight search results
