@@ -11,15 +11,26 @@ lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({buffer = bufnr})
 end)
 
--- (Optional) Configure lua language server for neovim
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-
-lsp.setup()
-
 
 require('mason-lspconfig').setup({
   automatic_installation = true
 })
+
+require('mason-lspconfig').setup_handlers({
+  -- The first entry (without a key) will be the default handler
+  -- and will be called for each installed server that doesn't have
+  -- a dedicated handler.
+  function(server_name) -- default handler (optional)
+    require("lspconfig")[server_name].setup {}
+  end,
+  --  Configure the lua LS with some neovim-specific settings
+  --  https://github.com/VonHeikemen/lsp-zero.nvim/blob/eb278c30b6c50e99fdfde52f7da0e0ff8d17c07e/lua/lsp-zero/server.lua#L214-L238
+  ['lua_ls'] = function()
+    require('lspconfig').lua_ls.setup(require('lsp-zero').nvim_lua_ls())
+  end,
+})
+
+lsp.setup()
 
 
 -- Set up completion
