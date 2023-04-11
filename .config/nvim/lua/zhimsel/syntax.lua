@@ -1,4 +1,5 @@
 -- Set up syntax-related things separate from lazy.nvim
+local map = require('zhimsel.util').map
 
 -- Set up Mason (LSP/formatter manager)
 -- Must be done before lsp-zero is called
@@ -20,7 +21,25 @@ lsp.preset({
 })
 
 lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({buffer = bufnr})
+  lsp.default_keymaps({
+    buffer = bufnr,
+    omit = {
+      'go', -- remapped to 'gt' below
+    }
+  })
+
+  -- use telescope.nvim
+  map('n', 'gd', '<cmd>Telescope lsp_definitions<cr>',      { buffer = true })
+  map('n', 'gD', '<cmd>Telescope lsp_declarations<cr>',     { buffer = true })
+  map('n', 'gi', '<cmd>Telescope lsp_implementations<cr>',  { buffer = true })
+  map('n', 'gr', '<cmd>Telescope lsp_references<cr>',       { buffer = true })
+  map('n', 'gt', '<cmd>Telescope lsp_type_definitions<cr>', { buffer = true })
+
+  -- open a list of all warnings/errors/etc
+  map('n', 'gL', '<cmd>Telescope diagnostics<cr>', { buffer = true })
+
+  -- rename all references to symbol under the cursor
+  map({ 'n', 'v' }, 'gR', '', { callback = function() vim.lsp.buf.rename() end, buffer = true })
 end)
 
 -- Disable signcolumn labels for LSP hints

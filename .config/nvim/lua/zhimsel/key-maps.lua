@@ -30,9 +30,10 @@ map('n', [[<C-w>\]], [[:vsp<CR>]])
 map('n', [[<C-w>+]], [[<C-w>|<C-w>_]])
 
 -- Create and switch to tabs more easily
-map('n', [[<C-w>t]],  [[:tabnew<CR>]])
-map('n', [[<C-w>T]],  [[:tab split<CR>]])
-map('n', [[<C-w>tc]], [[:tabclose<CR>]])
+map('n', [[<C-w>t]],     [[:tabnew<CR>]])
+map('n', [[<C-w>T]],     [[:tab split<CR>]])
+map('n', [[<C-w>tc]],    [[:tabclose<CR>]])
+map('n', [[<C-w><C-t>]], [[:Telescope telescope-tabs list_tabs<CR>]])
 
 -- Switch the CWD to the directory of the open buffer
 map('n', [[<leader>cd]], [[:lcd %:p:h<CR>:pwd<CR>]])

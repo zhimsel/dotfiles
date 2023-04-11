@@ -75,33 +75,17 @@ return {
     }
   },
 
-  -- fuzzy-finding all sorts of things (files, buffers, lines, etc)
   {
-    -- https://github.com/junegunn/fzf.vim
-    'junegunn/fzf.vim',
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
     dependencies = {
-      { 'junegunn/fzf' }
+      'nvim-lua/plenary.nvim',
+      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+      'tsakirist/telescope-lazy.nvim',
+      'ANGkeith/telescope-terraform-doc.nvim',
+      'LukasPietzschmann/telescope-tabs',
+      'debugloop/telescope-undo.nvim',
     },
-    init = function()
-      vim.g.fzf_layout = {
-        window = {
-          width = 0.9,
-          height = 0.8,
-        }
-      }
-      vim.g.fzf_action = {
-        ['ctrl-t'] = 'tab split',
-        ['ctrl-s'] = 'split',
-        ['ctrl-v'] = 'vsplit',
-      }
-    end,
-    config = function()
-      map('n', '<c-t>', ':Files<CR>')
-      map('n', '<c-f>', ':BLines<CR>')
-      map('n', '<c-g>', ':GitFiles<CR>')
-      map('n', '<c-b>', ':Buffers<CR>')
-      map('n', '```',   ':Marks<CR>')
-    end,
   },
 
   -- visual selection of entire undo tree for a file
