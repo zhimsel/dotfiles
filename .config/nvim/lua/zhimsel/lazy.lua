@@ -14,8 +14,10 @@ return {
     notify = false
   },
 
-  -- Use Unicode symbols, not the default Nerd Font icons (which I don't use)
   ui = {
+    border = 'rounded',
+
+    -- Use Unicode symbols, not the default Nerd Font icons (which I don't use)
     icons = {
       cmd = "⌘",
       config = "🛠",

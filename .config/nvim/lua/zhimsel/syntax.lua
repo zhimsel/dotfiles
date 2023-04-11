@@ -1,11 +1,23 @@
 -- Set up syntax-related things separate from lazy.nvim
 
+-- Set up Mason (LSP/formatter manager)
+-- Must be done before lsp-zero is called
+
+require('mason').setup({
+  ui = {
+    border = 'rounded'
+  }
+})
+
 
 -- Set up LSP
 
 local lsp = require('lsp-zero')
 
-lsp.preset('recommended')
+lsp.preset({
+  name = 'recommended',
+  float_border = 'rounded',
+})
 
 lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({buffer = bufnr})
@@ -29,6 +41,9 @@ require('mason-lspconfig').setup_handlers({
     require('lspconfig').lua_ls.setup(require('lsp-zero').nvim_lua_ls())
   end,
 })
+
+-- Add border around lspconfig floating windows
+require('lspconfig.ui.windows').default_options.border = 'rounded'
 
 lsp.setup()
 
@@ -91,5 +106,11 @@ cmp.setup({
         fallback()
       end
     end,
+  },
+
+  -- Add borders to the completion window
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
   }
 })
