@@ -5,9 +5,14 @@ vim.keymap.set("n", " ", "<Nop>", { silent = true, remap = false })
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+
+-- Colors/visual/etc
+
 -- Disable search highlight when <Esc><Esc> is pressed
 map('n', [[<Esc><Esc>]], [[:noh<CR>]])
 
+-- Redraw the screen
+map('n', '<leader>r', '<cmd>redraw!', { silent = false })
 
 -------- Buffers, windows, and tabs --------
 
