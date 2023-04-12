@@ -12,7 +12,7 @@ vim.g.maplocalleader = " "
 map('n', [[<Esc><Esc>]], [[:noh<CR>]])
 
 -- Redraw the screen
-map('n', '<leader>r', '<cmd>redraw!', { silent = false })
+map('n', '<leader>r', '<cmd>redraw!<CR>', { silent = false })
 
 -------- Buffers, windows, and tabs --------
 
