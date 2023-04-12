@@ -20,13 +20,22 @@ return {
 
       -- Autocompletion
       { 'hrsh7th/nvim-cmp' },
-      { 'hrsh7th/cmp-buffer' },
+      {
+        'tzachar/cmp-fuzzy-buffer',
+        dependencies = { 'hrsh7th/nvim-cmp', 'tzachar/fuzzy.nvim' },
+      },
       { 'FelipeLema/cmp-async-path' },
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/cmp-nvim-lua' },
       { 'hrsh7th/cmp-emoji' },
+      {
+        'petertriho/cmp-git',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+      },
       { 'saadparwaiz1/cmp_luasnip' },
       { 'L3MON4D3/LuaSnip' },
+      { 'hrsh7th/cmp-cmdline' },
+      { 'dmitmel/cmp-cmdline-history' },
     },
 
   },

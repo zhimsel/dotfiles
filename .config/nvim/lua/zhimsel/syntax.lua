@@ -85,10 +85,8 @@ cmp.setup({
     { name = 'aync_path' },
     { name = 'nvim_lua' },
     { name = 'luasnip' },
-    { name = 'buffer', option = {
-      keyword_length = 2,
-      keyword_pattern = [[\k\+]], -- use vim's `iskeyword` option for recognizing words
-    }},
+    { name = 'git' },
+    { name = 'fuzzy_buffer' },
     { name = 'emoji' },
   },
 
@@ -103,7 +101,7 @@ cmp.setup({
         end
       end,
       s = cmp.mapping.confirm({ select = true }),
-      c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+      -- c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
     }),
 
     -- <C-j> to select next entry (if visible)
@@ -124,14 +122,30 @@ cmp.setup({
       end
     end,
 
-    -- <Esc> to cancel, but only if an entry is selected
-    ['<Esc>'] = function(fallback)
+    -- <Esc> to confirm, but only if an entry is selected
+    ['<Esc>'] = cmp.mapping({
+      i = function(fallback)
+        if cmp.visible() and cmp.get_active_entry() then
+          cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+        else
+          fallback()
+        end
+      end,
+      s = cmp.mapping.confirm({ select = true }),
+      -- c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+    }),
+
+    -- <C-c> to cancel, but only if an entry is selected
+    ['<C-c>'] = function(fallback)
       if cmp.get_selected_entry() then
         cmp.abort()
       else
         fallback()
       end
     end,
+
+    -- <C-space> to trigger completion manually
+    ['<C-Space>'] = cmp.mapping.complete(),
   },
 
   -- Add borders to the completion window
@@ -140,3 +154,41 @@ cmp.setup({
     documentation = cmp.config.window.bordered(),
   }
 })
+
+-- Enable completion in git filetypes for git things
+require("cmp_git").setup()
+
+-- TODO: disabled for now
+-- -- Enable completion for `/` and `?` searches
+-- cmp.setup.cmdline({ '/', '?' }, {
+--   -- mapping = cmp.mapping.preset.cmdline(),
+--   sources = {
+--     { name = 'fuzzy_buffer' }
+--   }
+-- })
+
+-- TODO: disabled for now
+-- -- Enable completion for Ex commands
+-- cmp.setup.cmdline(':', {
+--   -- mapping = cmp.mapping.preset.cmdline(),
+--   sources = cmp.config.sources(
+--     {
+--       { name = 'path' }
+--     },
+--     {
+--       { name = 'cmdline' },
+--       { name = 'cmdline_history' },
+--     }
+--   ),
+--   enabled = function()
+--     -- Set of commands where cmp will be disabled
+--     local disabled = {
+--         -- CmdNameHere = true
+--     }
+--     -- Get first word of cmdline
+--     local cmd = vim.fn.getcmdline():match("%S+")
+--     -- Return true if cmd isn't disabled
+--     -- else call/return cmp.close(), which returns false
+--     return not disabled[cmd] or cmp.close()
+--   end,
+-- })
