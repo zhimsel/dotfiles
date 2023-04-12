@@ -117,24 +117,4 @@ return {
     }
   },
 
-  -- highlight unwanted whitespaces
-  {
-    -- https://github.com/ntpeters/vim-better-whitespace
-    'ntpeters/vim-better-whitespace',
-    init = function()
-      vim.g.better_whitespace_enabled = 1
-      vim.g.strip_whitespace_on_save = 0
-
-      -- Disable whitespace highlighting on the current line
-      vim.g.current_line_whitespace_disabled_soft = 1
-
-      -- Disable whitespace highlighting for certain filetypes
-      vim.g.better_whitespace_filetypes_blacklist = {
-        -- Upstream default
-        'diff', 'git', 'gitcommit', 'unite', 'qf', 'help', 'markdown', 'fugitive',
-        -- Mine
-      }
-    end,
-  },
-
 }
