@@ -105,3 +105,5 @@ map('n', ']j', [[<C-i>]])
 map('n', '[l',          [[<Plug>LocationPrevious]], { noremap = false })
 map('n', ']l',          [[<Plug>LocationNext]],     { noremap = false })
 map('n', [[<leader>l]], [[:lopen<CR>]])
+
+map('n', [[<leader>q]], [[:copen<CR>]])
