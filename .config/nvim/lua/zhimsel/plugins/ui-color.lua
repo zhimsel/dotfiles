@@ -103,7 +103,10 @@ return {
 
   -- automatically highlight color codes with their color
   -- https://github.com/chrisbra/Colorizer
-  { 'chrisbra/Colorizer' },
+  {
+    'chrisbra/Colorizer',
+    event = "VeryLazy",
+  },
 
   -- visual marker for indent level
   -- https://github.com/lukas-reineke/indent-blankline.nvim
