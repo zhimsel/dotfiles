@@ -29,7 +29,7 @@ require('telescope').setup({
       height = 0.9,
       width = 0.9,
     },
-    path_display = 'smart',
+    path_display = { 'truncate' },
   },
 
   pickers = {
