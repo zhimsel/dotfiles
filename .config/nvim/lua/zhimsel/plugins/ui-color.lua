@@ -133,7 +133,6 @@ return {
         -- Upstream default
         'diff', 'git', 'gitcommit', 'unite', 'qf', 'help', 'markdown', 'fugitive',
         -- Mine
-        'go',
       }
     end,
   },
