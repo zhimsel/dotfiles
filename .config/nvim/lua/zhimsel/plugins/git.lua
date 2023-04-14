@@ -34,7 +34,7 @@ return {
     dependencies = {
       'tpope/vim-fugitive'
     },
-    cmd = 'GBrowse',
+    event = "VeryLazy",
   },
 
   -- Syntax/etc for git files (commit messages, etc)
