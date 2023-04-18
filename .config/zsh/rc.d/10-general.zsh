@@ -64,5 +64,11 @@ bindkey -M vicmd 'v' edit-command-line
 # }}}
 
 # Set colors for `ls` if the tool is available {{{
-[[ -x $(which dircolors) ]] && eval $(dircolors)
+if [[ -x $(which dircolors) ]]; then
+  if [[ -f "${HOME}/.dir_colors" ]]; then
+    eval $(dircolors ${HOME}/.dir_colors)
+  else
+    eval $(dircolors)
+  fi
+fi
 # }}}
