@@ -29,7 +29,7 @@ return {
       -- Always open files in current window
       -- (don't switch to it if it's already open)
       vim.g.NERDTreeCustomOpenArgs = {
-        dir = {},
+        dir = vim.empty_dict(),
         file = { keepopen = 1, reuse = "", where = "p" }
       }
     end,
