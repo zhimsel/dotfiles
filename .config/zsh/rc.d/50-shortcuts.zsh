@@ -29,8 +29,8 @@ alias nodot='unset  GIT_DIR                           GIT_WORK_TREE'
 alias   dot='export GIT_DIR=$HOME/.git_dotfiles       GIT_WORK_TREE=$HOME'
 alias  ldot='export GIT_DIR=$HOME/.git_dotfiles_local GIT_WORK_TREE=$HOME'
 
-alias  dote=' dot && nvim -c "cd $HOME" -c  Dot -c "Telescope git_files"'
-alias ldote='ldot && nvim -c "cd $HOME" -c Ldot -c "Telescope git_files"'
+alias  dote='( dot && cd $HOME && vim $HOME)'
+alias ldote='(ldot && cd $HOME && vim $HOME)'
 
 # }}}
 
