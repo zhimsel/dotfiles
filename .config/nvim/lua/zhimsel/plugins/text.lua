@@ -16,22 +16,26 @@ return {
 
   -- improved motions with skipping objects
   {
-    -- https://github.com/Lokaltog/vim-easymotion
-    'Lokaltog/vim-easymotion',
+    -- https://github.com/phaazon/hop.nvim
+    'phaazon/hop.nvim',
+    branch = "v2",
     event = "VeryLazy",
-    init = function()
-      -- keep cursor colum when JK motion
-      vim.g.EasyMotion_startofline = 0
-    end,
-    config = function()
-      map('', '<leader><leader>l', '<Plug>(easymotion-lineforward)')
-      map('', '<leader><leader>j', '<Plug>(easymotion-j)')
-      map('', '<leader><leader>k', '<Plug>(easymotion-k)')
-      map('', '<leader><leader>h', '<Plug>(easymotion-linebackward)')
+    config = function(_, opts)
+      local hop  = require('hop')
+      local hint = require('hop.hint')
+      hop.setup(opts)
+
+      -- Hop to lines
+      map('', '<leader><leader>j', function() hop.hint_vertical({ direction = hint.HintDirection.AFTER_CURSOR }) end)
+      map('', '<leader><leader>k', function() hop.hint_vertical({ direction = hint.HintDirection.BEFORE_CURSOR }) end)
+
+      -- Hop to words
+      map('', '<leader><leader>w', function() hop.hint_words({ direction = hint.HintDirection.AFTER_CURSOR }) end)
+      map('', '<leader><leader>b', function() hop.hint_words({ direction = hint.HintDirection.BEFORE_CURSOR }) end)
 
       -- <C-_> is Ctrl-/
-      map('', '<C-_>', '<Plug>(easymotion-sn)')
-      map('o', '<C-_>', '<Plug>(easymotion-tn)')
+      map('',  '<C-_>', function() hop.hint_patterns() end)
+      map('o', '<C-_>', function() hop.hint_patterns() end)
     end
   },
 
