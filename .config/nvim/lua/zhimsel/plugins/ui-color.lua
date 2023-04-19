@@ -21,6 +21,9 @@ return {
     init = function()
       vim.g['airline_theme'] = "base16_eighties_custom" -- defined in autoload/airline/themes/
     end,
+    dependencies = {
+      'tpope/vim-fugitive'
+    },
     config = function()
       -- TODO: rewrite this in Lua
       vim.cmd([[
