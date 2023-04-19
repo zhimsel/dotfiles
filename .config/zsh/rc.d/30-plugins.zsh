@@ -20,7 +20,3 @@ zinit light "spaceship-prompt/spaceship-prompt"
 zinit light "spaceship-prompt/spaceship-vi-mode"
 
 zinit light "zsh-users/zsh-completions"
-
-# allow setting the color scheme from the terminal
-# (e.g. from SSH sessions)
-zinit light "chriskempson/base16-shell"

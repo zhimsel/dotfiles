@@ -17,29 +17,30 @@ map('n', '<leader>r', '<cmd>redraw!<CR>', { silent = false })
 -------- Buffers, windows, and tabs --------
 
 -- Switch windows more easily (using vim-tmux-navigator)
-map('n', [[<M-h>]], [[:TmuxNavigateLeft<CR>]])
-map('n', [[<M-j>]], [[:TmuxNavigateDown<CR>]])
-map('n', [[<M-k>]], [[:TmuxNavigateUp<CR>]])
-map('n', [[<M-l>]], [[:TmuxNavigateRight<CR>]])
+map({ 'n', 't' }, [[<M-h>]], [[<cmd>TmuxNavigateLeft<CR>]])
+map({ 'n', 't' }, [[<M-j>]], [[<cmd>TmuxNavigateDown<CR>]])
+map({ 'n', 't' }, [[<M-k>]], [[<cmd>TmuxNavigateUp<CR>]])
+map({ 'n', 't' }, [[<M-l>]], [[<cmd>TmuxNavigateRight<CR>]])
 
 -- Open new windows
-map('n', [[<C-w>-]], [[:sp<CR>]])
-map('n', [[<C-w>\]], [[:vsp<CR>]])
+map({ 'n', 't' }, [[<C-w>-]], [[<cmd>sp<CR>]])
+map({ 'n', 't' }, [[<C-w>\]], [[<cmd>vsp<CR>]])
 
 -- Zoom window
-map('n', [[<C-w>+]], [[<C-w>|<C-w>_]])
+map({ 'n', 't' }, [[<C-w>+]], [[<cmd>vertical resize | resize<CR>]])
 
 -- Create and switch to tabs more easily
-map('n', [[<C-w>t]],     [[:tabnew<CR>]])
-map('n', [[<C-w>T]],     [[:tab split<CR>]])
-map('n', [[<C-w>tc]],    [[:tabclose<CR>]])
-map('n', [[<C-w><C-t>]], [[:Telescope telescope-tabs list_tabs<CR>]])
+map({ 'n', 't' }, [[<C-w>t]],     [[<cmd>tabnew<CR>]])
+map({ 'n', 't' }, [[<C-w>T]],     [[<cmd>tab split<CR>]])
+map({ 'n', 't' }, [[<C-w>tc]],    [[<cmd>tabclose<CR>]])
+map({ 'n', 't' }, [[<C-w><C-t>]], [[<cmd>Telescope telescope-tabs list_tabs<CR>]])
 
 -- Switch the CWD to the directory of the open buffer
 map('n', [[<leader>cd]], [[:lcd %:p:h<CR>:pwd<CR>]])
 
--- Remap terminal exit
-map('t', [[<C-w><Esc>]], [[<C-\><C-n>]])
+-- Do some "normal" window things in terminal windows
+map('t', [[<C-w>c]],     [[<cmd>close]])
+map('t', [[<C-w><Esc>]], [[<C-\><C-n>]]) -- Remap terminal exit
 
 -- Open split terminal in current directory (or current file's directory)
 map('n', [[<leader>t]], [[:split | terminal<CR>]])
