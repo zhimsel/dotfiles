@@ -33,7 +33,7 @@
   prompt = false
 
 [mergetool "vimdiff"]
-  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+  cmd = \"$EDITOR\" -f -c \"Gdiffsplit!\" \"$MERGED\"
 
 [rebase]
   stat = true

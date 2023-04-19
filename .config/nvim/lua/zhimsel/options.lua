@@ -84,3 +84,7 @@ vim.opt.splitright = true
 -- Set default commentstring
 -- `#` is way more common that the default
 vim.opt.commentstring = "# %s"
+
+-- Use neovim-remote to avoid nested vim sessions within Terminal buffers
+vim.env.EDITOR = 'nvr --nostart'
+vim.env.GIT_EDITOR = 'nvr --nostart -cc split --remote-wait'
