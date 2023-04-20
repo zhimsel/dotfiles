@@ -71,6 +71,9 @@ vim.opt.completeopt:append({ 'noinsert', 'noselect' })
 vim.opt.wildmenu = true
 vim.opt.wildmode = { 'longest', 'list', 'full' }
 
+-- Spell checking
+vim.opt.spelllang = { 'en_us' }
+
 -- Movement
 vim.opt.backspace = { 'eol', 'start', 'indent' } -- Configure backspace so it acts more intuitively
 vim.opt.iskeyword:append('-') -- Word separators

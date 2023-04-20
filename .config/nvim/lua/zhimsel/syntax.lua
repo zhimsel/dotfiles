@@ -99,10 +99,17 @@ cmp.setup({
     { name = 'luasnip' },
     { name = 'async_path' },
     { name = 'git' },
+    {
+      name = 'spell',
+      enable_in_context = function() -- only enable when on a misspelled word
+        return require('cmp.config.context').in_treesitter_capture('spell')
+      end,
+    },
     { name = 'fuzzy_buffer' },
     { name = 'emoji' },
   },
 
+  -- Customize the order of suggestions
   sorting = {
     priority_weight = 2,
     comparators = {
@@ -118,6 +125,9 @@ cmp.setup({
     }
   },
 
+  -- Disable preselection (e.g. an exact match will be selected)
+  preselect = cmp.PreselectMode.None,
+
   -- Customize the formatting/order of the completion popup
   formatting = {
     fields = {'kind', 'abbr',  'menu' },
@@ -132,6 +142,7 @@ cmp.setup({
         luasnip                  = 'snip',
         async_path               = '',
         git                      = 'git',
+        spell                    = 'spell',
         fuzzy_buffer             = 'buf',
         emoji                    = '',
       }

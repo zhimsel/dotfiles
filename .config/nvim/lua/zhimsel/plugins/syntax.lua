@@ -33,6 +33,7 @@ return {
       { 'saadparwaiz1/cmp_luasnip', dependencies = { 'L3MON4D3/LuaSnip' }, },
       { 'hrsh7th/cmp-cmdline' },
       { 'dmitmel/cmp-cmdline-history' },
+      { 'f3fora/cmp-spell' },
 
       -- Snippets
       { 'L3MON4D3/LuaSnip' },

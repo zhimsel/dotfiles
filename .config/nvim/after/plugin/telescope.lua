@@ -64,3 +64,9 @@ map('n', '<C-j>', builtin.jumplist)
 map('n', '<C-q>', builtin.quickfix)
 map('n', '<C-l>', builtin.loclist)
 map('n', '```',   builtin.marks)
+
+-- Replace the default spellsuggest() binding
+map('n', 'z=',
+  function() builtin.spell_suggest(require("telescope.themes").get_cursor({})) end,
+  { desc = "Spellcheck" }
+)
