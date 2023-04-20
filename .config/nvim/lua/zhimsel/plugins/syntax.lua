@@ -3,7 +3,7 @@ local map = require('zhimsel.util').map
 
 return {
 
-  -- LSP
+  -- LSP/completion
   {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
@@ -20,24 +20,22 @@ return {
 
       -- Autocompletion
       { 'hrsh7th/nvim-cmp' },
-      {
-        'tzachar/cmp-fuzzy-buffer',
-        dependencies = { 'hrsh7th/nvim-cmp', 'tzachar/fuzzy.nvim' },
-      },
-      { 'FelipeLema/cmp-async-path' },
+
+      -- Sources for nvim-cmp
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/cmp-nvim-lsp-document-symbol' },
       { 'hrsh7th/cmp-nvim-lsp-signature-help' },
       { 'hrsh7th/cmp-nvim-lua' },
       { 'hrsh7th/cmp-emoji' },
-      {
-        'petertriho/cmp-git',
-        dependencies = { 'nvim-lua/plenary.nvim' },
-      },
-      { 'saadparwaiz1/cmp_luasnip' },
-      { 'L3MON4D3/LuaSnip' },
+      { 'tzachar/cmp-fuzzy-buffer', dependencies = { 'hrsh7th/nvim-cmp', 'tzachar/fuzzy.nvim' }, },
+      { 'FelipeLema/cmp-async-path' },
+      { 'petertriho/cmp-git', dependencies = { 'nvim-lua/plenary.nvim' }, },
+      { 'saadparwaiz1/cmp_luasnip', dependencies = { 'L3MON4D3/LuaSnip' }, },
       { 'hrsh7th/cmp-cmdline' },
       { 'dmitmel/cmp-cmdline-history' },
+
+      -- Snippets
+      { 'L3MON4D3/LuaSnip' },
     },
 
   },
