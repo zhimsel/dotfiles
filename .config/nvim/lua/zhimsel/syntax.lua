@@ -93,6 +93,8 @@ cmp.setup({
   -- This is how they will be sorted and grouped in the completion popup.
   sources = {
     { name = 'nvim_lsp' },
+    { name = 'nvim_lsp_document_symbol' },
+    { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lua' },
     { name = 'luasnip' },
     { name = 'async_path' },
