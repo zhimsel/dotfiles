@@ -27,7 +27,7 @@ vim.opt.showcmd = true -- show (partial) command in status line
 -- Sign column and line display
 vim.opt.cursorline = true -- Highlight current line
 vim.opt.number = true -- show line numbers
-vim.opt.relativenumber = true -- those line numbers are relative to the current line
+vim.opt.relativenumber = false -- those line numbers are relative to the current line
 vim.opt.numberwidth = 4  -- minimum width of the number column
 vim.opt.signcolumn = "auto:1-4"  -- show sign column left of line numbers (for gitgutter, linting, etc)
 
