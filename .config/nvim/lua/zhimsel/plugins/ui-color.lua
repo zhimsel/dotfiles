@@ -105,10 +105,14 @@ return {
   },
 
   -- automatically highlight color codes with their color
-  -- https://github.com/chrisbra/Colorizer
+  -- https://github.com/norcalli/nvim-colorizer.lua
   {
-    'chrisbra/Colorizer',
-    event = "VeryLazy",
+    'norcalli/nvim-colorizer.lua',
+    lazy = false,
+    priority = 777, -- load after airline theme, before TreeSitter/LSP
+    config = function()
+      require('colorizer').setup()
+    end,
   },
 
   -- visual marker for indent level
