@@ -38,7 +38,7 @@ To update all the required zsh and vim plugins, use the included `dotu` command 
 
 Install [Homebrew](https://docs.brew.sh/Installation) and run:
 
-```
+```sh
 brew bundle --global install
 ```
 
@@ -46,7 +46,7 @@ brew bundle --global install
 
 Install your choice of AUR-helper (I recommend [`yay`](https://aur.archlinux.org/packages/yay/)) and do:
 
-```
+```sh
 yay -Syu --needed - < .arch-packages.list
 ```
 
