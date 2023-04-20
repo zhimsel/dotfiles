@@ -18,6 +18,14 @@ local lsp = require('lsp-zero')
 lsp.preset({
   name = 'recommended',
   float_border = 'rounded',
+  manage_nvim_cmp = {
+    set_sources          = false, -- manually configured below
+    set_basic_mappings   = false, -- manually configured below
+    set_extra_mappings   = true,
+    use_luasnip          = true,
+    set_format           = true
+    documentation_window = true,
+  }
 })
 
 lsp.on_attach(function(client, bufnr)
@@ -77,9 +85,12 @@ lsp.setup()
 -- Set up completion
 
 local cmp = require('cmp')
+local compare = require('cmp.config.compare')
 
+-- Set up cmp
 cmp.setup({
-  -- order matters here! this is how they will be sorted in the list
+  -- Order and grouping matters here!
+  -- This is how they will be sorted and grouped in the completion popup.
   sources = {
     { name = 'nvim_lsp' },
     { name = 'aync_path' },
@@ -88,6 +99,21 @@ cmp.setup({
     { name = 'git' },
     { name = 'fuzzy_buffer' },
     { name = 'emoji' },
+  },
+
+  sorting = {
+    priority_weight = 2,
+    comparators = {
+      compare.order, -- prioritizes "sources" order above all else
+      require('cmp_fuzzy_buffer.compare'),
+      compare.offset,
+      compare.exact,
+      compare.score,
+      compare.recently_used,
+      compare.kind,
+      compare.sort_text,
+      compare.length,
+    }
   },
 
   mapping = {
