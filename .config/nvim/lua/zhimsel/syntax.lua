@@ -23,7 +23,7 @@ lsp.preset({
     set_basic_mappings   = false, -- manually configured below
     set_extra_mappings   = true,
     use_luasnip          = true,
-    set_format           = true
+    set_format           = false, -- manually configured below
     documentation_window = true,
   }
 })
@@ -116,6 +116,28 @@ cmp.setup({
       compare.sort_text,
       compare.length,
     }
+  },
+
+  -- Customize the formatting/order of the completion popup
+  formatting = {
+    fields = {'kind', 'abbr',  'menu' },
+    format = function(entry, item)
+      -- Keep this list in sync with the 'sources' above!
+      -- Anything missing or blank will NOT display a label.
+      local label = {
+        nvim_lsp                 = 'LSP',
+        nvim_lsp_document_symbol = 'LSP',
+        nvim_lsp_signature_help  = 'LSP',
+        nvim_lua                 = 'nvim',
+        luasnip                  = 'snip',
+        async_path               = '',
+        git                      = 'git',
+        fuzzy_buffer             = 'buf',
+        emoji                    = '',
+      }
+      item.menu = label[entry.source.name]
+      return item
+    end,
   },
 
   mapping = {
