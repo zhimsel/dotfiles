@@ -93,9 +93,9 @@ cmp.setup({
   -- This is how they will be sorted and grouped in the completion popup.
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'aync_path' },
     { name = 'nvim_lua' },
     { name = 'luasnip' },
+    { name = 'async_path' },
     { name = 'git' },
     { name = 'fuzzy_buffer' },
     { name = 'emoji' },
