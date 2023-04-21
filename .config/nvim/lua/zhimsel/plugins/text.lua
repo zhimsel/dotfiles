@@ -70,13 +70,6 @@ return {
     event = "VeryLazy",
   },
 
-  -- automatic if/for/etc block closing
-  {
-    -- https://github.com/tpope/vim-endwise
-    'tpope/vim-endwise',
-    event = "VeryLazy",
-  },
-
   -- improved repeats
   {
     -- https://github.com/tpope/vim-repeat
