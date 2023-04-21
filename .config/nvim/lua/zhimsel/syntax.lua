@@ -99,13 +99,13 @@ cmp.setup({
     { name = 'luasnip' },
     { name = 'async_path' },
     { name = 'git' },
+    { name = 'fuzzy_buffer' },
     {
       name = 'spell',
       enable_in_context = function() -- only enable when on a misspelled word
         return require('cmp.config.context').in_treesitter_capture('spell')
       end,
     },
-    { name = 'fuzzy_buffer' },
     { name = 'emoji' },
   },
 
