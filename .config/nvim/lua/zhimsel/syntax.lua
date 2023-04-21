@@ -113,15 +113,13 @@ cmp.setup({
   sorting = {
     priority_weight = 2,
     comparators = {
-      compare.order, -- prioritizes "sources" order above all else
+      compare.locality, -- prefer matches closer in the file
+      compare.recently_used, -- prefer more recently used
       require('cmp_fuzzy_buffer.compare'),
-      compare.offset,
+      compare.score, -- compare entry scores
+      compare.offset, -- prefer less-distant matches (within separated words)
+      compare.order, -- the order of the `sources` above
       compare.exact,
-      compare.score,
-      compare.recently_used,
-      compare.kind,
-      compare.sort_text,
-      compare.length,
     }
   },
 
@@ -136,8 +134,8 @@ cmp.setup({
       -- Anything missing or blank will NOT display a label.
       local label = {
         nvim_lsp                 = 'LSP',
-        nvim_lsp_document_symbol = 'LSP',
-        nvim_lsp_signature_help  = 'LSP',
+        nvim_lsp_document_symbol = 'LSP sym',
+        nvim_lsp_signature_help  = 'LSP help',
         nvim_lua                 = 'nvim',
         luasnip                  = 'snip',
         async_path               = '',
