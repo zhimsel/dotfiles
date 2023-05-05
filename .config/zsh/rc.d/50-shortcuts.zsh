@@ -77,8 +77,7 @@ alias pacman-clean-orphans='echo "Found orphans:"; yay -Qqdt && echo; yay -Runs 
 
 # Docker {{{
 
-alias docker='s docker'
-alias dc='s docker-compose'
+alias dc='docker-compose'
 
 # }}}
 
