@@ -84,15 +84,4 @@ return {
     },
   },
 
-  -- Terraform: format on save, etc
-  {
-    -- https://github.com/hashivim/vim-terraform
-    'hashivim/vim-terraform',
-    ft = 'terraform',
-    init = function()
-      vim.g.terraform_align = 1
-      vim.g.terraform_fmt_on_save = 1
-    end,
-  },
-
 }
