@@ -69,11 +69,32 @@ require('mason-lspconfig').setup_handlers({
   function(server_name) -- default handler (optional)
     require("lspconfig")[server_name].setup {}
   end,
+
   --  Configure the lua LS with some neovim-specific settings
   --  https://github.com/VonHeikemen/lsp-zero.nvim/blob/eb278c30b6c50e99fdfde52f7da0e0ff8d17c07e/lua/lsp-zero/server.lua#L214-L238
   ['lua_ls'] = function()
     require('lspconfig').lua_ls.setup(require('lsp-zero').nvim_lua_ls())
   end,
+
+  -- Configure yaml LS
+  ['yamlls'] = function()
+    require('lspconfig').yamlls.setup({
+      settings = {
+        yaml = {
+          format = {
+            enable = true
+          },
+          completion = true,
+          validate = true,
+          editor = {
+            formatOnType = true,
+          },
+          keyOrdering = false,
+        }
+      }
+    })
+  end
+
 })
 
 -- Add border around lspconfig floating windows
