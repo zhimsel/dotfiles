@@ -84,6 +84,19 @@ map('v', '<Left> ', 'xhhp`[v`]')
 -- Keep cursor position when joining lines
 map('n', [[J]], [[m`J``]])
 
+-- format text using the lsp
+map('n', '<leader>f', vim.lsp.buf.format)
+map('v', '<leader>f', function()
+  vim.lsp.buf.format({
+    async = true,
+    range = {
+      ["start"] = vim.api.nvim_buf_get_mark(0, "<"),
+      ["end"] = vim.api.nvim_buf_get_mark(0, ">"),
+    }
+  })
+end
+)
+
 
 -------- Motion --------
 
