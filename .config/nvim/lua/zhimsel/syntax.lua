@@ -48,6 +48,12 @@ lsp.on_attach(function(client, bufnr)
 
   -- rename all references to symbol under the cursor
   map({ 'n', 'v' }, 'gR', '', { callback = function() vim.lsp.buf.rename() end, buffer = true })
+
+  -- Format-on-save, but only for changed regions (as per VCS)
+  if client.server_capabilities.documentRangeFormattingProvider then
+    local lsp_format_modifications = require('lsp-format-modifications')
+    lsp_format_modifications.attach(client, bufnr, { format_on_save = true })
+  end
 end)
 
 -- Disable signcolumn labels for LSP hints

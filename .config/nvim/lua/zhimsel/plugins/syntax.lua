@@ -38,6 +38,9 @@ return {
       -- Snippets
       { 'L3MON4D3/LuaSnip' },
 
+      -- Format-on-save via LSP formatter, but only for changed regions (as per VCS)
+      { 'joechrisellis/lsp-format-modifications.nvim', dependencies = { 'nvim-lua/plenary.nvim' }, },
+
       -- null-ls
       { 'jose-elias-alvarez/null-ls.nvim', dependencies = { 'nvim-lua/plenary.nvim' }, },
     },
