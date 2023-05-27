@@ -135,7 +135,21 @@ cmp.setup({
     { name = 'luasnip' },
     { name = 'async_path' },
     { name = 'git' },
-    { name = 'fuzzy_buffer' },
+    { -- all buffers
+      name = 'fuzzy_buffer',
+      option = {
+        get_bufnrs = function()
+          local bufs = {}
+          for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+            local buftype = vim.api.nvim_buf_get_option(buf, 'buftype')
+            if buftype ~= 'nofile' and buftype ~= 'prompt' then
+              bufs[#bufs + 1] = buf
+            end
+          end
+          return bufs
+        end
+      },
+    },
     {
       name = 'spell',
       enable_in_context = function() -- only enable when on a misspelled word
