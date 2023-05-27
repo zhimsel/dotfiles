@@ -37,10 +37,10 @@ lsp.on_attach(function(client, bufnr)
   })
 
   -- use telescope.nvim
-  map('n', 'gd', '<cmd>Telescope lsp_definitions<cr>',      { buffer = true })
-  map('n', 'gD', '<cmd>Telescope lsp_declarations<cr>',     { buffer = true })
-  map('n', 'gi', '<cmd>Telescope lsp_implementations<cr>',  { buffer = true })
-  map('n', 'gr', '<cmd>Telescope lsp_references<cr>',       { buffer = true })
+  map('n', 'gd', '<cmd>Telescope lsp_definitions<cr>', { buffer = true })
+  map('n', 'gD', '<cmd>Telescope lsp_declarations<cr>', { buffer = true })
+  map('n', 'gi', '<cmd>Telescope lsp_implementations<cr>', { buffer = true })
+  map('n', 'gr', '<cmd>Telescope lsp_references<cr>', { buffer = true })
   map('n', 'gt', '<cmd>Telescope lsp_type_definitions<cr>', { buffer = true })
 
   -- open a list of all warnings/errors/etc
@@ -163,12 +163,12 @@ cmp.setup({
   sorting = {
     priority_weight = 2,
     comparators = {
-      compare.order, -- the order of the `sources` above
-      compare.locality, -- prefer matches closer in the file
+      compare.order,         -- the order of the `sources` above
+      compare.locality,      -- prefer matches closer in the file
       compare.recently_used, -- prefer more recently used
       require('cmp_fuzzy_buffer.compare'),
-      compare.score, -- compare entry scores
-      compare.offset, -- prefer less-distant matches (within separated words)
+      compare.score,         -- compare entry scores
+      compare.offset,        -- prefer less-distant matches (within separated words)
       compare.exact,
     }
   },
@@ -178,7 +178,7 @@ cmp.setup({
 
   -- Customize the formatting/order of the completion popup
   formatting = {
-    fields = {'kind', 'abbr',  'menu' },
+    fields = { 'kind', 'abbr', 'menu' },
     format = function(entry, item)
       -- Keep this list in sync with the 'sources' above!
       -- Anything missing or blank will NOT display a label.
