@@ -102,6 +102,15 @@ require('lspconfig.ui.windows').default_options.border = 'rounded'
 
 lsp.setup()
 
+-- Set up null-ls
+local null_ls = require('null-ls')
+null_ls.setup({
+  sources = {
+    null_ls.builtins.diagnostics.actionlint,
+    null_ls.builtins.formatting.terrafmt,
+  }
+})
+
 
 -- Set up completion
 

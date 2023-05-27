@@ -37,8 +37,10 @@ return {
 
       -- Snippets
       { 'L3MON4D3/LuaSnip' },
-    },
 
+      -- null-ls
+      { 'jose-elias-alvarez/null-ls.nvim', dependencies = { 'nvim-lua/plenary.nvim' }, },
+    },
   },
 
   -- Highlighting, folding, indenting
