@@ -47,6 +47,7 @@ brew "shellcheck"
 brew "ripgrep"
 brew "tig"
 brew "tmux"
+brew "wget"
 
 # Shell completions
 brew "bash-completion"
