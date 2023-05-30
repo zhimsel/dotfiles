@@ -11,20 +11,15 @@ To do an initial clone of this repo, follow the steps below:
 
 ```sh
 cd $HOME
-
-# set up git repo and install tracked files
 export GIT_DIR=$HOME/.git_dotfiles GIT_WORK_TREE=$HOME
 git init
 git remote add origin git@github.com:zhimsel/dotfiles.git
 git fetch
-git checkout -t origin/main  # will report any conflict files; fix these and re-run
-git submodule update --init --recursive  # fetch submodules
-unset GIT_DIR GIT_WORK_TREE
-
-# install zinit (zsh plugin manager)
-mkdir -p "${XDG_DATA_HOME:-$HOME/.local/share}/zsh/zinit"
-git clone https://github.com/zdharma-continuum/zinit.git "${XDG_DATA_HOME:-$HOME/.local/share}/zsh/zinit/bin"
+git checkout --track -b main origin/main  # will report any conflict files; back these up and re-run
+git submodule update --init --recursive
 ```
+
+Then, start a new shell (which will install zinit and plugins) and run `vim` to install lazy.nvim and its plugins.
 
 You can then use the included `dot` alias (in `$HOME/.zshrc`) to perform git commands against the dotfiles repo.
 To track new dotfiles, you need to use `git add -f`, since everything is ignored by default.
