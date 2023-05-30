@@ -89,6 +89,12 @@ return {
     -- https://github.com/christoomey/vim-sort-motion
     'christoomey/vim-sort-motion',
     event = "VeryLazy",
-  }
+  },
 
+  -- honor .editorconfig files in a project
+  {
+    -- https://github.com/editorconfig/editorconfig-vim
+    'editorconfig/editorconfig-vim',
+    event = "VeryLazy",
+  },
 }

@@ -28,3 +28,7 @@ let b:undo_ftplugin .= '| unmap <buffer> <leader>e'
 let b:undo_ftplugin .= '| unmap <buffer> <leader>s'
 let b:undo_ftplugin .= '| unmap <buffer> <leader>f'
 let b:undo_ftplugin .= '| unmap <buffer> <leader>d'
+
+" editorconfig-vim
+let b:EditorConfig_disable = 1
+let b:undo_ftplugin .= '| unlet b:EditorConfig_disable'
