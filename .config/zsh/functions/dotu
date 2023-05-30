@@ -5,8 +5,9 @@ local targets="${@:-dot vim zsh sub}"
 [[ $targets =~ "dot" ]] \
   && (dot && git fetch && git merge)
 
+# wrapped in a VeryLazy autocmd because lazy.nvim loads its commands after '-c' commands would run
 [[ $targets =~ "vim" ]] \
-  && (nodot && nvim -u "${XDG_CONFIG_HOME}/nvim/init.lua" -i NONE -c 'Lazy sync')
+  && (nodot && nvim -c 'autocmd User VeryLazy Lazy! sync')
 
 [[ $targets =~ "zsh" ]] \
   && (nodot && zsh -ic "zinit update --all")
