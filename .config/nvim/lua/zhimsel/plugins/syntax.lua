@@ -40,7 +40,15 @@ return {
       { 'joechrisellis/lsp-format-modifications.nvim', dependencies = { 'nvim-lua/plenary.nvim' }, },
 
       -- null-ls
-      { 'jose-elias-alvarez/null-ls.nvim', dependencies = { 'nvim-lua/plenary.nvim' }, },
+      {
+        'jose-elias-alvarez/null-ls.nvim',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        build = {
+          -- used by built-in sources
+          'go install github.com/katbyte/terrafmt@latest',                -- https://github.com/katbyte/terrafmt#install
+          'go install github.com/rhysd/actionlint/cmd/actionlint@latest', -- https://github.com/rhysd/actionlint
+        }
+      },
     },
   },
 
