@@ -16,8 +16,15 @@ return {
     -- https://github.com/zhimsel/vim-stay
     'zhimsel/vim-stay',
     url = 'git@github.com:zhimsel/vim-stay.git',
-    dev = true, pin = true,
+    dev = true,
+    pin = true,
     lazy = false,
   },
 
+  -- source project-specific config
+  {
+    -- https://github.com/klen/nvim-config-local
+    "klen/nvim-config-local",
+    lazy = false,
+  }
 }
