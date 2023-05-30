@@ -1,5 +1,6 @@
 local map = require('zhimsel.util').map
 local builtin = require('telescope.builtin')
+local actions = require('telescope.actions')
 
 -- mappings to be set in both Insert and Normal mode
 local telescope_mappings_i_n = {
@@ -15,10 +16,13 @@ require('telescope').setup({
   defaults = {
     mappings = {
       i = vim.tbl_deep_extend('force', telescope_mappings_i_n, {
-        -- Use <C-f> instead of <Esc> to get into normal mode (similar to Ex mode)
-        -- ['<Esc>'] = 'close', TODO
+        -- Use <Esc> to close Telescope; I don't use insert mode in Telescope often.
+        ['<Esc>'] = actions.close,
+        -- Use <C-f> instead of <Esc> to get into normal mode (similar to Ex mode).
+        ['<C-f>'] = function() vim.cmd('stopinsert') end
       }),
-      n = telescope_mappings_i_n,
+      n = vim.tbl_deep_extend('force', telescope_mappings_i_n, {
+      }),
     },
 
     -- layout
