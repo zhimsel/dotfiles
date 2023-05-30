@@ -1,6 +1,4 @@
 -- Syntax, completion, etc
-local map = require('zhimsel.util').map
-
 return {
 
   -- LSP/completion
@@ -13,7 +11,7 @@ return {
       {
         'williamboman/mason.nvim',
         build = function()
-          pcall(vim.cmd, 'MasonUpdate')
+          vim.cmd('MasonUpdate')
         end,
       },
       { 'williamboman/mason-lspconfig.nvim' },
@@ -50,7 +48,7 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     build = function()
-      pcall(vim.cmd, ':TSUpdate')
+      vim.cmd(':TSUpdate')
     end,
     config = function()
       require 'nvim-treesitter.configs'.setup {
