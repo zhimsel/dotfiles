@@ -29,8 +29,11 @@ alias nodot='unset  GIT_DIR                           GIT_WORK_TREE'
 alias   dot='export GIT_DIR=$HOME/.git_dotfiles       GIT_WORK_TREE=$HOME'
 alias  ldot='export GIT_DIR=$HOME/.git_dotfiles_local GIT_WORK_TREE=$HOME'
 
-alias  dote='( dot && cd $HOME && vim $HOME)'
-alias ldote='(ldot && cd $HOME && vim $HOME)'
+# Open vim and start searching for dotfiles to edit.
+# Do this in a subshell so you can change to the home dir and 'activate' git
+# without changing anything about the parent shell.
+alias  dote='( dot && cd $HOME && vim -c "autocmd User VeryLazy Telescope git_files")'
+alias ldote='(ldot && cd $HOME && vim -c "autocmd User VeryLazy Telescope git_files")'
 
 # }}}
 
