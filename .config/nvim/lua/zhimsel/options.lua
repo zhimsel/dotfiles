@@ -91,3 +91,7 @@ vim.opt.commentstring = "# %s"
 -- Use neovim-remote to avoid nested vim sessions within Terminal buffers
 vim.env.EDITOR = 'nvr --nostart'
 vim.env.GIT_EDITOR = 'nvr --nostart -cc split --remote-wait'
+
+-- disable netrw, nvim-tree.lua takes over 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1

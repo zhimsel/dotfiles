@@ -111,7 +111,7 @@ map('n', 'gp', '`[v`]')
 -------- Jumping --------
 
 -- Remap Ctrl-i/o jump maps
--- (they are used for NERDtree; plus I find the remaps more intuitive)
+-- (they are used for nvim-tree; plus I find the remaps more intuitive)
 map('n', '[j', [[<C-o>]])
 map('n', ']j', [[<C-i>]])
 

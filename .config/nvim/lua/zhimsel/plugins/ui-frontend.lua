@@ -5,48 +5,76 @@ return {
 
   -- file/directory explorer
   {
-    -- https://github.com/preservim/nerdtree
-    'preservim/nerdtree',
+    -- https://github.com/nvim-tree/nvim-tree.lua
+    'nvim-tree/nvim-tree.lua',
     event = "VeryLazy",
-    init = function()
-      -- internal maps
-      vim.g.NERDTreeMapPreview       = 'O'
-      vim.g.NERDTreeMapOpenSplit     = 's'
-      vim.g.NERDTreeMapPreviewSplit  = 'S'
-      vim.g.NERDTreeMapOpenVSplit    = 'v'
-      vim.g.NERDTreeMapPreviewVSplit = 'V'
-
-      -- options
-      vim.g.NERDTreeHighlightCursorline = 1
-      vim.g.NERDTreeHijackNetrw         = 1
-      vim.g.NERDTreeMinimalMenu         = 1
-      vim.g.NERDTreeMinimalUI           = 1
-      vim.g.NERDTreeMouseMode           = 1
-      vim.g.NERDTreeQuitOnOpen          = 0
-      vim.g.NERDTreeShowHidden          = 1
-      vim.g.NERDTreeWinSize             = 31
-
-      -- Always open files in current window
-      -- (don't switch to it if it's already open)
-      vim.g.NERDTreeCustomOpenArgs = {
-        dir = vim.empty_dict(),
-        file = { keepopen = 1, reuse = "", where = "p" }
-      }
-    end,
     config = function()
-      map('n', '<Tab>',   ':NERDTreeMirror<CR>:NERDTreeFocus<CR>')
-      map('n', '<S-Tab>', ':NERDTreeToggle<CR>')
-      map('n', '<C-o>',   ':NERDTreeFind<CR>')
-    end,
-  },
 
-  -- show git status symbols in NERDTree
-  {
-    -- https://github.com/Xuyuanp/nerdtree-git-plugin
-    'Xuyuanp/nerdtree-git-plugin',
-    dependencies = {
-      'preservim/nerdtree',
-    },
+      -- In-window mappings
+      local function on_attach(bufnr)
+        local api = require("nvim-tree.api")
+
+        local function opts(desc)
+          return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+        end
+
+        -- default mappings
+        api.config.mappings.default_on_attach(bufnr)
+
+        -- custom mappings
+        vim.keymap.set('n', '<Tab>', function() vim.cmd('wincmd p') end,          opts('Previous window'))
+        vim.keymap.set('n', 'C',     api.tree.change_root_to_node,                opts('CD'))
+        vim.keymap.set('n', 't',     api.node.open.tab,                           opts('Open: New Tab'))
+        vim.keymap.set('n', 'v',     api.node.open.vertical,                      opts('Open: Vertical Split'))
+        vim.keymap.set('n', 's',     api.node.open.horizontal,                    opts('Open: Horizontal Split'))
+        vim.keymap.set('n', 'z',     function() vim.cmd('NvimTreeResize 90') end, opts('Zoom'))
+        vim.keymap.set('n', 'Z',     function() vim.cmd('NvimTreeResize 30') end, opts('Unzoom'))
+      end
+
+      -- Config settings
+      require("nvim-tree").setup({
+        on_attach = on_attach,
+        git = {
+          ignore = false,
+        },
+        modified = {
+          enable = true,
+        },
+        view = {
+          width = 30,
+        },
+        renderer = {
+          indent_width = 1,
+          add_trailing = true,
+          icons = {
+            show = {
+              file = false,
+              folder = false,
+            },
+            glyphs = {
+              folder = {
+                arrow_closed = "⏵",
+                arrow_open = "⏷",
+              },
+              git = {
+                unstaged = "✗",
+                staged = "✓",
+                unmerged = "⌥",
+                renamed = "➜",
+                untracked = "★",
+                deleted = "⊖",
+                ignored = "◌",
+              },
+            },
+          },
+        },
+      })
+
+      -- Out-of-window mappings
+      map('n', '<Tab>',   ':NvimTreeFocus<CR>')
+      map('n', '<S-Tab>', ':NvimTreeToggle<CR>')
+      map('n', '<C-o>',   ':NvimTreeFindFile<CR>')
+    end,
   },
 
   -- show the context of your current text using treesitter
