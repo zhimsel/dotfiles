@@ -7,7 +7,7 @@ return {
   {
     -- https://github.com/nvim-tree/nvim-tree.lua
     'nvim-tree/nvim-tree.lua',
-    event = "VeryLazy",
+    lazy = false,
     config = function()
 
       -- In-window mappings
