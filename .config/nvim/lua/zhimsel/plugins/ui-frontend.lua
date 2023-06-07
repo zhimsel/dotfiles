@@ -51,6 +51,8 @@ return {
               file = false,
               folder = false,
             },
+            modified_placement = 'before',
+            git_placement = 'after',
             glyphs = {
               folder = {
                 arrow_closed = "⏵",
