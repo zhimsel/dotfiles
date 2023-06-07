@@ -69,6 +69,7 @@ return {
               },
             },
           },
+          special_files = {},
         },
       })
 
