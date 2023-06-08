@@ -58,8 +58,8 @@ vim.cmd([[
 -- Finding files
 map('n', '<C-t>',      builtin.find_files)
 map('n', '<C-g>',      builtin.git_files)
-map('n', '<Leader-g>', builtin.live_grep)
-map('v', '<Leader-g>', builtin.grep_string)
+map('n', '<Leader>g', builtin.live_grep)
+map('v', '<Leader>g', builtin.grep_string)
 
 -- Finding things that are open
 map('n', '<C-f>', builtin.current_buffer_fuzzy_find)
