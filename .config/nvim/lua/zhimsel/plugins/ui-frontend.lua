@@ -8,8 +8,10 @@ return {
     -- https://github.com/nvim-tree/nvim-tree.lua
     'nvim-tree/nvim-tree.lua',
     lazy = false,
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
     config = function()
-
       -- In-window mappings
       local function on_attach(bufnr)
         local api = require("nvim-tree.api")
@@ -123,25 +125,10 @@ return {
           indent_width = 1,
           add_trailing = true,
           icons = {
-            show = {
-              file = false,
-              folder = false,
-            },
             modified_placement = 'before',
             git_placement = 'after',
             glyphs = {
-              default = "",
               modified = "!",
-              symlink = "",
-              folder = {
-                default = "",
-                arrow_closed = "⏵",
-                arrow_open = "⏷",
-                open = "",
-                empty = "",
-                symlink = "",
-                symlink_open = "",
-              },
               git = {
                 unstaged = "+",
                 staged = "✓",
@@ -189,6 +176,8 @@ return {
     }
   },
 
+  -- fuzzy finder
+  -- https://github.com/nvim-telescope/telescope.nvim
   {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
@@ -199,8 +188,13 @@ return {
       'ANGkeith/telescope-terraform-doc.nvim',
       'LukasPietzschmann/telescope-tabs',
       'debugloop/telescope-undo.nvim',
+      'nvim-tree/nvim-web-devicons',
     },
   },
+
+  -- Add filetype icons using patched fonts (like Nerd fonts)
+  -- https://github.com/nvim-tree/nvim-web-devicons
+  { 'nvim-tree/nvim-web-devicons' },
 
   -- visual selection of entire undo tree for a file
   {
