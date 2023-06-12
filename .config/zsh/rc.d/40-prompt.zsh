@@ -54,8 +54,8 @@ SPACESHIP_PROMPT_ORDER=(
 
 cd-up-widget() {
   cd ..
-  vcs_info
-  zle reset-prompt
+  spaceship::core::refresh_section --sync git
+  spaceship::core::refresh_section --sync dir
 }
 zle -N cd-up-widget
 
