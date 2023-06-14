@@ -14,6 +14,12 @@ function! ShowHiCursor()
 endfunction
 command! ShowHiCursor call ShowHiCursor()
 
+function! Nodot()
+  unlet $GIT_DIR
+  unlet $GIT_WORK_TREE
+endfunction
+command! Nodot call Nodot()
+
 function! Dot()
   let $GIT_DIR = $HOME . "/.git_dotfiles"
   let $GIT_WORK_TREE = $HOME

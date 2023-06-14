@@ -32,8 +32,8 @@ alias  ldot='export GIT_DIR=$HOME/.git_dotfiles_local GIT_WORK_TREE=$HOME'
 # Open vim and start searching for dotfiles to edit.
 # Do this in a subshell so you can change to the home dir and 'activate' git
 # without changing anything about the parent shell.
-alias  dote='( dot && cd $HOME && vim -c "autocmd User VeryLazy Telescope git_files")'
-alias ldote='(ldot && cd $HOME && vim -c "autocmd User VeryLazy Telescope git_files")'
+alias  dote='(cd $HOME && vim -c  "Dot" -c "autocmd User VeryLazy Telescope git_files")'
+alias ldote='(cd $HOME && vim -c "Ldot" -c "autocmd User VeryLazy Telescope git_files")'
 
 # }}}
 
