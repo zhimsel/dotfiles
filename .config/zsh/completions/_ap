@@ -1,0 +1,11 @@
+#compdef ap
+
+_ap() {
+  local state
+
+  _arguments '1: :->profile'
+
+  case $state in
+    (profile) _arguments "1:profile:($(aws configure list-profiles))" ;;
+  esac
+}
