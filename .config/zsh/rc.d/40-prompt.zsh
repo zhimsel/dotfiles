@@ -79,8 +79,9 @@ bindkey -M vicmd '^[e' prompt-metadata-widget
 typeset -agxU PROMPT_METADATA
 
 PROMPT_METADATA+=('aws:(${AWS_PROFILE})')
-PROMPT_METADATA+=('k8s:(${KUBE_CONTEXT:-$(kubectl config current-context 2>/dev/null)}${KUBE_NAMESPACE:+/${KUBE_NAMESPACE}})')
 PROMPT_METADATA+=('aws-vault:(${AWS_VAULT})')
+PROMPT_METADATA+=('tf:($(terraform workspace show))')
+PROMPT_METADATA+=('k8s:(${KUBE_CONTEXT:-$(kubectl config current-context 2>/dev/null)}${KUBE_NAMESPACE:+/${KUBE_NAMESPACE}})')
 PROMPT_METADATA+=('venv:(${VIRTUAL_ENV})')
 
 # }}}
