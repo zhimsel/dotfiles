@@ -16,5 +16,10 @@ zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
 
 zstyle ':completion:complete:*:options' sort false # disable sort when completing options of any command
 
+# Explicitly complete files in the current directory on ctrl-F
+zle -C complete-file complete-word _generic
+zstyle ':completion:complete-file::::' completer _files
+bindkey '^F' complete-file
+
 # include custom completions
 fpath=("${ZSH_CONFIG_DIR}/completions" $fpath)
