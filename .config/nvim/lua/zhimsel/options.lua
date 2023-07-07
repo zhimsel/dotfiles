@@ -15,7 +15,7 @@ vim.opt.mouse = {
 vim.opt.timeoutlen = 500 -- Set timeout for completing keymaps
 vim.opt.undofile = true -- Save per-file undo history between sessions
 vim.opt.updatetime = 100  -- how quickly to write the swapfile after typing stops
-vim.opt.viewoptions = { 'folds', 'cursor', 'curdir' } -- what to save in session files (and for vim-stay)
+vim.opt.viewoptions = { 'folds', 'cursor' } -- what to save in session files (and for vim-stay)
 
 -- Status line
 vim.opt.cmdheight = 1 -- Height of the command bar
