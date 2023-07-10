@@ -4,6 +4,8 @@ setopt   correct
 unsetopt correct_all
 unsetopt flow_control
 
+zstyle ':completion:*' completer _complete _approximate
+
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'  # case/hyphen insensitive completion
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' list-colors ''
