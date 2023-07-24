@@ -13,6 +13,8 @@ require('mason').setup({
 
 -- Set up LSP
 
+vim.lsp.set_log_level('WARN')
+
 local lsp = require('lsp-zero')
 
 lsp.preset({
