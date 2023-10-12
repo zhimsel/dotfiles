@@ -17,6 +17,12 @@ export MANPAGER='nvim -c "Man!"'
 export LESS="-R --mouse --wheel-lines=3 $LESS"
 export AWS_PAGER="" # disable pager for output
 
+# If on MacOS, use a graphical prompt for entering sudo passwords.
+# This is needed especially for :SudoWrite in nvim.
+if [[ $(uname) == Darwin ]]; then
+  export SUDO_ASKPASS="${HOME}/bin/macos-sudopass"
+fi
+
 # }}}
 
 # History {{{
