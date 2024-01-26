@@ -43,7 +43,9 @@ bind main    co ?git checkout %(commit)
 bind refs    co ?git checkout %(branch)
 bind generic cp ?git cherry-pick %(commit)
 bind generic !  ?git reset --hard %(commit)
-bind generic B  ?git branch "%(prompt Create branch with name: )" %(commit)
+bind generic Bc ?git branch "%(prompt Create branch with name: )" %(commit)
+bind generic Bd ?git branch -d %(branch)
+bind generic BD ?git branch -D %(branch)
 
 # Main view
 bind main F     none
