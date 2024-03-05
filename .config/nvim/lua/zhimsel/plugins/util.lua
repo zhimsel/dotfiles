@@ -38,17 +38,19 @@ return {
     }
   },
 
-  -- Open a Github-flavored rendered preview of a Markdown file in the browser
-  -- https://github.com/zhimsel/vim-markdown-preview
+  -- Open a rendered preview of a Markdown file in the browser
+  -- https://github.com/iamcco/markdown-preview.nvim
   {
-    'zhimsel/vim-markdown-preview',
-    -- use my fork until https://github.com/JamshedVesuna/vim-markdown-preview/pull/91 is merged
-    branch = 'default_browser_assumption',
-    ft = 'markdown',
-    init = function()
-      vim.g.vim_markdown_preview_hotkey = '<leader>gp'
-      vim.g.vim_markdown_preview_github = 1
-    end,
+    "iamcco/markdown-preview.nvim",
+    build = function() vim.fn["mkdp#util#install"]() end,
+    ft = { "markdown" },
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    keys = {
+      {
+        '<leader>gp', '<Plug>MarkdownPreviewToggle',
+        mode = 'n', noremap = false
+      }
+    }
   },
 
   -- useful shell commands
