@@ -14,6 +14,11 @@ function! ShowHiCursor()
 endfunction
 command! ShowHiCursor call ShowHiCursor()
 
+function! JQFormat()
+  exe "%!jq ."
+endfunction
+command! JQFormat call JQFormat()
+
 function! Nodot()
   unlet $GIT_DIR
   unlet $GIT_WORK_TREE
