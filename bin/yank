@@ -1,8 +1,12 @@
 #!/usr/bin/env sh
 # Send stdin to system clipboard, regardless of OS
 
+# Wayland
+if [ -x "$(which wl-copy 2>/dev/null)" ]; then
+  wl-copy <&0
+
 # X11
-if [ -x "$(which xsel 2>/dev/null)" ]; then
+elif [ -x "$(which xsel 2>/dev/null)" ]; then
   xsel -i -b <&0
 elif [ -x "$(which xclip 2>/dev/null)" ]; then
   xclip -i -selection clipboard <&0
