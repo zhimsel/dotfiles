@@ -174,7 +174,7 @@ cmp.setup({
 
   -- Customize the formatting/order of the completion popup
   formatting = {
-    fields = { 'kind', 'abbr', 'menu' },
+    fields = { 'menu', 'kind', 'abbr' },
     format = function(entry, item)
       -- Keep this list in sync with the 'sources' above!
       -- Anything missing or blank will NOT display a label.
