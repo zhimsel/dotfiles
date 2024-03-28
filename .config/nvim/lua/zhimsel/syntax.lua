@@ -130,6 +130,7 @@ cmp.setup({
     { name = 'luasnip' },
     { name = 'async_path' },
     { name = 'git' },
+    { name = 'copilot' },
     { -- all buffers
       name = 'fuzzy_buffer',
       option = {
@@ -178,6 +179,7 @@ cmp.setup({
       -- Keep this list in sync with the 'sources' above!
       -- Anything missing or blank will NOT display a label.
       local label = {
+        copilot                  = 'AI',
         nvim_lsp                 = 'LSP',
         nvim_lsp_document_symbol = 'LSP sym',
         nvim_lsp_signature_help  = 'LSP help',
