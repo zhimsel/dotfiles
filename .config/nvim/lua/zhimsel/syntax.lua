@@ -156,16 +156,20 @@ cmp.setup({
   },
 
   -- Customize the order of suggestions
+  -- https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/config/compare.lua
   sorting = {
     priority_weight = 2,
     comparators = {
-      compare.order,         -- the order of the `sources` above
-      compare.locality,      -- prefer matches closer in the file
-      compare.recently_used, -- prefer more recently used
       require('cmp_fuzzy_buffer.compare'),
-      compare.score,         -- compare entry scores
+      compare.score,         -- compare entry scores (preferring source order, too)
       compare.offset,        -- prefer less-distant matches (within separated words)
-      compare.exact,
+      compare.exact,         -- exact matches score higher
+      require("copilot_cmp.comparators").prioritize,
+      compare.scopes,        -- ex: prefer local over global variables
+      compare.recently_used, -- prefer more recently used
+      -- compare.locality,      -- prefer matches closer in the file
+      compare.kind,          -- sort by "item kind"
+      -- compare.order,         -- smaller id will be ranked higher
     }
   },
 
