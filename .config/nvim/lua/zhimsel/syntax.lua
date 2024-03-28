@@ -237,6 +237,9 @@ cmp.setup({
 
     -- <C-space> to trigger completion manually
     ['<C-Space>'] = cmp.mapping.complete(),
+
+    -- Ignore <Tab> completely
+    ['<Tab>'] = vim.NIL,
   },
 
   -- Add borders to the completion window
