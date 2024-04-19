@@ -45,6 +45,9 @@ return {
           'go install github.com/rhysd/actionlint/cmd/actionlint@latest', -- https://github.com/rhysd/actionlint
         }
       },
+
+      -- https://github.com/b0o/SchemaStore.nvim
+      { "b0o/schemastore.nvim" },
     },
   },
 

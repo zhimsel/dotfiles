@@ -92,11 +92,29 @@ require('mason-lspconfig').setup_handlers({
             formatOnType = true,
           },
           keyOrdering = false,
+
+          -- Use SchemaStore.nvim instead
+          schemas = require('schemastore').yaml.schemas(),
+          schemaStore = {
+            enable = false,
+            url = "",
+          },
         }
       }
     })
-  end
+  end,
 
+  -- Configure jsonls
+  ['jsonls'] = function()
+    require('lspconfig').jsonls.setup({
+      settings = {
+        json = {
+          schemas = require('schemastore').json.schemas(),
+          validate = { enable = true },
+        },
+      },
+    })
+  end,
 })
 
 -- Add border around lspconfig floating windows
