@@ -182,12 +182,12 @@ cmp.setup({
       compare.score,         -- compare entry scores (preferring source order, too)
       compare.offset,        -- prefer less-distant matches (within separated words)
       compare.exact,         -- exact matches score higher
-      require("copilot_cmp.comparators").prioritize,
       compare.scopes,        -- ex: prefer local over global variables
       compare.recently_used, -- prefer more recently used
       -- compare.locality,      -- prefer matches closer in the file
       compare.kind,          -- sort by "item kind"
       -- compare.order,         -- smaller id will be ranked higher
+      require("copilot_cmp.comparators").prioritize,
     }
   },
 
