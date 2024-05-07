@@ -220,16 +220,13 @@ cmp.setup({
 
   mapping = {
     -- <Enter> key to confirm completion (but only if something is selected)
-    ["<CR>"] = cmp.mapping({
-      i = function(fallback)
-        if cmp.visible() and cmp.get_active_entry() then
-          cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-        else
-          fallback()
-        end
-      end,
-      s = cmp.mapping.confirm({ select = true }),
-    }),
+    ["<CR>"] = function(fallback)
+      if cmp.visible() and cmp.get_active_entry() then
+        cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+      else
+        fallback()
+      end
+    end,
 
     -- <C-j> to select next entry (if visible)
     ['<C-j>'] = function(fallback)
