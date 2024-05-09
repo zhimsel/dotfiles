@@ -6,7 +6,8 @@ local map = require('zhimsel.util').map
 
 require('mason').setup({
   ui = {
-    border = 'rounded'
+    check_outdated_packages_on_open = false,
+    border = 'rounded',
   }
 })
 

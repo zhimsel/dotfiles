@@ -8,12 +8,7 @@ return {
 
     dependencies = {
       { 'neovim/nvim-lspconfig' },
-      {
-        'williamboman/mason.nvim',
-        build = function()
-          vim.cmd('MasonUpdate')
-        end,
-      },
+      { 'williamboman/mason.nvim' },
       { 'williamboman/mason-lspconfig.nvim' },
 
       -- Autocompletion
