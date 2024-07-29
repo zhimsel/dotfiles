@@ -22,7 +22,6 @@ bind refs    C none
 bind status  C none
 bind main    C none
 bind generic c none
-bind generic E none
 bind generic g none
 bind generic r none
 
