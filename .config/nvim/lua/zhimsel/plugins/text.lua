@@ -11,6 +11,14 @@ return {
     config = function()
       map('x', 'ga', '<Plug>(EasyAlign)', { noremap = false })
       map('n', 'ga', '<Plug>(EasyAlign)', { noremap = false })
+
+      -- Custom alignment rules
+      vim.g.easy_align_delimiters = {
+        ['@'] = {
+          pattern = '@',
+          right_margin = 0,
+        }
+      }
     end,
   },
 
