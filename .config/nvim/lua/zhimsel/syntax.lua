@@ -128,7 +128,7 @@ local null_ls = require('null-ls')
 null_ls.setup({
   sources = {
     null_ls.builtins.diagnostics.actionlint,
-    null_ls.builtins.formatting.terrafmt,
+    null_ls.builtins.formatting.opentofu_fmt,
   }
 })
 
