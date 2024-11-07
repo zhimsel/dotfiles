@@ -129,6 +129,7 @@ null_ls.setup({
   sources = {
     null_ls.builtins.diagnostics.actionlint,
     null_ls.builtins.formatting.opentofu_fmt,
+    null_ls.builtins.formatting.rego
   }
 })
 
