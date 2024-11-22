@@ -61,10 +61,13 @@ alias jc='s journalctl'
 # Terraform {{{
 
 alias tf='terraform'
-alias tfr='tf refresh'
+alias tfi='tf init'
 alias tfp='tf plan -out .tfplan'
 alias tfpnr='tfp -refresh=false'
+alias tfip='tfi && tfp'
 alias tfa='tf apply .tfplan && rm -v .tfplan'
+alias tfia='tfi && tfa'
+alias tfr='tf refresh'
 
 # }}}
 
