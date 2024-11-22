@@ -39,7 +39,7 @@ map({ 'n', 't' }, [[<C-w><C-t>]], [[<cmd>Telescope telescope-tabs list_tabs<CR>]
 map('n', [[<leader>cd]], [[:lcd %:p:h<CR>:pwd<CR>]])
 
 -- Do some "normal" window things in terminal windows
-map('t', [[<C-w>c]],     [[<cmd>close]])
+map('t', [[<C-w>c]],     [[<cmd>close<CR>]])
 map('t', [[<C-w><Esc>]], [[<C-\><C-n>]]) -- Remap terminal exit
 
 -- Open split terminal in current directory (or current file's directory)
