@@ -47,6 +47,9 @@ alias tigr='tig $(git rev-parse --abbrev-ref --symbolic-full-name @{u})'  # open
 alias wtl='git wtl'
 alias wtp='git wtp'
 
+# Github
+alias gh-pr-urls="gh search prs --json url --jq '.[].url'"
+
 # }}}
 
 # systemd {{{
