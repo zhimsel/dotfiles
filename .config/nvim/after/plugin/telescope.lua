@@ -43,6 +43,9 @@ require('telescope').setup({
     git_files = {
       show_untracked = true,
     },
+    find_files = {
+      hidden = true,
+    },
   },
 })
 
