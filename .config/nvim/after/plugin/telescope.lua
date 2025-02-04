@@ -40,6 +40,9 @@ require('telescope').setup({
     buffers = {
       sort_lastused = true,
     },
+    git_files = {
+      show_untracked = true,
+    },
   },
 })
 
