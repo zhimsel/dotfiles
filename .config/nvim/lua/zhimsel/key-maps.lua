@@ -97,6 +97,9 @@ map('v', '<leader>f', function()
 end
 )
 
+-- Unmap the default CTRL-S (so it can be used by vim-surround)
+vim.keymap.del('i', '<c-s>')
+
 
 -------- Motion --------
 
