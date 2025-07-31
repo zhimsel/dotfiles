@@ -63,7 +63,7 @@ alias jc='s journalctl'
 
 # Terraform {{{
 
-alias tf='terraform'
+alias tf='tofu'
 alias tfi='tf init'
 alias tfp='tf plan -out .tfplan'
 alias tfpnr='tfp -refresh=false'
