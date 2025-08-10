@@ -116,6 +116,19 @@ require('mason-lspconfig').setup_handlers({
       },
     })
   end,
+
+  -- Configure nil
+  ['nil_ls'] = function()
+    require('lspconfig').nil_ls.setup({
+      settings = {
+        ['nil'] = {
+          formatting = {
+            command = {'alejandra'}
+          }
+        }
+      }
+    })
+  end,
 })
 
 -- Add border around lspconfig floating windows
