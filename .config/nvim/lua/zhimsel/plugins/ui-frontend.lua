@@ -220,33 +220,6 @@ return {
   },
 
 
-  -- move windows around more easily
-  -- https://github.com/yaronkh/vim-winmanip
-  {
-    'yaronkh/vim-winmanip',
-    keys = {
-      {
-        '<C-w><C-h>', '<Plug>(MoveJumpBufLeft)',
-        mode = 'n', noremap = false, silent = true,
-      },
-      {
-        '<C-w><C-j>', '<Plug>(MoveJumpBufDown)',
-        mode = 'n', noremap = false, silent = true,
-      },
-      {
-        '<C-w><C-k>', '<Plug>(MoveJumpBufUp)',
-        mode = 'n', noremap = false, silent = true,
-      },
-      {
-        '<C-w><C-l>', '<Plug>(MoveJumpBufRight)',
-        mode = 'n', noremap = false, silent = true,
-      },
-    },
-    init = function()
-      vim.g.winmanip_disable_key_mapping = 1
-    end
-  },
-
   -- swap two panes easily
   -- https://github.com/wesQ3/vim-windowswap
   { 'wesQ3/vim-windowswap' },
