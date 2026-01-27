@@ -12,6 +12,7 @@ return {
     end,
     config = function()
       map('n', '<leader>ha', [[<Plug>(GitGutterStageHunk)]],   { noremap = false })
+      map('v', '<leader>ha', [[<Plug>(GitGutterStageHunk)]],   { noremap = false })
       map('n', '<leader>hp', [[<Plug>(GitGutterPreviewHunk)]], { noremap = false })
       map('n', '<leader>hr', [[<Plug>(GitGutterUndoHunk)]],    { noremap = false })
     end
