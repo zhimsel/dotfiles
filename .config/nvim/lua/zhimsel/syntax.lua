@@ -5,6 +5,7 @@ local map = require('zhimsel.util').map
 -- Must be done before lsp-zero is called
 
 require('mason').setup({
+  PATH = "append",
   ui = {
     check_outdated_packages_on_open = false,
     border = 'rounded',
