@@ -30,3 +30,7 @@ Session.vim
 # Terraform #
 #############
 .tfplan
+
+# Claude #
+##########
+**/.claude/settings.local.json
