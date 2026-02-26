@@ -81,10 +81,11 @@
   dc   = diff --cached
   f    = fetch
   m    = merge
+  mt   = mergetool
   p    = push
-  pnv  = push --no-verify
   pf   = push --force
   pfnv = push --force --no-verify
+  pnv  = push --no-verify
   rb   = rebase
   rbc  = rebase --continue
   rbi  = rebase --interactive
