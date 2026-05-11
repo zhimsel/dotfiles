@@ -46,6 +46,9 @@ map('t', [[<C-w><Esc>]], [[<C-\><C-n>]]) -- Remap terminal exit
 map('n', [[<leader>t]], [[:split | terminal<CR>]])
 map('n', [[<leader>T]], [[:split | lcd %:p:h | terminal<CR>]])
 
+-- Never background terminals (this is generally buggy)
+map('t', [[<c-z>]], "<Nop>")
+
 
 -------- Folding --------
 
