@@ -22,11 +22,13 @@ return {
     end,
   },
 
+  -- # TODO: switch to https://github.com/folke/flash.nvim ?
   -- improved motions with skipping objects
   {
-    -- https://github.com/phaazon/hop.nvim
-    'phaazon/hop.nvim',
-    branch = "v2",
+    -- https://github.com/yuki-yano/hop.nvim
+    'yuki-yano/hop.nvim',
+    -- branch = "v2",
+    commit = "90db1b2c61b820e230599a04fedcd2679e64bd07",
     event = "VeryLazy",
     config = function(_, opts)
       local hop  = require('hop')
