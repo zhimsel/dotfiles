@@ -2,17 +2,20 @@
 # Send stdin to system clipboard, regardless of OS
 
 # Wayland
-if [[ -n $WAYLAND_DISPLAY ]]; then
+if [ -n "$WAYLAND_DISPLAY" ] && command -v wl-copy >/dev/null; then
   wl-copy <&0; exit $?
 
 # X11
-elif xsel -i -b <&0; then exit 0
-elif xclip -i -selection clipboard <&0; then exit 0
+elif command -v xsel >/dev/null; then
+  xsel -i -b <&0
+elif command -v xclip >/dev/null; then
+  xclip -i -selection clipboard <&0
 
 # MacOS
-elif pbcopy <&0; then exit 0
+elif command -v pbcopy >/dev/null; then
+  pbcopy <&0
 
 else
-  echo "ERROR: could not find clipboard utility!" >&2
+  echo "ERROR: could not find a clipboard utility!" >&2
   exit 1
 fi
