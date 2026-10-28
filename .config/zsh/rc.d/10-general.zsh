@@ -23,6 +23,10 @@ if [[ $(uname) == Darwin ]]; then
   export SUDO_ASKPASS="${HOME}/bin/macos-sudopass"
 fi
 
+# tmux sets TERM to 'tmux-256color', which breaks some programs.
+# e.g.: https://github.com/derailed/k9s/issues/3773
+export TERM="xterm-256color"
+
 # }}}
 
 # History {{{
